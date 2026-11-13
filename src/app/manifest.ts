@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'CityAlert',
-    short_name: 'CityAlert',
+    name: 'RomaInCampo',
+    short_name: 'RomaInCampo',
     description:
-      'Segnala buche, fontanelle guaste, erba alta e problemi urbani in tempo reale. La mappa civica del tuo comune.',
+      'La mappa di tutti i luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti.',
     start_url: '/',
     display: 'standalone',
     background_color: '#f2f4fa',

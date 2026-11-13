@@ -11,7 +11,7 @@ export async function GET() {
 
   const { data: profile, error } = await supabase
     .from('profiles')
-    .select('display_name, xp, coins, level')
+    .select('display_name, role')
     .eq('id', user.id)
     .maybeSingle();
 
@@ -22,9 +22,7 @@ export async function GET() {
   return NextResponse.json({
     email: user.email ?? '',
     displayName: profile?.display_name ?? null,
-    xp: profile?.xp ?? 0,
-    coins: profile?.coins ?? 0,
-    level: profile?.level ?? 1,
+    role: profile?.role ?? 'citizen',
   });
 }
 

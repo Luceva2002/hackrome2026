@@ -2,7 +2,7 @@
 @source '../**/*.{js,ts,jsx,tsx}';
 
 /* ═══════════════════════════════════════════════════════════
-   CityAlert — Design System "Liquid Civic"
+   RomaInCampo (base CityAlert) — Design System "Liquid Civic"
    Tema chiaro, vetro liquido (iOS-like), oro segnale.
    Mobile-first, responsive fino a desktop.
    ═══════════════════════════════════════════════════════════ */
@@ -18,7 +18,7 @@
   --gold-300: #ffdf70;
   --gold-400: #ffc933;
   --gold-500: #f5b301;
-  --gold-600: #b07d00;
+  --gold-600: #8a6200; /* AA su bianco */
   --gold-tint: #fff6da;
   --on-gold: #231a00;
 
@@ -26,7 +26,7 @@
   --ink: #0f172a;
   --text-hi: #0f172a;
   --text-mid: #475467;
-  --text-low: #8a94a6;
+  --text-low: #667085; /* AA su bianco (4.8:1) */
 
   /* ─── Semantica (contrasto AA su chiaro) ─── */
   --danger: #dc2626;
@@ -225,4 +225,21 @@
 
 .mapboxgl-canvas {
   outline: none;
+}
+
+/* ═══ Accessibilità ═══ */
+:focus-visible {
+  outline: 3px solid var(--gold-600);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

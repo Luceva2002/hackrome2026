@@ -3,61 +3,40 @@ import type { Metadata } from 'next';
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Termini e condizioni — CityAlert',
+  title: 'Termini e condizioni — RomaInCampo',
 };
 
 export default function TermsPage() {
   return (
-    <InfoPageShell titleKey="profile.account.menu.terms" subtitle="Ultimo aggiornamento: luglio 2026">
+    <InfoPageShell titleKey="profile.account.menu.terms" subtitle="Ultimo aggiornamento: novembre 2026">
       <InfoSection title="1. Il servizio">
         <p>
-          CityAlert è una piattaforma di segnalazione civica che permette ai cittadini di
-          comunicare in tempo reale problemi urbani — buche, fontanelle guaste, erba alta,
-          lampioni spenti, incendi e altro — al proprio comune e alla comunità.
+          RomaInCampo è la mappa dei luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti. I dati
+          dei luoghi provengono da fonti pubbliche, dai gestori verificati e dalle segnalazioni della community: ogni
+          campo indica da dove viene.
         </p>
         <p>
-          Le segnalazioni inviate sono visibili pubblicamente sulla mappa a tutti gli utenti
-          della piattaforma.
+          I dati pubblici possono essere datati: quando un’informazione non è confermata la scheda la mostra come “da
+          verificare”.
         </p>
       </InfoSection>
 
-      <InfoSection title="2. Account e responsabilità">
+      <InfoSection title="2. Account e ruoli">
         <p>
-          Per inviare segnalazioni è necessario un account. Sei responsabile della correttezza
-          delle informazioni che pubblichi: segnalazioni false, offensive o ingannevoli possono
-          comportare la sospensione dell&apos;account.
-        </p>
-        <p>
-          Le foto caricate non devono ritrarre persone riconoscibili, targhe o dati personali di
-          terzi.
+          Per iscriverti o creare un’attività serve un account. Il gestore di un impianto può modificarne la scheda solo
+          dopo che un amministratore ha approvato la sua richiesta.
         </p>
       </InfoSection>
 
-      <InfoSection title="3. Uso corretto">
+      <InfoSection title="3. Attività">
         <p>
-          CityAlert non sostituisce i numeri di emergenza. Per situazioni di pericolo immediato
-          contatta sempre il 112.
-        </p>
-        <p>
-          È vietato usare la piattaforma per scopi diversi dalla segnalazione civica, inclusi
-          spam, pubblicità o contenuti illeciti.
+          Chi crea un’attività ne è responsabile e si impegna a pubblicare informazioni veritiere. RomaInCampo non
+          organizza le attività e non risponde del loro svolgimento.
         </p>
       </InfoSection>
 
-      <InfoSection title="4. Punti e ricompense">
-        <p>
-          XP, monete e livelli sono elementi di gamification senza valore monetario. Possono
-          essere modificati o azzerati in qualsiasi momento per esigenze tecniche o di
-          correttezza.
-        </p>
-      </InfoSection>
-
-      <InfoSection title="5. Limitazione di responsabilità">
-        <p>
-          Il servizio è fornito &quot;così com&apos;è&quot;. Non garantiamo che ogni segnalazione
-          venga presa in carico dall&apos;amministrazione competente né tempi certi di
-          risoluzione.
-        </p>
+      <InfoSection title="4. Uso corretto">
+        <p>È vietato pubblicare luoghi inesistenti, spam, pubblicità ingannevole o contenuti illeciti.</p>
       </InfoSection>
     </InfoPageShell>
   );

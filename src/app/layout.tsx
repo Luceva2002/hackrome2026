@@ -20,21 +20,19 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'CityAlert — La tua città, in tempo reale',
+  title: 'RomaInCampo — Dove fare sport a Roma',
   description:
-    'Segnala buche, fontanelle guaste, erba alta e problemi urbani in tempo reale. La mappa civica del tuo comune.',
+    'La mappa di tutti i luoghi dove fare sport a Roma, con la fonte di ogni dato, e la bacheca delle attività aperte a tutti.',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'CityAlert',
+    title: 'RomaInCampo',
   },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   themeColor: '#f4f5f7',
   viewportFit: 'cover',
 };

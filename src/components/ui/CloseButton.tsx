@@ -14,7 +14,7 @@ interface CloseButtonProps {
 export function CloseButton({ onClick, className = '' }: CloseButtonProps) {
   const t = useT();
   return (
-    <GlassIconButton onClick={onClick} ariaLabel={t('reportDetail.close')} className={className}>
+    <GlassIconButton onClick={onClick} ariaLabel={t('common.close')} className={className}>
       <X className="w-5 h-5" />
     </GlassIconButton>
   );

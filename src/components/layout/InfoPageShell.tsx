@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 
-import { CityAlertLogo } from '@/components/brand/CityAlertLogo';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { GlassIconButton } from '@/components/ui/GlassIconButton';
 import { useT } from '@/lib/i18n';
 
@@ -27,11 +27,11 @@ export function InfoPageShell({ titleKey, subtitle, children }: InfoPageShellPro
     <div className="min-h-dvh bg-(--bg)">
       <div className="max-w-2xl mx-auto px-5 sm:px-8 pt-safe pb-16">
         <div className="flex items-center justify-between py-5">
-          <GlassIconButton onClick={goBack} ariaLabel={t('civicReport.back')} className="rounded-2xl!">
+          <GlassIconButton onClick={goBack} ariaLabel={t('common.back')} className="rounded-2xl!">
             <ArrowLeft className="w-5 h-5" />
           </GlassIconButton>
           <span className="text-xl">
-            <CityAlertLogo markOnly />
+            <BrandLogo markOnly />
           </span>
         </div>
 

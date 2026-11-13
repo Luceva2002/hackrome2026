@@ -1,0 +1,71 @@
+[
+  {
+    "id": "censimento-cmrc",
+    "titolo": "Censimento degli impianti sportivi",
+    "ente": "Città metropolitana di Roma Capitale",
+    "url": "data/raw/impiantisportivi.csv",
+    "licenza": "CC0 1.0",
+    "fetcher": "upload",
+    "parser": "csv",
+    "mapping": {
+      "name": "NomeImpianto",
+      "comune": "Comune",
+      "municipio": "Municipio",
+      "address": "Indirizzo",
+      "structures": "Struttura",
+      "levels": "Attivita",
+      "disciplines": "Sport",
+      "status": "Descrizione"
+    },
+    "priorita": 2,
+    "note": "Pubblicato nel 2025 con dati precedenti al 2013. Una riga = impianto × sport. Municipi con la numerazione a 20."
+  },
+  {
+    "id": "edilizia-scolastica-mim",
+    "titolo": "Anagrafe dell'edilizia scolastica – portale edifici",
+    "ente": "Ministero dell'Istruzione e del Merito",
+    "url": "data/raw/portale_edifici_scolastico.csv",
+    "licenza": "IODL 2.0",
+    "fetcher": "upload",
+    "parser": "csv",
+    "mapping": null,
+    "priorita": 3,
+    "note": "Da unire per CODICEEDIFICIO; tenere solo Roma ed edifici con palestra."
+  },
+  {
+    "id": "concessioni",
+    "titolo": "Tabella concessioni impianti sportivi",
+    "ente": "Roma Capitale",
+    "url": "data/raw/concessioni.ods",
+    "licenza": "da verificare",
+    "fetcher": "upload",
+    "parser": "xlsx",
+    "mapping": null,
+    "priorita": 1,
+    "note": "operator_org = nome dell'associazione, mai persone fisiche."
+  },
+  {
+    "id": "osm",
+    "titolo": "OpenStreetMap – impianti sportivi di Roma",
+    "ente": "OpenStreetMap contributors",
+    "url": "data/raw/osm-roma.geojson",
+    "licenza": "ODbL 1.0",
+    "fetcher": "upload",
+    "parser": "geojson",
+    "mapping": null,
+    "priorita": 4,
+    "note": "Usata per la posizione (OSM > geocoding)."
+  },
+  {
+    "id": "geocoding-mapbox",
+    "titolo": "Geocoding degli indirizzi",
+    "ente": "Mapbox",
+    "url": "https://api.mapbox.com/search/geocode/v6/forward",
+    "licenza": "Mapbox ToS",
+    "fetcher": "http_file",
+    "parser": "json",
+    "mapping": null,
+    "priorita": 5,
+    "note": "Solo se manca la posizione da OSM. Bbox di Roma, cache in data/processed/geocode-cache.json."
+  }
+]

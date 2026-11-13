@@ -1,5 +1,11 @@
-import { MapScreen } from '@/features/map/components/MapScreen';
+import { Suspense } from 'react';
+
+import { ExploreScreen } from '@/features/venues/components/ExploreScreen';
 
 export default function HomePage() {
-  return <MapScreen />;
+  return (
+    <Suspense>
+      <ExploreScreen />
+    </Suspense>
+  );
 }

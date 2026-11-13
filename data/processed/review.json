@@ -1,0 +1,3389 @@
+[
+ {
+  "id": "cmrc-36102d11e417",
+  "name": "Centro Storico e Villa Borghese",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Centro Storico e Villa Borghese",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "",
+    "Struttura": "Impianto sportivo cartografico - 3,50 kmq",
+    "Attivita": "Attività agonistica",
+    "Sport": "Orientamento",
+    "Descrizione": "AGONISTICA"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1eea6b5a8d55",
+  "name": "L.S. Cavour",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.S. Cavour",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "Via delle Carine, 1",
+    "Struttura": "\"2 palestre (18x6,35m",
+    "Attivita": "15,45x6,45m - polivalente)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2c980a5c650e",
+  "name": "I.I.S. Via Cavour",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. Via Cavour",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "Via Cavour, 258",
+    "Struttura": "\"2 palestre polivalente (6,4x19,20m",
+    "Attivita": "6,6x20,3m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-37e300d4b416",
+  "name": "I.T.I.S. Galilei",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.T.I.S. Galilei",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "Via Conte Verde, 51",
+    "Struttura": "\"2 palestre 8,5x24,5m",
+    "Attivita": "8,5x32,5m (polivalente)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-9fc28b12a304",
+  "name": "L.C. Virgilio",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. Virgilio",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "Via Giulia, 38",
+    "Struttura": "\"Palestra 11,8x23,8m (linoleum, no tribune), 2 palestre 10x11m",
+    "Attivita": "6x9m (polivalente)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Ginnastica"
+   },
+   {
+    "NomeImpianto": "L.C. Virgilio",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "Via Giulia, 38",
+    "Struttura": "\"Palestra 11,8x23,8m (linoleum, no tribune), 2 palestre 10x11m",
+    "Attivita": "6x9m (polivalente)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-31d5526fc894",
+  "name": "L.C. Visconti",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. Visconti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-01",
+    "Indirizzo": "P.zza del Collegio Romano, 4",
+    "Struttura": "\"2 palestre 6,90x12,25m",
+    "Attivita": "8,70x12,25m (polivalenti)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ba8befa74cd4",
+  "name": "Aquaniene",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Aquaniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via della Moschea, 132",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "50m, Palestra\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Aquaniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via della Moschea, 132",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "50m, Palestra\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "Aquaniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via della Moschea, 132",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "50m, Palestra\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f5543028ef59",
+  "name": "Villa Ada",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Villa Ada",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "",
+    "Struttura": "Acque interne, sp. verde, imp. sport. cartograf.",
+    "Attivita": "Attività sportiva",
+    "Sport": "Atletica Leggera",
+    "Descrizione": "SPORTIVA"
+   },
+   {
+    "NomeImpianto": "Villa Ada",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "",
+    "Struttura": "Acque interne, sp. verde, imp. sport. cartograf.",
+    "Attivita": "Attività sportiva",
+    "Sport": "Kayak",
+    "Descrizione": "SPORTIVA"
+   },
+   {
+    "NomeImpianto": "Villa Ada",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "",
+    "Struttura": "Acque interne, sp. verde, imp. sport. cartograf.",
+    "Attivita": "Attività sportiva",
+    "Sport": "Orientamento",
+    "Descrizione": "SPORTIVA"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-007ff56bd269",
+  "name": "I.I.S. Istituto Azzarita",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. Istituto Azzarita",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via Salvini, 20/24",
+    "Struttura": "\"Palestra 10,15x26,95m (gomma, no tribune), Campo  calcio a 5, 2 campi 25x12m",
+    "Attivita": "10x20m scoperti, Realizzazione impianto coperto, campo regolare basket\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "I.I.S. Istituto Azzarita",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via Salvini, 20/24",
+    "Struttura": "\"Palestra 10,15x26,95m (gomma, no tribune), Campo  calcio a 5, 2 campi 25x12m",
+    "Attivita": "10x20m scoperti, Realizzazione impianto coperto, campo regolare basket\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "I.I.S. Istituto Azzarita",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via Salvini, 20/24",
+    "Struttura": "\"Palestra 10,15x26,95m (gomma, no tribune), Campo  calcio a 5, 2 campi 25x12m",
+    "Attivita": "10x20m scoperti, Realizzazione impianto coperto, campo regolare basket\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ab7563dbfeca",
+  "name": "I.I.S. Via Luisa di Savoia",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. Via Luisa di Savoia",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via L. di Savoia, 14",
+    "Struttura": "\"2 palestre (16x9m",
+    "Attivita": "12x11m, no tribune)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-820d7e3b600f",
+  "name": "L.C. Mameli",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. Mameli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via P.A. Micheli, 29",
+    "Struttura": "\"Palestra 11,8x24m, 2 campi polivalenti 30x15m",
+    "Attivita": "25x13m scoperti\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "L.C. Mameli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via P.A. Micheli, 29",
+    "Struttura": "\"Palestra 11,8x24m, 2 campi polivalenti 30x15m",
+    "Attivita": "25x13m scoperti\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-622128178635",
+  "name": "Circolo Canottieri Aniene",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Circolo Canottieri Aniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Lungotevere dell’Acqua Acetosa, 119",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "33m scoperta, 2 palestre, Campo calcio a 5,38x18m (sintetico, 250 posti), 7 campi tennis, terra",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Circolo Canottieri Aniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Lungotevere dell’Acqua Acetosa, 119",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "33m scoperta, 2 palestre, Campo calcio a 5,38x18m (sintetico, 250 posti), 7 campi tennis, terra",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Circolo Canottieri Aniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Lungotevere dell’Acqua Acetosa, 119",
+    "Struttura": "\"2 piscine 25m",
+    "Attivita": "33m scoperta, 2 palestre, Campo calcio a 5,38x18m (sintetico, 250 posti), 7 campi tennis, terra",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2ed7772b397c",
+  "name": "Antico Tiro a Volo",
+  "notes": [
+   "5 righe del CSV malformate (colonne spostate): discipline da verificare",
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Antico Tiro a Volo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via E. Vajana, 21",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "10m",
+    "Sport": "25m scoperta), Campo calcio a 5 37x18m (sintetico, 200 posti), 4 campi tennis (terra), Sala biliardo\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   },
+   {
+    "NomeImpianto": "Antico Tiro a Volo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via E. Vajana, 21",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "10m",
+    "Sport": "25m scoperta), Campo calcio a 5 37x18m (sintetico, 200 posti), 4 campi tennis (terra), Sala biliardo\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   },
+   {
+    "NomeImpianto": "Antico Tiro a Volo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Via E. Vajana, 21",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "10m",
+    "Sport": "25m scoperta), Campo calcio a 5 37x18m (sintetico, 200 posti), 4 campi tennis (terra), Sala biliardo\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ab8922645222",
+  "name": "Circolo Tennis della Stampa",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Circolo Tennis della Stampa",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Piazza A. Mancini, 19",
+    "Struttura": "\"Palestra, 2 campi calcio a 5 (erba)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Circolo Tennis della Stampa",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Piazza A. Mancini, 19",
+    "Struttura": "\"Palestra, 2 campi calcio a 5 (erba)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Circolo Tennis della Stampa",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-02",
+    "Indirizzo": "Piazza A. Mancini, 19",
+    "Struttura": "\"Palestra, 2 campi calcio a 5 (erba)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-a919670bf469",
+  "name": "I.P.S.I.A. Via Sarandì",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.P.S.I.A. Via Sarandì",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-04",
+    "Indirizzo": "Via della Cecchina, 20",
+    "Struttura": "\"2 palestre polivalenti (12x24,3m",
+    "Attivita": "8,95x20,05m, no tribune)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-65e210ab185a",
+  "name": "Tor Sapienza",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Tor Sapienza",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "",
+    "Struttura": "Struttura da definire",
+    "Attivita": "Progettazione",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-3775972a17dc",
+  "name": "Via Palombini/Parco Kolbe2",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Via Palombini/Parco Kolbe2",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "",
+    "Struttura": "Asilo nido - att. comm.",
+    "Attivita": "Progettazione",
+    "Sport": "Calcio-11",
+    "Descrizione": "PROGETTAZIONE"
+   },
+   {
+    "NomeImpianto": "Via Palombini/Parco Kolbe2",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "",
+    "Struttura": "Asilo nido - att. comm.",
+    "Attivita": "Progettazione",
+    "Sport": "Calcio-5",
+    "Descrizione": "PROGETTAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4263d38956b9",
+  "name": "Parco Collina Lanciani",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco Collina Lanciani",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "",
+    "Struttura": "",
+    "Attivita": "Progettazione",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-3516f128b1ca",
+  "name": "Akros Fitness Center",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Akros Fitness Center",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via Torre di Pratolungo, 19",
+    "Struttura": "\"2 piscine (21x7m",
+    "Attivita": "12x10m coperta, scoperta)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Akros Fitness Center",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via Torre di Pratolungo, 19",
+    "Struttura": "\"2 piscine (21x7m",
+    "Attivita": "12x10m coperta, scoperta)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-cf8b1125ad86",
+  "name": "G-Power",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "G-Power",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via R. Nasini, 14",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m  coperte, scoperte), Palestra, 3 campi calcio a 5 (sintetico, no tribune), 10 campi tennis (terra, 1 sintetico), Campo calcio a 8 (sintetico, no tribune)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "G-Power",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via R. Nasini, 14",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m  coperte, scoperte), Palestra, 3 campi calcio a 5 (sintetico, no tribune), 10 campi tennis (terra, 1 sintetico), Campo calcio a 8 (sintetico, no tribune)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "G-Power",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via R. Nasini, 14",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m  coperte, scoperte), Palestra, 3 campi calcio a 5 (sintetico, no tribune), 10 campi tennis (terra, 1 sintetico), Campo calcio a 8 (sintetico, no tribune)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-404c9aa0930c",
+  "name": "Heaven 2 Sporting Club",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Heaven 2 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via F.P. Bonifacio",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m coperte), 4 palestre, 7 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Heaven 2 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via F.P. Bonifacio",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m coperte), 4 palestre, 7 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "Heaven 2 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-05",
+    "Indirizzo": "Via F.P. Bonifacio",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m coperte), 4 palestre, 7 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-847bd6353eb4",
+  "name": "Polisportiva Villa de Sanctis Roma",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Polisportiva Villa de Sanctis Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-06",
+    "Indirizzo": "Via dei Gordiani, 5",
+    "Struttura": "\"Piscina 25m scoperta, Campo calcio a 5 41x21m (sintetico, 600 posti), Campo calcio a 5 41x21m (sintetico, 300 posti), Campo calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Polisportiva Villa de Sanctis Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-06",
+    "Indirizzo": "Via dei Gordiani, 5",
+    "Struttura": "\"Piscina 25m scoperta, Campo calcio a 5 41x21m (sintetico, 600 posti), Campo calcio a 5 41x21m (sintetico, 300 posti), Campo calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Polisportiva Villa de Sanctis Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-06",
+    "Indirizzo": "Via dei Gordiani, 5",
+    "Struttura": "\"Piscina 25m scoperta, Campo calcio a 5 41x21m (sintetico, 600 posti), Campo calcio a 5 41x21m (sintetico, 300 posti), Campo calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-7da85f0566f8",
+  "name": "L.S. Levi Civita T.",
+  "notes": [
+   "1 righe del CSV malformate (colonne spostate): discipline da verificare",
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.S. Levi Civita T.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-06",
+    "Indirizzo": "Via di Torre Annunziata, 11/13",
+    "Struttura": "\"3 palestre polivalenti (17,6x6,8m",
+    "Attivita": "17,6x6,8m",
+    "Sport": "7,11x6,6)\"",
+    "Descrizione": "Attività sportiva"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b71b24b0d713",
+  "name": "Parco Tor Tre Teste",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco Tor Tre Teste",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "",
+    "Struttura": "Impianto sportivo cartografico - 1,30 kmq",
+    "Attivita": "Attività agonistica",
+    "Sport": "Orientamento",
+    "Descrizione": "AGONISTICA"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-77e4139c5646",
+  "name": "I.I.S. G. Ambrosoli",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. G. Ambrosoli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Viale della Primavera, 207",
+    "Struttura": "\"2 palestre (11x30m",
+    "Attivita": "11x16,3m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-5c7f77824dca",
+  "name": "L.S. F. D’Assisi",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.S. F. D’Assisi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Viale della Primavera, 207",
+    "Struttura": "\"2 palestre (22,7x25,8m",
+    "Attivita": "11,8x22,8m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f9f042e300a8",
+  "name": "Tor Sapienza Tib. Sud",
+  "notes": [
+   "Stati in conflitto nel censimento: realizzazione, progettazione",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "7.9  Tor Sapienza Tib. Sud",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via Prenestina - Via Morandi",
+    "Struttura": "Piscina (coperta, scoperta), palestra, Campo calcio a 5",
+    "Attivita": "Progettazione",
+    "Sport": "Calcio-5",
+    "Descrizione": "REALIZZAZIONE"
+   },
+   {
+    "NomeImpianto": "7.9  Tor Sapienza Tib. Sud",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via Prenestina - Via Morandi",
+    "Struttura": "Piscina (coperta, scoperta), palestra, Campo calcio a 5",
+    "Attivita": "Progettazione",
+    "Sport": "Nuoto/Attivita Natatorie",
+    "Descrizione": "REALIZZAZIONE"
+   },
+   {
+    "NomeImpianto": "7.9  Tor Sapienza Tib. Sud",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via Prenestina - Via Morandi",
+    "Struttura": "Piscina (coperta, scoperta), palestra, Campo calcio a 5",
+    "Attivita": "Progettazione",
+    "Sport": "Palestra",
+    "Descrizione": "REALIZZAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-faf9e4f3c0fd",
+  "name": "Piscina Salvetti",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Piscina Salvetti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via delle Robinie, 1/B",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Piscina Salvetti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via delle Robinie, 1/B",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-66ce607e4512",
+  "name": "Circolo Bocciofilo San Felice",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Circolo Bocciofilo San Felice",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Piazza di S. Felice da Cantalice, 20",
+    "Struttura": "\"Impianto coperto, 3 campi, sintetico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0fb526908c2d",
+  "name": "Oratorio S. Giustino",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Oratorio S. Giustino",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Viale Alessandrino, 144",
+    "Struttura": "\"2 campi calcio a 5 40x19m (sintetico, 100 posti)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-e6f0872e9d76",
+  "name": "Frecce Azzurre",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Frecce Azzurre",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-07",
+    "Indirizzo": "Via di Centocelle, 301",
+    "Struttura": "\"Hangar militare - campo 35x30m coperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-380b04c7d3d3",
+  "name": "Stadio Torbellamonaca",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Stadio Torbellamonaca",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via di Tor Bella Monaca, 497",
+    "Struttura": "\"Campo calcio a 11 105x65m, erba, 200 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Stadio Torbellamonaca",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via di Tor Bella Monaca, 497",
+    "Struttura": "\"Campo calcio a 11 105x65m, erba, 200 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Stadio Torbellamonaca",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via di Tor Bella Monaca, 497",
+    "Struttura": "\"Campo calcio a 11 105x65m, erba, 200 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-8568cdee3744",
+  "name": "Fontana Candida",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Fontana Candida",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Fontana Candida",
+    "Struttura": "\"Impianto sportivo cartografico - 0,45 kmq",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-c902b2325465",
+  "name": "185° C.D. C. Urbani",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "185° C.D. C. Urbani",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Camastra, 155",
+    "Struttura": "\"Impianto polivalente coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-29f59a15854d",
+  "name": "Nuovo Istituto Scolastico Castelverde",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Nuovo Istituto Scolastico Castelverde",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "",
+    "Struttura": "Palestra 28x15m (gomma, no tribune), Pista atletica, Campo polivalente scoperto (no tribune)",
+    "Attivita": "Attività sportiva ed agonistica",
+    "Sport": "Atletica Leggera",
+    "Descrizione": "SPORTIVA"
+   },
+   {
+    "NomeImpianto": "Nuovo Istituto Scolastico Castelverde",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "",
+    "Struttura": "Palestra 28x15m (gomma, no tribune), Pista atletica, Campo polivalente scoperto (no tribune)",
+    "Attivita": "Attività sportiva ed agonistica",
+    "Sport": "Basket",
+    "Descrizione": "SPORTIVA ED AGONISTICA"
+   },
+   {
+    "NomeImpianto": "Nuovo Istituto Scolastico Castelverde",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "",
+    "Struttura": "Palestra 28x15m (gomma, no tribune), Pista atletica, Campo polivalente scoperto (no tribune)",
+    "Attivita": "Attività sportiva ed agonistica",
+    "Sport": "Volley",
+    "Descrizione": "SPORTIVA ED AGONISTICA"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-79c858541944",
+  "name": "Arcieri Arcoroma",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Arcieri Arcoroma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Cassioli",
+    "Struttura": "\"Impianto coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f7304b599f87",
+  "name": "Arcieri della Torre",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Arcieri della Torre",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via delle Rondini, 76",
+    "Struttura": "\"Impianto coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-bbffa3badf7d",
+  "name": "Campo Gabii",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Campo Gabii",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Capitini",
+    "Struttura": "\"Campo calcio a 11 100x49m, erba, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Campo Gabii",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Capitini",
+    "Struttura": "\"Campo calcio a 11 100x49m, erba, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-a6c9e47f3d20",
+  "name": "Heaven 3 Sporting Club",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Heaven 3 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Don P. Mazzolari",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 3 palestre, Campo calcio a 5, Campo calcio a 8\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Heaven 3 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Don P. Mazzolari",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 3 palestre, Campo calcio a 5, Campo calcio a 8\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Heaven 3 Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Don P. Mazzolari",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 3 palestre, Campo calcio a 5, Campo calcio a 8\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0c6304cddc7b",
+  "name": "Lazio Biliardo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Lazio Biliardo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Casilina, 1626",
+    "Struttura": "\"Sala biliardo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-83d6bbeee67f",
+  "name": "T.A.V. Valle Aniene",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "T.A.V. Valle Aniene",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-08",
+    "Indirizzo": "Via Lunghezzina, 141",
+    "Struttura": "\"Impianto di tiro: 8 campi in linea",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b0191f6ad88a",
+  "name": "Parco della Caffarella",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco della Caffarella",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "",
+    "Struttura": "\"Impianto sportivo cartografico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-c460aae38936",
+  "name": "I.I.S. Leopoldo Pirelli",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. Leopoldo Pirelli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Gubbio, 1",
+    "Struttura": "\"2 palestre polivalenti (13,5x13,5m",
+    "Attivita": "6,8x13m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-6fce4e4c0fcd",
+  "name": "I.I.S. Leopoldo Pirelli",
+  "notes": [
+   "Stati in conflitto nel censimento: ristrutturazione, realizzazione",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.I.S. Leopoldo Pirelli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Rocca di Papa, 113",
+    "Struttura": "Palestra, 2 campi polivalenti, scoperti",
+    "Attivita": "Ristrutturazione",
+    "Sport": "Basket",
+    "Descrizione": "REALIZZAZIONE"
+   },
+   {
+    "NomeImpianto": "I.I.S. Leopoldo Pirelli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Rocca di Papa, 113",
+    "Struttura": "Palestra, 2 campi polivalenti, scoperti",
+    "Attivita": "Ristrutturazione",
+    "Sport": "Palestra",
+    "Descrizione": "RISTRUTTURAZIONE"
+   },
+   {
+    "NomeImpianto": "I.I.S. Leopoldo Pirelli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Rocca di Papa, 113",
+    "Struttura": "Palestra, 2 campi polivalenti, scoperti",
+    "Attivita": "Ristrutturazione",
+    "Sport": "Volley",
+    "Descrizione": "REALIZZAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0296d84b2ef5",
+  "name": "Sporting Palace Appia",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Sporting Palace Appia",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Appia Nuova, 700",
+    "Struttura": "\"2 piscine (19m",
+    "Attivita": "25m), 2 palestre\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Sporting Palace Appia",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Appia Nuova, 700",
+    "Struttura": "\"2 piscine (19m",
+    "Attivita": "25m), 2 palestre\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "Sporting Palace Appia",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Appia Nuova, 700",
+    "Struttura": "\"2 piscine (19m",
+    "Attivita": "25m), 2 palestre\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-30514d831706",
+  "name": "Via Siria, 21",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Via Siria, 21\"",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "",
+    "Struttura": "Piscina 25m",
+    "Attivita": "Attività agonistica",
+    "Sport": "Nuoto/Attivita Natatorie",
+    "Descrizione": "AGONISTICA"
+   },
+   {
+    "NomeImpianto": "Via Siria, 21\"",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "",
+    "Struttura": "Piscina 25m",
+    "Attivita": "Attività agonistica",
+    "Sport": "Piscina",
+    "Descrizione": "SI"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-6421b8e9d1ae",
+  "name": "Nuova Polisportiva De Rossi",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Nuova Polisportiva De Rossi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via di Vigna Fabbri",
+    "Struttura": "\"Campo calcio a 11 100x53m, sintetico, no trib. Campo calcio a 5 36x18m, sintetico, 100 posti Campo calcio a 5 33x16m, sintetico, 100 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Nuova Polisportiva De Rossi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via di Vigna Fabbri",
+    "Struttura": "\"Campo calcio a 11 100x53m, sintetico, no trib. Campo calcio a 5 36x18m, sintetico, 100 posti Campo calcio a 5 33x16m, sintetico, 100 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Nuova Polisportiva De Rossi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via di Vigna Fabbri",
+    "Struttura": "\"Campo calcio a 11 100x53m, sintetico, no trib. Campo calcio a 5 36x18m, sintetico, 100 posti Campo calcio a 5 33x16m, sintetico, 100 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-d0dd2584531d",
+  "name": "Lazio Biliardo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Lazio Biliardo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Casilina, 1626/A",
+    "Struttura": "\"Sala biliardo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-a81608f197e5",
+  "name": "La Torre",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "La Torre",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Vicolo dell’Acquedotto Felice, 459",
+    "Struttura": "\"Campo calcio a 5 36x18m, sintetico, 150 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "La Torre",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Vicolo dell’Acquedotto Felice, 459",
+    "Struttura": "\"Campo calcio a 5 36x18m, sintetico, 150 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4c2945a15c67",
+  "name": "Palestra Total Body Center",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Palestra Total Body Center",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Turno, 44",
+    "Struttura": "\"Palestra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b1ef3b37373b",
+  "name": "La Via del Wing Tsun",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "La Via del Wing Tsun",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Vetulonia, 76",
+    "Struttura": "\"Palestra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f951f9e26982",
+  "name": "Wing Tsun Kuen",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Wing Tsun Kuen",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Albalonga, 10",
+    "Struttura": "\"Palestra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1126c72d3568",
+  "name": "Istituto Salesiano Pio XI",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Istituto Salesiano Pio XI",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Umbertide, 11",
+    "Struttura": "\"Campo calcio a 5 42x22, sintetico, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Istituto Salesiano Pio XI",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-09",
+    "Indirizzo": "Via Umbertide, 11",
+    "Struttura": "\"Campo calcio a 5 42x22, sintetico, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-701f58150a25",
+  "name": "Alma Nuoto",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Alma Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "V.le  dei Consoli, 24",
+    "Struttura": "\"2 piscine 25x12,5m",
+    "Attivita": "10x5m\"",
+    "Sport": "Attività agonistica anche per div. abili",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Alma Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "V.le  dei Consoli, 24",
+    "Struttura": "\"2 piscine 25x12,5m",
+    "Attivita": "10x5m\"",
+    "Sport": "Attività agonistica anche per div. abili",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-d1031957563a",
+  "name": "Parco degli Acquedotti",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco degli Acquedotti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Lemonia, Via delle Capannelle, Viale Appio Claudio",
+    "Struttura": "\"Impianto sportivo cartografico - 0,53 kmq",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Parco degli Acquedotti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Lemonia, Via delle Capannelle, Viale Appio Claudio",
+    "Struttura": "\"Impianto sportivo cartografico - 0,53 kmq",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ad612f7c30f8",
+  "name": "I.C. Guido Milanesi",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.C. Guido Milanesi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Tropea, 26",
+    "Struttura": "\"Palestra 24,28x11,97m, gomma, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0741750559e4",
+  "name": "C.D. Tarcisio",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "C.D. Tarcisio",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via San Tarcisio, 137",
+    "Struttura": "\"Impianto polivalente coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ca8ff30caef4",
+  "name": "Appia Country Roma",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Appia Country Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Appia Pignatelli, 454",
+    "Struttura": "\"Piscina 18x8m scoperta, Palestra 16x8m",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Appia Country Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Appia Pignatelli, 454",
+    "Struttura": "\"Piscina 18x8m scoperta, Palestra 16x8m",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Appia Country Roma",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Appia Pignatelli, 454",
+    "Struttura": "\"Piscina 18x8m scoperta, Palestra 16x8m",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0dc9f07f77e6",
+  "name": "Club Capannelle Sporting 2000",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Club Capannelle Sporting 2000",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via R. Bianchi Bandinelli, 52",
+    "Struttura": "\"2 campi calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Club Capannelle Sporting 2000",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via R. Bianchi Bandinelli, 52",
+    "Struttura": "\"2 campi calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Club Capannelle Sporting 2000",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via R. Bianchi Bandinelli, 52",
+    "Struttura": "\"2 campi calcio a 5 (sintetico)",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2b476979fdb9",
+  "name": "Heaven Sporting Club",
+  "notes": [
+   "6 righe del CSV malformate (colonne spostate): discipline da verificare",
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Heaven Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Frascineto, 67/71",
+    "Struttura": "\"3 piscine (25x16m",
+    "Attivita": "16x8m",
+    "Sport": "25x16m scoperta), Palestre, 3 campi calcio a 5 (sintetico - 1.200 posti), Campo calcio a 8, Campo tennis (sintetico)\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   },
+   {
+    "NomeImpianto": "Heaven Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Frascineto, 67/71",
+    "Struttura": "\"3 piscine (25x16m",
+    "Attivita": "16x8m",
+    "Sport": "25x16m scoperta), Palestre, 3 campi calcio a 5 (sintetico - 1.200 posti), Campo calcio a 8, Campo tennis (sintetico)\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   },
+   {
+    "NomeImpianto": "Heaven Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Frascineto, 67/71",
+    "Struttura": "\"3 piscine (25x16m",
+    "Attivita": "16x8m",
+    "Sport": "25x16m scoperta), Palestre, 3 campi calcio a 5 (sintetico - 1.200 posti), Campo calcio a 8, Campo tennis (sintetico)\"",
+    "Descrizione": "Attività sportiva ed agonistica"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f9e80754542a",
+  "name": "Morena",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Morena",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Pazzano, 1",
+    "Struttura": "\"Campo calcio a 11 100x58m, terra, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Morena",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Pazzano, 1",
+    "Struttura": "\"Campo calcio a 11 100x58m, terra, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b9b686f21ce4",
+  "name": "Peter Pan Triathlon",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Peter Pan Triathlon",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via di Casal Morena, 19",
+    "Struttura": "\"Spazio verde",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f4f312c42b06",
+  "name": "Polia Sporting Village",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Polia Sporting Village",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Polia, 44",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Polia Sporting Village",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Polia, 44",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Polia Sporting Village",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Via Polia, 44",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f90dd56ed305",
+  "name": "Tito Labieno",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Tito Labieno",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Viale T. Labieno",
+    "Struttura": "\"Sala biliardo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-31bbad0e58c3",
+  "name": "Parrocchia Assunzione di Maria",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parrocchia Assunzione di Maria",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-10",
+    "Indirizzo": "Viale Spartaco, 19",
+    "Struttura": "\"Impianto   scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-d2c92604ac52",
+  "name": "Impianto Via del Serafico",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Impianto Via del Serafico",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "",
+    "Struttura": "Impianto scoperto",
+    "Attivita": "Realizzazione",
+    "Sport": "Impianto Campo Polivalente",
+    "Descrizione": "REALIZZAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-147b109cf56e",
+  "name": "Imp. Natatorio di Valco San Paolo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Imp. Natatorio di Valco San Paolo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via della Vasca Navale",
+    "Struttura": "\"2 piscine 34m",
+    "Attivita": "50m scoperta, vasca didattica\"",
+    "Sport": "Inagibile",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Imp. Natatorio di Valco San Paolo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via della Vasca Navale",
+    "Struttura": "\"2 piscine 34m",
+    "Attivita": "50m scoperta, vasca didattica\"",
+    "Sport": "Inagibile",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-0f7d34be8bca",
+  "name": "I.T.I.S. G. Armellini",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.T.I.S. G. Armellini",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Largo B. Placidi Riccardi, 13",
+    "Struttura": "\"Palestra 23,80X13,50m (gomma, no tribune), 2 palestre polivalenti (24,10x12m",
+    "Attivita": "23,40x13,90m)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "I.T.I.S. G. Armellini",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Largo B. Placidi Riccardi, 13",
+    "Struttura": "\"Palestra 23,80X13,50m (gomma, no tribune), 2 palestre polivalenti (24,10x12m",
+    "Attivita": "23,40x13,90m)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Impianto Campo Polivalente"
+   },
+   {
+    "NomeImpianto": "I.T.I.S. G. Armellini",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Largo B. Placidi Riccardi, 13",
+    "Struttura": "\"Palestra 23,80X13,50m (gomma, no tribune), 2 palestre polivalenti (24,10x12m",
+    "Attivita": "23,40x13,90m)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Tennis tavolo"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ebdaafc40f13",
+  "name": "L.C. Socrate",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. Socrate",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via Giuliani, 15",
+    "Struttura": "\"2 palestre (24,90x12,00m",
+    "Attivita": "23,90x12,00m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "L.C. Socrate",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via Giuliani, 15",
+    "Struttura": "\"2 palestre (24,90x12,00m",
+    "Attivita": "23,90x12,00m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-d31fd620a768",
+  "name": "Forte Ardeatino",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "11.2   Forte Ardeatino",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "",
+    "Struttura": "Attrezzatura ludico-ricreativa",
+    "Attivita": "Realizzazione",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-20fbd79b31c4",
+  "name": "Centro Sportivo Cristoforo Colombo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Centro Sportivo Cristoforo Colombo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via L. Perna, 26",
+    "Struttura": "\"Campo calcio a 11 100x64m, terra, no tribune Campo calcio a 5 38x20m, sintetico, 100 posti Campo polivalente, terra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Centro Sportivo Cristoforo Colombo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via L. Perna, 26",
+    "Struttura": "\"Campo calcio a 11 100x64m, terra, no tribune Campo calcio a 5 38x20m, sintetico, 100 posti Campo polivalente, terra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Centro Sportivo Cristoforo Colombo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via L. Perna, 26",
+    "Struttura": "\"Campo calcio a 11 100x64m, terra, no tribune Campo calcio a 5 38x20m, sintetico, 100 posti Campo polivalente, terra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4c0db0944fd2",
+  "name": "Club 70",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Club 70",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via T. Nuvolari, 141",
+    "Struttura": "\"Sala biliardo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-ee8167df07bc",
+  "name": "Circolo Bocciofilo Navigatori",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Circolo Bocciofilo Navigatori",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via delle Sette Chiese, 252",
+    "Struttura": "\"Impianto coperto, 3 campi, sintetico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-5cdf6b837697",
+  "name": "Centro TKD Ostiense",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Centro TKD Ostiense",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via C. Colombo, 112",
+    "Struttura": "\"Palestra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-55adc0b53270",
+  "name": "Planet Sport",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Planet Sport",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via Appia Nuova, 665",
+    "Struttura": "\"Palestra",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4ccdcd9e168d",
+  "name": "Circolo Bocciofilo Valco San Paolo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Circolo Bocciofilo Valco San Paolo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-11",
+    "Indirizzo": "Via Cesarea, 17/bis",
+    "Struttura": "\"Impianto coperto, 3 campi, sintetico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2ed6c1bbf23a",
+  "name": "Federazione Italiana Hockey",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Federazione Italiana Hockey",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Avignone",
+    "Struttura": "\"Prato sintetico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f8f33ab9ab8f",
+  "name": "Impianto Tor Pagnotta",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Impianto Tor Pagnotta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Pontecorvo",
+    "Struttura": "\"Impianto di tiro coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Impianto Tor Pagnotta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Pontecorvo",
+    "Struttura": "Campo di calcio a 5 (sintetico), Campo polivalente (sintetico), 5 campi tennis (terra)",
+    "Attivita": "Ristrutturazione",
+    "Sport": "Calcio-5",
+    "Descrizione": "RISTRUTTURAZIONE"
+   },
+   {
+    "NomeImpianto": "Impianto Tor Pagnotta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Pontecorvo",
+    "Struttura": "Campo di calcio a 5 (sintetico), Campo polivalente (sintetico), 5 campi tennis (terra)",
+    "Attivita": "Ristrutturazione",
+    "Sport": "Tennis",
+    "Descrizione": "RISTRUTTURAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-807098f2cbab",
+  "name": "I.P.S.I.A. Via Acireale, 8 - Succursale",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "I.P.S.I.A. Via Acireale, 8 - Succursale",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Brancati, 19/20",
+    "Struttura": "\"2 palestre polivalenti (17,75x14,20m",
+    "Attivita": "18,70x12,70m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2806eb4d4e9d",
+  "name": "L.C. Vivona F.",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. Vivona F.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via della Fisica, 14",
+    "Struttura": "\"Palestra (9,3x16,6m",
+    "Attivita": "11x13m), Impianto scoperto, Pista atletica leggera\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Atletica Leggera"
+   },
+   {
+    "NomeImpianto": "L.C. Vivona F.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via della Fisica, 14",
+    "Struttura": "\"Palestra (9,3x16,6m",
+    "Attivita": "11x13m), Impianto scoperto, Pista atletica leggera\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "L.C. Vivona F.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via della Fisica, 14",
+    "Struttura": "\"Palestra (9,3x16,6m",
+    "Attivita": "11x13m), Impianto scoperto, Pista atletica leggera\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-24814b91ee3b",
+  "name": "Palalottomatica",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Palalottomatica",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Piazzale dello Sport",
+    "Struttura": "\"3500 mq, 12.000 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-99470208ccd0",
+  "name": "All Round",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "All Round",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Don P. Borghi, 96/98",
+    "Struttura": "\"3 palestre, 2 piscine (25m",
+    "Attivita": "10x5m Piscina scoperta), Campo calcio a 5, 34x17m (sintetico, 150 posti), 4 campi tennis (terra) e 4 sintetico, 2 campi polivalenti (scoperti, cemento - realizzazione), Campo beach volley/beach tennis\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "All Round",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Don P. Borghi, 96/98",
+    "Struttura": "\"3 palestre, 2 piscine (25m",
+    "Attivita": "10x5m Piscina scoperta), Campo calcio a 5, 34x17m (sintetico, 150 posti), 4 campi tennis (terra) e 4 sintetico, 2 campi polivalenti (scoperti, cemento - realizzazione), Campo beach volley/beach tennis\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "All Round",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Don P. Borghi, 96/98",
+    "Struttura": "\"3 palestre, 2 piscine (25m",
+    "Attivita": "10x5m Piscina scoperta), Campo calcio a 5, 34x17m (sintetico, 150 posti), 4 campi tennis (terra) e 4 sintetico, 2 campi polivalenti (scoperti, cemento - realizzazione), Campo beach volley/beach tennis\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Impianto Campo Polivalente"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-906129321918",
+  "name": "Laser Club",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Laser Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via M. Bartoli, 256",
+    "Struttura": "\"Sala biliardo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4b253e640b36",
+  "name": "Libertas Roma Accademy",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Libertas Roma Accademy",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Laurentina, 470",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Libertas Roma Accademy",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Laurentina, 470",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Libertas Roma Accademy",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via Laurentina, 470",
+    "Struttura": "\"Piscina",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-583c40fce491",
+  "name": "Sport City",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Sport City",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via A. De Portillo",
+    "Struttura": "\"2 piscine (18m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 11 (erba sint. - 1.200 posti), 4 campi calcio a 5 (sintetici), 2 campi calcio a 8, Campo polivalente scoperto (cemento)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "Sport City",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via A. De Portillo",
+    "Struttura": "\"2 piscine (18m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 11 (erba sint. - 1.200 posti), 4 campi calcio a 5 (sintetici), 2 campi calcio a 8, Campo polivalente scoperto (cemento)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Sport City",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via A. De Portillo",
+    "Struttura": "\"2 piscine (18m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 11 (erba sint. - 1.200 posti), 4 campi calcio a 5 (sintetici), 2 campi calcio a 8, Campo polivalente scoperto (cemento)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Calcio-11"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4f7d02463870",
+  "name": "Parrocchia di San Gregorio Barbarigo",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parrocchia di San Gregorio Barbarigo",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-12",
+    "Indirizzo": "Via delle Montagne Rocciose, 16",
+    "Struttura": "\"Pallone 24,62x10,27m cop., PVC, no tribune",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-c13485ddf090",
+  "name": "Le Cupole",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Le Cupole",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Loc. San G. di Acilia - Via G. Bonichi, 17",
+    "Struttura": "\"2 piscine (33x21m",
+    "Attivita": "25x12m, no tribune), 3 palestre\"",
+    "Sport": "Ristrutturazione",
+    "Descrizione": "Arti Marziali"
+   },
+   {
+    "NomeImpianto": "Le Cupole",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Loc. San G. di Acilia - Via G. Bonichi, 17",
+    "Struttura": "\"2 piscine (33x21m",
+    "Attivita": "25x12m, no tribune), 3 palestre\"",
+    "Sport": "Ristrutturazione",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "Le Cupole",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Loc. San G. di Acilia - Via G. Bonichi, 17",
+    "Struttura": "\"2 piscine (33x21m",
+    "Attivita": "25x12m, no tribune), 3 palestre\"",
+    "Sport": "Ristrutturazione",
+    "Descrizione": "Discipline acquatiche"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b69796d5c5e4",
+  "name": "San Giorgio",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "San Giorgio",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via di Saponara, 242 - Loc. Acilia",
+    "Struttura": "\"Campo calcio a 11 100x62m, terra, 900 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "San Giorgio",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via di Saponara, 242 - Loc. Acilia",
+    "Struttura": "\"Campo calcio a 11 100x62m, terra, 900 posti",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-701e34cbd9c3",
+  "name": "Castel Fusano",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Castel Fusano",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "\"Impianto sportivo cartografico",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1e656d7c19f3",
+  "name": "S.M.S. Arcangelo Corelli",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "S.M.S. Arcangelo Corelli",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via Capo delle Armi, 80",
+    "Struttura": "\"Impianto polivalente coperto, scoperto",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4a3c79e607f2",
+  "name": "Ex ENAL Hotel",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Ex ENAL Hotel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "Piscina, calcio, tennis",
+    "Attivita": "Inagibile",
+    "Sport": "Calcio-11",
+    "Descrizione": "INAGIBILE"
+   },
+   {
+    "NomeImpianto": "Ex ENAL Hotel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "Piscina, calcio, tennis",
+    "Attivita": "Inagibile",
+    "Sport": "Nuoto/Attivita Natatorie",
+    "Descrizione": "INAGIBILE"
+   },
+   {
+    "NomeImpianto": "Ex ENAL Hotel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "Piscina, calcio, tennis",
+    "Attivita": "Inagibile",
+    "Sport": "Piscina",
+    "Descrizione": "SI"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-7d0034b19ee4",
+  "name": "Dragoncello",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "13.4   Dragoncello",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "",
+    "Attivita": "Progettazione",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-cb3803eccb14",
+  "name": "Parco la Madonnetta",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "13.8   Parco la Madonnetta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via B. Molajoli, 124",
+    "Struttura": "\"Tensostruttura, 36x17,67m (cemento, no tribune), 2 piscine (25m",
+    "Attivita": "16m coperte, scoperte), 6 palestre, 2 campi calcio a 5 (sintetico), 2 campi calcio a 8 (pozzolana), 6 campi tennis (terra), 2 campi beach volley/beach tennis, Pista pattinaggio, Pista mounta\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "13.8   Parco la Madonnetta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via B. Molajoli, 124",
+    "Struttura": "\"Tensostruttura, 36x17,67m (cemento, no tribune), 2 piscine (25m",
+    "Attivita": "16m coperte, scoperte), 6 palestre, 2 campi calcio a 5 (sintetico), 2 campi calcio a 8 (pozzolana), 6 campi tennis (terra), 2 campi beach volley/beach tennis, Pista pattinaggio, Pista mounta\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "13.8   Parco la Madonnetta",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via B. Molajoli, 124",
+    "Struttura": "\"Tensostruttura, 36x17,67m (cemento, no tribune), 2 piscine (25m",
+    "Attivita": "16m coperte, scoperte), 6 palestre, 2 campi calcio a 5 (sintetico), 2 campi calcio a 8 (pozzolana), 6 campi tennis (terra), 2 campi beach volley/beach tennis, Pista pattinaggio, Pista mounta\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-6bbb432b2332",
+  "name": "Parco XXV Novembre",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "13.16 Parco XXV Novembre",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "",
+    "Struttura": "Strutture da definire - Pista pattinaggio",
+    "Attivita": "Progettazione",
+    "Sport": "Pattinaggio/Skate",
+    "Descrizione": "PROGETTAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-d8de40420f28",
+  "name": "Babel",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Babel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via T. Traetta, 70",
+    "Struttura": "\"2 piscine (33m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 5 (sintetico - 1 200 posti), Campo calcio a 8 (sintetico), Campo tennis (terra), Campo beach tennis, beach volley, Sala bridge\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "Babel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via T. Traetta, 70",
+    "Struttura": "\"2 piscine (33m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 5 (sintetico - 1 200 posti), Campo calcio a 8 (sintetico), Campo tennis (terra), Campo beach tennis, beach volley, Sala bridge\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "Babel",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via T. Traetta, 70",
+    "Struttura": "\"2 piscine (33m",
+    "Attivita": "25m scoperta), Palestra, 2 campi calcio a 5 (sintetico - 1 200 posti), Campo calcio a 8 (sintetico), Campo tennis (terra), Campo beach tennis, beach volley, Sala bridge\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Bridge"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-8bbc401e1bf7",
+  "name": "Polisportiva Eschilo 1",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Polisportiva Eschilo 1",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via Eschilo, 85",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "25x12,5m, vasca), 3 palestre, Campo calcio a 11 95x50m (erba, 800 posti), Campo calcio a 8 (sintetico, 200 posti), 3 campi tennis (terra), Pista hockey e pattinaggio, 2 campi beach volley (coperti, scoperti)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "Polisportiva Eschilo 1",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via Eschilo, 85",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "25x12,5m, vasca), 3 palestre, Campo calcio a 11 95x50m (erba, 800 posti), Campo calcio a 8 (sintetico, 200 posti), 3 campi tennis (terra), Pista hockey e pattinaggio, 2 campi beach volley (coperti, scoperti)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Polisportiva Eschilo 1",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-13",
+    "Indirizzo": "Via Eschilo, 85",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "25x12,5m, vasca), 3 palestre, Campo calcio a 11 95x50m (erba, 800 posti), Campo calcio a 8 (sintetico, 200 posti), 3 campi tennis (terra), Pista hockey e pattinaggio, 2 campi beach volley (coperti, scoperti)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Calcio-11"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-6c50f5363b19",
+  "name": "Moonriver",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Moonriver",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Via Batteli, 6",
+    "Struttura": "\"2 piscine 25x12m",
+    "Attivita": "12x12m, 2 palestre, 2 campi calcio a 5 (sintetico, no tribune), 4 campi tennis (terra), 2 campi beach volley, Pista pattinaggio 44x22m (coperta)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "Moonriver",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Via Batteli, 6",
+    "Struttura": "\"2 piscine 25x12m",
+    "Attivita": "12x12m, 2 palestre, 2 campi calcio a 5 (sintetico, no tribune), 4 campi tennis (terra), 2 campi beach volley, Pista pattinaggio 44x22m (coperta)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Moonriver",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Via Batteli, 6",
+    "Struttura": "\"2 piscine 25x12m",
+    "Attivita": "12x12m, 2 palestre, 2 campi calcio a 5 (sintetico, no tribune), 4 campi tennis (terra), 2 campi beach volley, Pista pattinaggio 44x22m (coperta)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-40109a03b304",
+  "name": "Opera Nazionale Città dei Ragazzi",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Opera Nazionale Città dei Ragazzi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Largo Città dei Ragazzi, 1",
+    "Struttura": "\"Città giardino: Piscina, Campo calcio a 11 105x58m (erba, no tribune), 2 campi calcio a 11 (terra, no tribune), 2 campi tennis (cemento), Campo basket scoperto (cemento), Campo volley scoperto (cemento), Campo bocce",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Opera Nazionale Città dei Ragazzi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Largo Città dei Ragazzi, 1",
+    "Struttura": "\"Città giardino: Piscina, Campo calcio a 11 105x58m (erba, no tribune), 2 campi calcio a 11 (terra, no tribune), 2 campi tennis (cemento), Campo basket scoperto (cemento), Campo volley scoperto (cemento), Campo bocce",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   },
+   {
+    "NomeImpianto": "Opera Nazionale Città dei Ragazzi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-15",
+    "Indirizzo": "Largo Città dei Ragazzi, 1",
+    "Struttura": "\"Città giardino: Piscina, Campo calcio a 11 105x58m (erba, no tribune), 2 campi calcio a 11 (terra, no tribune), 2 campi tennis (cemento), Campo basket scoperto (cemento), Campo volley scoperto (cemento), Campo bocce",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-f1ba7c201779",
+  "name": "A.S. Juventus Nuoto",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "A.S. Juventus Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Bravetta, 539",
+    "Struttura": "\"Piscine 25x12,5m",
+    "Attivita": "10x10m\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "A.S. Juventus Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Bravetta, 539",
+    "Struttura": "\"Piscine 25x12,5m",
+    "Attivita": "10x10m\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4332f3ccf932",
+  "name": "Laghi Mezzaluna",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Laghi Mezzaluna",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via del Fontanile di Mezzaluna, 20",
+    "Struttura": "\"Il Carpodromo, il Lago grande, il Lago piccolo",
+    "Attivita": "",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-39c4be912b93",
+  "name": "Parco di Villa Pamphili",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco di Villa Pamphili",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "",
+    "Struttura": "Imp. sp. cartografico, parte est - 1,18 kmq, Imp. sp. cartografico, parte ovest - 0,91 kmq",
+    "Attivita": "Attività agonistica",
+    "Sport": "Orientamento",
+    "Descrizione": "AGONISTICA"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-b727cc12b199",
+  "name": "L.S. M. Malpighi",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.S. M. Malpighi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Silvestri, 201",
+    "Struttura": "\"2 palestre (9,90x26,30m",
+    "Attivita": "9,30x20,35m - polivalenti), Campo polivalente scoperto\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "L.S. M. Malpighi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Silvestri, 201",
+    "Struttura": "\"2 palestre (9,90x26,30m",
+    "Attivita": "9,30x20,35m - polivalenti), Campo polivalente scoperto\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "L.S. M. Malpighi",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Silvestri, 201",
+    "Struttura": "\"2 palestre (9,90x26,30m",
+    "Attivita": "9,30x20,35m - polivalenti), Campo polivalente scoperto\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-4fb923892530",
+  "name": "Empire Sport e Resort",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Empire Sport e Resort",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via degli Aldobrandeschi, 115",
+    "Struttura": "\"2 piscine (25x16m",
+    "Attivita": "24x10m), 7 palestre, 6 campi calcio a 5 (sintetico), Campo calcio a 8 (sintetico), 8 campi tennis (terra), Campo beach volley\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Beach Volley/Tennis Soccer"
+   },
+   {
+    "NomeImpianto": "Empire Sport e Resort",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via degli Aldobrandeschi, 115",
+    "Struttura": "\"2 piscine (25x16m",
+    "Attivita": "24x10m), 7 palestre, 6 campi calcio a 5 (sintetico), Campo calcio a 8 (sintetico), 8 campi tennis (terra), Campo beach volley\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Empire Sport e Resort",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via degli Aldobrandeschi, 115",
+    "Struttura": "\"2 piscine (25x16m",
+    "Attivita": "24x10m), 7 palestre, 6 campi calcio a 5 (sintetico), Campo calcio a 8 (sintetico), 8 campi tennis (terra), Campo beach volley\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-c5677cb414de",
+  "name": "Polisportiva Olimpia Nuoto",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Polisportiva Olimpia Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Alessandri, 34",
+    "Struttura": "\"2 piscine (20x10m",
+    "Attivita": "18x12m scoperta, vasca)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Polisportiva Olimpia Nuoto",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Alessandri, 34",
+    "Struttura": "\"2 piscine (20x10m",
+    "Attivita": "18x12m scoperta, vasca)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-2632d577257f",
+  "name": "Valle dei Casali",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Valle dei Casali",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 28",
+    "Struttura": "\"2 campi calcio a 5 34x16m (sintetico, no trib.), Tensostruttura, 2 piste hockey e pattinaggio (20x40m",
+    "Attivita": "16x36m scoperte), Maneggio\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Valle dei Casali",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 28",
+    "Struttura": "\"2 campi calcio a 5 34x16m (sintetico, no trib.), Tensostruttura, 2 piste hockey e pattinaggio (20x40m",
+    "Attivita": "16x36m scoperte), Maneggio\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Ginnastica"
+   },
+   {
+    "NomeImpianto": "Valle dei Casali",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 28",
+    "Struttura": "\"2 campi calcio a 5 34x16m (sintetico, no trib.), Tensostruttura, 2 piste hockey e pattinaggio (20x40m",
+    "Attivita": "16x36m scoperte), Maneggio\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Hockey"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-13bb38a006ad",
+  "name": "Villa York Sporting Club",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Villa York Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 40",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 4 palestre, Campo calcio a 5 39x20m (sintetico, 100 posti), Campo calcio a 8 (sintetico), 10 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Villa York Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 40",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 4 palestre, Campo calcio a 5 39x20m (sintetico, 100 posti), Campo calcio a 8 (sintetico), 10 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Villa York Sporting Club",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-16",
+    "Indirizzo": "Via Affogalasino, 40",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "16m), 4 palestre, Campo calcio a 5 39x20m (sintetico, 100 posti), Campo calcio a 8 (sintetico), 10 campi tennis (terra)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-98270f7a1f91",
+  "name": "L.A. Caravillani",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.A. Caravillani",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-17",
+    "Indirizzo": "Piazza Risorgimento, 46/B",
+    "Struttura": "\"2 palestre polivalenti (22x6m",
+    "Attivita": "9x4m)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Impianto Campo Polivalente"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-6cad2c615bd9",
+  "name": "Parco del Foro Italico",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Parco del Foro Italico",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-17",
+    "Indirizzo": "Via dei Gladiatori, 31",
+    "Struttura": "\"Piscine (50x18m",
+    "Attivita": "25x8m), Piscine 50x25, vasca tuffi, scoperte\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Parco del Foro Italico",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-17",
+    "Indirizzo": "Via dei Gladiatori, 31",
+    "Struttura": "\"Piscine (50x18m",
+    "Attivita": "25x8m), Piscine 50x25, vasca tuffi, scoperte\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-53c9ed74b358",
+  "name": "Le Molette",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Le Molette",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via del Casale di San Nicola, 37",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "6x12m coperte, scoperte), 6 campi tennis (terra), Campo paddle 10x20m (sintetico)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Le Molette",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via del Casale di San Nicola, 37",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "6x12m coperte, scoperte), 6 campi tennis (terra), Campo paddle 10x20m (sintetico)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Paddle"
+   },
+   {
+    "NomeImpianto": "Le Molette",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via del Casale di San Nicola, 37",
+    "Struttura": "\"2 piscine (25x12m",
+    "Attivita": "6x12m coperte, scoperte), 6 campi tennis (terra), Campo paddle 10x20m (sintetico)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-aecd8fe022b5",
+  "name": "Nadir",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Nadir",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via F. Bonfiglio 62",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "25m scoperta), Palestra, Campo calcio a 5 (sintetico), 2 campi tennis (terra, 1 cemento), Campo volley (cemento)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Nadir",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via F. Bonfiglio 62",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "25m scoperta), Palestra, Campo calcio a 5 (sintetico), 2 campi tennis (terra, 1 cemento), Campo volley (cemento)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Karate"
+   },
+   {
+    "NomeImpianto": "Nadir",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-19",
+    "Indirizzo": "Via F. Bonfiglio 62",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "25m scoperta), Palestra, Campo calcio a 5 (sintetico), 2 campi tennis (terra, 1 cemento), Campo volley (cemento)\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Kung Fu"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-5d8205a21ef7",
+  "name": "Colli d’Oro",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Colli d’Oro",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "",
+    "Struttura": "Campo 40x20m (1200 posti)",
+    "Attivita": "Realizzazione",
+    "Sport": "Basket",
+    "Descrizione": "REALIZZAZIONE"
+   },
+   {
+    "NomeImpianto": "Colli d’Oro",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "",
+    "Struttura": "Campo 40x20m (1200 posti)",
+    "Attivita": "Realizzazione",
+    "Sport": "Ginnastica",
+    "Descrizione": "REALIZZAZIONE"
+   },
+   {
+    "NomeImpianto": "Colli d’Oro",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "",
+    "Struttura": "Campo 40x20m (1200 posti)",
+    "Attivita": "Realizzazione",
+    "Sport": "Pugilato",
+    "Descrizione": "REALIZZAZIONE"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1a2e0aa5f129",
+  "name": "L.C. De Sanctis G.",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "L.C. De Sanctis G.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Cassia, 931",
+    "Struttura": "\"Palestra 20x9,90m, 2 campi polivalenti (20x12,3m",
+    "Attivita": "23x44,90m scoperti)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Basket"
+   },
+   {
+    "NomeImpianto": "L.C. De Sanctis G.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Cassia, 931",
+    "Struttura": "\"Palestra 20x9,90m, 2 campi polivalenti (20x12,3m",
+    "Attivita": "23x44,90m scoperti)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Palestra"
+   },
+   {
+    "NomeImpianto": "L.C. De Sanctis G.",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Cassia, 931",
+    "Struttura": "\"Palestra 20x9,90m, 2 campi polivalenti (20x12,3m",
+    "Attivita": "23x44,90m scoperti)\"",
+    "Sport": "Attività sportiva",
+    "Descrizione": "Volley"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1fb851abf349",
+  "name": "Tor di Quinto Area B – Area C",
+  "notes": [
+   "Indirizzo mancante"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "20.20  Tor di Quinto Area B – Area C",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "",
+    "Struttura": "",
+    "Attivita": "Progettazione",
+    "Sport": "",
+    "Descrizione": ""
+   }
+  ]
+ },
+ {
+  "id": "cmrc-08688d06710f",
+  "name": "Cassiantica Sporting Fitness",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Cassiantica Sporting Fitness",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Toarmina, 5",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "15m scoperta), Palestra, 2 campi polivalenti\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Cassiantica Sporting Fitness",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Toarmina, 5",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "15m scoperta), Palestra, 2 campi polivalenti\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "Cassiantica Sporting Fitness",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Toarmina, 5",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "15m scoperta), Palestra, 2 campi polivalenti\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-7f0dd7e94a28",
+  "name": "Sporting Club Due Ponti",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "Sporting Club Due Ponti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Due Ponti, 48/A",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "12m - 1 scoperta), Palestra, Campo calcio a 5 39x19m (sintetico, 200 posti), 2 campi calcio a 8, 19 campi tennis (terra), triathlon\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio 8-7-9"
+   },
+   {
+    "NomeImpianto": "Sporting Club Due Ponti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Due Ponti, 48/A",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "12m - 1 scoperta), Palestra, Campo calcio a 5 39x19m (sintetico, 200 posti), 2 campi calcio a 8, 19 campi tennis (terra), triathlon\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "Sporting Club Due Ponti",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via Due Ponti, 48/A",
+    "Struttura": "\"3 piscine (25m",
+    "Attivita": "12m - 1 scoperta), Palestra, Campo calcio a 5 39x19m (sintetico, 200 posti), 2 campi calcio a 8, 19 campi tennis (terra), triathlon\"",
+    "Sport": "Attività sportiva ed agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   }
+  ]
+ },
+ {
+  "id": "cmrc-1cd6d49eafe8",
+  "name": "C.S. Nettuno Club Saxa Rubra",
+  "notes": [
+   "Descrizione delle strutture troncata nel CSV",
+   "Posizione non ancora geocodificata"
+  ],
+  "raw": [
+   {
+    "NomeImpianto": "C.S. Nettuno Club Saxa Rubra",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via di Quarto Peperino, 10",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "12x8m scoperta), Campo calcio a 5 (sintetico), 4 campi tennis (terra)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Calcio-5"
+   },
+   {
+    "NomeImpianto": "C.S. Nettuno Club Saxa Rubra",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via di Quarto Peperino, 10",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "12x8m scoperta), Campo calcio a 5 (sintetico), 4 campi tennis (terra)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Nuoto/Attivita Natatorie"
+   },
+   {
+    "NomeImpianto": "C.S. Nettuno Club Saxa Rubra",
+    "Comune": "ROMA",
+    "Municipio": "MUNICIPIO-20",
+    "Indirizzo": "Via di Quarto Peperino, 10",
+    "Struttura": "\"2 piscine (25m",
+    "Attivita": "12x8m scoperta), Campo calcio a 5 (sintetico), 4 campi tennis (terra)\"",
+    "Sport": "Attività agonistica",
+    "Descrizione": "Piscina"
+   }
+  ]
+ }
+]

@@ -1,88 +1,43 @@
-# CityAlert
+# RomaInCampo
 
-La mappa civica del tuo comune. I cittadini segnalano in tempo reale i problemi più frequenti in città — fontanella guasta, buca, erba alta, lampione spento, incendi — e tutta la comunità li vede comparire sulla mappa.
+La mappa di tutti i luoghi dove fare sport a Roma, con la fonte di ogni dato, e la bacheca delle attività aperte a tutti. Nato per HackRome 2026 sulla base di CityAlert (Next.js 15, React 19, Supabase, Mapbox, Tailwind v4 "Liquid Civic").
 
-PWA mobile-first e responsive fino a desktop, con tema chiaro "Liquid Civic": vetro liquido in stile iOS, mappa 3D diurna e oro segnale come accento.
-
-## Stack
-
-- **Next.js 15** (App Router, Turbopack) + React 19 + TypeScript
-- **Tailwind CSS v4** con design token custom (vetro liquido + oro)
-- **Supabase** — auth, Postgres con RLS, Storage foto, Realtime per le segnalazioni live
-- **Mapbox GL** (`react-map-gl`) — stile Standard 3D con preset giorno
-- **Motion** per le animazioni
-
-## Funzionalità
-
-- Autenticazione email/password (Supabase Auth), cambio password e username
-- Mappa 3D con posizione GPS live e pin a goccia nel colore categoria; i pin
-  sovrapposti si aprono a ventaglio e restano tutti cliccabili
-- Layout mobile-first che si adatta a tablet e desktop (sheet che diventano modali centrate, griglie fluide)
-- Nuove segnalazioni push in tempo reale (Supabase Realtime)
-- Wizard di segnalazione: categoria → foto (fotocamera o galleria) → descrizione
-- 10 categorie comunali: buca, fontanella, erba alta, incendio, lampione, rifiuti, marciapiede, perdita d'acqua, vandalismo, altro
-- Stato segnalazione: aperta / in lavorazione / risolta
-- Validazione comunitaria: like/dislike e commenti su ogni segnalazione
-- Gamification: +20 XP e +5 monete a segnalazione (max 5 premiate al giorno), livelli con barra progresso
-- Profilo con statistiche e card delle proprie segnalazioni
-- Pagine termini, privacy e assistenza
-- i18n italiano/inglese
-
-## Setup
-
-1. Installa le dipendenze:
+## Avvio rapido
 
 ```bash
 npm install
+cp .env.example .env.local          # Supabase + Mapbox
+npm run dev                         # http://localhost:3000
 ```
 
-2. Crea `.env.local`:
+Senza database la mappa funziona comunque: legge l'ultimo export della pipeline (`data/processed/venues.json`).
+
+## Database
+
+1. Supabase → SQL Editor → esegui `supabase/schema.sql` (idempotente).
+2. Aggiungi `SUPABASE_SERVICE_ROLE_KEY` in `.env.local` ed esegui `npm run db:seed`: fonti, luoghi, account demo (credenziali in `.env.example`) e 10 attività di esempio.
+3. Facoltativo, solo su un database dedicato: `supabase/cleanup-cityalert.sql` elimina le tabelle di CityAlert.
+
+Test di permessi e lista d'attesa su un Postgres locale:
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<publishable-or-anon-key>
-NEXT_PUBLIC_MAPBOX_TOKEN=<mapbox-public-token>
+psql -f supabase/tests/supabase-shim.sql && psql -f supabase/schema.sql && psql -f supabase/tests/rls.test.sql
 ```
 
-3. Esegui `supabase/schema.sql` nel SQL Editor del progetto Supabase (idempotente: crea tabelle, RLS, funzione reward `award_report`, bucket storage e publication realtime).
-
-4. Avvia:
+## Pipeline dati
 
 ```bash
-npm run dev
+npm run pipeline:censimento          # CSV → data/processed/venues.json (salta se l'hash non cambia)
+npm run pipeline:censimento -- --limit 50
+npm run pipeline:geocode             # indirizzi → coordinate (Mapbox, cache su file)
 ```
 
-## Struttura
+Fonti registrate in `data/sources.json`. Le scelte sui dati sono in `DECISIONS.md`, l'avanzamento in `PROGRESS.md`, la visione in `docs/SPEC.md`.
 
-```
-src/
-  app/                         → solo routing (App Router): pagine sottili, layout, route handler
-    (auth)/auth                → splash + login/registrazione, callback OAuth
-    (app)/                     → mappa (home), profilo, account (protetti)
-    (info)/                    → termini, privacy, assistenza (pubbliche)
-    api/civic                  → report (POST + reward), reports (GET, ?scope=mine),
-                                 report/[id]/vote, report/[id]/comments, upload foto
-    api/profile                → GET profilo, PATCH username
-  features/                    → codice per dominio
-    auth/                      → AuthScreen, hook useAuth, requireAuth (server)
-    map/                       → MapScreen, pin, pannello live, realtime, layout pin sovrapposti
-    reports/                   → wizard, dettaglio, card, voti, commenti, costanti, tipi, schemi zod
-    profile/                   → ProfileScreen, AccountScreen, livelli XP, tipi profilo
-  components/                  → UI condivisa
-    ui/                        → primitive (PillButton, GlassIconButton, CloseButton, RingAvatar)
-    brand/  layout/  providers/
-  hooks/                       → hook condivisi (useGeolocation)
-  lib/                         → infrastruttura: supabase (client/server), mapbox, i18n (+ messages), geo, time
-public/                        → icone PWA e service worker
-supabase/schema.sql            → schema completo (tabelle, vista feed, RLS, storage)
-```
+## Ruoli
 
-Regole: `app/` importa da `features/`; le feature possono usare `components/`, `hooks/` e `lib/`,
-mai il contrario. Il codice solo-server (`server-only`) sta in `features/*/server` e `lib/supabase/server.ts`.
+- **Cittadino** (default): esplora, si iscrive, crea attività.
+- **Gestore**: rivendica un impianto; dopo l'approvazione dell'admin ne aggiorna i dati operativi. Le fonti pubbliche non sovrascrivono mai i suoi campi.
+- **Admin**: approva i claim, modera, applica le proposte della pipeline.
 
-## Script
-
-- `npm run dev` — sviluppo (Turbopack)
-- `npm run build` — build di produzione
-- `npm run typecheck` — controllo TypeScript
-- `npm run lint` — ESLint
+Owner e Guest non sono ruoli ma relazioni sulle attività.

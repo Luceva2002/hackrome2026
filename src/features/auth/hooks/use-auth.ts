@@ -41,9 +41,17 @@ export function useAuth() {
   }, [supabase]);
 
   const signUp = useCallback(
-    async (email: string, password: string): Promise<{ needsEmailConfirmation: boolean }> => {
+    async (
+      email: string,
+      password: string,
+      meta?: { signup_role: 'citizen' | 'manager'; display_name?: string },
+    ): Promise<{ needsEmailConfirmation: boolean }> => {
       if (!supabase) throw new Error('Supabase not configured');
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { data: meta, emailRedirectTo: `${window.location.origin}/auth/callback` },
+      });
       if (error) throw error;
       return { needsEmailConfirmation: !data.session };
     },
@@ -62,7 +70,7 @@ export function useAuth() {
   const signOut = useCallback(async () => {
     if (!supabase) return;
     await supabase.auth.signOut();
-    router.push('/auth');
+    router.push('/');
   }, [supabase, router]);
 
   const signInWithGoogle = useCallback(async () => {

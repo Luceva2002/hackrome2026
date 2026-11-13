@@ -248,7 +248,7 @@ export function AccountScreen() {
     <div className="h-full overflow-y-auto bg-(--bg) pb-10">
       <div className="max-w-xl mx-auto">
         <div className="flex items-center gap-3 px-5 pt-safe pb-6">
-          <GlassIconButton href="/profile" ariaLabel={t('profile.title')} className="rounded-2xl!">
+          <GlassIconButton href="/profilo" ariaLabel={t('profile.title')} className="rounded-2xl!">
             <ArrowLeft className="w-5 h-5" />
           </GlassIconButton>
           <h1

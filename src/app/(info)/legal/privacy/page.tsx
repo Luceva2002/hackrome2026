@@ -3,49 +3,47 @@ import type { Metadata } from 'next';
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Privacy — CityAlert',
+  title: 'Privacy — RomaInCampo',
 };
 
 export default function PrivacyPage() {
   return (
-    <InfoPageShell titleKey="profile.account.menu.privacy" subtitle="Ultimo aggiornamento: luglio 2026">
-      <InfoSection title="Quali dati raccogliamo">
+    <InfoPageShell titleKey="profile.account.menu.privacy" subtitle="Ultimo aggiornamento: novembre 2026">
+      <InfoSection title="Senza account">
+        <p>Mappa, schede dei luoghi e bacheca delle attività si consultano senza registrarsi e senza cookie di profilazione.</p>
         <p>
-          <strong className="text-hi">Account:</strong> email e username, necessari
-          per l&apos;autenticazione.
-        </p>
-        <p>
-          <strong className="text-hi">Segnalazioni:</strong> categoria, descrizione,
-          foto (facoltativa) e posizione GPS del problema segnalato.
-        </p>
-        <p>
-          <strong className="text-hi">Posizione:</strong> usata solo al momento
-          della segnalazione o per centrare la mappa. Non tracciamo i tuoi spostamenti.
+          <strong className="text-hi">Posizione:</strong> la chiediamo solo quando premi “Vicino a me” e resta sul tuo
+          dispositivo per filtrare i risultati. Non tracciamo i tuoi spostamenti.
         </p>
       </InfoSection>
 
-      <InfoSection title="Come li usiamo">
+      <InfoSection title="Con un account">
         <p>
-          I dati servono esclusivamente a far funzionare il servizio: mostrare le segnalazioni
-          sulla mappa, attribuirle al tuo profilo e calcolare XP e livelli.
+          <strong className="text-hi">Account:</strong> email e nome visualizzato. L’email non è mai visibile agli altri
+          utenti.
         </p>
-        <p>Non vendiamo i tuoi dati né li condividiamo con terze parti per fini pubblicitari.</p>
+        <p>
+          <strong className="text-hi">Iscrizioni:</strong> chi organizza un’attività e gli altri iscritti vedono solo il
+          numero dei posti occupati, mai i nomi o i contatti dei partecipanti.
+        </p>
+        <p>
+          <strong className="text-hi">Gestori:</strong> per rivendicare un impianto indichi il nome dell’associazione o
+          della società. Sulla scheda pubblica compare l’organizzazione, non la persona.
+        </p>
       </InfoSection>
 
-      <InfoSection title="Dove sono conservati">
+      <InfoSection title="Dati pubblici">
         <p>
-          I dati sono conservati su Supabase (infrastruttura UE dove disponibile) e protetti da
-          row-level security: solo tu puoi modificare i tuoi dati.
+          Le schede degli impianti nascono da fonti aperte (censimento della Città metropolitana di Roma, anagrafe
+          dell’edilizia scolastica, elenchi delle concessioni). Ogni campo indica la sua fonte. Dalle concessioni
+          importiamo solo i nomi delle organizzazioni, mai quelli di persone fisiche.
         </p>
-        <p>Le foto delle segnalazioni sono pubbliche, come la posizione del problema segnalato.</p>
       </InfoSection>
 
       <InfoSection title="I tuoi diritti">
         <p>
-          Ai sensi del GDPR puoi chiedere in qualsiasi momento accesso, rettifica o cancellazione
-          dei tuoi dati scrivendo dalla pagina Assistenza. La cancellazione dell&apos;account
-          rimuove profilo e dati personali; le segnalazioni possono essere anonimizzate per
-          mantenere lo storico civico.
+          Ai sensi del GDPR puoi chiedere in qualsiasi momento accesso, rettifica o cancellazione dei tuoi dati dalla
+          pagina Assistenza. La cancellazione dell’account rimuove profilo e iscrizioni.
         </p>
       </InfoSection>
     </InfoPageShell>

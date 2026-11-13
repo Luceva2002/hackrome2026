@@ -7,7 +7,7 @@ import { getCurrentLocation, getGeolocationError, readPosition, type UserLocatio
 export type LocationStatus = 'idle' | 'granted' | 'denied';
 
 /** Ultima posizione accettata, per non richiederla a ogni apertura */
-const CACHE_KEY = 'cityalert:last-location';
+const CACHE_KEY = 'romaincampo:last-location';
 
 function readCachedLocation(): UserLocation | null {
   try {

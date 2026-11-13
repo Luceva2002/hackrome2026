@@ -4,7 +4,7 @@ import { Mail, MessageCircleQuestion, Siren } from 'lucide-react';
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Assistenza — CityAlert',
+  title: 'Assistenza — RomaInCampo',
 };
 
 export default function SupportPage() {
@@ -14,7 +14,7 @@ export default function SupportPage() {
       subtitle="Siamo qui per aiutarti. Rispondiamo di solito entro 48 ore."
     >
       <a
-        href="mailto:supporto@cityalert.app?subject=Richiesta%20assistenza%20CityAlert"
+        href="mailto:supporto@romaincampo.example?subject=Richiesta%20assistenza%20RomaInCampo"
         className="glass-heavy rounded-3xl px-6 py-5 flex items-center gap-4 hover:bg-white/90 active:scale-[0.99] transition-all"
       >
         <span className="w-12 h-12 rounded-2xl bg-linear-to-b from-gold-400 to-gold-600 flex items-center justify-center shrink-0 shadow-[0_6px_18px_rgba(245,179,1,0.35)]">
@@ -28,7 +28,7 @@ export default function SupportPage() {
             Scrivici una email
           </span>
           <span className="block text-sm text-mid mt-0.5">
-            supporto@cityalert.app
+            supporto@romaincampo.example
           </span>
         </span>
       </a>
@@ -36,7 +36,7 @@ export default function SupportPage() {
       <div className="glass rounded-3xl px-6 py-5 flex items-start gap-4 border-l-4 border-l-danger">
         <Siren className="w-6 h-6 text-danger shrink-0 mt-0.5" />
         <p className="text-sm leading-relaxed text-mid">
-          <strong className="text-hi">Emergenze:</strong> CityAlert non sostituisce
+          <strong className="text-hi">Emergenze:</strong> RomaInCampo non sostituisce
           i servizi di soccorso. In caso di pericolo immediato chiama il{' '}
           <strong className="text-hi">112</strong>.
         </p>
@@ -47,11 +47,11 @@ export default function SupportPage() {
           <div>
             <p className="font-bold text-hi flex items-center gap-2">
               <MessageCircleQuestion className="w-4 h-4 text-gold-600" />
-              La mia segnalazione non appare sulla mappa
+              Un dato della scheda è sbagliato o “da verificare”
             </p>
             <p className="mt-1">
-              Verifica la connessione e ricarica la pagina: le segnalazioni compaiono in tempo
-              reale appena salvate.
+              Molti dati pubblici sono datati. Se gestisci l’impianto, rivendicalo dalla scheda e
+              aggiornalo tu: le fonti pubbliche non sovrascriveranno mai le tue modifiche.
             </p>
           </div>
           <div>
@@ -76,11 +76,11 @@ export default function SupportPage() {
           <div>
             <p className="font-bold text-hi flex items-center gap-2">
               <MessageCircleQuestion className="w-4 h-4 text-gold-600" />
-              Come vengono assegnati XP e monete?
+              Chi vede la mia iscrizione a un’attività?
             </p>
             <p className="mt-1">
-              Ogni segnalazione valida assegna XP e monete. Salendo di livello sblocchi nuovi
-              traguardi nel profilo.
+              Nessuno: organizzatore e partecipanti vedono solo quanti posti sono occupati,
+              mai i nomi o i contatti degli iscritti.
             </p>
           </div>
         </div>
