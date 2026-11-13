@@ -28,12 +28,12 @@
 },
 "castel porziano": {
 "status": "ok",
-"lat": 41.798303,
-"lng": 12.419582,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romano Scarpa, 00127 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.176Z"
+"lat": 41.732709,
+"lng": 12.353212,
+"quality": "address",
+"label": "Viale di Castel Porziano 00100, 00124 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.647Z",
+"pass": 2
 },
 "circonvallazione casilina, 119": {
 "status": "ok",
@@ -109,21 +109,21 @@
 },
 "l.go g. cocconi, 10": {
 "status": "ok",
-"lat": 41.872394,
-"lng": 12.817671,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Vicolo Cecconi 10, 00010 Gallicano nel Lazio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.382Z"
+"lat": 41.892985,
+"lng": 12.563605,
+"quality": "address",
+"label": "Largo Girolamo Cocconi 10, 00171 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.535Z",
+"pass": 2
 },
 "largo a. corelli, 9": {
 "status": "ok",
-"lat": 41.91083,
-"lng": 12.53766,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Eugenio Torelli Viollier 9, 00157 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.402Z"
+"lat": 41.913818,
+"lng": 12.610017,
+"quality": "address",
+"label": "Largo Augusto Corelli 9, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.526Z",
+"pass": 2
 },
 "largo agosta, 10": {
 "status": "ok",
@@ -145,21 +145,21 @@
 },
 "largo b. placidi riccardi, 13": {
 "status": "ok",
-"lat": 41.912911,
-"lng": 12.45489,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Riccardo Grazioli Lante 13, 00195 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.536Z"
+"lat": 41.856027,
+"lng": 12.476184,
+"quality": "address",
+"label": "Largo Beato Placido Riccardi 13, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.534Z",
+"pass": 2
 },
 "largo cardinale a. galamini, 18": {
 "status": "ok",
-"lat": 41.88672,
-"lng": 12.46921,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 18, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.609Z"
+"lat": 41.896774,
+"lng": 12.44295,
+"quality": "address",
+"label": "Largo Cardinale Agostino Galamini 18, 00165 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.635Z",
+"pass": 2
 },
 "largo castelseprio, 11": {
 "status": "ok",
@@ -199,12 +199,12 @@
 },
 "largo d. buzzati, 15": {
 "status": "ok",
-"lat": 41.886655,
-"lng": 12.469181,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 15, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.689Z"
+"lat": 41.81687,
+"lng": 12.474205,
+"quality": "address",
+"label": "Largo Dino Buzzati 15, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.631Z",
+"pass": 2
 },
 "largo davanzati, 12": {
 "status": "ok",
@@ -262,12 +262,12 @@
 },
 "largo f. vito, 1": {
 "status": "ok",
-"lat": 41.71797,
-"lng": 12.61102,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Volterra 1, 00041 Albano Laziale città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.852Z"
+"lat": 41.933085,
+"lng": 12.42646,
+"quality": "address",
+"label": "Largo Francesco Vito 1, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.732Z",
+"pass": 2
 },
 "largo g. borghi": {
 "status": "ok",
@@ -280,12 +280,12 @@
 },
 "largo g. veratti, 1": {
 "status": "ok",
-"lat": 41.908872,
-"lng": 12.494604,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 1, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.866Z"
+"lat": 41.851371,
+"lng": 12.473325,
+"quality": "address",
+"label": "Largo Giuseppe Veratti 1, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.792Z",
+"pass": 2
 },
 "largo g.p. borghi, 6": {
 "status": "ok",
@@ -298,21 +298,21 @@
 },
 "largo i. bedeschi, 13": {
 "status": "ok",
-"lat": 41.886559,
-"lng": 12.46923,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 13, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.922Z"
+"lat": 41.943315,
+"lng": 12.37013,
+"quality": "address",
+"label": "Largo Ines Bedeschi 13, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.876Z",
+"pass": 2
 },
 "largo l. daga, 2": {
 "status": "ok",
-"lat": 41.908747,
-"lng": 12.494443,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 2, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:37.923Z"
+"lat": 41.876991,
+"lng": 12.428825,
+"quality": "address",
+"label": "Largo Luigi Daga 2, 00164 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:44.888Z",
+"pass": 2
 },
 "largo monte san giusto, 14": {
 "status": "ok",
@@ -451,12 +451,12 @@
 },
 "largo u. de morpurgo, 2": {
 "status": "ok",
-"lat": 41.908747,
-"lng": 12.494443,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 2, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.320Z"
+"lat": 41.93619,
+"lng": 12.507297,
+"quality": "address",
+"label": "Largo Uberto De Morpurgo 2, 00199 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.167Z",
+"pass": 2
 },
 "largo volumnia, 11": {
 "status": "ok",
@@ -514,39 +514,39 @@
 },
 "lungomare a. vespucci, 144": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 144, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.530Z"
+"lat": 41.704707,
+"lng": 12.339564,
+"quality": "address",
+"label": "Lungomare Amerigo Vespucci 144, 00122 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.260Z",
+"pass": 2
 },
 "lungomare a. vespucci, 50": {
 "status": "ok",
-"lat": 41.965062,
-"lng": 12.511,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 50, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.541Z"
+"lat": 41.709935,
+"lng": 12.328025,
+"quality": "address",
+"label": "Lungomare Amerigo Vespucci 50, 00122 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.352Z",
+"pass": 2
 },
 "lungomare l. catulo, 14": {
 "status": "ok",
-"lat": 41.907025,
-"lng": 12.463476,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Catullo 14, 00193 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.613Z"
+"lat": 41.71611,
+"lng": 12.314248,
+"quality": "address",
+"label": "Lungomare Lutazio Catulo 14, 00122 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.355Z",
+"pass": 2
 },
 "lungotevere a. da brescia, 240": {
 "status": "ok",
-"lat": 41.956752,
-"lng": 12.728839,
-"relevance": 0.45,
+"lat": 41.912116,
+"lng": 12.472616,
 "quality": "street",
-"label": "Via Brescia, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.534Z"
+"label": "Lungotevere Arnaldo da Brescia, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.358Z",
+"pass": 2
 },
 "lungotevere dante, 227": {
 "status": "ok",
@@ -775,39 +775,39 @@
 },
 "lungotevere s. d’acquisto, 21": {
 "status": "ok",
-"lat": 41.886818,
-"lng": 12.469189,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 21, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:38.997Z"
+"lat": 41.935251,
+"lng": 12.47025,
+"quality": "address",
+"label": "Lungotevere Salvo D'Acquisto 21, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.426Z",
+"pass": 2
 },
 "lungotevere s. d’acquisto, 6": {
 "status": "ok",
-"lat": 41.886289,
-"lng": 12.46927,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 6, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.010Z"
+"lat": 41.934951,
+"lng": 12.46928,
+"quality": "address",
+"label": "Lungotevere Salvo D'Acquisto 6, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.443Z",
+"pass": 2
 },
 "lungotevere t. de revel, 11": {
 "status": "ok",
-"lat": 41.87264,
-"lng": 12.750794,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Maurice Ravel 11, 00039 Zagarolo città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.041Z"
+"lat": 41.932069,
+"lng": 12.463469,
+"quality": "street",
+"label": "Lungotevere Thaon di Revel, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.495Z",
+"pass": 2
 },
 "lungotevere t. de revel, 3": {
 "status": "ok",
-"lat": 41.873816,
-"lng": 12.751292,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Maurice Ravel 3, 00039 Zagarolo città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.081Z"
+"lat": 41.932069,
+"lng": 12.463469,
+"quality": "street",
+"label": "Lungotevere Thaon di Revel, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.452Z",
+"pass": 2
 },
 "lungotevere testaccio, 32": {
 "status": "ok",
@@ -829,21 +829,21 @@
 },
 "p.zza g.l. bernini": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.8782,
+"lng": 12.485581,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.375Z"
+"label": "Piazza Gian Lorenzo Bernini, 00153 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.455Z",
+"pass": 2
 },
 "p.zza indipendenza, 7": {
 "status": "ok",
-"lat": 42.03387,
-"lng": 12.71344,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Nuova 7, 00010 Sant'Angelo Romano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.374Z"
+"lat": 41.904358,
+"lng": 12.503251,
+"quality": "address",
+"label": "Piazza dell'Indipendenza 7, 00185 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.520Z",
+"pass": 2
 },
 "p.zza nicoloso da recco, 12": {
 "status": "ok",
@@ -856,12 +856,12 @@
 },
 "parco de’ medici": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.818532,
+"lng": 12.413542,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.439Z"
+"label": "Viale Parco de' Medici, 00148 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.531Z",
+"pass": 2
 },
 "piazza a. mancini, 19": {
 "status": "ok",
@@ -874,12 +874,12 @@
 },
 "piazza a. marzio": {
 "status": "ok",
-"lat": 41.919414,
-"lng": 12.442126,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Mario Romagnoli, 00136 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.492Z"
+"lat": 41.917476,
+"lng": 12.405448,
+"quality": "address",
+"label": "Via Marzio Ginetti 00100, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.690Z",
+"pass": 2
 },
 "piazza a. zamorani, 8": {
 "status": "ok",
@@ -901,12 +901,12 @@
 },
 "piazza b. avanzini, 99": {
 "status": "ok",
-"lat": 41.856987,
-"lng": 12.490159,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Raimondi Garibaldi 99, 00145 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.591Z"
+"lat": 41.913779,
+"lng": 12.5459,
+"quality": "address",
+"label": "Piazza Baldassarre Avanzini 99, 00157 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.547Z",
+"pass": 2
 },
 "piazza b. belotti, 50": {
 "status": "ok",
@@ -919,12 +919,12 @@
 },
 "piazza c. forlanini, 8": {
 "status": "ok",
-"lat": 41.886391,
-"lng": 12.46925,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 8, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.631Z"
+"lat": 41.866701,
+"lng": 12.448995,
+"quality": "address",
+"label": "Piazza Carlo Forlanini 8, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.613Z",
+"pass": 2
 },
 "piazza capri, 25": {
 "status": "ok",
@@ -1090,12 +1090,12 @@
 },
 "piazza e. viola, 6": {
 "status": "ok",
-"lat": 41.889234,
-"lng": 12.685849,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Riola Sardo 6, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.941Z"
+"lat": 41.846056,
+"lng": 12.585885,
+"quality": "address",
+"label": "Piazza Ettore Viola 6, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.742Z",
+"pass": 2
 },
 "piazza f. sacco, 5": {
 "status": "ok",
@@ -1126,30 +1126,30 @@
 },
 "piazza g. marconi, 6": {
 "status": "ok",
-"lat": 41.908819,
-"lng": 12.494423,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 6, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:39.973Z"
+"lat": 41.833431,
+"lng": 12.471112,
+"quality": "address",
+"label": "Piazza Guglielmo Marconi 6, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.801Z",
+"pass": 2
 },
 "piazza g. winckelmann, 20": {
 "status": "ok",
-"lat": 41.886779,
-"lng": 12.46919,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 20, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:40.047Z"
+"lat": 41.921545,
+"lng": 12.522985,
+"quality": "address",
+"label": "Piazza Giovanni Winckelmann 20, 00162 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.818Z",
+"pass": 2
 },
 "piazza gola, 64": {
 "status": "ok",
-"lat": 41.908731,
-"lng": 12.468755,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Piazza Cola di Rienzo 64, 00192 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:40.135Z"
+"lat": 41.934006,
+"lng": 12.549295,
+"quality": "address",
+"label": "Piazza Giuseppe Gola 64, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.832Z",
+"pass": 2
 },
 "piazza madonna della salette, 1": {
 "status": "ok",
@@ -1333,12 +1333,12 @@
 },
 "piazza v. mangano, 12": {
 "status": "ok",
-"lat": 41.994993,
-"lng": 12.481014,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Magnano in Riviera 12, 00188 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:40.554Z"
+"lat": 41.900761,
+"lng": 12.5664,
+"quality": "address",
+"label": "Piazza Vincenzo Mangano 12, 00177 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.923Z",
+"pass": 2
 },
 "piazza zambeccari, 19": {
 "status": "ok",
@@ -1360,12 +1360,12 @@
 },
 "piazzale d. viola, 1": {
 "status": "ok",
-"lat": 41.904993,
-"lng": 12.505174,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Villafranca 1, 00185 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:40.867Z"
+"lat": 41.74797,
+"lng": 12.46572,
+"quality": "address",
+"label": "Piazzale Dino Viola 1, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:45.922Z",
+"pass": 2
 },
 "piazzale degli eroi, 4": {
 "status": "ok",
@@ -1405,12 +1405,12 @@
 },
 "piazzale e. flaiano, 21/24": {
 "status": "ok",
-"lat": 41.886818,
-"lng": 12.469189,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 21, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:40.935Z"
+"lat": 41.960259,
+"lng": 12.539195,
+"quality": "address",
+"label": "Piazzale Ennio Flaiano 21, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.015Z",
+"pass": 2
 },
 "piazzale flaminio": {
 "status": "ok",
@@ -1459,12 +1459,12 @@
 },
 "tratto cittadino - da ponte duca d’aosta a ponte garibaldi": {
 "status": "ok",
-"lat": 41.807219,
-"lng": 12.678805,
-"relevance": 0.45,
+"lat": 41.93071,
+"lng": 12.461979,
 "quality": "street",
-"label": "Via Duca d'Aosta, 00044 Frascati città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.060Z"
+"label": "Ponte Duca d'Aosta, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.112Z",
+"pass": 2
 },
 "v. g. banti, 40": {
 "status": "ok",
@@ -1540,39 +1540,39 @@
 },
 "via a. battelli, 6": {
 "status": "ok",
-"lat": 42.07917,
-"lng": 12.40051,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Bottelli 6, 00060 Formello città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.337Z"
+"lat": 41.736029,
+"lng": 12.2738,
+"quality": "address",
+"label": "Via dei Battelli 6, 00121 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.383Z",
+"pass": 2
 },
 "via a. beccadelli, 179": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 179, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.368Z"
+"lat": 41.873429,
+"lng": 12.545944,
+"quality": "address",
+"label": "Via Antonio Beccadelli 179, 00177 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.384Z",
+"pass": 2
 },
 "via a. benedetti": {
 "status": "ok",
-"lat": 41.891617,
-"lng": 12.46941,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Benedetta, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.356Z"
+"lat": 41.778583,
+"lng": 12.344151,
+"quality": "address",
+"label": "Via Pietro Benedetti 00100, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.658Z",
+"pass": 2
 },
 "via a. bennicelli, 71": {
 "status": "ok",
-"lat": 41.949745,
-"lng": 12.42923,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 71, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.389Z"
+"lat": 41.875114,
+"lng": 12.442355,
+"quality": "address",
+"label": "Via Antonio Bennicelli 71, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.522Z",
+"pass": 2
 },
 "via a. bertolotti": {
 "status": "ok",
@@ -1639,39 +1639,39 @@
 },
 "via a. castelli, 54": {
 "status": "ok",
-"lat": 41.77336,
-"lng": 12.68657,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via dei Castelli Romani 54, 00040 Rocca di Papa città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.653Z"
+"lat": 41.855578,
+"lng": 12.643872,
+"quality": "address",
+"label": "Via Villa Castelli 54, 00133 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.775Z",
+"pass": 2
 },
 "via a. catrani, 55": {
 "status": "ok",
-"lat": 41.943761,
-"lng": 12.325185,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagnano Sesia 55, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.662Z"
+"lat": 41.783919,
+"lng": 12.352255,
+"quality": "address",
+"label": "Via Andrea Catrani 55, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.792Z",
+"pass": 2
 },
 "via a. crivelli, 24": {
 "status": "ok",
-"lat": 41.886918,
-"lng": 12.46917,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 24, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.717Z"
+"lat": 41.86822,
+"lng": 12.44406,
+"quality": "address",
+"label": "Via Alessandro Crivelli 24, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.883Z",
+"pass": 2
 },
 "via a. cruto, 41": {
 "status": "ok",
-"lat": 41.889672,
-"lng": 12.532581,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romanello da Forlì 41, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.680Z"
+"lat": 41.862305,
+"lng": 12.465595,
+"quality": "address",
+"label": "Via Alessandro Cruto 41, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.897Z",
+"pass": 2
 },
 "via a. da garessio, 109": {
 "status": "ok",
@@ -1693,12 +1693,12 @@
 },
 "via a. de portillo": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.768Z"
+"lat": 41.765971,
+"lng": 12.469423,
+"quality": "address",
+"label": "Via Alvaro del Portillo 00100, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.987Z",
+"pass": 2
 },
 "via a. della pergola, 60": {
 "status": "ok",
@@ -1720,12 +1720,12 @@
 },
 "via a. di bonaiuto, 16": {
 "status": "ok",
-"lat": 41.886651,
-"lng": 12.46921,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 16, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.874Z"
+"lat": 41.82839,
+"lng": 12.489395,
+"quality": "address",
+"label": "Via Andrea di Bonaiuto 16, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.891Z",
+"pass": 2
 },
 "via a. fabrizi": {
 "status": "ok",
@@ -1738,12 +1738,12 @@
 },
 "via a. ferrara": {
 "status": "ok",
-"lat": 41.726434,
-"lng": 12.610197,
-"relevance": 0.45,
+"lat": 41.900402,
+"lng": 12.488487,
 "quality": "street",
-"label": "Via Ferrara, 00041 Albano Laziale città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.821Z"
+"label": "Via Ferrara, 00187 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:46.959Z",
+"pass": 2
 },
 "via a. friggeri, 87": {
 "status": "ok",
@@ -1765,12 +1765,12 @@
 },
 "via a. galli": {
 "status": "ok",
-"lat": 41.950436,
-"lng": 12.76569,
-"relevance": 0.45,
+"lat": 41.880981,
+"lng": 12.504244,
 "quality": "street",
-"label": "Strada Galli, 00019 Tivoli città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:41.888Z"
+"label": "Via Gallia, 00183 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.047Z",
+"pass": 2
 },
 "via a. leonori, 74": {
 "status": "ok",
@@ -1792,12 +1792,12 @@
 },
 "via a. luciani, 57": {
 "status": "ok",
-"lat": 41.887971,
-"lng": 12.4706,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Luciano Manara 57, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.051Z"
+"lat": 41.922776,
+"lng": 12.480933,
+"quality": "address",
+"label": "Via Luigi Luciani 57, 00197 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.111Z",
+"pass": 2
 },
 "via a. mantegna, 147": {
 "status": "ok",
@@ -1810,21 +1810,21 @@
 },
 "via a. manzi, 47": {
 "status": "ok",
-"lat": 41.92441,
-"lng": 12.49286,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Romania 47, 00197 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.097Z"
+"lat": 41.926165,
+"lng": 12.402255,
+"quality": "address",
+"label": "Via Alberto Manzi 47, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.212Z",
+"pass": 2
 },
 "via a. mauri, 5": {
 "status": "ok",
-"lat": 41.907714,
-"lng": 12.453954,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Santamaura 5, 00192 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.147Z"
+"lat": 41.95069,
+"lng": 12.520725,
+"quality": "address",
+"label": "Via Angelo Mauri 5, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.255Z",
+"pass": 2
 },
 "via a. meldola, 157": {
 "status": "ok",
@@ -1873,21 +1873,21 @@
 },
 "via a. panizzi, 22": {
 "status": "ok",
-"lat": 41.886861,
-"lng": 12.46918,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 22, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.252Z"
+"lat": 41.956136,
+"lng": 12.402135,
+"quality": "address",
+"label": "Via Antonio Panizzi 22, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.354Z",
+"pass": 2
 },
 "via a. pisano, 9": {
 "status": "ok",
-"lat": 41.916349,
-"lng": 12.68385,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Piano d'Orta 9, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.266Z"
+"lat": 41.828701,
+"lng": 12.49188,
+"quality": "address",
+"label": "Via Antonio Pisano 9, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.461Z",
+"pass": 2
 },
 "via a. pizio, 12": {
 "status": "ok",
@@ -1927,12 +1927,12 @@
 },
 "via a. savinio, 43": {
 "status": "ok",
-"lat": 41.881903,
-"lng": 12.511818,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Lavinio 43, 00183 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.432Z"
+"lat": 41.942469,
+"lng": 12.546289,
+"quality": "address",
+"label": "Via Alberto Savinio 43, 00141 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.592Z",
+"pass": 2
 },
 "via a. scali, 10": {
 "status": "ok",
@@ -1963,30 +1963,30 @@
 },
 "via a. severo, 209": {
 "status": "ok",
-"lat": 41.72325,
-"lng": 12.82967,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma 209, 00076 Lariano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.485Z"
+"lat": 41.853094,
+"lng": 12.487405,
+"quality": "address",
+"label": "Via Alessandro Severo 209, 00145 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.770Z",
+"pass": 2
 },
 "via a. silvani, 45": {
 "status": "ok",
-"lat": 41.917123,
-"lng": 12.552244,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Silvano 45, 00158 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.645Z"
+"lat": 41.95007,
+"lng": 12.5189,
+"quality": "address",
+"label": "Via Antonio Silvani 45, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.796Z",
+"pass": 2
 },
 "via a. stoppato, 7": {
 "status": "ok",
-"lat": 41.90911,
-"lng": 12.494523,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 7, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.580Z"
+"lat": 41.84434,
+"lng": 12.59739,
+"quality": "address",
+"label": "Via Alessandro Stoppato 7, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.847Z",
+"pass": 2
 },
 "via a. tedeschi, 63": {
 "status": "ok",
@@ -2026,21 +2026,21 @@
 },
 "via a. verga, 2": {
 "status": "ok",
-"lat": 41.7267,
-"lng": 12.29408,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Piazza Vega 2, 00122 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.755Z"
+"lat": 41.948013,
+"lng": 12.559001,
+"quality": "address",
+"label": "Via Giovanni Verga 2, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.975Z",
+"pass": 2
 },
 "via a. verga, 21": {
 "status": "ok",
-"lat": 41.727231,
-"lng": 12.29467,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Piazza Vega 21, 00122 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:42.934Z"
+"lat": 41.948475,
+"lng": 12.560045,
+"quality": "address",
+"label": "Via Giovanni Verga 21, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:47.968Z",
+"pass": 2
 },
 "via a. vertunni, 131": {
 "status": "ok",
@@ -2251,12 +2251,12 @@
 },
 "via alberini": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:43.435Z"
+"lat": 41.917692,
+"lng": 12.570477,
+"quality": "address",
+"label": "Via degli Alberini 00100, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.234Z",
+"pass": 2
 },
 "via albertazzi, 34": {
 "status": "ok",
@@ -2530,12 +2530,12 @@
 },
 "via appio claudio": {
 "status": "ok",
-"lat": 41.984761,
-"lng": 12.713907,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Appio Claudio, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:44.153Z"
+"lat": 41.85147,
+"lng": 12.560029,
+"quality": "address",
+"label": "Viale Appio Claudio 00100, 00174 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.300Z",
+"pass": 2
 },
 "via appio claudio, 115": {
 "status": "ok",
@@ -2647,12 +2647,12 @@
 },
 "via ardeatina, km 12.800": {
 "status": "ok",
-"lat": 41.706405,
-"lng": 12.580283,
-"relevance": 0.45,
+"lat": 41.718029,
+"lng": 12.574987,
 "quality": "street",
-"label": "Strada provinciale 3/e Ardeatina, 00071 Pomezia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:44.554Z"
+"label": "Via Ardeatina, 00134 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.312Z",
+"pass": 2
 },
 "via argelato, 54": {
 "status": "ok",
@@ -2881,12 +2881,12 @@
 },
 "via b. bernardini, 85": {
 "status": "ok",
-"lat": 41.908061,
-"lng": 12.31835,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Bernardino Bolasco 85, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:45.229Z"
+"lat": 41.925133,
+"lng": 12.438244,
+"quality": "address",
+"label": "Via Pietro Bernardini 85, 00136 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.586Z",
+"pass": 2
 },
 "via b. bricci, 4": {
 "status": "ok",
@@ -2908,12 +2908,12 @@
 },
 "via b. degli ubaldi, 147": {
 "status": "ok",
-"lat": 41.846355,
-"lng": 12.591653,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Ubaldo Comandini 147, 00173 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:45.377Z"
+"lat": 41.89948,
+"lng": 12.43483,
+"quality": "address",
+"label": "Via Baldo degli Ubaldi 147, 00167 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.882Z",
+"pass": 2
 },
 "via b. di tullio, 13": {
 "status": "ok",
@@ -2944,12 +2944,12 @@
 },
 "via b. longo, 4": {
 "status": "ok",
-"lat": 41.723217,
-"lng": 12.293493,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Lungomare Duilio 4, 00122 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:45.359Z"
+"lat": 41.93529,
+"lng": 12.64892,
+"quality": "address",
+"label": "Via Collelongo 4, 00131 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.686Z",
+"pass": 2
 },
 "via b. molajoli, 124": {
 "status": "ok",
@@ -2962,12 +2962,12 @@
 },
 "via b. petrocelli": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:45.344Z"
+"lat": 41.840022,
+"lng": 12.609697,
+"quality": "address",
+"label": "Via Biagio Petrocelli 00100, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.980Z",
+"pass": 2
 },
 "via baccano, 10": {
 "status": "ok",
@@ -3088,12 +3088,12 @@
 },
 "via benedetti, 21": {
 "status": "ok",
-"lat": 41.891687,
-"lng": 12.468937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Benedetta 21, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:45.724Z"
+"lat": 41.77692,
+"lng": 12.33921,
+"quality": "address",
+"label": "Via Pietro Benedetti 21, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:48.965Z",
+"pass": 2
 },
 "via benucci, 32": {
 "status": "ok",
@@ -3205,12 +3205,12 @@
 },
 "via boccea, km 15": {
 "status": "ok",
-"lat": 41.886655,
-"lng": 12.469181,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 15, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.019Z"
+"lat": 41.925219,
+"lng": 12.363622,
+"quality": "street",
+"label": "Via di Boccea, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.026Z",
+"pass": 2
 },
 "via boemondo, 7": {
 "status": "ok",
@@ -3358,48 +3358,48 @@
 },
 "via c. alvaro, 25": {
 "status": "ok",
-"lat": 41.908131,
-"lng": 12.585351,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Alvari 25, 00155 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.439Z"
+"lat": 41.788393,
+"lng": 12.36697,
+"quality": "address",
+"label": "Via del Malvaro 25, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.076Z",
+"pass": 2
 },
 "via c. arzelà, 8": {
 "status": "ok",
-"lat": 41.908847,
-"lng": 12.494415,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 8, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.461Z"
+"lat": 41.862979,
+"lng": 12.47116,
+"quality": "address",
+"label": "Via Cesare Arzelà 8, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.110Z",
+"pass": 2
 },
 "via c. avolio": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.489Z"
+"lat": 41.790423,
+"lng": 12.44295,
+"quality": "address",
+"label": "Via Carlo Avolio 00100, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.297Z",
+"pass": 2
 },
 "via c. avolio, 111": {
 "status": "ok",
-"lat": 41.856704,
-"lng": 12.489836,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Raimondi Garibaldi 111, 00145 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.480Z"
+"lat": 41.79045,
+"lng": 12.442848,
+"quality": "address",
+"label": "Via Carlo Avolio 111, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.183Z",
+"pass": 2
 },
 "via c. avolio, 60": {
 "status": "ok",
-"lat": 41.965299,
-"lng": 12.51125,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 60, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.481Z"
+"lat": 41.78925,
+"lng": 12.44362,
+"quality": "address",
+"label": "Via Carlo Avolio 60, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.205Z",
+"pass": 2
 },
 "via c. baronio, 127": {
 "status": "ok",
@@ -3430,21 +3430,21 @@
 },
 "via c. casini, 178": {
 "status": "ok",
-"lat": 41.781148,
-"lng": 12.378858,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Casina 178, 00125 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.649Z"
+"lat": 41.783665,
+"lng": 12.33664,
+"quality": "address",
+"label": "Via Carlo Casini 178, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.297Z",
+"pass": 2
 },
 "via c. casini, 282": {
 "status": "ok",
-"lat": 41.781156,
-"lng": 12.378846,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Casina 282, 00125 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.601Z"
+"lat": 41.785424,
+"lng": 12.335695,
+"quality": "address",
+"label": "Via Carlo Casini 282, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.289Z",
+"pass": 2
 },
 "via c. colombo, 112": {
 "status": "ok",
@@ -3475,39 +3475,39 @@
 },
 "via c. denina, 51": {
 "status": "ok",
-"lat": 41.943463,
-"lng": 12.601354,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Cenina 51, 00131 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.750Z"
+"lat": 41.870974,
+"lng": 12.524555,
+"quality": "address",
+"label": "Via Carlo Denina 51, 00179 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.342Z",
+"pass": 2
 },
 "via c. durante 11": {
 "status": "ok",
-"lat": 41.886502,
-"lng": 12.469196,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 11, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.787Z"
+"lat": 41.869424,
+"lng": 12.441705,
+"quality": "address",
+"label": "Via Francesco Durante 11, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.387Z",
+"pass": 2
 },
 "via c. emery, 97": {
 "status": "ok",
-"lat": 41.856963,
-"lng": 12.49027,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Raimondi Garibaldi 97, 00145 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.805Z"
+"lat": 41.981395,
+"lng": 12.49389,
+"quality": "address",
+"label": "Via Carlo Emery 97, 00188 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.434Z",
+"pass": 2
 },
 "via c. facchinetti, 42": {
 "status": "ok",
-"lat": 41.964889,
-"lng": 12.51098,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 42, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.799Z"
+"lat": 41.874768,
+"lng": 12.415885,
+"quality": "address",
+"label": "Via dei Facchinetti 42, 00163 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.407Z",
+"pass": 2
 },
 "via c. ferrini, 61": {
 "status": "ok",
@@ -3529,30 +3529,30 @@
 },
 "via c. fracassini, 70": {
 "status": "ok",
-"lat": 41.881528,
-"lng": 12.35219,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Guerra 70, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.897Z"
+"lat": 41.923115,
+"lng": 12.468923,
+"quality": "address",
+"label": "Via Cesare Fracassini 70, 00196 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.508Z",
+"pass": 2
 },
 "via c. lombroso, 118": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 118, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.951Z"
+"lat": 41.934035,
+"lng": 12.415055,
+"quality": "address",
+"label": "Via Cesare Lombroso 118, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.490Z",
+"pass": 2
 },
 "via c. lombroso, 120": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 120, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:46.950Z"
+"lat": 41.934354,
+"lng": 12.41536,
+"quality": "address",
+"label": "Via Cesare Lombroso 120, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:49.511Z",
+"pass": 2
 },
 "via c. manassei, 60": {
 "status": "ok",
@@ -3646,12 +3646,12 @@
 },
 "via c. stazio, 3": {
 "status": "ok",
-"lat": 41.834484,
-"lng": 12.50935,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Tazio Nuvolari 3, 00142 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:47.262Z"
+"lat": 41.869858,
+"lng": 12.568787,
+"quality": "address",
+"label": "Via Marco Stazio Prisco 3, 00169 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.065Z",
+"pass": 2
 },
 "via c. tartufari, 94": {
 "status": "ok",
@@ -3839,12 +3839,12 @@
 },
 "via capitini": {
 "status": "ok",
-"lat": 41.774741,
-"lng": 12.234667,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via dei Capitoni, 00054 Fiumicino città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:47.787Z"
+"lat": 41.894199,
+"lng": 12.677453,
+"quality": "address",
+"label": "Via Aldo Capitini 00100, 00132 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.368Z",
+"pass": 2
 },
 "via capo delle armi, 80": {
 "status": "ok",
@@ -4001,12 +4001,12 @@
 },
 "via casal dell’ara - via pontina": {
 "status": "ok",
-"lat": 41.670436,
-"lng": 12.507051,
-"relevance": 0.45,
+"lat": 41.723145,
+"lng": 12.444425,
 "quality": "street",
-"label": "Via Pontina, 00071 Pomezia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:48.162Z"
+"label": "Via Pontina, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.329Z",
+"pass": 2
 },
 "via casal de’ pazzi": {
 "status": "ok",
@@ -4559,12 +4559,12 @@
 },
 "via comisso, 25": {
 "status": "ok",
-"lat": 41.861339,
-"lng": 12.66695,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Comiso 25, 00133 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:49.690Z"
+"lat": 41.818185,
+"lng": 12.478425,
+"quality": "address",
+"label": "Via Giovanni Comisso 25, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.387Z",
+"pass": 2
 },
 "via conca d’oro, 352": {
 "status": "ok",
@@ -4775,21 +4775,21 @@
 },
 "via d. baffigo, 143": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 143, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.339Z"
+"lat": 41.73747,
+"lng": 12.26049,
+"quality": "address",
+"label": "Via Domenico Baffigo 143, 00121 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.469Z",
+"pass": 2
 },
 "via d. baffigo, 40": {
 "status": "ok",
-"lat": 41.964891,
-"lng": 12.51106,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 40, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.345Z"
+"lat": 41.738096,
+"lng": 12.258825,
+"quality": "address",
+"label": "Via Domenico Baffigo 40, 00121 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.491Z",
+"pass": 2
 },
 "via d. buzzati, 13": {
 "status": "ok",
@@ -4802,12 +4802,12 @@
 },
 "via d. comparetti, 55/b": {
 "status": "ok",
-"lat": 41.943761,
-"lng": 12.325185,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagnano Sesia 55, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.422Z"
+"lat": 41.941935,
+"lng": 12.551055,
+"quality": "address",
+"label": "Via Domenico Comparetti 55, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.626Z",
+"pass": 2
 },
 "via d. da samarate": {
 "status": "ok",
@@ -4820,12 +4820,12 @@
 },
 "via d. di buoninsegna": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.685Z"
+"lat": 41.830017,
+"lng": 12.49253,
+"quality": "address",
+"label": "Via Duccio di Buoninsegna 00100, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.081Z",
+"pass": 2
 },
 "via d. d’istria, 105": {
 "status": "ok",
@@ -4847,21 +4847,21 @@
 },
 "via d. lupatelli, 1": {
 "status": "ok",
-"lat": 41.908872,
-"lng": 12.494604,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 1, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.477Z"
+"lat": 41.851471,
+"lng": 12.45415,
+"quality": "address",
+"label": "Via Domenico Lupatelli 1, 00149 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.641Z",
+"pass": 2
 },
 "via d. lupatelli, 58": {
 "status": "ok",
-"lat": 41.965221,
-"lng": 12.51124,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 58, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.501Z"
+"lat": 41.851467,
+"lng": 12.452399,
+"quality": "address",
+"label": "Via Domenico Lupatelli 58, 00149 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:50.642Z",
+"pass": 2
 },
 "via d. marvasi, 11": {
 "status": "ok",
@@ -5180,12 +5180,12 @@
 },
 "via dei colli portuensi": {
 "status": "ok",
-"lat": 41.787945,
-"lng": 12.674822,
-"relevance": 0.45,
+"lat": 41.917089,
+"lng": 12.507079,
 "quality": "street",
-"label": "Via dei Colli, 00046 Grottaferrata città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:11.508Z"
+"label": "Via dei Colli, 00198 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.901Z",
+"pass": 2
 },
 "via dei compositori": {
 "status": "ok",
@@ -5198,12 +5198,12 @@
 },
 "via dei consoli, 16": {
 "status": "ok",
-"lat": 41.990253,
-"lng": 12.72119,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via dei Consoli 16, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:11.604Z"
+"lat": 41.862266,
+"lng": 12.558151,
+"quality": "address",
+"label": "Piazza dei Consoli 16, 00175 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.982Z",
+"pass": 2
 },
 "via dei corazzieri, 110": {
 "status": "ok",
@@ -6368,12 +6368,12 @@
 },
 "via della femmina morta": {
 "status": "ok",
-"lat": 41.657259,
-"lng": 12.427565,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Mella, 00071 Pomezia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:14.537Z"
+"lat": 42.06677,
+"lng": 12.354339,
+"quality": "address",
+"label": "Via di Femmina Morta 00100, 00123 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.283Z",
+"pass": 2
 },
 "via della fisica, 14": {
 "status": "ok",
@@ -7088,12 +7088,12 @@
 },
 "via delle vigne, 188/190": {
 "status": "ok",
-"lat": 41.774776,
-"lng": 12.654042,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via delle Vigne, 00047 Marino città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:16.412Z"
+"lat": 41.846466,
+"lng": 12.42022,
+"quality": "address",
+"label": "Via delle Vigne 188, 00148 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.014Z",
+"pass": 2
 },
 "via delle vigne, 205/209": {
 "status": "ok",
@@ -7115,21 +7115,21 @@
 },
 "via dell’acqua bullicante, 30": {
 "status": "ok",
-"lat": 41.964687,
-"lng": 12.511416,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 30, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:16.415Z"
+"lat": 41.866299,
+"lng": 12.64934,
+"quality": "address",
+"label": "Via Enrico dell'Acqua 30, 00133 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.082Z",
+"pass": 2
 },
 "via dell’acqua bullicante, 314": {
 "status": "ok",
-"lat": 41.70511,
-"lng": 12.81016,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma 314, 00076 Lariano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:16.389Z"
+"lat": 41.952857,
+"lng": 12.456619,
+"quality": "address",
+"label": "Via dell'Acqua Traversa 314, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.162Z",
+"pass": 2
 },
 "via dell’acqua bullicante, 57": {
 "status": "ok",
@@ -7169,12 +7169,12 @@
 },
 "via dell’acquasanta, 5": {
 "status": "ok",
-"lat": 41.909039,
-"lng": 12.494549,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 5, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:16.575Z"
+"lat": 41.900221,
+"lng": 12.473608,
+"quality": "address",
+"label": "Piazza delle Cinque Lune 00100, 00186 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.279Z",
+"pass": 2
 },
 "via dell’acquedotto paolo, 98": {
 "status": "ok",
@@ -8465,12 +8465,12 @@
 },
 "via don c. gnocchi, 77": {
 "status": "ok",
-"lat": 41.886312,
-"lng": 12.46936,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 77, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.909Z"
+"lat": 41.915393,
+"lng": 12.396635,
+"quality": "address",
+"label": "Via Don Carlo Gnocchi 77, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.026Z",
+"pass": 2
 },
 "via don g. russolillo, 64": {
 "status": "ok",
@@ -8501,12 +8501,12 @@
 },
 "via don p. mazzolari": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.896021,
+"lng": 12.672922,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:50.969Z"
+"label": "Via Don Primo Mazzolari, 00132 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.069Z",
+"pass": 2
 },
 "via donatello, 20": {
 "status": "ok",
@@ -8573,12 +8573,12 @@
 },
 "via e. chini - via pancaldo - largo loria - via frantoi - via tito omboni": {
 "status": "ok",
-"lat": 42.065058,
-"lng": 12.29462,
-"relevance": 0.45,
+"lat": 41.864104,
+"lng": 12.500252,
 "quality": "street",
-"label": "Via Tito, 00061 Anguillara Sabazia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:51.118Z"
+"label": "Via Tito Omboni, 00147 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.190Z",
+"pass": 2
 },
 "via e. de marchi, 60": {
 "status": "ok",
@@ -8699,12 +8699,12 @@
 },
 "via e. pestalozzi, 5": {
 "status": "ok",
-"lat": 41.909039,
-"lng": 12.494549,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 5, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:51.547Z"
+"lat": 41.935156,
+"lng": 12.426075,
+"quality": "address",
+"label": "Via Enrico Pestalozzi 5, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.532Z",
+"pass": 2
 },
 "via e. pound, 100": {
 "status": "ok",
@@ -8717,12 +8717,12 @@
 },
 "via e. rolli, 15": {
 "status": "ok",
-"lat": 41.869156,
-"lng": 12.531038,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via dei Colli Albani 15, 00179 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:51.633Z"
+"lat": 41.771259,
+"lng": 12.377924,
+"quality": "address",
+"label": "Via Vincenzo Irolli 15, 00125 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:51.605Z",
+"pass": 2
 },
 "via e. rota, 6": {
 "status": "ok",
@@ -8870,12 +8870,12 @@
 },
 "via f. albergotti, 35": {
 "status": "ok",
-"lat": 41.943895,
-"lng": 12.32491,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagnano Sesia 35, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.057Z"
+"lat": 41.905382,
+"lng": 12.42682,
+"quality": "address",
+"label": "Via Francesco Albergotti 35, 00167 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.029Z",
+"pass": 2
 },
 "via f. alessandrini": {
 "status": "ok",
@@ -8906,12 +8906,12 @@
 },
 "via f. bonafede, 65": {
 "status": "ok",
-"lat": 41.949569,
-"lng": 12.42927,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 65, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.176Z"
+"lat": 41.877695,
+"lng": 12.581675,
+"quality": "address",
+"label": "Via Francesco Bonafede 65, 00172 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.219Z",
+"pass": 2
 },
 "via f. bonfiglio 62": {
 "status": "ok",
@@ -8924,30 +8924,30 @@
 },
 "via f. borromeo, 53/57": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.247Z"
+"lat": 41.901617,
+"lng": 12.394749,
+"quality": "address",
+"label": "Via Giovanni Borromeo 53, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.264Z",
+"pass": 2
 },
 "via f. borromeo, 67": {
 "status": "ok",
-"lat": 41.94967,
-"lng": 12.429245,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 67, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.200Z"
+"lat": 41.901609,
+"lng": 12.394798,
+"quality": "address",
+"label": "Via Giovanni Borromeo 67, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.316Z",
+"pass": 2
 },
 "via f. clementi, 40": {
 "status": "ok",
-"lat": 41.916049,
-"lng": 12.42031,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Clemente Nono 40, 00167 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.341Z"
+"lat": 41.773099,
+"lng": 12.44131,
+"quality": "address",
+"label": "Via Filippo Clementi 40, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.318Z",
+"pass": 2
 },
 "via f. cocco ortu, 77": {
 "status": "ok",
@@ -8960,12 +8960,12 @@
 },
 "via f. de andreis, 29/31": {
 "status": "ok",
-"lat": 41.885977,
-"lng": 12.469367,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 29, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.905Z"
+"lat": 41.901785,
+"lng": 12.588137,
+"quality": "address",
+"label": "Via Felice de Andreis 29, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.615Z",
+"pass": 2
 },
 "via f. de pisis, 3": {
 "status": "ok",
@@ -8978,21 +8978,21 @@
 },
 "via f. ferraironi, 38": {
 "status": "ok",
-"lat": 41.96488,
-"lng": 12.511109,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 38, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.329Z"
+"lat": 41.87923,
+"lng": 12.55766,
+"quality": "address",
+"label": "Via Francesco Ferraironi 38, 00177 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.360Z",
+"pass": 2
 },
 "via f. fiorentini, 48": {
 "status": "ok",
-"lat": 41.964998,
-"lng": 12.510902,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 48, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.344Z"
+"lat": 41.90914,
+"lng": 12.55567,
+"quality": "address",
+"label": "Via Filippo Fiorentini 48, 00159 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.393Z",
+"pass": 2
 },
 "via f. gentile, 40": {
 "status": "ok",
@@ -9032,12 +9032,12 @@
 },
 "via f. maidalchini, 17": {
 "status": "ok",
-"lat": 41.886681,
-"lng": 12.46921,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 17, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.505Z"
+"lat": 41.87474,
+"lng": 12.45668,
+"quality": "address",
+"label": "Via Francesco Maidalchini 17, 00152 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.409Z",
+"pass": 2
 },
 "via f. marchetti, 36": {
 "status": "ok",
@@ -9050,75 +9050,75 @@
 },
 "via f. morandini, 30": {
 "status": "ok",
-"lat": 41.964687,
-"lng": 12.511416,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 30, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.581Z"
+"lat": 41.829101,
+"lng": 12.49775,
+"quality": "address",
+"label": "Via Francesco Morandini 30, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.410Z",
+"pass": 2
 },
 "via f. morandini, 64": {
 "status": "ok",
-"lat": 41.881451,
-"lng": 12.35181,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Guerra 64, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.665Z"
+"lat": 41.829689,
+"lng": 12.49831,
+"quality": "address",
+"label": "Via Francesco Morandini 64, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.442Z",
+"pass": 2
 },
 "via f. parlatore, 18": {
 "status": "ok",
-"lat": 41.88672,
-"lng": 12.46921,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 18, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.659Z"
+"lat": 41.890939,
+"lng": 12.56416,
+"quality": "address",
+"label": "Via Filippo Parlatore 18, 00171 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.450Z",
+"pass": 2
 },
 "via f. pellegrini, 12": {
 "status": "ok",
-"lat": 41.895171,
-"lng": 12.501586,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Pellegrino Rossi 12, 00185 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.733Z"
+"lat": 41.86003,
+"lng": 12.57578,
+"quality": "address",
+"label": "Via Francesco Pellegrini 12, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.490Z",
+"pass": 2
 },
 "via f. sacchetti, 143": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 143, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.725Z"
+"lat": 41.922028,
+"lng": 12.483486,
+"quality": "address",
+"label": "Via di Villa Sacchetti 143, 00197 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.500Z",
+"pass": 2
 },
 "via f. serafini, 57": {
 "status": "ok",
-"lat": 41.781646,
-"lng": 12.337505,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Serafino Soldano 57, 00126 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.750Z"
+"lat": 41.861525,
+"lng": 12.574184,
+"quality": "address",
+"label": "Via Filippo Serafini 57, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.498Z",
+"pass": 2
 },
 "via f. tajani, 50": {
 "status": "ok",
-"lat": 41.808125,
-"lng": 12.679358,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Ajani 50, 00044 Frascati città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.738Z"
+"lat": 41.861825,
+"lng": 12.45993,
+"quality": "address",
+"label": "Via Filippo Tajani 50, 00149 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.550Z",
+"pass": 2
 },
 "via f. valagussa": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:52.824Z"
+"lat": 41.856634,
+"lng": 12.445453,
+"quality": "address",
+"label": "Via Francesco Valagussa 00100, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.689Z",
+"pass": 2
 },
 "via f. verdinois, 54": {
 "status": "ok",
@@ -9212,12 +9212,12 @@
 },
 "via fano adriatico": {
 "status": "ok",
-"lat": 41.939979,
-"lng": 12.470554,
-"relevance": 0.45,
+"lat": 41.939472,
+"lng": 12.531326,
 "quality": "street",
-"label": "Via Fiano, 00191 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.092Z"
+"label": "Via Monte Fano, 00141 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.696Z",
+"pass": 2
 },
 "via farsalo, 21": {
 "status": "ok",
@@ -9239,12 +9239,12 @@
 },
 "via feronia - via marica": {
 "status": "ok",
-"lat": 41.655887,
-"lng": 12.42491,
-"relevance": 0.45,
+"lat": 41.917154,
+"lng": 12.55198,
 "quality": "street",
-"label": "Via Marina, 00071 Pomezia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.138Z"
+"label": "Via Marica, 00158 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.771Z",
+"pass": 2
 },
 "via feronia - via melissa": {
 "status": "ok",
@@ -9293,21 +9293,21 @@
 },
 "via flaminia vecchia, 732": {
 "status": "ok",
-"lat": 42.078563,
-"lng": 12.483361,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Flaminia, 00060 Riano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.266Z"
+"lat": 41.94566,
+"lng": 12.473277,
+"quality": "address",
+"label": "Via Flaminia 732, 00191 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.799Z",
+"pass": 2
 },
 "via flaminia vecchia, 826": {
 "status": "ok",
-"lat": 42.078563,
-"lng": 12.483361,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Flaminia, 00060 Riano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.312Z"
+"lat": 41.947771,
+"lng": 12.47688,
+"quality": "address",
+"label": "Via Flaminia 826, 00191 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.852Z",
+"pass": 2
 },
 "via flaminia, 158": {
 "status": "ok",
@@ -9428,12 +9428,12 @@
 },
 "via fossa cesia, 63": {
 "status": "ok",
-"lat": 42.018718,
-"lng": 12.624727,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Cesa di Loreto 63, 00013 Fonte Nuova città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.698Z"
+"lat": 41.898984,
+"lng": 12.471051,
+"quality": "address",
+"label": "Via della Fossa 63, 00186 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.881Z",
+"pass": 2
 },
 "via fosso del fontaniletto, 29": {
 "status": "ok",
@@ -9545,21 +9545,21 @@
 },
 "via g. amenduni, 15": {
 "status": "ok",
-"lat": 41.886655,
-"lng": 12.469181,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 15, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.959Z"
+"lat": 41.726369,
+"lng": 12.29806,
+"quality": "address",
+"label": "Via Giovanni Amenduni 15, 00122 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.882Z",
+"pass": 2
 },
 "via g. armandi, 2": {
 "status": "ok",
-"lat": 42.01796,
-"lng": 12.372588,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Armando Curcio 2, 00123 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:53.994Z"
+"lat": 41.78451,
+"lng": 12.351895,
+"quality": "address",
+"label": "Via Giovanni Armandi 2, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.885Z",
+"pass": 2
 },
 "via g. baccelli, 5": {
 "status": "ok",
@@ -9572,66 +9572,66 @@
 },
 "via g. balzaretto, 56": {
 "status": "ok",
-"lat": 41.965162,
-"lng": 12.511261,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 56, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.052Z"
+"lat": 41.872356,
+"lng": 12.404956,
+"quality": "address",
+"label": "Via Giuseppe Balzaretto 56, 00163 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.943Z",
+"pass": 2
 },
 "via g. barellai, 130": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 130, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.049Z"
+"lat": 41.94134,
+"lng": 12.41041,
+"quality": "address",
+"label": "Via Giuseppe Barellai 130, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.991Z",
+"pass": 2
 },
 "via g. barellai, 135": {
 "status": "ok",
-"lat": 41.856499,
-"lng": 12.489553,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Raimondi Garibaldi 135, 00145 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.099Z"
+"lat": 41.940673,
+"lng": 12.409721,
+"quality": "address",
+"label": "Via Giuseppe Barellai 135, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.991Z",
+"pass": 2
 },
 "via g. belloni, 30": {
 "status": "ok",
-"lat": 41.68826,
-"lng": 12.7792,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Vicolo Bellonzi 30, 00049 Velletri città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.118Z"
+"lat": 41.857244,
+"lng": 12.56912,
+"quality": "address",
+"label": "Via Giuseppe Belloni 30, 00175 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.992Z",
+"pass": 2
 },
 "via g. bellucci, 20": {
 "status": "ok",
-"lat": 41.886779,
-"lng": 12.46919,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 20, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.158Z"
+"lat": 41.93062,
+"lng": 12.56833,
+"quality": "address",
+"label": "Via Giuseppe Bellucci 20, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:52.992Z",
+"pass": 2
 },
 "via g. berto, 168": {
 "status": "ok",
-"lat": 41.943106,
-"lng": 12.26712,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Umberto Pedroli 168, 00054 Fiumicino città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.166Z"
+"lat": 41.841115,
+"lng": 12.493126,
+"quality": "address",
+"label": "Via Giuseppe Berto 168, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.069Z",
+"pass": 2
 },
 "via g. berto, 176": {
 "status": "ok",
-"lat": 41.943106,
-"lng": 12.26712,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Umberto Pedroli 176, 00054 Fiumicino città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.198Z"
+"lat": 41.84114,
+"lng": 12.493575,
+"quality": "address",
+"label": "Via Giuseppe Berto 176, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.085Z",
+"pass": 2
 },
 "via g. biagi, 16": {
 "status": "ok",
@@ -9653,21 +9653,21 @@
 },
 "via g. bolognetti, 4": {
 "status": "ok",
-"lat": 41.863191,
-"lng": 12.684069,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Bolognetta 4, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.268Z"
+"lat": 41.8702,
+"lng": 12.450235,
+"quality": "address",
+"label": "Via Giorgio Bolognetti 4, 00151 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.091Z",
+"pass": 2
 },
 "via g. brogi, 80-82-84": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.299Z"
+"lat": 41.83965,
+"lng": 12.51304,
+"quality": "address",
+"label": "Via Giacomo Brogi 80, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.092Z",
+"pass": 2
 },
 "via g. bruno, 4": {
 "status": "ok",
@@ -9680,21 +9680,21 @@
 },
 "via g. candiani, 4": {
 "status": "ok",
-"lat": 41.908777,
-"lng": 12.494434,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 4, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.343Z"
+"lat": 41.893457,
+"lng": 12.584461,
+"quality": "address",
+"label": "Via Giuseppe Candiani 4, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.188Z",
+"pass": 2
 },
 "via g. caraci, 41": {
 "status": "ok",
-"lat": 41.864169,
-"lng": 12.685899,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Capaci 41, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.420Z"
+"lat": 41.92208,
+"lng": 12.53036,
+"quality": "address",
+"label": "Via Giuseppe Caraci 41, 00157 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.175Z",
+"pass": 2
 },
 "via g. cardano, 135": {
 "status": "ok",
@@ -9725,12 +9725,12 @@
 },
 "via g. cerbara, 1": {
 "status": "ok",
-"lat": 41.908872,
-"lng": 12.494604,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 1, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.488Z"
+"lat": 41.854842,
+"lng": 12.500243,
+"quality": "address",
+"label": "Via Giuseppe Cerbara 1, 00147 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.191Z",
+"pass": 2
 },
 "via g. colini, 10": {
 "status": "ok",
@@ -9743,21 +9743,21 @@
 },
 "via g. comisso, 23": {
 "status": "ok",
-"lat": 41.861505,
-"lng": 12.66734,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Comiso 23, 00133 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.557Z"
+"lat": 41.818169,
+"lng": 12.4784,
+"quality": "address",
+"label": "Via Giovanni Comisso 23, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.293Z",
+"pass": 2
 },
 "via g. conti, 40": {
 "status": "ok",
-"lat": 41.893289,
-"lng": 12.506914,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Conte Verde 40, 00185 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.613Z"
+"lat": 41.95116,
+"lng": 12.52766,
+"quality": "address",
+"label": "Via Giovanni Conti 40, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.330Z",
+"pass": 2
 },
 "via g. da procida, 16": {
 "status": "ok",
@@ -9770,12 +9770,12 @@
 },
 "via g. da sangallo, 11": {
 "status": "ok",
-"lat": 41.886502,
-"lng": 12.469196,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 11, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.785Z"
+"lat": 41.732626,
+"lng": 12.273391,
+"quality": "address",
+"label": "Via Giuliano da Sangallo 11, 00121 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.579Z",
+"pass": 2
 },
 "via g. de camillis, 15": {
 "status": "ok",
@@ -9815,30 +9815,30 @@
 },
 "via g. del vecchio": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.616Z"
+"lat": 41.900077,
+"lng": 12.41474,
+"quality": "address",
+"label": "Via Giorgio Del Vecchio 00100, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.547Z",
+"pass": 2
 },
 "via g. del vecchio, 24": {
 "status": "ok",
-"lat": 41.78157,
-"lng": 12.68193,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Vecchia di Marino 24, 00046 Grottaferrata città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.754Z"
+"lat": 41.898365,
+"lng": 12.41695,
+"quality": "address",
+"label": "Via Giorgio Del Vecchio 24, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.473Z",
+"pass": 2
 },
 "via g. del vecchio, 42": {
 "status": "ok",
-"lat": 41.779498,
-"lng": 12.679134,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Vecchia di Marino 42, 00046 Grottaferrata città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.735Z"
+"lat": 41.898951,
+"lng": 12.416275,
+"quality": "address",
+"label": "Via Giorgio Del Vecchio 42, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.467Z",
+"pass": 2
 },
 "via g. di leontini, 260": {
 "status": "ok",
@@ -9860,12 +9860,12 @@
 },
 "via g. ferreri, 88": {
 "status": "ok",
-"lat": 41.947702,
-"lng": 12.466081,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Cesare Ferrero di Cambiano 88, 00191 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.777Z"
+"lat": 42.00617,
+"lng": 12.43867,
+"quality": "address",
+"label": "Via Giorgio Ferreri 88, 00189 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.557Z",
+"pass": 2
 },
 "via g. fondulo, 13": {
 "status": "ok",
@@ -9878,12 +9878,12 @@
 },
 "via g. gaggio": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 42.005722,
+"lng": 12.515824,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.758Z"
+"label": "Via San Gaggio, 00138 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.557Z",
+"pass": 2
 },
 "via g. gallina, 28": {
 "status": "ok",
@@ -9914,57 +9914,57 @@
 },
 "via g. girardi, 250": {
 "status": "ok",
-"lat": 41.723568,
-"lng": 12.829898,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma 250, 00076 Lariano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.856Z"
+"lat": 41.94578,
+"lng": 12.35924,
+"quality": "address",
+"label": "Via Guglielmo Girardi 250, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.646Z",
+"pass": 2
 },
 "via g. gregoraci": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.886Z"
+"lat": 41.843418,
+"lng": 12.598317,
+"quality": "address",
+"label": "Via Giuseppe Gregoraci 00100, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.863Z",
+"pass": 2
 },
 "via g. gussone, 5": {
 "status": "ok",
-"lat": 41.909039,
-"lng": 12.494549,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 5, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:54.919Z"
+"lat": 41.892008,
+"lng": 12.563579,
+"quality": "address",
+"label": "Via Giovanni Gussone 5, 00171 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.746Z",
+"pass": 2
 },
 "via g. malvano, 20": {
 "status": "ok",
-"lat": 41.834688,
-"lng": 12.630785,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Galvano della Volpe 20, 00133 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.021Z"
+"lat": 41.9404,
+"lng": 12.46499,
+"quality": "address",
+"label": "Via Giacomo Malvano 20, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.792Z",
+"pass": 2
 },
 "via g. mangili, 2": {
 "status": "ok",
-"lat": 41.886179,
-"lng": 12.46928,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 2, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.019Z"
+"lat": 41.918035,
+"lng": 12.484226,
+"quality": "address",
+"label": "Via Giuseppe Mangili 2, 00197 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.841Z",
+"pass": 2
 },
 "via g. marello, 5": {
 "status": "ok",
-"lat": 41.906311,
-"lng": 12.61355,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Marcello Bacciarelli 5, 00155 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.055Z"
+"lat": 41.903375,
+"lng": 12.413355,
+"quality": "address",
+"label": "Via Giuseppe Marello 5, 00167 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.850Z",
+"pass": 2
 },
 "via g. mazzantini, 15": {
 "status": "ok",
@@ -9995,12 +9995,12 @@
 },
 "via g. miani, 61-63": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.168Z"
+"lat": 41.875726,
+"lng": 12.488825,
+"quality": "address",
+"label": "Via Giovanni Miani 61, 00154 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.967Z",
+"pass": 2
 },
 "via g. molteni, 42": {
 "status": "ok",
@@ -10013,39 +10013,39 @@
 },
 "via g. moscati, 5": {
 "status": "ok",
-"lat": 41.70153,
-"lng": 12.709988,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via del Moscato 5, 00074 Nemi città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.182Z"
+"lat": 41.926345,
+"lng": 12.42813,
+"quality": "address",
+"label": "Via Giuseppe Moscati 5, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.969Z",
+"pass": 2
 },
 "via g. pagano, 71": {
 "status": "ok",
-"lat": 41.893419,
-"lng": 12.632045,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Pagani 71, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.207Z"
+"lat": 41.906522,
+"lng": 12.494813,
+"quality": "address",
+"label": "Via Mario Pagano 71, 00187 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:53.968Z",
+"pass": 2
 },
 "via g. paisiello, 12": {
 "status": "ok",
-"lat": 41.886569,
-"lng": 12.469195,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 12, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.236Z"
+"lat": 41.917375,
+"lng": 12.493755,
+"quality": "address",
+"label": "Via Giovanni Paisiello 12, 00198 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.027Z",
+"pass": 2
 },
 "via g. palombini, 39": {
 "status": "ok",
-"lat": 41.9439,
-"lng": 12.32502,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagnano Sesia 39, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.237Z"
+"lat": 41.896818,
+"lng": 12.42973,
+"quality": "address",
+"label": "Via Giuseppe Palombini 39, 00165 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.076Z",
+"pass": 2
 },
 "via g. pasquariello, 27": {
 "status": "ok",
@@ -10058,12 +10058,12 @@
 },
 "via g. pitacco 9/11": {
 "status": "ok",
-"lat": 41.886432,
-"lng": 12.469251,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 9, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.349Z"
+"lat": 41.89375,
+"lng": 12.54771,
+"quality": "address",
+"label": "Via Giorgio Pitacco 9, 00177 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.290Z",
+"pass": 2
 },
 "via g. pittalunga, 20": {
 "status": "ok",
@@ -10076,39 +10076,39 @@
 },
 "via g. porzio, 30": {
 "status": "ok",
-"lat": 41.860448,
-"lng": 12.557902,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Ponzio Cominio 30, 00175 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.392Z"
+"lat": 41.841485,
+"lng": 12.44204,
+"quality": "address",
+"label": "Via Giovanni Porzio 30, 00148 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.126Z",
+"pass": 2
 },
 "via g. salvioli, 20": {
 "status": "ok",
-"lat": 41.886779,
-"lng": 12.46919,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 20, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.377Z"
+"lat": 41.860561,
+"lng": 12.566935,
+"quality": "address",
+"label": "Via Giuseppe Salvioli 20, 00175 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.147Z",
+"pass": 2
 },
 "via g. scalarini": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.90865,
+"lng": 12.568436,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.353Z"
+"label": "Via Giuseppe Scalarini, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.162Z",
+"pass": 2
 },
 "via g. silla, 3": {
 "status": "ok",
-"lat": 41.861929,
-"lng": 12.68768,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Villarosa 3, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.495Z"
+"lat": 41.909354,
+"lng": 12.459134,
+"quality": "address",
+"label": "Via Silla 3, 00192 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.254Z",
+"pass": 2
 },
 "via g. spaducci": {
 "status": "ok",
@@ -10130,12 +10130,12 @@
 },
 "via g. taverna": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.460Z"
+"lat": 41.940507,
+"lng": 12.429142,
+"quality": "address",
+"label": "Via Giuseppe Taverna 00100, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.438Z",
+"pass": 2
 },
 "via g. valente, 100": {
 "status": "ok",
@@ -10157,21 +10157,21 @@
 },
 "via g. valli, 93": {
 "status": "ok",
-"lat": 41.936229,
-"lng": 12.52978,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Valle Borbera 93, 00141 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.619Z"
+"lat": 41.936058,
+"lng": 12.524283,
+"quality": "address",
+"label": "Via delle Valli 93, 00141 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.389Z",
+"pass": 2
 },
 "via g. vanni": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.881223,
+"lng": 12.359781,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.633Z"
+"label": "Via Giuseppe Vanni, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.480Z",
+"pass": 2
 },
 "via g. ventura, 54": {
 "status": "ok",
@@ -10184,39 +10184,39 @@
 },
 "via g. zanardini, 74": {
 "status": "ok",
-"lat": 41.965338,
-"lng": 12.511697,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 74, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.637Z"
+"lat": 41.93597,
+"lng": 12.548965,
+"quality": "address",
+"label": "Via Giovanni Zanardini 74, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.542Z",
+"pass": 2
 },
 "via g. zenatello, 71": {
 "status": "ok",
-"lat": 41.949745,
-"lng": 12.42923,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 71, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.674Z"
+"lat": 41.924881,
+"lng": 12.421775,
+"quality": "address",
+"label": "Via Giovanni Zenatello 71, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.547Z",
+"pass": 2
 },
 "via g. zirardini, 6": {
 "status": "ok",
-"lat": 41.908819,
-"lng": 12.494423,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 6, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.673Z"
+"lat": 41.962371,
+"lng": 12.52258,
+"quality": "address",
+"label": "Via Gaetano Zirardini 6, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.574Z",
+"pass": 2
 },
 "via g. zoega, 6": {
 "status": "ok",
-"lat": 41.908819,
-"lng": 12.494423,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 6, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.760Z"
+"lat": 41.875999,
+"lng": 12.431625,
+"quality": "address",
+"label": "Via Giorgio Zoega 6, 00164 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.598Z",
+"pass": 2
 },
 "via g.a. provana": {
 "status": "ok",
@@ -10265,12 +10265,12 @@
 },
 "via g.c. viola, 13": {
 "status": "ok",
-"lat": 41.86205,
-"lng": 12.68812,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Villarosa 13, 00132 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:55.976Z"
+"lat": 41.93582,
+"lng": 12.5271,
+"quality": "address",
+"label": "Via Valle Viola 13, 00141 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:54.903Z",
+"pass": 2
 },
 "via g.g. zerbi, 27": {
 "status": "ok",
@@ -10625,12 +10625,12 @@
 },
 "via i. giordani": {
 "status": "ok",
-"lat": 41.788033,
-"lng": 12.84366,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via 1ª Strada, 00030 Labico città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:56.908Z"
+"lat": 41.928835,
+"lng": 12.511792,
+"quality": "address",
+"label": "Via dei Giordani 00100, 00199 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.315Z",
+"pass": 2
 },
 "via i. panattoni, 144": {
 "status": "ok",
@@ -10733,12 +10733,12 @@
 },
 "via j. della quercia": {
 "status": "ok",
-"lat": 42.016493,
-"lng": 12.613601,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via della Quercia, 00013 Fonte Nuova città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.250Z"
+"lat": 41.920316,
+"lng": 12.607415,
+"quality": "address",
+"label": "Via Jacopo della Quercia 00100, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.504Z",
+"pass": 2
 },
 "via j. pintor, 6": {
 "status": "ok",
@@ -10751,21 +10751,21 @@
 },
 "via l. appiani, 32": {
 "status": "ok",
-"lat": 41.913605,
-"lng": 12.43876,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Appiano 32, 00136 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.300Z"
+"lat": 41.90251,
+"lng": 12.58611,
+"quality": "address",
+"label": "Via Luigi Appiani 32, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.416Z",
+"pass": 2
 },
 "via l. bellardi, 19": {
 "status": "ok",
-"lat": 41.886752,
-"lng": 12.469201,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 19, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.364Z"
+"lat": 41.917011,
+"lng": 12.558425,
+"quality": "address",
+"label": "Via Luigi Bellardi 19, 00158 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.497Z",
+"pass": 2
 },
 "via l. bertarelli, 105": {
 "status": "ok",
@@ -10778,21 +10778,21 @@
 },
 "via l. bianchi, 40": {
 "status": "ok",
-"lat": 41.899319,
-"lng": 12.46795,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via dei Banchi Nuovi 40, 00186 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.412Z"
+"lat": 41.871694,
+"lng": 12.370604,
+"quality": "address",
+"label": "Via Luigi Bianchi 40, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.525Z",
+"pass": 2
 },
 "via l. bodio, 4": {
 "status": "ok",
-"lat": 41.908777,
-"lng": 12.494434,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 4, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.428Z"
+"lat": 41.944904,
+"lng": 12.468695,
+"quality": "address",
+"label": "Via Luigi Bodio 4, 00191 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.518Z",
+"pass": 2
 },
 "via l. buglio, 11": {
 "status": "ok",
@@ -10814,21 +10814,21 @@
 },
 "via l. capucci, 15": {
 "status": "ok",
-"lat": 41.896279,
-"lng": 12.493606,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via dei Capocci 15, 00184 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.485Z"
+"lat": 41.861731,
+"lng": 12.50207,
+"quality": "address",
+"label": "Via Luigi Capucci 15, 00147 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.592Z",
+"pass": 2
 },
 "via l. carrer, 45": {
 "status": "ok",
-"lat": 41.948438,
-"lng": 12.42956,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 45, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.513Z"
+"lat": 41.966731,
+"lng": 12.54857,
+"quality": "address",
+"label": "Via Luigi Carrer 45, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.628Z",
+"pass": 2
 },
 "via l. cavalieri, 3": {
 "status": "ok",
@@ -10895,12 +10895,12 @@
 },
 "via l. leonardi": {
 "status": "ok",
-"lat": 41.894428,
-"lng": 12.501945,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Leopardi, 00185 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.732Z"
+"lat": 41.787393,
+"lng": 12.359566,
+"quality": "address",
+"label": "Via Giovanni Leonardi 00100, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.959Z",
+"pass": 2
 },
 "via l. marenzio, 16": {
 "status": "ok",
@@ -10922,48 +10922,48 @@
 },
 "via l. passi, 57": {
 "status": "ok",
-"lat": 41.930559,
-"lng": 12.535477,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Passo del Furlo 57, 00141 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.822Z"
+"lat": 41.895341,
+"lng": 12.410915,
+"quality": "address",
+"label": "Via Luca Passi 57, 00166 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:55.961Z",
+"pass": 2
 },
 "via l. perna 3": {
 "status": "ok",
-"lat": 41.819269,
-"lng": 12.450165,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Berna 3, 00144 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.870Z"
+"lat": 41.846269,
+"lng": 12.481899,
+"quality": "address",
+"label": "Via Luigi Perna 3, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.034Z",
+"pass": 2
 },
 "via l. perna, 26": {
 "status": "ok",
-"lat": 41.930638,
-"lng": 12.518979,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Derna 26, 00199 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.844Z"
+"lat": 41.845955,
+"lng": 12.48135,
+"quality": "address",
+"label": "Via Luigi Perna 26, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.191Z",
+"pass": 2
 },
 "via l. pulci, 14": {
 "status": "ok",
-"lat": 41.877484,
-"lng": 12.504415,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Vulci 14, 00183 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.942Z"
+"lat": 41.912302,
+"lng": 12.52747,
+"quality": "address",
+"label": "Via Luigi Pulci 14, 00162 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.108Z",
+"pass": 2
 },
 "via l. rizzo, 1": {
 "status": "ok",
-"lat": 42.0723,
-"lng": 12.295811,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via di Pizzo Morronto 1, 00061 Anguillara Sabazia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:57.909Z"
+"lat": 41.90986,
+"lng": 12.447215,
+"quality": "address",
+"label": "Via Luigi Rizzo 1, 00136 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.086Z",
+"pass": 2
 },
 "via l. romana, 26": {
 "status": "ok",
@@ -10994,12 +10994,12 @@
 },
 "via l. speroni, 13": {
 "status": "ok",
-"lat": 41.886559,
-"lng": 12.46923,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 13, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:58.016Z"
+"lat": 41.934865,
+"lng": 12.567522,
+"quality": "address",
+"label": "Via Luigi Speroni 13, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.128Z",
+"pass": 2
 },
 "via l. tandura, 87": {
 "status": "ok",
@@ -11174,12 +11174,12 @@
 },
 "via lemonia, via delle capannelle, viale appio claudio": {
 "status": "ok",
-"lat": 41.841505,
-"lng": 12.574947,
-"relevance": 0.45,
+"lat": 41.852167,
+"lng": 12.559294,
 "quality": "street",
-"label": "Via delle Capannelle, 00178 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:58.467Z"
+"label": "Via Lemonia, 00174 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:56.376Z",
+"pass": 2
 },
 "via lentini": {
 "status": "ok",
@@ -11453,12 +11453,12 @@
 },
 "via m. decumio, 20": {
 "status": "ok",
-"lat": 41.886779,
-"lng": 12.46919,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 20, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:59.265Z"
+"lat": 41.862539,
+"lng": 12.548787,
+"quality": "address",
+"label": "Via Marco Decumio 20, 00174 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.042Z",
+"pass": 2
 },
 "via m. masia": {
 "status": "ok",
@@ -11525,12 +11525,12 @@
 },
 "via m. ruta, 21": {
 "status": "ok",
-"lat": 41.940201,
-"lng": 12.38084,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rita Rosani 21, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:59.533Z"
+"lat": 41.917351,
+"lng": 12.532189,
+"quality": "address",
+"label": "Via della Ruta 21, 00157 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.343Z",
+"pass": 2
 },
 "via m.f. nobiliore, 87": {
 "status": "ok",
@@ -11606,12 +11606,12 @@
 },
 "via maffi p., 57": {
 "status": "ok",
-"lat": 41.814134,
-"lng": 12.68019,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via P. di Spinetta 57, 00044 Frascati città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:38:59.751Z"
+"lat": 41.923815,
+"lng": 12.418125,
+"quality": "address",
+"label": "Via Pietro Maffi 57, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.528Z",
+"pass": 2
 },
 "via maglianella, 261": {
 "status": "ok",
@@ -11844,12 +11844,12 @@
 },
 "via melizzano, 16": {
 "status": "ok",
-"lat": 41.92661,
-"lng": 12.40421,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Felizzano 16, 00168 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:00.308Z"
+"lat": 41.890787,
+"lng": 12.630431,
+"quality": "address",
+"label": "Via Melizzano 16, 00132 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.627Z",
+"pass": 2
 },
 "via mengotti, 24": {
 "status": "ok",
@@ -11952,12 +11952,12 @@
 },
 "via monte cucco": {
 "status": "ok",
-"lat": 41.719845,
-"lng": 12.68339,
-"relevance": 0.45,
+"lat": 41.843815,
+"lng": 12.438813,
 "quality": "street",
-"label": "Via Monte Cucco, 00072 Ariccia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:00.540Z"
+"label": "Via di Monte Cucco, 00148 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.703Z",
+"pass": 2
 },
 "via monte cucco, 75": {
 "status": "ok",
@@ -12042,12 +12042,12 @@
 },
 "via monte san vito, 25-39": {
 "status": "ok",
-"lat": 41.995122,
-"lng": 12.622673,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Monte San Vicino, 00013 Fonte Nuova città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:00.910Z"
+"lat": 41.944046,
+"lng": 12.580119,
+"quality": "address",
+"label": "Via Monte San Vito 25, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.764Z",
+"pass": 2
 },
 "via monte zebio, 35": {
 "status": "ok",
@@ -12141,21 +12141,21 @@
 },
 "via n. festa, 50": {
 "status": "ok",
-"lat": 41.966579,
-"lng": 12.797146,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via di Vesta 50, 00019 Tivoli città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:01.135Z"
+"lat": 41.947179,
+"lng": 12.54512,
+"quality": "address",
+"label": "Via Nicola Festa 50, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.781Z",
+"pass": 2
 },
 "via n. festa, 65": {
 "status": "ok",
-"lat": 41.9217,
-"lng": 12.441781,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Festo Avieno 65, 00136 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:01.169Z"
+"lat": 41.946685,
+"lng": 12.545345,
+"quality": "address",
+"label": "Via Nicola Festa 65, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.809Z",
+"pass": 2
 },
 "via n. lucilio, 2": {
 "status": "ok",
@@ -12168,12 +12168,12 @@
 },
 "via n. mascardi, 11": {
 "status": "ok",
-"lat": 41.886502,
-"lng": 12.469196,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 11, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:01.210Z"
+"lat": 41.783096,
+"lng": 12.352255,
+"quality": "address",
+"label": "Via Nicola Mascardi 11, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.818Z",
+"pass": 2
 },
 "via n. parboni, 7": {
 "status": "ok",
@@ -12195,21 +12195,21 @@
 },
 "via n. zabaglia, 27/a": {
 "status": "ok",
-"lat": 41.945429,
-"lng": 12.423115,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Venerini 27, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:01.336Z"
+"lat": 41.876861,
+"lng": 12.476338,
+"quality": "address",
+"label": "Via Nicola Zabaglia 27, 00153 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.899Z",
+"pass": 2
 },
 "via n. zabaglia, 31": {
 "status": "ok",
-"lat": 41.74563,
-"lng": 12.37089,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Micheli 31, 00124 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:01.306Z"
+"lat": 41.876585,
+"lng": 12.476624,
+"quality": "address",
+"label": "Via Nicola Zabaglia 31, 00153 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:57.911Z",
+"pass": 2
 },
 "via n.m. nicolai, 85": {
 "status": "ok",
@@ -12591,12 +12591,12 @@
 },
 "via p. blaserna, 47": {
 "status": "ok",
-"lat": 41.948745,
-"lng": 12.429459,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 47, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.392Z"
+"lat": 41.865934,
+"lng": 12.47121,
+"quality": "address",
+"label": "Via Pietro Blaserna 47, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.286Z",
+"pass": 2
 },
 "via p. bonetti, 48": {
 "status": "ok",
@@ -12609,12 +12609,12 @@
 },
 "via p. braccini, 50": {
 "status": "ok",
-"lat": 41.965062,
-"lng": 12.511,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 50, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.424Z"
+"lat": 41.800165,
+"lng": 12.45009,
+"quality": "address",
+"label": "Via Paolo Braccini 50, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.375Z",
+"pass": 2
 },
 "via p. della mirandola, 15": {
 "status": "ok",
@@ -12627,12 +12627,12 @@
 },
 "via p. di dono": {
 "status": "ok",
-"lat": 41.998414,
-"lng": 12.494992,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Dorno, 00188 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.966Z"
+"lat": 41.828655,
+"lng": 12.493211,
+"quality": "address",
+"label": "Via Paolo di Dono 00100, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.932Z",
+"pass": 2
 },
 "via p. drigo": {
 "status": "ok",
@@ -12726,30 +12726,30 @@
 },
 "via p. olina 19": {
 "status": "ok",
-"lat": 41.878187,
-"lng": 12.406526,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Lina Bo Bardi 19, 00163 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.749Z"
+"lat": 41.870648,
+"lng": 12.600762,
+"quality": "address",
+"label": "Via Pietro Olina 19, 00169 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.627Z",
+"pass": 2
 },
 "via p. renzi, 114": {
 "status": "ok",
-"lat": 41.889268,
-"lng": 12.53855,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Renzo Da Ceri 114, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.765Z"
+"lat": 41.784333,
+"lng": 12.443004,
+"quality": "address",
+"label": "Via Paolo Renzi 114, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.690Z",
+"pass": 2
 },
 "via p. renzi, 47": {
 "status": "ok",
-"lat": 41.775774,
-"lng": 12.439825,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Renzo Bertani 47, 00128 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:02.894Z"
+"lat": 41.785302,
+"lng": 12.443388,
+"quality": "address",
+"label": "Via Paolo Renzi 47, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:58.726Z",
+"pass": 2
 },
 "via p. revoltella, 165": {
 "status": "ok",
@@ -12834,21 +12834,21 @@
 },
 "via padre a. grammatico, 50": {
 "status": "ok",
-"lat": 41.965062,
-"lng": 12.511,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 50, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:03.136Z"
+"lat": 41.80859,
+"lng": 12.442405,
+"quality": "address",
+"label": "Via Padre Alberto Grammatico 50, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.091Z",
+"pass": 2
 },
 "via padre g. lais, 9": {
 "status": "ok",
-"lat": 41.886432,
-"lng": 12.469251,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 9, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:03.181Z"
+"lat": 41.829311,
+"lng": 12.48695,
+"quality": "address",
+"label": "Via Padre Giuseppe Lais 9, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.090Z",
+"pass": 2
 },
 "via padre semeria, 28": {
 "status": "ok",
@@ -12987,12 +12987,12 @@
 },
 "via paternò, 241": {
 "status": "ok",
-"lat": 42.058284,
-"lng": 12.603833,
-"relevance": 0.45,
+"lat": 41.858301,
+"lng": 12.671808,
 "quality": "street",
-"label": "Via Aterno, 00015 Monterotondo città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:03.580Z"
+"label": "Via Paternò, 00133 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.290Z",
+"pass": 2
 },
 "via pazzano, 1": {
 "status": "ok",
@@ -13149,12 +13149,12 @@
 },
 "via pintor fortunato": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:04.030Z"
+"lat": 41.958967,
+"lng": 12.400465,
+"quality": "address",
+"label": "Via Fortunato Pintor 00100, 00135 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.569Z",
+"pass": 2
 },
 "via pirgotele, 20": {
 "status": "ok",
@@ -13185,12 +13185,12 @@
 },
 "via platani s. biagio": {
 "status": "ok",
-"lat": 42.09365,
-"lng": 12.269413,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via San Biagio, 00061 Anguillara Sabazia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:04.052Z"
+"lat": 41.870977,
+"lng": 12.649599,
+"quality": "address",
+"label": "Via San Biagio Platani 00100, 00133 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.642Z",
+"pass": 2
 },
 "via poggio ameno, 30": {
 "status": "ok",
@@ -13383,12 +13383,12 @@
 },
 "via prato cornelio, 190/196": {
 "status": "ok",
-"lat": 41.723232,
-"lng": 12.615895,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Prato, 00041 Albano Laziale città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:04.567Z"
+"lat": 41.771751,
+"lng": 12.356701,
+"quality": "address",
+"label": "Via di Prato Cornelio 190, 00125 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.591Z",
+"pass": 2
 },
 "via prato della corte": {
 "status": "ok",
@@ -13437,21 +13437,21 @@
 },
 "via prenestina - via morandi": {
 "status": "ok",
-"lat": 41.88964,
-"lng": 12.70006,
-"relevance": 0.45,
+"lat": 41.893582,
+"lng": 12.60959,
 "quality": "street",
-"label": "Via Prenestina, 00077 Monte Compatri città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:04.683Z"
+"label": "Via Prenestina, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.658Z",
+"pass": 2
 },
 "via prenestina - via p. fioravanti": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.893582,
+"lng": 12.60959,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:04.781Z"
+"label": "Via Prenestina, 00155 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.670Z",
+"pass": 2
 },
 "via prenestina nuova, km 1,500": {
 "status": "ok",
@@ -13572,66 +13572,66 @@
 },
 "via r. bianchi bandinelli, 38": {
 "status": "ok",
-"lat": 41.96488,
-"lng": 12.511109,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 38, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.066Z"
+"lat": 41.820986,
+"lng": 12.582625,
+"quality": "address",
+"label": "Via Ranuccio Bianchi Bandinelli 38, 00178 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.791Z",
+"pass": 2
 },
 "via r. bianchi bandinelli, 46": {
 "status": "ok",
-"lat": 41.964957,
-"lng": 12.51094,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 46, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.114Z"
+"lat": 41.820371,
+"lng": 12.583395,
+"quality": "address",
+"label": "Via Ranuccio Bianchi Bandinelli 46, 00178 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.859Z",
+"pass": 2
 },
 "via r. bianchi bandinelli, 48": {
 "status": "ok",
-"lat": 41.964998,
-"lng": 12.510902,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 48, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.153Z"
+"lat": 41.819595,
+"lng": 12.58416,
+"quality": "address",
+"label": "Via Ranuccio Bianchi Bandinelli 48, 00178 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.903Z",
+"pass": 2
 },
 "via r. bianchi bandinelli, 52": {
 "status": "ok",
-"lat": 41.965054,
-"lng": 12.510976,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 52, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.173Z"
+"lat": 41.820774,
+"lng": 12.582955,
+"quality": "address",
+"label": "Via Ranuccio Bianchi Bandinelli 52, 00178 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.929Z",
+"pass": 2
 },
 "via r. ciaceri, 37": {
 "status": "ok",
-"lat": 41.948052,
-"lng": 12.42968,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 37, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.183Z"
+"lat": 41.947815,
+"lng": 12.57048,
+"quality": "address",
+"label": "Via Emanuele Ciaceri 37, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.954Z",
+"pass": 2
 },
 "via r. de ferrari, 88": {
 "status": "ok",
-"lat": 41.899826,
-"lng": 12.489159,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Ferrara 88, 00184 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.201Z"
+"lat": 41.863824,
+"lng": 12.650375,
+"quality": "address",
+"label": "Via Raffaele de Ferrari 88, 00133 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:48:59.995Z",
+"pass": 2
 },
 "via r. de liguoro, 50": {
 "status": "ok",
-"lat": 41.965062,
-"lng": 12.511,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 50, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.226Z"
+"lat": 41.963579,
+"lng": 12.539445,
+"quality": "address",
+"label": "Via Rina De Liguoro 50, 00139 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:00.011Z",
+"pass": 2
 },
 "via r. fabiani, 45": {
 "status": "ok",
@@ -13707,12 +13707,12 @@
 },
 "via r. nasini, 14": {
 "status": "ok",
-"lat": 41.886592,
-"lng": 12.46922,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 14, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.474Z"
+"lat": 41.929414,
+"lng": 12.57606,
+"quality": "address",
+"label": "Via Raffaello Nasini 14, 00156 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:00.504Z",
+"pass": 2
 },
 "via r. rossellini, 5-11": {
 "status": "ok",
@@ -13779,12 +13779,12 @@
 },
 "via renzini - via frinanti - via pontina": {
 "status": "ok",
-"lat": 41.670436,
-"lng": 12.507051,
-"relevance": 0.45,
+"lat": 41.723145,
+"lng": 12.444425,
 "quality": "street",
-"label": "Via Pontina, 00071 Pomezia città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.622Z"
+"label": "Via Pontina, 00128 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:01.136Z",
+"pass": 2
 },
 "via renzini, 47": {
 "status": "ok",
@@ -13941,12 +13941,12 @@
 },
 "via s. biagio - via dei platani, via s. piero patti, f. tor bella monaca - via gualtieri,, via gallodoro - via s. giuseppe iato via erice": {
 "status": "ok",
-"lat": 41.999866,
-"lng": 12.628607,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via dei platani, 00013 Fonte Nuova città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:05.988Z"
+"lat": 41.881068,
+"lng": 12.567845,
+"quality": "address",
+"label": "Via dei Platani 00100, 00172 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:01.723Z",
+"pass": 2
 },
 "via s. borgia": {
 "status": "ok",
@@ -13986,12 +13986,12 @@
 },
 "via s. di giacomo": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
+"lat": 41.907812,
+"lng": 12.478498,
 "quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:06.113Z"
+"label": "Via di San Giacomo, 00187 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:01.747Z",
+"pass": 2
 },
 "via s. elpidio a mare, 11": {
 "status": "ok",
@@ -14022,21 +14022,21 @@
 },
 "via s. menas, 125": {
 "status": "ok",
-"lat": 41.910643,
-"lng": 12.493937,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagna 125, 00187 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:06.406Z"
+"lat": 41.876556,
+"lng": 12.569694,
+"quality": "address",
+"label": "Via Vincenzo Menasi 125, 00172 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:01.767Z",
+"pass": 2
 },
 "via s. menas, 57": {
 "status": "ok",
-"lat": 41.943709,
-"lng": 12.3252,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romagnano Sesia 57, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:06.286Z"
+"lat": 41.876496,
+"lng": 12.569659,
+"quality": "address",
+"label": "Via Vincenzo Menasi 57, 00172 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:01.917Z",
+"pass": 2
 },
 "via s. protonotaro, 71": {
 "status": "ok",
@@ -14220,12 +14220,12 @@
 },
 "via salvini, 20/24": {
 "status": "ok",
-"lat": 41.991917,
-"lng": 12.489562,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Salvino degli Armati 20, 00188 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:06.817Z"
+"lat": 41.883371,
+"lng": 12.571397,
+"quality": "street",
+"label": "Via delle Salvinie, 00172 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.348Z",
+"pass": 2
 },
 "via san gaggio, 5": {
 "status": "ok",
@@ -14292,12 +14292,12 @@
 },
 "via santa lucia, 5": {
 "status": "ok",
-"lat": 41.975807,
-"lng": 12.646552,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via di Santa Lucia 5, 00013 Fonte Nuova città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:07.086Z"
+"lat": 41.919771,
+"lng": 12.456447,
+"quality": "address",
+"label": "Via di Santa Lucia 5, 00195 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.341Z",
+"pass": 2
 },
 "via santa maria delle fornaci, 1": {
 "status": "ok",
@@ -14499,12 +14499,12 @@
 },
 "via serra petrona, 121": {
 "status": "ok",
-"lat": 41.881675,
-"lng": 12.352348,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Guerra 121, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:07.565Z"
+"lat": 41.941629,
+"lng": 12.47297,
+"quality": "address",
+"label": "Via Antonio Serra 121, 00191 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.446Z",
+"pass": 2
 },
 "via serra, 91": {
 "status": "ok",
@@ -14706,12 +14706,12 @@
 },
 "via t. bernetti, 14": {
 "status": "ok",
-"lat": 41.886592,
-"lng": 12.46922,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 14, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:08.345Z"
+"lat": 41.91684,
+"lng": 12.409015,
+"quality": "address",
+"label": "Via Tommaso Bernetti 14, 00168 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.562Z",
+"pass": 2
 },
 "via t. buazzelli, 120": {
 "status": "ok",
@@ -14742,21 +14742,21 @@
 },
 "via t. mann": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:08.390Z"
+"lat": 41.940625,
+"lng": 12.635811,
+"quality": "address",
+"label": "Via Monte Manno 00100, 00131 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.883Z",
+"pass": 2
 },
 "via t. mann, 20": {
 "status": "ok",
-"lat": 41.92975,
-"lng": 12.568995,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Vanni Biringucci 20, 00156 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:08.515Z"
+"lat": 41.94025,
+"lng": 12.635735,
+"quality": "address",
+"label": "Via Monte Manno 20, 00131 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.833Z",
+"pass": 2
 },
 "via t. mommsen, 20": {
 "status": "ok",
@@ -14787,12 +14787,12 @@
 },
 "via t. signorini, 78": {
 "status": "ok",
-"lat": 41.965261,
-"lng": 12.511849,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Calò 78, 00139 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:08.534Z"
+"lat": 41.795409,
+"lng": 12.484719,
+"quality": "address",
+"label": "Via Antonio Signorini 78, 00134 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:02.935Z",
+"pass": 2
 },
 "via t. traetta, 70": {
 "status": "ok",
@@ -14940,12 +14940,12 @@
 },
 "via tiberina, km 8.300": {
 "status": "ok",
-"lat": 42.079012,
-"lng": 12.548786,
-"relevance": 0.45,
+"lat": 42.049673,
+"lng": 12.520233,
 "quality": "street",
-"label": "Via Tiberina, 00060 Riano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:08.935Z"
+"label": "Via Tiberina, 00188 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.024Z",
+"pass": 2
 },
 "via tiburtina antica, 25": {
 "status": "ok",
@@ -14967,12 +14967,12 @@
 },
 "via tiburtina, 691/695": {
 "status": "ok",
-"lat": 41.95447,
-"lng": 12.706571,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Tiburtina Valeria, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.014Z"
+"lat": 41.910834,
+"lng": 12.54931,
+"quality": "address",
+"label": "Via Tiburtina 691, 00159 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.157Z",
+"pass": 2
 },
 "via tiburtina, km 14,5": {
 "status": "ok",
@@ -14985,12 +14985,12 @@
 },
 "via tiburtina, km 16,7 - via tenuta del cavaliere": {
 "status": "ok",
-"lat": 41.939525,
-"lng": 12.655215,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via della Tenuta del Cavaliere 7, 00131 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.138Z"
+"lat": 41.932564,
+"lng": 12.603739,
+"quality": "street",
+"label": "Via Tiburtina, 00131 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.108Z",
+"pass": 2
 },
 "via tigrè, 96": {
 "status": "ok",
@@ -15066,12 +15066,12 @@
 },
 "via torre di sant’anastasia, 83": {
 "status": "ok",
-"lat": 41.960515,
-"lng": 12.760453,
-"relevance": 0.45,
+"lat": 41.88844,
+"lng": 12.483592,
 "quality": "street",
-"label": "Via Torre, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.359Z"
+"label": "Piazza Di Sant'anastasia, 00186 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.357Z",
+"pass": 2
 },
 "via torrenova, 115": {
 "status": "ok",
@@ -15201,12 +15201,12 @@
 },
 "via u. boccioni, 14": {
 "status": "ok",
-"lat": 41.886592,
-"lng": 12.46922,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma Libera 14, 00153 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.716Z"
+"lat": 41.927488,
+"lng": 12.48751,
+"quality": "address",
+"label": "Via Umberto Boccioni 14, 00197 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.216Z",
+"pass": 2
 },
 "via u. ojetti, 134": {
 "status": "ok",
@@ -15255,21 +15255,21 @@
 },
 "via v. drago": {
 "status": "ok",
-"lat": 41.971859,
-"lng": 12.629045,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via del Drago, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.852Z"
+"lat": 41.858128,
+"lng": 12.49512,
+"quality": "address",
+"label": "Via Maria Drago Mazzini 00100, 00145 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.512Z",
+"pass": 2
 },
 "via v. drago, 14": {
 "status": "ok",
-"lat": 41.971829,
-"lng": 12.628549,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via del Drago 14, 00012 Guidonia Montecelio città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:09.868Z"
+"lat": 41.858825,
+"lng": 12.494223,
+"quality": "address",
+"label": "Via Maria Drago Mazzini 14, 00145 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.556Z",
+"pass": 2
 },
 "via v. flacco, 41": {
 "status": "ok",
@@ -15444,12 +15444,12 @@
 },
 "via valignano": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:10.408Z"
+"lat": 41.865575,
+"lng": 12.49479,
+"quality": "address",
+"label": "Via Alessandro Valignano 00100, 00154 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.856Z",
+"pass": 2
 },
 "via valle dei fontanili, 40": {
 "status": "ok",
@@ -15642,12 +15642,12 @@
 },
 "via w. procaccini, 70": {
 "status": "ok",
-"lat": 41.881528,
-"lng": 12.35219,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Romano Guerra 70, 00166 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:10.895Z"
+"lat": 42.001136,
+"lng": 12.484946,
+"quality": "address",
+"label": "Via Andrea Procaccini 70, 00188 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:03.720Z",
+"pass": 2
 },
 "via zagarise, 26": {
 "status": "ok",
@@ -15678,39 +15678,39 @@
 },
 "viale a. ballarin, 102": {
 "status": "ok",
-"lat": 41.924853,
-"lng": 12.493072,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Romania 102, 00197 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:19.788Z"
+"lat": 41.838266,
+"lng": 12.495655,
+"quality": "address",
+"label": "Viale Aldo Ballarin 102, 00142 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.368Z",
+"pass": 2
 },
 "viale a. ciamarra": {
 "status": "ok",
-"lat": 41.896249,
-"lng": 12.491777,
-"relevance": 0.45,
+"lat": 41.85239,
+"lng": 12.590649,
 "quality": "street",
-"label": "Via Cimarra, 00184 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:19.766Z"
+"label": "Viale Antonio Ciamarra, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.366Z",
+"pass": 2
 },
 "viale a. ciamarra, 18": {
 "status": "ok",
-"lat": 41.896223,
-"lng": 12.491392,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Cimarra 18, 00184 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:19.882Z"
+"lat": 41.847579,
+"lng": 12.5916,
+"quality": "address",
+"label": "Viale Antonio Ciamarra 18, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.446Z",
+"pass": 2
 },
 "viale a. ruspoli, 80": {
 "status": "ok",
-"lat": 41.950009,
-"lng": 12.42901,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 80, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:19.845Z"
+"lat": 41.7864,
+"lng": 12.34481,
+"quality": "address",
+"label": "Viale Alessandro Ruspoli 80, 00126 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.505Z",
+"pass": 2
 },
 "viale adriatico, 136": {
 "status": "ok",
@@ -15777,12 +15777,12 @@
 },
 "viale b. rizzieri, 120": {
 "status": "ok",
-"lat": 41.924853,
-"lng": 12.493072,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Romania 120, 00197 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.094Z"
+"lat": 41.852341,
+"lng": 12.58739,
+"quality": "address",
+"label": "Viale Bruno Rizzieri 120, 00173 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.472Z",
+"pass": 2
 },
 "viale dei gladiatori, 31": {
 "status": "ok",
@@ -16074,12 +16074,12 @@
 },
 "viale don p. borghi, 165": {
 "status": "ok",
-"lat": 41.924853,
-"lng": 12.493072,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Romania 165, 00197 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.135Z"
+"lat": 41.807913,
+"lng": 12.446508,
+"quality": "address",
+"label": "Viale Don Pasquino Borghi 165, 00144 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.491Z",
+"pass": 2
 },
 "viale e. filiberto, 66": {
 "status": "ok",
@@ -16101,12 +16101,12 @@
 },
 "viale g. marconi, 700": {
 "status": "ok",
-"lat": 41.717198,
-"lng": 12.819879,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Roma 700, 00076 Lariano città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.099Z"
+"lat": 41.846428,
+"lng": 12.4757,
+"quality": "address",
+"label": "Viale Guglielmo Marconi 700, 00146 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.544Z",
+"pass": 2
 },
 "viale g. mazzantini, 15": {
 "status": "ok",
@@ -16119,21 +16119,21 @@
 },
 "viale g. mazzini": {
 "status": "ok",
-"lat": 41.806982,
-"lng": 12.737286,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Mazzini, 00077 Monte Compatri città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.192Z"
+"lat": 41.915367,
+"lng": 12.460881,
+"quality": "address",
+"label": "Viale Giuseppe Mazzini 00100, 00195 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.700Z",
+"pass": 2
 },
 "viale g. mazzini, 32": {
 "status": "ok",
-"lat": 41.793953,
-"lng": 12.764093,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via G. Mazzini 32, 00079 Rocca Priora città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.221Z"
+"lat": 41.916975,
+"lng": 12.465375,
+"quality": "address",
+"label": "Viale Giuseppe Mazzini 32, 00195 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.591Z",
+"pass": 2
 },
 "viale giulio cesare, 33": {
 "status": "ok",
@@ -16263,12 +16263,12 @@
 },
 "viale rosseau, 124": {
 "status": "ok",
-"lat": 41.937424,
-"lng": 12.555,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Viale Rousseau 124, 00137 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.559Z"
+"lat": 41.937324,
+"lng": 12.555736,
+"quality": "street",
+"label": "Viale Rosseau, 00137 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.609Z",
+"pass": 2
 },
 "viale rousseau, 80": {
 "status": "ok",
@@ -16281,12 +16281,12 @@
 },
 "viale s. rebecchini, 37": {
 "status": "ok",
-"lat": 41.948052,
-"lng": 12.42968,
-"relevance": 0.45,
-"quality": "address, confidenza low",
-"label": "Via Rosa Gattorno 37, 00135 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.631Z"
+"lat": 41.815469,
+"lng": 12.40991,
+"quality": "address",
+"label": "Viale Salvatore Rebecchini 37, 00148 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.644Z",
+"pass": 2
 },
 "viale san paolo, 12": {
 "status": "ok",
@@ -16317,12 +16317,12 @@
 },
 "viale t. labieno": {
 "status": "ok",
-"lat": 41.890733,
-"lng": 12.5323,
-"relevance": 0.45,
-"quality": "street",
-"label": "Via Romanello da Forlì, 00176 Roma città metropolitana di Roma Capitale, Italia",
-"at": "2026-11-13T22:39:20.685Z"
+"lat": 41.851729,
+"lng": 12.565074,
+"quality": "address",
+"label": "Viale Tito Labieno 00100, 00174 Roma città metropolitana di Roma Capitale, Italia",
+"at": "2026-11-13T22:49:04.815Z",
+"pass": 2
 },
 "viale tirreno, 13": {
 "status": "ok",

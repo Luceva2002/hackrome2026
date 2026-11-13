@@ -49,4 +49,4 @@ git checkout -b feat/attivita        # A · oppure feat/gestore-admin (B) · fea
 Prima di unire: `git rebase main`, `npm run typecheck && npm run build`, 3 righe in `PROGRESS.md`. Rifinitura demo (fase 8) tutti insieme dopo l'ultimo merge.
 
 ## Stato dei dati
-1.912 impianti di Roma; 1.304 con posizione verificata, gli altri in elenco come "Posizione da verificare". Un risultato del geocoding è accettato solo se contiene la via cercata ed è nel Comune di Roma. Secondo passaggio pronto: `_romaincampo_geocode/geocode2.mjs` sul Mac.
+1.912 impianti di Roma; 1.563 con posizione verificata, gli altri in elenco come "Posizione da verificare". Un risultato del geocoding è accettato solo se contiene la via cercata ed è nel Comune di Roma. Due passaggi di geocoding fatti (Mapbox libero + strutturato); 349 restano da verificare: candidati per un terzo passaggio con OSM/Nominatim.

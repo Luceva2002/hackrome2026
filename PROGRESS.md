@@ -14,4 +14,4 @@ Mappa con clustering nativo e colori per tipologia, filtri nell'URL (disciplina,
 
 ## Fase 4 · Attività — API ✓, interfaccia → filone A (docs/SPLIT.md)
 API bacheca filtrata (fuso di Roma), creazione, iscrizione e lista d'attesa via RPC atomiche, annullamento dell'Owner, "Le mie attività".
-Geocoding verificato: scartati i falsi positivi (via diversa o altro comune); 1.304/1.912 impianti posizionati.
+Geocoding verificato: scartati i falsi positivi (via diversa o altro comune); 1.563/1.912 impianti posizionati dopo il secondo passaggio (query strutturata).
