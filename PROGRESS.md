@@ -11,3 +11,7 @@ Seed idempotente `npm run db:seed`: fonti, 1.912 luoghi con le fonti dei campi, 
 
 ## Fase 3 · Esplora Luoghi — ✓
 Mappa con clustering nativo e colori per tipologia, filtri nell'URL (disciplina, tipologia, Municipio, natura, accessibilità, vicino a me), elenco navigabile da tastiera con annuncio dei risultati, scheda con la fonte e l'affidabilità di ogni campo.
+
+## Fase 4 · Attività — API ✓, interfaccia → filone A (docs/SPLIT.md)
+API bacheca filtrata (fuso di Roma), creazione, iscrizione e lista d'attesa via RPC atomiche, annullamento dell'Owner, "Le mie attività".
+Geocoding verificato: scartati i falsi positivi (via diversa o altro comune); 1.304/1.912 impianti posizionati.
