@@ -1,0 +1,228 @@
+@import 'tailwindcss' source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+/* ═══════════════════════════════════════════════════════════
+   CityAlert — Design System "Liquid Civic"
+   Tema chiaro, vetro liquido (iOS-like), oro segnale.
+   Mobile-first, responsive fino a desktop.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Fondali ─── */
+  --bg: #f4f5f7;
+  --bg-deep: #e9ebf0;
+  --card: #ffffff;
+  --surface-muted: #f8f9fb;
+
+  /* ─── Oro segnale ─── */
+  --gold-300: #ffdf70;
+  --gold-400: #ffc933;
+  --gold-500: #f5b301;
+  --gold-600: #b07d00;
+  --gold-tint: #fff6da;
+  --on-gold: #231a00;
+
+  /* ─── Inchiostro (testo e superfici scure) ─── */
+  --ink: #0f172a;
+  --text-hi: #0f172a;
+  --text-mid: #475467;
+  --text-low: #8a94a6;
+
+  /* ─── Semantica (contrasto AA su chiaro) ─── */
+  --danger: #dc2626;
+  --success: #059669;
+  --info: #0284c7;
+
+  /* ─── Bordi e vetro ─── */
+  --glass-bg: rgba(255, 255, 255, 0.86);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.94);
+  --stroke: rgba(15, 23, 42, 0.06);
+  --stroke-dark: rgba(15, 23, 42, 0.1);
+
+  /* ─── Ombre ─── */
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-float: 0 2px 6px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(15, 23, 42, 0.14);
+  --shadow-gold: 0 6px 20px rgba(176, 125, 0, 0.3);
+
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── Token Tailwind v4 ─── */
+@theme inline {
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+
+  --color-ink: var(--ink);
+  --color-hi: var(--text-hi);
+  --color-mid: var(--text-mid);
+  --color-low: var(--text-low);
+
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-info: var(--info);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+/* ═══ Base ═══ */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-hi);
+    min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+
+  ::selection {
+    background: rgba(245, 179, 1, 0.3);
+    color: var(--text-hi);
+  }
+
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+/* ═══ Utility registrate (funzionano con varianti sm:/hover:/…) ═══ */
+
+@utility no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Safe area iOS (notch / dynamic island) */
+@utility pt-safe {
+  padding-top: max(3.25rem, calc(env(safe-area-inset-top, 0px) + 0.75rem));
+}
+
+@utility pb-safe {
+  padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+}
+
+/* ─── Superfici: vetro quasi opaco, leggibile anche sopra la mappa ─── */
+@utility glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-card);
+}
+
+@utility glass-heavy {
+  background: var(--glass-bg-heavy);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-float);
+}
+
+/* Card piena bianca */
+@utility card {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-card);
+}
+
+/* Etichetta di sezione */
+@utility eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-low);
+}
+
+/* Testo con gradiente oro */
+@utility text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Trama puntinata tenue */
+@utility dot-grid {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility animate-radar {
+  animation: radar-ring 2.4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+@utility animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* ═══ Animazioni ═══ */
+@keyframes radar-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ═══ Mapbox ═══ */
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+.mapboxgl-canvas {
+  outline: none;
+}
