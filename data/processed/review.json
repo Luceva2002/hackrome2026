@@ -22,8 +22,7 @@
   "id": "cmrc-1eea6b5a8d55",
   "name": "L.S. Cavour",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -42,8 +41,7 @@
   "id": "cmrc-2c980a5c650e",
   "name": "I.I.S. Via Cavour",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -62,8 +60,7 @@
   "id": "cmrc-37e300d4b416",
   "name": "I.T.I.S. Galilei",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -82,8 +79,7 @@
   "id": "cmrc-9fc28b12a304",
   "name": "L.C. Virgilio",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -112,8 +108,7 @@
   "id": "cmrc-31d5526fc894",
   "name": "L.C. Visconti",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -132,8 +127,7 @@
   "id": "cmrc-ba8befa74cd4",
   "name": "Aquaniene",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -212,7 +206,7 @@
   "name": "I.I.S. Istituto Azzarita",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -251,8 +245,7 @@
   "id": "cmrc-ab7563dbfeca",
   "name": "I.I.S. Via Luisa di Savoia",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -272,7 +265,7 @@
   "name": "L.C. Mameli",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -301,8 +294,7 @@
   "id": "cmrc-622128178635",
   "name": "Circolo Canottieri Aniene",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -343,7 +335,7 @@
   "notes": [
    "5 righe del CSV malformate (colonne spostate): discipline da verificare",
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -382,8 +374,7 @@
   "id": "cmrc-ab8922645222",
   "name": "Circolo Tennis della Stampa",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -422,8 +413,7 @@
   "id": "cmrc-a919670bf469",
   "name": "I.P.S.I.A. Via Sarandì",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -509,8 +499,7 @@
   "id": "cmrc-3516f128b1ca",
   "name": "Akros Fitness Center",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -540,7 +529,7 @@
   "name": "G-Power",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -580,7 +569,7 @@
   "name": "Heaven 2 Sporting Club",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -619,8 +608,7 @@
   "id": "cmrc-847bd6353eb4",
   "name": "Polisportiva Villa de Sanctis Roma",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -660,8 +648,7 @@
   "name": "L.S. Levi Civita T.",
   "notes": [
    "1 righe del CSV malformate (colonne spostate): discipline da verificare",
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -699,8 +686,7 @@
   "id": "cmrc-77e4139c5646",
   "name": "I.I.S. G. Ambrosoli",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -719,8 +705,7 @@
   "id": "cmrc-5c7f77824dca",
   "name": "L.S. F. D’Assisi",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -740,7 +725,7 @@
   "name": "Tor Sapienza Tib. Sud",
   "notes": [
    "Stati in conflitto nel censimento: realizzazione, progettazione",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -779,8 +764,7 @@
   "id": "cmrc-faf9e4f3c0fd",
   "name": "Piscina Salvetti",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -809,8 +793,7 @@
   "id": "cmrc-66ce607e4512",
   "name": "Circolo Bocciofilo San Felice",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -829,8 +812,7 @@
   "id": "cmrc-0fb526908c2d",
   "name": "Oratorio S. Giustino",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -849,8 +831,7 @@
   "id": "cmrc-e6f0872e9d76",
   "name": "Frecce Azzurre",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -869,8 +850,7 @@
   "id": "cmrc-380b04c7d3d3",
   "name": "Stadio Torbellamonaca",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -909,8 +889,7 @@
   "id": "cmrc-8568cdee3744",
   "name": "Fontana Candida",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -929,8 +908,7 @@
   "id": "cmrc-c902b2325465",
   "name": "185° C.D. C. Urbani",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -989,7 +967,7 @@
   "name": "Arcieri Arcoroma",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1008,8 +986,7 @@
   "id": "cmrc-f7304b599f87",
   "name": "Arcieri della Torre",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1029,7 +1006,7 @@
   "name": "Campo Gabii",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1059,7 +1036,7 @@
   "name": "Heaven 3 Sporting Club",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1098,8 +1075,7 @@
   "id": "cmrc-0c6304cddc7b",
   "name": "Lazio Biliardo",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1118,8 +1094,7 @@
   "id": "cmrc-83d6bbeee67f",
   "name": "T.A.V. Valle Aniene",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1158,8 +1133,7 @@
   "id": "cmrc-c460aae38936",
   "name": "I.I.S. Leopoldo Pirelli",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1178,8 +1152,7 @@
   "id": "cmrc-6fce4e4c0fcd",
   "name": "I.I.S. Leopoldo Pirelli",
   "notes": [
-   "Stati in conflitto nel censimento: ristrutturazione, realizzazione",
-   "Posizione non ancora geocodificata"
+   "Stati in conflitto nel censimento: ristrutturazione, realizzazione"
   ],
   "raw": [
    {
@@ -1218,8 +1191,7 @@
   "id": "cmrc-0296d84b2ef5",
   "name": "Sporting Palace Appia",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1287,8 +1259,7 @@
   "id": "cmrc-6421b8e9d1ae",
   "name": "Nuova Polisportiva De Rossi",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1327,8 +1298,7 @@
   "id": "cmrc-d0dd2584531d",
   "name": "Lazio Biliardo",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1347,8 +1317,7 @@
   "id": "cmrc-a81608f197e5",
   "name": "La Torre",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1377,8 +1346,7 @@
   "id": "cmrc-4c2945a15c67",
   "name": "Palestra Total Body Center",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1397,8 +1365,7 @@
   "id": "cmrc-b1ef3b37373b",
   "name": "La Via del Wing Tsun",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1417,8 +1384,7 @@
   "id": "cmrc-f951f9e26982",
   "name": "Wing Tsun Kuen",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1437,8 +1403,7 @@
   "id": "cmrc-1126c72d3568",
   "name": "Istituto Salesiano Pio XI",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1467,8 +1432,7 @@
   "id": "cmrc-701f58150a25",
   "name": "Alma Nuoto",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1498,7 +1462,7 @@
   "name": "Parco degli Acquedotti",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1527,8 +1491,7 @@
   "id": "cmrc-ad612f7c30f8",
   "name": "I.C. Guido Milanesi",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1547,8 +1510,7 @@
   "id": "cmrc-0741750559e4",
   "name": "C.D. Tarcisio",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1567,8 +1529,7 @@
   "id": "cmrc-ca8ff30caef4",
   "name": "Appia Country Roma",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1608,7 +1569,7 @@
   "name": "Club Capannelle Sporting 2000",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1648,8 +1609,7 @@
   "name": "Heaven Sporting Club",
   "notes": [
    "6 righe del CSV malformate (colonne spostate): discipline da verificare",
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1688,8 +1648,7 @@
   "id": "cmrc-f9e80754542a",
   "name": "Morena",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1718,8 +1677,7 @@
   "id": "cmrc-b9b686f21ce4",
   "name": "Peter Pan Triathlon",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1738,8 +1696,7 @@
   "id": "cmrc-f4f312c42b06",
   "name": "Polia Sporting Village",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1779,7 +1736,7 @@
   "name": "Tito Labieno",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1798,8 +1755,7 @@
   "id": "cmrc-31bbad0e58c3",
   "name": "Parrocchia Assunzione di Maria",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1837,8 +1793,7 @@
   "id": "cmrc-147b109cf56e",
   "name": "Imp. Natatorio di Valco San Paolo",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -1868,7 +1823,7 @@
   "name": "I.T.I.S. G. Armellini",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1908,7 +1863,7 @@
   "name": "L.C. Socrate",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1957,7 +1912,7 @@
   "name": "Centro Sportivo Cristoforo Colombo",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -1997,7 +1952,7 @@
   "name": "Club 70",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2016,8 +1971,7 @@
   "id": "cmrc-ee8167df07bc",
   "name": "Circolo Bocciofilo Navigatori",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2036,8 +1990,7 @@
   "id": "cmrc-5cdf6b837697",
   "name": "Centro TKD Ostiense",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2056,8 +2009,7 @@
   "id": "cmrc-55adc0b53270",
   "name": "Planet Sport",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2076,8 +2028,7 @@
   "id": "cmrc-4ccdcd9e168d",
   "name": "Circolo Bocciofilo Valco San Paolo",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2096,8 +2047,7 @@
   "id": "cmrc-2ed6c1bbf23a",
   "name": "Federazione Italiana Hockey",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2116,8 +2066,7 @@
   "id": "cmrc-f8f33ab9ab8f",
   "name": "Impianto Tor Pagnotta",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2156,8 +2105,7 @@
   "id": "cmrc-807098f2cbab",
   "name": "I.P.S.I.A. Via Acireale, 8 - Succursale",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2176,8 +2124,7 @@
   "id": "cmrc-2806eb4d4e9d",
   "name": "L.C. Vivona F.",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2216,8 +2163,7 @@
   "id": "cmrc-24814b91ee3b",
   "name": "Palalottomatica",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2237,7 +2183,7 @@
   "name": "All Round",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2277,7 +2223,7 @@
   "name": "Laser Club",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2296,8 +2242,7 @@
   "id": "cmrc-4b253e640b36",
   "name": "Libertas Roma Accademy",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2337,7 +2282,7 @@
   "name": "Sport City",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2376,8 +2321,7 @@
   "id": "cmrc-4f7d02463870",
   "name": "Parrocchia di San Gregorio Barbarigo",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2396,8 +2340,7 @@
   "id": "cmrc-c13485ddf090",
   "name": "Le Cupole",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2436,8 +2379,7 @@
   "id": "cmrc-b69796d5c5e4",
   "name": "San Giorgio",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2486,8 +2428,7 @@
   "id": "cmrc-1e656d7c19f3",
   "name": "S.M.S. Arcangelo Corelli",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2565,7 +2506,7 @@
   "name": "Parco la Madonnetta",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2624,7 +2565,7 @@
   "name": "Babel",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2663,8 +2604,7 @@
   "id": "cmrc-8bbc401e1bf7",
   "name": "Polisportiva Eschilo 1",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2704,7 +2644,7 @@
   "name": "Moonriver",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -2743,8 +2683,7 @@
   "id": "cmrc-40109a03b304",
   "name": "Opera Nazionale Città dei Ragazzi",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2783,8 +2722,7 @@
   "id": "cmrc-f1ba7c201779",
   "name": "A.S. Juventus Nuoto",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2813,8 +2751,7 @@
   "id": "cmrc-4332f3ccf932",
   "name": "Laghi Mezzaluna",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2852,8 +2789,7 @@
   "id": "cmrc-b727cc12b199",
   "name": "L.S. M. Malpighi",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2892,8 +2828,7 @@
   "id": "cmrc-4fb923892530",
   "name": "Empire Sport e Resort",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2932,8 +2867,7 @@
   "id": "cmrc-c5677cb414de",
   "name": "Polisportiva Olimpia Nuoto",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -2962,8 +2896,7 @@
   "id": "cmrc-2632d577257f",
   "name": "Valle dei Casali",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3002,8 +2935,7 @@
   "id": "cmrc-13bb38a006ad",
   "name": "Villa York Sporting Club",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3042,8 +2974,7 @@
   "id": "cmrc-98270f7a1f91",
   "name": "L.A. Caravillani",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3062,8 +2993,7 @@
   "id": "cmrc-6cad2c615bd9",
   "name": "Parco del Foro Italico",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3092,8 +3022,7 @@
   "id": "cmrc-53c9ed74b358",
   "name": "Le Molette",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3132,8 +3061,7 @@
   "id": "cmrc-aecd8fe022b5",
   "name": "Nadir",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3211,8 +3139,7 @@
   "id": "cmrc-1a2e0aa5f129",
   "name": "L.C. De Sanctis G.",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3271,7 +3198,7 @@
   "name": "Cassiantica Sporting Fitness",
   "notes": [
    "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Posizione da verificare: il geocoding non ha trovato la via"
   ],
   "raw": [
    {
@@ -3310,8 +3237,7 @@
   "id": "cmrc-7f0dd7e94a28",
   "name": "Sporting Club Due Ponti",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {
@@ -3350,8 +3276,7 @@
   "id": "cmrc-1cd6d49eafe8",
   "name": "C.S. Nettuno Club Saxa Rubra",
   "notes": [
-   "Descrizione delle strutture troncata nel CSV",
-   "Posizione non ancora geocodificata"
+   "Descrizione delle strutture troncata nel CSV"
   ],
   "raw": [
    {

@@ -24,6 +24,7 @@ import {
 } from '../../src/lib/sports/taxonomy';
 import type { FieldSource, VenueRecord } from '../../src/features/venues/types';
 import { geocodeKey, loadGeocodeCache } from './geocode-cache';
+import { labelMatches } from './address';
 import { loadMunicipi, municipioAt } from './municipi';
 
 const SOURCE = 'censimento-cmrc';
@@ -201,8 +202,10 @@ function main() {
     };
 
     const geo = address ? cache[geocodeKey(address)] : undefined;
-    const lat = geo && geo.status === 'ok' ? (geo.lat ?? null) : null;
-    const lng = geo && geo.status === 'ok' ? (geo.lng ?? null) : null;
+    // Un risultato che non contiene il nome della via cercata è un falso positivo
+    const geoOk = !!geo && geo.status === 'ok' && labelMatches(address!, geo.label);
+    const lat = geoOk ? (geo!.lat ?? null) : null;
+    const lng = geoOk ? (geo!.lng ?? null) : null;
     if (lat != null && lng != null && municipi) {
       const pip = municipioAt(municipi, lng, lat);
       if (pip) {
@@ -212,7 +215,7 @@ function main() {
       }
     }
     if (address && !geo) notes.push('Posizione non ancora geocodificata');
-    if (geo && geo.status !== 'ok') notes.push('Indirizzo non trovato dal geocoding');
+    if (geo && !geoOk) notes.push('Posizione da verificare: il geocoding non ha trovato la via');
 
     const venue: VenueRecord = {
       id,
@@ -234,7 +237,7 @@ function main() {
       description: null,
       community: false,
       manager_verified: false,
-      needs_review: notes.some((n) => !n.startsWith('Posizione non ancora')),
+      needs_review: notes.some((n) => !n.startsWith('Posizione')),
       review_notes: notes,
       fields: {
         name: { source: SOURCE, confidence: 0.9, raw: clean(first.NomeImpianto) },
@@ -244,8 +247,12 @@ function main() {
           ? {
               position: {
                 source: 'geocoding-mapbox',
-                confidence: geo!.relevance ?? 0.7,
-                note: `Geocodificato da indirizzo (${geo!.quality ?? 'precisione ignota'})`,
+                // Mapbox v6 non sempre restituisce match_code: la precisione la dà il tipo di risultato
+                confidence: geo!.quality?.startsWith('address') ? 0.8 : 0.55,
+                note: geo!.quality?.startsWith('address')
+                  ? 'Geocodificato dall’indirizzo, precisione al numero civico'
+                  : 'Geocodificato dall’indirizzo, precisione solo alla via: posizione approssimativa',
+                raw: geo!.label,
               },
             }
           : {}),
