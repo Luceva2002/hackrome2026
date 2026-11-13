@@ -23,3 +23,6 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - Iscrizioni e lista d'attesa solo tramite le RPC `join_activity` / `leave_activity` (security definer, lock sulla riga dell'attività). Nessuno, Owner compreso, legge le iscrizioni altrui: la bacheca espone solo i contatori tramite la vista `activities_public`.
 - Il gestore verificato aggiorna solo i dati operativi: il trigger `guard_venue_update` ripristina gli altri campi e marca quelli toccati in `manager_edited_fields`; `apply_proposal` li salta. Testato in `supabase/tests/rls.test.sql`.
 - Contrasto: `--text-low` e `--gold-600` scuriti per arrivare ad AA su bianco; rimosso il blocco dello zoom nel viewport.
+
+## Exa (ricerca web)
+- Exa entra solo lato server e negli script (`src/lib/exa/`, `EXA_API_KEY` in `.env.local`, mai `NEXT_PUBLIC_`). Una ricerca `/search` con output strutturato per impianto: un campo è tenuto solo se il grounding di Exa cita almeno un URL, che diventa la fonte del campo. Il risultato è una `proposal`, mai una scrittura diretta. `npm run exa:venue` è una prova a secco.
