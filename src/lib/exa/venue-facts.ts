@@ -9,7 +9,11 @@
  */
 import { getExa } from './client';
 
-export const VENUE_FACT_FIELDS = ['opening_hours', 'phone', 'website', 'prices', 'description'] as const;
+/** Solo i campi che `apply_proposal` sa applicare (prezzi e descrizione li salta). */
+export const VENUE_FACT_FIELDS = ['opening_hours', 'phone', 'website'] as const;
+
+/** Id della riga in `sources` (migration 020_exa_fonte_web.sql). */
+export const EXA_SOURCE_ID = 'exa_web';
 export type VenueFactField = (typeof VENUE_FACT_FIELDS)[number];
 
 export type VenueFact = {
@@ -34,8 +38,6 @@ const OUTPUT_SCHEMA = {
     opening_hours: { type: 'string', description: 'Orari di apertura come scritti dalla fonte' },
     phone: { type: 'string', description: 'Telefono della struttura' },
     website: { type: 'string', description: 'Sito ufficiale della struttura' },
-    prices: { type: 'string', description: 'Tariffe o quote, come scritte dalla fonte' },
-    description: { type: 'string', description: 'Una o due frasi su cosa offre la struttura' },
   },
 } as const;
 
@@ -43,18 +45,19 @@ const SYSTEM_PROMPT = [
   "Stai verificando la scheda di un impianto sportivo di Roma per un catasto pubblico.",
   "Usa solo pagine che parlano proprio di questa struttura, a questo indirizzo: scarta omonimi in altre città o altre sedi.",
   "Preferisci il sito ufficiale della struttura, le pagine di Roma Capitale e dei Municipi, le federazioni sportive, gli atti di concessione.",
+  "Per il sito, indica il sito della struttura stessa, non una directory o un social se ne esiste uno ufficiale.",
   "Riporta i valori come scritti nella fonte, senza riformularli né completarli.",
   "Se un campo non è scritto esplicitamente in una fonte, omettilo. Mai una stima o un valore plausibile.",
 ].join(' ');
 
 export async function findVenueFacts(venue: { name: string; address?: string | null }): Promise<VenueFactsResult> {
   const where = venue.address ? `${venue.address}, Roma` : 'Roma';
-  const res = await getExa().search(`${venue.name}, ${where}: impianto sportivo, orari, contatti, tariffe`, {
+  const res = await getExa().search(`${venue.name}, ${where}: impianto sportivo, orari e contatti`, {
     type: 'auto',
     objective:
       `Trovare le informazioni operative dell'impianto sportivo "${venue.name}" (${where}) per una scheda pubblica: ` +
       'prima il sito ufficiale e le pagine istituzionali, poi directory affidabili; escludere omonimi altrove. ' +
-      'Estrarre orari di apertura, telefono, sito, tariffe e una breve descrizione.',
+      'Estrarre orari di apertura, telefono e sito ufficiale.',
     systemPrompt: SYSTEM_PROMPT,
     outputSchema: OUTPUT_SCHEMA as never,
     contents: { highlights: true },

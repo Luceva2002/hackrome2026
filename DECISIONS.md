@@ -26,3 +26,5 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 
 ## Exa (ricerca web)
 - Exa entra solo lato server e negli script (`src/lib/exa/`, `EXA_API_KEY` in `.env.local`, mai `NEXT_PUBLIC_`). Una ricerca `/search` con output strutturato per impianto: un campo è tenuto solo se il grounding di Exa cita almeno un URL, che diventa la fonte del campo. Il risultato è una `proposal`, mai una scrittura diretta. `npm run exa:venue` è una prova a secco.
+- Exa è una fonte in `sources` (`exa_web`, migration `020_exa_fonte_web.sql`): `POST /api/exa/venues/[id]` (solo admin) crea una proposta con orari, telefono e sito; prezzi e descrizione restano fuori perché `apply_proposal` non li applica.
+- Voce: strumento `cerca_sul_web` → `POST /api/exa/search` (`type: lite` per la latenza, 5 risultati, limite di 10 ricerche al minuto per IP). L'LLM passa sempre `query` e `objective`. Ciò che trova serve a rispondere citando il sito, mai a scrivere sulle schede.
