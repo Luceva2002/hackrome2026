@@ -10,6 +10,8 @@ interface Props {
   onChange: (f: VenueFilters) => void;
   onNearMe: () => void;
   locating?: boolean;
+  /** 'bar' = riga scorrevole sopra la mappa · 'sheet' = a capo, dentro la tendina */
+  layout?: 'bar' | 'sheet';
 }
 
 export const DISCIPLINE_GROUPS = [{ id: 'calcio', label: 'Calcio (tutte le varianti)' }];
@@ -45,7 +47,7 @@ function Toggle({
   );
 }
 
-export function VenueFiltersBar({ filters, onChange, onNearMe, locating }: Props) {
+export function VenueFiltersBar({ filters, onChange, onNearMe, locating, layout = 'bar' }: Props) {
   const set = (p: Partial<VenueFilters>) => onChange({ ...filters, ...p });
   const active =
     Object.keys(filters).filter((k) => filters[k as keyof VenueFilters] != null && filters[k as keyof VenueFilters] !== '')
@@ -56,7 +58,7 @@ export function VenueFiltersBar({ filters, onChange, onNearMe, locating }: Props
       role="search"
       aria-label="Filtra i luoghi"
       onSubmit={(e) => e.preventDefault()}
-      className="glass-heavy rounded-[22px] p-2 flex flex-col gap-2"
+      className={layout === 'bar' ? 'glass-heavy rounded-[22px] p-2 flex flex-col gap-2' : 'flex flex-col gap-3'}
     >
       <div className="flex items-center gap-2 h-11 px-3 rounded-xl bg-white border border-(--stroke-dark) focus-within:border-gold-500">
         <Search className="w-4 h-4 text-low shrink-0" aria-hidden />
@@ -65,6 +67,7 @@ export function VenueFiltersBar({ filters, onChange, onNearMe, locating }: Props
         </label>
         <input
           id="venue-q"
+          data-autofocus
           type="search"
           value={filters.q ?? ''}
           onChange={(e) => set({ q: e.target.value || undefined })}
@@ -73,7 +76,7 @@ export function VenueFiltersBar({ filters, onChange, onNearMe, locating }: Props
         />
       </div>
 
-      <div className="flex gap-2 overflow-x-auto no-scrollbar pb-0.5">
+      <div className={layout === 'bar' ? 'flex gap-2 overflow-x-auto no-scrollbar pb-0.5' : 'grid grid-cols-2 gap-2 [&>select]:w-full [&>select]:min-w-0 [&>button]:justify-center'}>
         <label className="sr-only" htmlFor="f-disciplina">
           Disciplina
         </label>

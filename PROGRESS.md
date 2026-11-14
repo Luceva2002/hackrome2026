@@ -15,3 +15,8 @@ Mappa con clustering nativo e colori per tipologia, filtri nell'URL (disciplina,
 ## Fase 4 · Attività — API ✓, interfaccia → filone A (docs/SPLIT.md)
 API bacheca filtrata (fuso di Roma), creazione, iscrizione e lista d'attesa via RPC atomiche, annullamento dell'Owner, "Le mie attività".
 Geocoding verificato: scartati i falsi positivi (via diversa o altro comune); 1.563/1.912 impianti posizionati dopo il secondo passaggio (query strutturata).
+
+## UI mobile liquid glass · ossatura — ✓
+Dock in basso a tre elementi (Home↔Mappa, barra di ricerca che apre la tendina con filtri e risultati, assistente: tieni premuto per parlare, tocca per la chat) e profilo in alto a destra.
+Nuova Home con "Consigliati per te" e "Vicino a te" in card stile annuncio, segnaposto dichiarato al posto delle foto; la mappa si sposta su `/mappa` con i filtri attivi in alto.
+Punti di aggancio per Edo (`AssistantEngine`) e Fabi (`WebResults`, `recommendVenues`, foto con credito); divisione in tre in `docs/SPLIT.md`.

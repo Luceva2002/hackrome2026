@@ -1,43 +1,27 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { List, Map as MapIcon } from 'lucide-react';
+import { List, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
 
-import { AppNav } from '@/components/layout/AppNav';
+import { useShell } from '@/components/shell/ShellProvider';
 import { useGeolocation } from '@/hooks/use-geolocation';
 import { getVenueKind, VENUE_KINDS } from '@/lib/sports/taxonomy';
 import { describeFilters, filterVenues } from '../filters';
 import { useVenueFilters } from '../hooks/use-venue-filters';
-import type { VenueSummary } from '../types';
+import { useVenues } from '../hooks/use-venues';
 import { LIST_PAGE, VenueList } from './VenueList';
-import { VenueFiltersBar } from './VenueFiltersBar';
 import { VenueSheet } from './VenueSheet';
 import { VenuesMap, type VenuesMapHandle } from './VenuesMap';
 
 export function ExploreScreen() {
   const mapRef = useRef<VenuesMapHandle>(null);
   const geo = useGeolocation();
-  const { filters, setFilters, patch, selectedId, setSelectedId } = useVenueFilters();
+  const { filters, setFilters, selectedId, setSelectedId } = useVenueFilters();
 
-  const [all, setAll] = useState<VenueSummary[] | null>(null);
-  const [loadError, setLoadError] = useState(false);
+  const { openSearch } = useShell();
+  const { venues: all, error: loadError, reload: load } = useVenues();
   const [mobileList, setMobileList] = useState(false);
   const [limit, setLimit] = useState(LIST_PAGE);
-
-  const load = useCallback(async () => {
-    setLoadError(false);
-    try {
-      const res = await fetch('/api/venues');
-      if (!res.ok) throw new Error(String(res.status));
-      setAll((await res.json()).venues);
-    } catch {
-      setLoadError(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    load();
-  }, [load]);
 
   const results = useMemo(() => (all ? filterVenues(all, filters) : []), [all, filters]);
   const located = useMemo(() => results.filter((v) => v.latitude != null).length, [results]);
@@ -62,11 +46,6 @@ export function ExploreScreen() {
     [all, setSelectedId],
   );
 
-  const nearMe = useCallback(async () => {
-    const loc = geo.location ?? (await geo.requestAccess());
-    if (loc) patch({ vicino: { lat: loc.latitude, lng: loc.longitude, km: 2 }, municipio: undefined });
-  }, [geo, patch]);
-
   const countText = !all
     ? 'Caricamento dei luoghi…'
     : `${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'}${summary ? ` · ${summary}` : ''}`;
@@ -89,15 +68,29 @@ export function ExploreScreen() {
         aria-hidden
       />
 
-      <div className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 pt-safe pointer-events-none">
-        <div className="pointer-events-auto">
-          <AppNav />
+      <h1 className="sr-only">Mappa dei luoghi dove fare sport a Roma</h1>
+
+      {/* Filtri attivi: si modificano dalla barra di ricerca in basso */}
+      {summary && (
+        <div className="absolute z-20 left-0 right-0 top-[calc(env(safe-area-inset-top)+4.75rem)] px-4 sm:px-6 flex gap-2 pointer-events-none">
+          <button
+            type="button"
+            onClick={openSearch}
+            className="pointer-events-auto liquid-glass rounded-full h-11 pl-3.5 pr-4 min-w-0 flex items-center gap-2 text-[14px] font-bold text-hi"
+          >
+            <SlidersHorizontal className="w-4 h-4 shrink-0" aria-hidden />
+            <span className="truncate">{summary}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilters({})}
+            aria-label="Azzera i filtri"
+            className="pointer-events-auto liquid-glass rounded-full w-11 h-11 shrink-0 flex items-center justify-center text-hi"
+          >
+            <X className="w-4 h-4" aria-hidden />
+          </button>
         </div>
-        <div className="pointer-events-auto mt-3 sm:max-w-[560px]">
-          <h1 className="sr-only">Esplora i luoghi dove fare sport a Roma</h1>
-          <VenueFiltersBar filters={filters} onChange={setFilters} onNearMe={nearMe} locating={geo.loading} />
-        </div>
-      </div>
+      )}
 
       {/* Annuncio per screen reader: numero di risultati */}
       <p className="sr-only" role="status" aria-live="polite">
@@ -107,7 +100,7 @@ export function ExploreScreen() {
       {/* Elenco: pannello su desktop, foglio a tutto schermo su mobile */}
       <section
         aria-label="Elenco dei luoghi"
-        className={`${mobileList ? 'flex' : 'hidden'} lg:flex flex-col absolute z-20 left-0 right-0 bottom-0 top-[13.5rem] lg:top-[15.5rem] lg:left-6 lg:right-auto lg:bottom-6 lg:w-[400px] glass-heavy rounded-t-[28px] lg:rounded-[28px] overflow-hidden`}
+        className={`${mobileList ? 'flex' : 'hidden'} lg:flex flex-col absolute z-20 left-0 right-0 bottom-0 top-[calc(env(safe-area-inset-top)+8.5rem)] lg:top-24 lg:left-6 lg:right-auto lg:bottom-28 lg:w-[400px] glass-heavy rounded-t-[28px] lg:rounded-[28px] overflow-hidden`}
       >
         <div className="px-4 pt-4 pb-2 flex items-center justify-between gap-2">
           <p className="text-[14px] font-bold text-hi" aria-hidden>
@@ -117,7 +110,7 @@ export function ExploreScreen() {
             <span className="text-[12px] text-mid shrink-0">{(results.length - located).toLocaleString('it-IT')} senza posizione</span>
           )}
         </div>
-        <div className="overflow-y-auto px-3 pb-24 lg:pb-4">
+        <div className="overflow-y-auto px-3 pb-dock lg:pb-4">
           {loadError ? (
             <div className="text-center py-10">
               <p className="text-[14px] text-mid mb-3">Non riesco a caricare i luoghi.</p>
@@ -144,7 +137,7 @@ export function ExploreScreen() {
       </section>
 
       {/* Legenda (desktop) */}
-      <div className="hidden lg:flex absolute z-10 right-6 bottom-6 glass rounded-2xl px-3 py-2 gap-3 flex-wrap max-w-[520px]" aria-hidden>
+      <div className="hidden lg:flex absolute z-10 right-6 bottom-28 glass rounded-2xl px-3 py-2 gap-3 flex-wrap max-w-[520px]" aria-hidden>
         {VENUE_KINDS.map((k) => (
           <span key={k.id} className="flex items-center gap-1.5 text-[12px] font-semibold text-mid">
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: getVenueKind(k.id).color }} />
@@ -154,12 +147,12 @@ export function ExploreScreen() {
       </div>
 
       {/* Barra mobile: mappa / elenco */}
-      <div className="lg:hidden absolute z-30 bottom-0 left-0 right-0 px-4 pb-safe pointer-events-none flex justify-center">
+      <div className="lg:hidden absolute z-30 left-0 right-0 bottom-[calc(env(safe-area-inset-bottom)+6rem)] px-4 pointer-events-none flex justify-center">
         <button
           type="button"
           onClick={() => setMobileList((v) => !v)}
           aria-expanded={mobileList}
-          className="pointer-events-auto h-14 px-6 rounded-full bg-ink text-white font-bold text-[15px] flex items-center gap-2 shadow-(--shadow-float)"
+          className="pointer-events-auto h-12 px-5 rounded-full bg-ink text-white font-bold text-[15px] flex items-center gap-2 shadow-(--shadow-float)"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           {mobileList ? <MapIcon className="w-5 h-5" aria-hidden /> : <List className="w-5 h-5" aria-hidden />}

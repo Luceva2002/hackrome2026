@@ -156,7 +156,7 @@ export function VenueSheet({ id, onClose }: { id: string | null; onClose: () => 
       )}
 
       {venue && (
-        <div className="overflow-y-auto px-5 pb-6">
+        <div className="overflow-y-auto px-5 pb-dock sm:pb-6">
           <div className="flex flex-wrap gap-1.5 mb-3">
             {venue.community && (
               <span className="inline-flex items-center gap-1 text-[12px] font-bold px-2.5 py-1 rounded-full bg-pink-50 text-pink-800">

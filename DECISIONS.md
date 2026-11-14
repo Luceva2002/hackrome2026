@@ -23,3 +23,9 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - Iscrizioni e lista d'attesa solo tramite le RPC `join_activity` / `leave_activity` (security definer, lock sulla riga dell'attività). Nessuno, Owner compreso, legge le iscrizioni altrui: la bacheca espone solo i contatori tramite la vista `activities_public`.
 - Il gestore verificato aggiorna solo i dati operativi: il trigger `guard_venue_update` ripristina gli altri campi e marca quelli toccati in `manager_edited_fields`; `apply_proposal` li salta. Testato in `supabase/tests/rls.test.sql`.
 - Contrasto: `--text-low` e `--gold-600` scuriti per arrivare ad AA su bianco; rimosso il blocco dello zoom nel viewport.
+
+## UI mobile liquid glass
+- **Niente foto di repertorio nelle card.** Una foto generica sembrerebbe il luogo vero: senza una foto con licenza e credito mostriamo un segnaposto per tipologia con "Nessuna foto disponibile".
+- **"Consigliati per te" senza profilo.** Non abbiamo ancora preferenze utente: per ora consigliamo le schede più complete (gestore verificato, accessibilità dichiarata, attive) e lo diciamo nella card. Fabi può sostituire l'euristica mantenendo la firma.
+- **Assistente segnaposto onesto.** Finché il motore ElevenLabs non c'è, il pulsante e la chat funzionano ma rispondono che l'assistente non è collegato, invece di simulare risposte.
+- **Fabiola/Fabi.** Nella richiesta compaiono "Fabiola ed Edo (assistente)" e "Fabi (Exa)": abbiamo letto tre persone, Luca UI, Edo assistente, Fabi Exa. Da correggere in `docs/SPLIT.md` se diverso.
