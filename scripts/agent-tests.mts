@@ -85,6 +85,19 @@ const CASES: Case[] = [
     tool: 'dettagli_luogo',
     params: { id: exact('cmrc-bbb') },
   },
+  {
+    name: 'lista: il prossimo',
+    prio: 1,
+    say: 'il prossimo',
+    history: [
+      { role: 'user', message: 'impianti a Garbatella' },
+      { role: 'agent', tool_calls: [{ tool: 'cerca_impianti', params: { zona: 'Garbatella' } }] },
+      { role: 'agent', tool_results: [{ tool: 'cerca_impianti', result: GARBATELLA }] },
+      { role: 'agent', message: 'Nel quartiere Garbatella ho trovato due luoghi. Il primo è Palestra Alonzi in via Alonzi. Vuoi sentire il prossimo?' },
+    ],
+    tool: 'naviga',
+    params: { url: exact('/mappa?luogo=cmrc-bbb') },
+  },
   // Priorità 2: filtri combinati e lingua
   { name: 'filtri: piscine municipio 12', prio: 2, say: 'piscine nel municipio dodici', tool: 'cerca_impianti', params: { tipo: exact('piscina'), municipio: re('^(12|XII)$') } },
   { name: 'indirizzo + sport', prio: 2, say: 'campi da basket vicino a piazza Zambeccari 3', tool: 'cerca_impianti', params: { indirizzo: re('(?i)zambeccari'), disciplina: exact('basket') } },
