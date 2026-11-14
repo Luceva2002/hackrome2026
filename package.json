@@ -14,6 +14,8 @@
     "db:seed": "tsx scripts/seed.ts"
   },
   "dependencies": {
+    "@elevenlabs/client": "^1.32.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/postcss": "^4.2.2",

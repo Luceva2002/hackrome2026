@@ -34,3 +34,8 @@ Assistente con icona da agente e motore locale (voce del browser + comprensione 
 ## Mappa per Municipi e quartieri — ✓
 Da lontano i 15 Municipi in rilievo colorati e alti secondo il numero di luoghi, con nome e conteggio; avvicinandosi i 457 quartieri, rioni e zone di Roma Capitale con lo stesso schema; poi punti e pin. Un tocco su un'area ci vola dentro. I conteggi seguono i filtri (anche quelli dati a voce).
 Confini da romaquartieri.it (Roma Capitale + OpenStreetMap) con credito; l'assistente capisce anche i quartieri ("palestre a Monti").
+
+## Assistente vocale · MCP + ElevenLabs — ✓ letture e navigazione
+Registry degli strumenti (`src/lib/tools`) esposto da un server MCP su `/api/mcp` (sola lettura, segreto `MCP_SECRET`): cerca_impianti, dettagli_luogo, cerca_attivita, dettagli_attivita, con l'`url` della vista da aprire.
+Motore ElevenLabs per voce e chat (agente privato: URL firmato da `/api/assistant/session` solo con login), client tool naviga/mappa/posizione, ritorno al motore locale se l'agente non è configurato. Agente creato e aggiornato da `scripts/elevenlabs-setup.mts`; prompt in `src/lib/agent/voice-prompt.md`.
+Seed: 5 spazi della community di esempio e 2 attività su di essi. Da fare: scritture con conferma (iscriviti, crea attività), segnala_luogo, cerca_sul_web.
