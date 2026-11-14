@@ -1,4 +1,4 @@
-# RomaInCampo
+# SportInComune
 
 La mappa di tutti i luoghi dove fare sport a Roma, con la fonte di ogni dato, e la bacheca delle attività aperte a tutti. Nato per HackRome 2026 sulla base di CityAlert (Next.js 15, React 19, Supabase, Mapbox, Tailwind v4 "Liquid Civic").
 

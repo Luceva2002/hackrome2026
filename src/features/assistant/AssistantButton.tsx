@@ -47,8 +47,8 @@ export function AssistantButton() {
   return (
     <button
       type="button"
-      aria-label="Assistente vocale. Tocca per aprire la chat, tieni premuto per parlare"
-      aria-pressed={listening}
+      aria-label={listening ? 'Assistente vocale: ti sto ascoltando' : 'Assistente vocale'}
+      aria-describedby="assistant-button-hint"
       onPointerDown={(e) => {
         if (e.button !== 0) return;
         e.currentTarget.setPointerCapture?.(e.pointerId);
@@ -91,6 +91,9 @@ export function AssistantButton() {
         </>
       )}
       <AgentIcon state={listening ? 'listening' : busy ? 'thinking' : 'idle'} className="w-10 h-10" />
+      <span id="assistant-button-hint" className="sr-only">
+        Tocca per aprire la chat, tieni premuto per parlare. Nella chat c’è anche il pulsante del microfono.
+      </span>
     </button>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import MapGL, { AttributionControl, Layer, Marker, Source, type MapRef, type MapMouseEvent } from 'react-map-gl/mapbox';
+import MapGL, { AttributionControl, Layer, Marker, Source, type MapRef, type MapMouseEvent, type ViewStateChangeEvent } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { UserLocationDot } from '@/features/map/components/UserLocationDot';
@@ -43,6 +43,8 @@ interface Props {
   onZone: (z: Zone) => void;
   /** Spazio occupato da pannelli sopra la mappa, per inquadrare nello spazio libero */
   padding?: { top: number; bottom: number; left: number; right: number };
+  /** L'utente ha preso in mano la mappa (trascina, zoom, rotazione) */
+  onUserMove?: () => void;
 }
 
 const vis = (on: boolean) => ({ visibility: (on ? 'visible' : 'none') as 'visible' | 'none' });
@@ -68,11 +70,25 @@ const PIN_SEL_EXPR = ['concat', 'pin-', ['get', 'kind'], '-sel'] as unknown as s
  * restano sincronizzate anche durante i voli.
  */
 export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
-  { venues, selectedId, onSelect, userLocation, areas, zone, onZone, padding },
+  { venues, selectedId, onSelect, userLocation, areas, zone, onZone, padding, onUserMove },
   ref,
 ) {
   const mapRef = useRef<MapRef>(null);
   const orbitRaf = useRef<number | null>(null);
+  // Prima del load i movimenti di camera andrebbero persi: si tiene l'ultimo e lo si applica al load
+  const ready = useRef(false);
+  const pendingCam = useRef<(() => void) | null>(null);
+  // weak: la vista d'insieme non scavalca una camera più specifica già in attesa (luogo, filtri)
+  const whenReady = (fn: () => void, weak = false) => {
+    if (ready.current) fn();
+    else if (!weak || !pendingCam.current) pendingCam.current = fn;
+  };
+
+  const stopOrbit = () => {
+    if (orbitRaf.current != null) cancelAnimationFrame(orbitRaf.current);
+    orbitRaf.current = null;
+  };
+  useEffect(() => stopOrbit, []);
 
   const geojson = useMemo(
     () => ({
@@ -103,75 +119,83 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   // Il livello cambia → la camera vola sulla zona (le maschere cambiano insieme, nello stesso render)
   const zoneKey = JSON.stringify(zone);
   useEffect(() => {
-    const m = mapRef.current;
-    if (!m || !areas) return;
-    const dur = reducedMotion() ? 0 : 1700;
-    const fit = (b: BBox, pitch: number, maxZoom: number) => {
-      try {
-        m.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: padRef.current, pitch, bearing: 0, maxZoom, duration: dur, essential: true });
-      } catch {
-        // mappa non ancora dimensionata: il livello resta giusto, la camera si sistema al prossimo cambio
+    if (!areas || (zone.level === 'area' && zone.quiet)) return;
+    whenReady(() => {
+      const m = mapRef.current;
+      if (!m) return;
+      const dur = reducedMotion() ? 0 : 1700;
+      const fit = (b: BBox, pitch: number, maxZoom: number) => {
+        try {
+          m.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: padRef.current, pitch, bearing: 0, maxZoom, duration: dur, essential: true });
+        } catch {
+          // mappa non ancora dimensionata: il livello resta giusto, la camera si sistema al prossimo cambio
+        }
+      };
+      if (zone.level === 'roma') m.flyTo({ ...OVERVIEW, duration: dur, essential: true });
+      if (zone.level === 'municipio') {
+        const b = areas.municipioBox.get(zone.m);
+        if (b) fit(b, 45, 13.5);
       }
-    };
-    if (zone.level === 'roma') m.flyTo({ ...OVERVIEW, duration: dur, essential: true });
-    if (zone.level === 'municipio') {
-      const b = areas.municipioBox.get(zone.m);
-      if (b) fit(b, 45, 13.5);
-    }
-    if (zone.level === 'area' && !zone.quiet) {
-      const a = areas.areaInfo.get(zone.id);
-      if (a) fit(a.box, 55, 16);
-    }
+      if (zone.level === 'area' && !zone.quiet) {
+        const a = areas.areaInfo.get(zone.id);
+        if (a) fit(a.box, 55, 16);
+      }
+    }, zone.level === 'roma');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoneKey, !!areas]);
 
   useImperativeHandle(ref, () => ({
     flyTo(lng, lat, zoom = 16.5, opts) {
-      const m = mapRef.current;
-      if (!m) return;
-      m.flyTo({
-        center: [lng, lat],
-        zoom,
-        pitch: opts?.pitch ?? 60,
-        bearing: opts?.bearing ?? m.getBearing() + 25,
-        duration: reducedMotion() ? 0 : 2200,
-        curve: 1.5,
-        essential: true,
-        // la scheda copre la metà bassa: il luogo resta visibile sopra
-        offset: [0, -120],
+      whenReady(() => {
+        const m = mapRef.current;
+        if (!m) return;
+        m.flyTo({
+          center: [lng, lat],
+          zoom,
+          pitch: opts?.pitch ?? 60,
+          bearing: opts?.bearing ?? m.getBearing() + 25,
+          duration: reducedMotion() ? 0 : 2200,
+          curve: 1.5,
+          essential: true,
+          // la scheda copre la metà bassa: il luogo resta visibile sopra
+          offset: [0, -120],
+        });
       });
     },
     overview() {
-      mapRef.current?.flyTo({ ...OVERVIEW, duration: reducedMotion() ? 0 : 2000, essential: true });
+      whenReady(() => mapRef.current?.flyTo({ ...OVERVIEW, duration: reducedMotion() ? 0 : 2000, essential: true }), true);
     },
     orbit(on) {
-      if (orbitRaf.current != null) cancelAnimationFrame(orbitRaf.current);
-      orbitRaf.current = null;
+      stopOrbit();
       if (!on || reducedMotion()) return;
       const step = () => {
         const m = mapRef.current;
         if (!m) return;
-        m.setBearing(m.getBearing() + 0.06);
+        // Non durante un volo o un inquadramento: setBearing li interromperebbe a metà
+        if (!m.isEasing()) m.setBearing(m.getBearing() + 0.06);
         orbitRaf.current = requestAnimationFrame(step);
       };
       orbitRaf.current = requestAnimationFrame(step);
     },
     fitTo(list) {
-      if (!mapRef.current?.isStyleLoaded()) return;
-      const pts = list.filter((v) => v.latitude != null && v.longitude != null);
-      if (!pts.length || !mapRef.current) return;
-      if (pts.length === 1) {
-        mapRef.current.flyTo({ center: [pts[0].longitude!, pts[0].latitude!], zoom: 16, pitch: 60, duration: 1800 });
-        return;
-      }
-      let minX = 180, minY = 90, maxX = -180, maxY = -90;
-      for (const p of pts) {
-        minX = Math.min(minX, p.longitude!); maxX = Math.max(maxX, p.longitude!);
-        minY = Math.min(minY, p.latitude!); maxY = Math.max(maxY, p.latitude!);
-      }
-      mapRef.current.fitBounds([[minX, minY], [maxX, maxY]], { padding: { top: 120, bottom: 140, left: 60, right: 60 }, pitch: 50, duration: 1600, maxZoom: 15.5 });
+      whenReady(() => fitNow(list));
     },
   }));
+
+  const fitNow = (list: VenueSummary[]) => {
+    const pts = list.filter((v) => v.latitude != null && v.longitude != null);
+    if (!pts.length || !mapRef.current) return;
+    if (pts.length === 1) {
+      mapRef.current.flyTo({ center: [pts[0].longitude!, pts[0].latitude!], zoom: 16, pitch: 60, duration: 1800 });
+      return;
+    }
+    let minX = 180, minY = 90, maxX = -180, maxY = -90;
+    for (const p of pts) {
+      minX = Math.min(minX, p.longitude!); maxX = Math.max(maxX, p.longitude!);
+      minY = Math.min(minY, p.latitude!); maxY = Math.max(maxY, p.latitude!);
+    }
+    mapRef.current.fitBounds([[minX, minY], [maxX, maxY]], { padding: { top: 120, bottom: 140, left: 60, right: 60 }, pitch: 50, duration: 1600, maxZoom: 15.5 });
+  };
 
   const onLoad = useCallback(() => {
     const map = mapRef.current?.getMap() as unknown as {
@@ -190,9 +214,24 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     } catch {
       // stile senza config
     }
+    ready.current = true;
+    // Un link con filtri, zona o luogo ha già chiesto la sua camera: vince sull'ingresso
+    const cam = pendingCam.current;
+    pendingCam.current = null;
+    if (cam) cam();
     // Ingresso: dall'alto si scende inclinati su Roma
-    if (!reducedMotion()) mapRef.current?.flyTo({ ...OVERVIEW, duration: 2800, essential: true });
+    else if (!reducedMotion()) mapRef.current?.flyTo({ ...OVERVIEW, duration: 2800, essential: true });
   }, []);
+
+  // Solo i gesti dell'utente (originalEvent), non i voli lanciati dal codice
+  const userMoved = useCallback(
+    (e: ViewStateChangeEvent) => {
+      if (!(e as { originalEvent?: Event }).originalEvent) return;
+      stopOrbit();
+      onUserMove?.();
+    },
+    [onUserMove],
+  );
 
   const onClick = useCallback(
     (e: MapMouseEvent) => {
@@ -237,6 +276,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       attributionControl={false}
       interactiveLayerIds={['aree-roma', 'aree-mun', 'aree-velo', 'venue-dots', 'venue-pins']}
       onLoad={onLoad}
+      onMoveStart={userMoved}
       onClick={onClick}
       cursor="auto"
       onMouseMove={(e) => {

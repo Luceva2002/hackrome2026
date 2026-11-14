@@ -2,7 +2,7 @@
 
 ## Fase 1 · Schema, ruoli, RLS, seed, pulizia — ✓
 Schema completo (luoghi, claim, attività, iscrizioni, fonti, snapshot, fonti di campo, proposte, log) con RLS, lista d'attesa atomica e regola di non-sovrascrittura; `supabase/tests/rls.test.sql` passa su Postgres 16.
-Rimossi segnalazioni, voti, commenti e gamification di CityAlert; mappa e bacheca pubbliche; step "Chi sei?" (cittadino/gestore) prima della registrazione.
+Rimossi segnalazioni, voti, commenti e gamification di CityAlert; tutta l'app dietro login (pubbliche solo `/auth` e le pagine info); step "Chi sei?" (cittadino/gestore) prima della registrazione.
 Seed idempotente `npm run db:seed`: fonti, 1.912 luoghi con le fonti dei campi, 3 account demo, claim approvato, 10 attività di esempio.
 
 ## Fase 2 · Pipeline censimento — ✓ (geocoding da lanciare)

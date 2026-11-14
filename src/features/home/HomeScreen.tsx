@@ -70,14 +70,17 @@ export function HomeScreen() {
     ? { lat: geo.location.latitude, lng: geo.location.longitude }
     : null;
 
+  // loc è un oggetto nuovo a ogni render: si ricalcola solo quando cambiano le coordinate
   const recommended = useMemo(
     () => (venues ? recommendVenues(venues, { location: loc }) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [venues, loc?.lat, loc?.lng],
-  ); // eslint-disable-line react-hooks/exhaustive-deps
+  );
   const nearest = useMemo(
     () => (venues && loc ? nearestVenues(venues, loc) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [venues, loc?.lat, loc?.lng],
-  ); // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   return (
     <div className="h-full overflow-y-auto pt-[calc(env(safe-area-inset-top)+5rem)] pb-dock">

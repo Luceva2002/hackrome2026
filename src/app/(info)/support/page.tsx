@@ -29,7 +29,7 @@ export default function SupportPage() {
             Scrivici una email
           </span>
           <span className="block text-sm text-mid mt-0.5">
-            supporto@romaincampo.example
+            supporto@example.org
           </span>
         </span>
       </a>

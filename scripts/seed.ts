@@ -256,7 +256,7 @@ async function seedDemo(venues: VenueRecord[]) {
 }
 
 async function main() {
-  console.log('Seed RomaInCampo');
+  console.log('Seed SportInComune');
   await seedSources();
   const venues = await seedVenues();
   await seedDemo(venues);

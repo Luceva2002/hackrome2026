@@ -24,9 +24,15 @@ export function ExploreScreen() {
   const geo = useGeolocation();
   const { filters, selectedId, setSelectedId } = useVenueFilters();
   const { status } = useAssistant();
-  const { venues: all } = useVenues();
+  const { venues: all, error, reload } = useVenues();
 
   const results = useMemo(() => (all ? filterVenues(all, filters) : []), [all, filters]);
+  // Il luogo aperto resta sulla mappa anche se i filtri lo escluderebbero (link condiviso, Home)
+  const shown = useMemo(() => {
+    if (!all || !selectedId || results.some((v) => v.id === selectedId)) return results;
+    const sel = all.find((v) => v.id === selectedId);
+    return sel ? [...results, sel] : results;
+  }, [all, results, selectedId]);
   const summary = describeFilters(filters);
   const resultsRef = useRef(results);
   resultsRef.current = results;
@@ -49,6 +55,15 @@ export function ExploreScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterKey, all]);
 
+  // Giro dell'assistente: i timer si cancellano a ogni nuovo comando, se l'utente
+  // tocca la mappa o un luogo, e quando si lascia la pagina
+  const tourTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const stopTour = useCallback(() => {
+    tourTimers.current.forEach(clearTimeout);
+    tourTimers.current = [];
+  }, []);
+  useEffect(() => stopTour, [stopTour]);
+
   // Luogo selezionato (card della Home, ricerca, assistente) → si entra nella sua area e si vola in 3D
   useEffect(() => {
     if (!all || !selectedId) return;
@@ -66,6 +81,7 @@ export function ExploreScreen() {
       mapBridge.attach((cmd) => {
         const m = mapRef.current;
         if (!m) return;
+        stopTour();
         if (cmd.type === 'flyTo') m.flyTo(cmd.lng, cmd.lat, cmd.zoom, { pitch: cmd.pitch, bearing: cmd.bearing });
         if (cmd.type === 'overview') m.overview();
         if (cmd.type === 'fitResults') setTimeout(() => m.fitTo(resultsRef.current), 300);
@@ -76,27 +92,35 @@ export function ExploreScreen() {
           else setZone({ level: 'roma' });
         }
         if (cmd.type === 'tour') {
-          cmd.ids.forEach((id, i) =>
+          tourTimers.current = cmd.ids.map((id, i) =>
             setTimeout(() => {
               const v = all?.find((x) => x.id === id);
-              if (v?.latitude != null && v.longitude != null) m.flyTo(v.longitude, v.latitude, 16.5);
+              if (v?.latitude != null && v.longitude != null) mapRef.current?.flyTo(v.longitude, v.latitude, 16.5);
             }, i * (cmd.dwellMs ?? 3500)),
           );
         }
       }),
-    [all],
+    [all, stopTour],
   );
 
   // Mentre l'assistente ascolta, la città gira piano: si vede che è "viva"
   const listening = status === 'listening';
+  // (allo smontaggio l'orbita la ferma VenuesMap)
   useEffect(() => {
     mapRef.current?.orbit(listening);
-    return () => mapRef.current?.orbit(false);
   }, [listening]);
 
-  const select = useCallback((id: string) => setSelectedId(id), [setSelectedId]);
+  const select = useCallback(
+    (id: string) => {
+      stopTour();
+      setSelectedId(id);
+    },
+    [setSelectedId, stopTour],
+  );
 
-  const countText = !all
+  const countText = error
+    ? 'Non riesco a caricare i luoghi.'
+    : !all
     ? 'Caricamento dei luoghi…'
     : `${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'} sulla mappa${summary ? `: ${summary}` : ''}`;
 
@@ -106,9 +130,10 @@ export function ExploreScreen() {
       <div className="absolute inset-0">
         <VenuesMap
           ref={mapRef}
-          venues={results}
+          venues={shown}
           selectedId={selectedId}
           onSelect={select}
+          onUserMove={stopTour}
           userLocation={geo.location}
           areas={areas}
           zone={zone}
@@ -137,6 +162,15 @@ export function ExploreScreen() {
       <p className="sr-only" role="status" aria-live="polite">
         {countText}
       </p>
+
+      {error && (
+        <div className="absolute z-30 inset-x-edge top-24 mx-auto max-w-[420px] liquid-glass rounded-2xl p-4 flex items-center gap-3">
+          <p className="flex-1 text-[14px] text-hi">Non riesco a caricare i luoghi. Controlla la connessione.</p>
+          <button type="button" onClick={reload} className="h-11 px-5 rounded-xl bg-ink text-white font-bold shrink-0">
+            Riprova
+          </button>
+        </div>
+      )}
 
       {/* Dove sono: Roma › Municipio › area (si torna su con un tocco) */}
       {areas && zone.level !== 'roma' && (

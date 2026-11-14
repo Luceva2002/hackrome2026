@@ -44,6 +44,8 @@ export interface LocalIntent {
   wantsNearMe: boolean;
   /** Descrizione di ciò che ho capito, per la risposta */
   understood: string[];
+  /** Cose chieste che non so ancora filtrare: la risposta lo dice, non finge */
+  ignored: string[];
 }
 
 export function parseLocalIntent(text: string): LocalIntent | null {
@@ -51,7 +53,8 @@ export function parseLocalIntent(text: string): LocalIntent | null {
   const f: VenueFilters = {};
   const understood: string[] = [];
 
-  const sport = SPORT_WORDS.find(([re]) => re.test(t))?.[1];
+  const sports = [...new Set(SPORT_WORDS.filter(([re]) => re.test(t)).map(([, id]) => id))];
+  const sport = sports[0];
   if (sport) {
     f.disciplina = sport;
     understood.push(sport === 'calcio' ? 'calcio' : (DISCIPLINES.find((d) => d.id === sport)?.label.toLowerCase() ?? sport));
@@ -78,5 +81,10 @@ export function parseLocalIntent(text: string): LocalIntent | null {
   const wantsNearMe = /vicino|qui intorno|nei dintorni|vicinanz/.test(t);
   if (wantsNearMe) understood.push('vicino a te');
 
-  return understood.length ? { filters: f, wantsNearMe, understood } : null;
+  const ignored: string[] = [];
+  if (sports.length > 1) ignored.push('più sport insieme');
+  if (/weekend|domani|oggi|stasera|sabato|domenica|orari|aperto/.test(t)) ignored.push('giorni e orari');
+  if (/posti liberi|iscri|attivita|evento|eventi/.test(t)) ignored.push('attività e posti liberi');
+
+  return understood.length ? { filters: f, wantsNearMe, understood, ignored } : null;
 }

@@ -1,4 +1,4 @@
-import { filtersToSearchParams, type VenueFilters } from '@/features/venues/filters';
+import { filtersToSearchParams, searchParamsToFilters, type VenueFilters } from '@/features/venues/filters';
 import { mapBridge } from '@/features/map/map-bridge';
 import { findQuartiereIn } from '@/features/map/areas';
 import { parseLocalIntent } from './local-intents';
@@ -90,6 +90,9 @@ function speak(text: string) {
   }
 }
 
+/** Frasi che rifiniscono la ricerca già sulla mappa invece di farne una nuova */
+const REFINE = /^(e |ma |però |pero |anche |solo |soltanto |adesso |ora )/i;
+
 /**
  * Motore locale: voce del browser (Web Speech API) + comprensione locale delle
  * richieste semplici (sport, luogo, Municipio, accessibilità, vicino a me) che
@@ -100,6 +103,9 @@ export const createLocalEngine: EngineFactory = (cb) => {
   let rec: Recognition | null = null;
   let heard = '';
   let byVoice = false;
+  let disposed = false;
+  // Turno corrente: una risposta lenta non deve spegnere lo stato del turno dopo
+  let turn = 0;
 
   const reply = (text: string) => {
     cb.onMessage({ id: newMessageId(), role: 'assistant', text, at: Date.now() });
@@ -107,35 +113,45 @@ export const createLocalEngine: EngineFactory = (cb) => {
   };
 
   const handle = async (text: string) => {
+    if (disposed) return;
+    const my = ++turn;
+    const status = (s: AssistantStatus) => my === turn && cb.onStatus(s);
     cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
-    cb.onStatus('thinking');
+    status('thinking');
     let intent = parseLocalIntent(text);
     const quartiere = await findQuartiereIn(text).catch(() => null);
     if (quartiere) {
-      intent ??= { filters: {}, wantsNearMe: false, understood: [] };
+      intent ??= { filters: {}, wantsNearMe: false, understood: [], ignored: [] };
       // Il filtro per quartiere non esiste: uso un raggio dal suo centro e lo dico
       intent.filters = { ...intent.filters, municipio: undefined, vicino: { lat: quartiere.ly, lng: quartiere.lx, km: 1.5 } };
       intent.wantsNearMe = false;
       intent.understood = [...intent.understood.filter((u) => !u.startsWith('Municipio')), `entro 1,5 km dal centro di ${quartiere.nome}`];
     }
     if (!intent) {
-      cb.onStatus('idle');
+      status('idle');
       reply('Per ora capisco richieste come “campi da basket accessibili nel Municipio XV” o “piscine vicino a me”. Le domande più libere arriveranno con l’assistente completo.');
       return;
     }
-    const filters = { ...intent.filters };
+    // "Solo quelli accessibili", "e nel Municipio II": si aggiunge alla ricerca sulla mappa, non si riparte da zero
+    const refine = REFINE.test(text.trim()) && window.location.pathname === '/mappa';
+    const base = refine ? searchParamsToFilters(new URLSearchParams(window.location.search)) : {};
+    const filters: VenueFilters = { ...base, ...intent.filters };
     if (intent.wantsNearMe) {
       const loc = await cb.act.locate();
-      if (loc) filters.vicino = { lat: loc.lat, lng: loc.lng, km: 2 };
+      if (loc) {
+        filters.vicino = { lat: loc.lat, lng: loc.lng, km: 2 };
+        delete filters.municipio;
+      }
     }
+    if (my !== turn) return;
+    // La camera la muove la mappa stessa quando cambiano i filtri nell'URL
     const qs = filtersToSearchParams(filters).toString();
     cb.act.navigate(`/mappa${qs ? `?${qs}` : ''}`);
     if (quartiere?.municipio) cb.act.map.send({ type: 'zone', municipio: quartiere.municipio, area: quartiere.id });
-    else if (typeof filters.municipio !== 'number') cb.act.map.send({ type: 'fitResults' });
-    cb.onStatus('idle');
+    status('idle');
     const n = await cb.act.count(filters).catch(() => null);
     const lost = intent.wantsNearMe && !filters.vicino ? ' Non ho la tua posizione, quindi cerco in tutta Roma.' : '';
-    const what = intent.understood.join(', ');
+    const what = intent.understood.join(', ') + (intent.ignored.length ? ` (per ora non so filtrare per: ${intent.ignored.join(', ')})` : '');
     reply(
       n === 0
         ? `Non trovo luoghi per: ${what}.${lost} Prova a togliere un filtro dalla ricerca.`
@@ -145,6 +161,7 @@ export const createLocalEngine: EngineFactory = (cb) => {
 
   return {
     async startVoice() {
+      rec?.abort();
       rec = getRecognition();
       if (!rec) {
         reply('Questo browser non permette di parlare con l’assistente. Puoi scrivermi dalla chat.');
@@ -161,18 +178,26 @@ export const createLocalEngine: EngineFactory = (cb) => {
           .join(' ')
           .trim();
       };
+      const self = rec;
       rec.onerror = (e) => {
         if (e.error === 'not-allowed') reply('Serve il permesso del microfono per parlare con me.');
         cb.onStatus('idle');
       };
       rec.onend = () => {
-        if (heard) void handle(heard);
-        else cb.onStatus('idle');
-        heard = '';
+        if (rec !== self) return; // sostituito da un nuovo avvio
         rec = null;
+        const said = heard;
+        heard = '';
+        if (said && !disposed) void handle(said);
+        else cb.onStatus('idle');
       };
       cb.onStatus('listening');
-      rec.start();
+      try {
+        rec.start();
+      } catch {
+        rec = null;
+        cb.onStatus('idle');
+      }
     },
     async stopVoice() {
       if (rec) {
@@ -185,7 +210,9 @@ export const createLocalEngine: EngineFactory = (cb) => {
       await handle(text);
     },
     dispose() {
+      disposed = true;
       rec?.abort();
+      rec = null;
     },
   };
 };

@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { useRouter } from 'next/navigation';
 
 import { getCurrentLocation } from '@/lib/geo';
+import { safeAppPath } from '@/lib/safe-path';
 import { mapBridge } from '@/features/map/map-bridge';
 import { filterVenues } from '@/features/venues/filters';
 import { fetchVenues } from '@/features/venues/hooks/use-venues';
@@ -62,7 +63,15 @@ export function AssistantProvider({
       onStatus: setStatus,
       onMessage: (m) => setMessages((prev) => [...prev, m]),
       act: {
-        navigate: (url) => routerRef.current.push(url, { scroll: false }),
+        navigate: (url) => {
+          // Il motore vocale è un modello: niente URL esterni, solo pagine dell'app
+          const path = safeAppPath(url);
+          if (!path) return;
+          // Sulla mappa si sostituisce: ogni frase non deve riempire la cronologia
+          const stay = window.location.pathname === '/mappa' && path.startsWith('/mappa');
+          if (stay) routerRef.current.replace(path, { scroll: false });
+          else routerRef.current.push(path, { scroll: false });
+        },
         map: mapBridge,
         count: async (f) => filterVenues(await fetchVenues(), f).length,
         locate: async () => {

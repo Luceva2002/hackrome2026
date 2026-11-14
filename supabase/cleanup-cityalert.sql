@@ -1,5 +1,5 @@
 -- Rimuove le tabelle e le funzioni di CityAlert (segnalazioni, voti, commenti,
--- gamification). IRREVERSIBILE: eseguilo solo su un database dedicato a RomaInCampo.
+-- gamification). IRREVERSIBILE: eseguilo solo su un database dedicato a SportInComune.
 drop view if exists public.civic_reports_feed;
 drop function if exists public.award_report(uuid);
 drop table if exists public.report_comments;

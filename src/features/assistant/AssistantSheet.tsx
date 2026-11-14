@@ -9,7 +9,7 @@ import { useAssistant } from './AssistantProvider';
 
 const SUGGESTIONS = [
   'Campi da basket accessibili nel Municipio XV',
-  'Yoga questo weekend con posti liberi',
+  'Palestre accessibili nel Municipio I',
   'Piscine vicino a me',
 ];
 

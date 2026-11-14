@@ -24,10 +24,12 @@ export function SearchSheet() {
   const [draft, setDraft] = useState<VenueFilters>({});
   const [shown, setShown] = useState(6);
 
-  // All'apertura riparte dai filtri già applicati alla mappa
+  // All'apertura riparte dai filtri già applicati alla mappa. Solo all'apertura:
+  // un cambio d'URL a tendina aperta (es. la voce) non deve cancellare la bozza.
   useEffect(() => {
     if (searchOpen) setDraft(pathname === '/mappa' ? searchParamsToFilters(new URLSearchParams(params?.toString())) : {});
-  }, [searchOpen, pathname, params]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchOpen]);
 
   const results = useMemo(() => (venues ? filterVenues(venues, draft) : []), [venues, draft]);
   useEffect(() => setShown(6), [draft]);

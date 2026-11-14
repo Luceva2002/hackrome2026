@@ -1,28 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useId } from "react";
 
-let hasFile: Promise<boolean> | null = null;
+import { LOGO_MARK_FILE } from "@/lib/brand";
 
-/** Simbolo del logo: public/brand/logo-mark.svg se presente (Higgsfield), altrimenti il pin vettoriale. */
+/** Simbolo del logo: LOGO_MARK_FILE (src/lib/brand.ts) se impostato, altrimenti il pin vettoriale. */
 export function BrandMark() {
-  const [file, setFile] = useState(false);
-  useEffect(() => {
-    hasFile ??= fetch("/brand/logo-mark.svg", { method: "HEAD" }).then(
-      (r) => r.ok,
-      () => false,
-    );
-    let alive = true;
-    hasFile.then((ok) => alive && setFile(ok));
-    return () => {
-      alive = false;
-    };
-  }, []);
-  if (file) {
-    // eslint-disable-next-line @next/next/no-img-element
+  const gold = useId();
+  if (LOGO_MARK_FILE) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand/logo-mark.svg"
+        src={LOGO_MARK_FILE}
         alt=""
         aria-hidden
         style={{ width: "1.08em", height: "1.08em" }}
@@ -38,7 +27,7 @@ export function BrandMark() {
       className="shrink-0"
     >
       <defs>
-        <linearGradient id="ric-mark-gold" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={gold} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#ffd23e" />
           <stop offset="55%" stopColor="#f5b301" />
           <stop offset="100%" stopColor="#d89b00" />
@@ -46,7 +35,7 @@ export function BrandMark() {
       </defs>
       <path
         d="M24 3.5C15.4 3.5 8.5 10.4 8.5 19c0 10.6 13 22.4 14.6 23.8a1.4 1.4 0 0 0 1.8 0C26.5 41.4 39.5 29.6 39.5 19c0-8.6-6.9-15.5-15.5-15.5z"
-        fill="url(#ric-mark-gold)"
+        fill={`url(#${gold})`}
       />
       <ellipse
         cx="18.5"

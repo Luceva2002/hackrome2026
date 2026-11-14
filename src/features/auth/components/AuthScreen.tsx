@@ -11,6 +11,7 @@ import { BrandLogo } from '@/components/brand/BrandLogo';
 import { PillButton } from '@/components/ui/PillButton';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 import { useT } from '@/lib/i18n';
+import { safeAppPath } from '@/lib/safe-path';
 
 type Phase = 'splash' | 'login' | 'role' | 'register';
 type SignupRole = 'citizen' | 'manager';
@@ -33,9 +34,7 @@ const ROLE_OPTIONS: { id: SignupRole; title: string; desc: string; points: strin
 ];
 
 /** Solo percorsi interni: niente open redirect */
-function safeNext(next: string | null) {
-  return next && next.startsWith('/') && !next.startsWith('//') ? next : null;
-}
+const safeNext = (next: string | null) => safeAppPath(next);
 
 const SPLASH_MS = 2200;
 

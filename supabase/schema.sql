@@ -1,5 +1,5 @@
 -- =============================================================================
--- RomaInCampo — schema Supabase
+-- SportInComune — schema Supabase
 -- Esegui in: Dashboard → SQL Editor → New query → Run. Idempotente.
 -- Le tabelle di CityAlert (civic_reports, report_votes, report_comments) non
 -- vengono toccate: per eliminarle vedi supabase/cleanup-cityalert.sql.

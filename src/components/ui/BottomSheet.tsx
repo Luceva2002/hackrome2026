@@ -36,6 +36,9 @@ function useDesktop() {
   return d;
 }
 
+/** Tendine aperte, la più recente in fondo: Esc e Tab valgono solo per quella in cima */
+const stack: symbol[] = [];
+
 const HEIGHT = { tall: 'h-[min(80dvh,760px)]', medium: 'h-[min(66dvh,640px)]', auto: 'max-h-[85dvh]' } as const;
 
 /**
@@ -69,23 +72,28 @@ export function BottomSheet({
     onCloseRef.current = onClose;
   }, [onClose]);
 
-  // Mentre una tendina è aperta il dock si abbassa e sparisce (vedi .under-sheet)
+  // Mentre una tendina è aperta il dock si abbassa e sparisce (vedi .under-sheet) e la pagina
+  // non scorre. Contate: chiudere prima quella sotto non deve sbloccare né lasciare bloccato.
   useEffect(() => {
     if (!open) return;
     const html = document.documentElement;
     html.dataset.sheets = String(Number(html.dataset.sheets ?? 0) + 1);
+    document.body.style.overflow = 'hidden';
     return () => {
       const n = Number(html.dataset.sheets ?? 1) - 1;
       if (n > 0) html.dataset.sheets = String(n);
-      else delete html.dataset.sheets;
+      else {
+        delete html.dataset.sheets;
+        document.body.style.overflow = '';
+      }
     };
   }, [open]);
 
   useEffect(() => {
     if (!open) return;
     returnTo.current = document.activeElement as HTMLElement | null;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const me = Symbol('sheet');
+    stack.push(me);
     const t = setTimeout(() => {
       // Campo segnato data-autofocus (ricerca, chat), altrimenti il dialog stesso:
       // così su mobile non compare un anello di focus sulla X.
@@ -93,21 +101,25 @@ export function BottomSheet({
       (first ?? panelRef.current)?.focus({ preventScroll: true });
     }, 60);
     const onKey = (e: KeyboardEvent) => {
+      if (stack[stack.length - 1] !== me) return;
       if (e.key === 'Escape') {
         e.stopPropagation();
         onCloseRef.current();
       }
       if (e.key === 'Tab' && panelRef.current) {
         const items = panelRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])',
+          'a[href], button:not([disabled]), input:not([disabled]), select, textarea, summary, [tabindex]:not([tabindex="-1"])',
         );
         if (!items.length) return;
         const first = items[0];
         const last = items[items.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
+        const active = document.activeElement as HTMLElement | null;
+        // Focus sul pannello stesso (all'apertura) o finito fuori: si rientra dal bordo giusto
+        const outside = !active || !Array.from(items).includes(active);
+        if (e.shiftKey && (outside || active === first)) {
           e.preventDefault();
           last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
+        } else if (!e.shiftKey && (outside || active === last)) {
           e.preventDefault();
           first.focus();
         }
@@ -116,7 +128,7 @@ export function BottomSheet({
     document.addEventListener('keydown', onKey);
     return () => {
       clearTimeout(t);
-      document.body.style.overflow = prevOverflow;
+      stack.splice(stack.indexOf(me), 1);
       document.removeEventListener('keydown', onKey);
       returnTo.current?.focus?.();
     };

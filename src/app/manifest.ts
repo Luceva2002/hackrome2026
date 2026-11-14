@@ -7,10 +7,14 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: APP_NAME,
     description:
       'La mappa di tutti i luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti.',
+    // id fisso: l'app installata resta la stessa anche se cambia start_url
+    id: '/',
+    scope: '/',
     start_url: '/',
     display: 'standalone',
-    background_color: '#f2f4fa',
-    theme_color: '#f2f4fa',
+    // Come --bg in globals.css e themeColor in layout.tsx: barra di stato e splash uguali all'app
+    background_color: '#f4f5f7',
+    theme_color: '#f4f5f7',
     lang: 'it',
     icons: [
       {
