@@ -28,3 +28,7 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# ruflo
+.claude-flow/
+.swarm/
