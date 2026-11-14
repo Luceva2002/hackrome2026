@@ -31,14 +31,12 @@ async function api<T>(method: string, path: string, body?: unknown): Promise<T> 
 // 1. MCP abilitato nel workspace
 await api('PATCH', '/v1/convai/settings', { can_use_mcp_servers: true });
 
-// 2. Server MCP (letture). url e trasporto non si aggiornano: se cambiano si ricrea.
+// 2. Server MCP (letture). url e trasporto non si aggiornano: se cambiano se ne crea uno
+// nuovo e il vecchio si cancella dopo aver spostato l'agente (finché lo usa, ElevenLabs dà 409).
 const mcpUrl = new URL('/api/mcp', SITE).toString();
 const { mcp_servers } = await api<{ mcp_servers: { id: string; config: { name: string; url: string } }[] }>('GET', '/v1/convai/mcp-servers');
-let mcp = mcp_servers.find((s) => s.config.name === NAME);
-if (mcp && mcp.config.url !== mcpUrl) {
-  await api('DELETE', `/v1/convai/mcp-servers/${mcp.id}`);
-  mcp = undefined;
-}
+const stale = mcp_servers.filter((s) => s.config.name === NAME && s.config.url !== mcpUrl);
+let mcp = mcp_servers.find((s) => s.config.name === NAME && s.config.url === mcpUrl);
 const mcpCommon = { approval_policy: 'auto_approve_all', request_headers: { Authorization: `Bearer ${SECRET}` } };
 if (mcp) await api('PATCH', `/v1/convai/mcp-servers/${mcp.id}`, mcpCommon);
 else
@@ -119,3 +117,7 @@ if (!agentId) {
   agentId = created.agent_id;
 }
 console.log(`✓ agente ${agentId}${id ? ' aggiornato' : ' creato: metti ELEVENLABS_AGENT_ID=' + agentId + ' in .env.local e su Vercel'}`);
+
+// 5. Server MCP vecchi, ora che l'agente non li usa più
+for (const s of stale) await api('DELETE', `/v1/convai/mcp-servers/${s.id}`);
+if (stale.length) console.log('✓ rimossi server MCP vecchi:', stale.map((s) => s.config.url).join(', '));
