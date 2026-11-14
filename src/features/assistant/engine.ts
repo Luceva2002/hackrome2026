@@ -119,7 +119,11 @@ export const createLocalEngine: EngineFactory = (cb) => {
     cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
     status('thinking');
     let intent = parseLocalIntent(text);
-    const quartiere = await findQuartiereIn(text).catch(() => null);
+    // Al massimo 1,5 s: con rete lenta si risponde senza quartiere piuttosto che restare a pensare
+    const quartiere = await Promise.race([
+      findQuartiereIn(text).catch(() => null),
+      new Promise<null>((r) => setTimeout(() => r(null), 1500)),
+    ]);
     if (quartiere) {
       intent ??= { filters: {}, wantsNearMe: false, understood: [], ignored: [] };
       // Il filtro per quartiere non esiste: uso un raggio dal suo centro e lo dico

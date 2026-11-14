@@ -40,13 +40,10 @@ export async function uploadAvatar(file: File): Promise<string> {
   if (up.error) {
     const msg = up.error.message ?? '';
     console.error('[avatar] upload', up.error);
-    if (/bucket not found/i.test(msg)) {
-      throw new Error('Lo spazio per le foto non è ancora attivo: va eseguita supabase/migrations/030_avatars.sql su Supabase.');
-    }
-    if (/row-level security|policy|unauthorized|403/i.test(msg)) {
-      throw new Error('Permesso negato dal server per le foto: controlla le regole del bucket "avatars" (migration 030).');
-    }
-    throw new Error(`Caricamento non riuscito: ${msg || 'errore sconosciuto'}.`);
+    // Il dettaglio tecnico (bucket, migration 030, policy) resta in console per il team
+    if (/bucket not found/i.test(msg)) throw new Error('Le foto profilo non sono ancora attive. Riprova più tardi.');
+    if (/mime|size|too large|payload/i.test(msg)) throw new Error('Questa immagine non va bene: prova con una foto JPG o PNG più piccola.');
+    throw new Error('Caricamento non riuscito. Riprova.');
   }
   const url = supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl;
 

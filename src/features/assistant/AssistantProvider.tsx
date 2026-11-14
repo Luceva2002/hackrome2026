@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { getCurrentLocation } from '@/lib/geo';
 import { safeAppPath } from '@/lib/safe-path';
+import { preloadAreas } from '@/features/map/areas';
 import { mapBridge } from '@/features/map/map-bridge';
 import { filterVenues } from '@/features/venues/filters';
 import { fetchVenues } from '@/features/venues/hooks/use-venues';
@@ -59,6 +60,7 @@ export function AssistantProvider({
   routerRef.current = router;
 
   useEffect(() => {
+    preloadAreas();
     engine.current = engineFactory({
       onStatus: setStatus,
       onMessage: (m) => setMessages((prev) => [...prev, m]),

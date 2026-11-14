@@ -40,9 +40,9 @@ interface AreaCollection {
 
 /** Livello di lettura della mappa (come la vista 3D di Urbe Hub). */
 export type Zone =
-  | { level: 'roma' }
+  /** quiet: si cambia livello senza muovere la camera (ci pensa già il volo su un luogo o l'inquadratura dei risultati) */
+  | { level: 'roma'; quiet?: boolean }
   | { level: 'municipio'; m: number }
-  /** quiet: si cambia livello senza muovere la camera (ci pensa già il volo su un luogo) */
   | { level: 'area'; m: number; id: number; quiet?: boolean };
 
 /**
@@ -79,13 +79,21 @@ function mix(hex: string, withHex: string, amount: number) {
 }
 
 let loading: Promise<{ municipi: AreaCollection; quartieri: AreaCollection }> | null = null;
+const getJson = (url: string) =>
+  fetch(url).then((r) => (r.ok ? (r.json() as Promise<AreaCollection>) : Promise.reject(new Error(`${url}: ${r.status}`))));
+
 function loadAreas() {
-  loading ??= Promise.all([
-    fetch('/geo/municipi.json').then((r) => r.json() as Promise<AreaCollection>),
-    fetch('/geo/quartieri.json').then((r) => r.json() as Promise<AreaCollection>),
-  ]).then(([municipi, quartieri]) => ({ municipi, quartieri }));
+  loading ??= Promise.all([getJson('/geo/municipi.json'), getJson('/geo/quartieri.json')])
+    .then(([municipi, quartieri]) => ({ municipi, quartieri }))
+    .catch((e) => {
+      loading = null; // una rete che cade una volta non deve spegnere le zone per tutta la sessione
+      throw e;
+    });
   return loading;
 }
+
+/** Scarica i confini in anticipo (1 MB): la prima frase all'assistente non deve aspettarli. */
+export const preloadAreas = () => void loadAreas().catch(() => {});
 
 const polygons = (g: Geometry): Ring[][] => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates);
 
@@ -130,7 +138,7 @@ export function useAreas(venues: VenueSummary[]) {
     let alive = true;
     loadAreas()
       .then(({ municipi, quartieri }) => alive && setRaw({ m: index(municipi), q: index(quartieri) }))
-      .catch(() => {});
+      .catch((e) => console.warn('[aree] confini non caricati', e));
     return () => {
       alive = false;
     };
@@ -161,7 +169,7 @@ export function useAreas(venues: VenueSummary[]) {
 
     const aree = {
       type: 'FeatureCollection' as const,
-      features: raw.q.map(({ f, box }) => {
+      features: raw.q.map(({ f }) => {
         const m = f.properties.municipio!;
         const count = qCounts.get(f.id) ?? 0;
         const tm = count / (maxInMun.get(m) ?? 1);
@@ -176,7 +184,6 @@ export function useAreas(venues: VenueSummary[]) {
             // sfumatura del colore del municipio: più luoghi, tinta più piena
             sfumatura: count === 0 ? mix(base, '#ffffff', 0.78) : mix(base, '#ffffff', 0.62 * (1 - tm)),
             hRoma: H_TIPO[f.properties.tipo ?? 'quartiere'] ?? 320,
-            bbox: box,
           },
         };
       }),
@@ -223,15 +230,23 @@ const foldName = (s: string) =>
     .replace(/[^a-z0-9 ]+/g, ' ')
     .trim();
 
+/** Davanti al nome serve un "a / in / al / zona…": "Ponte", "Borgo", "Italia" sono anche parole comuni */
+/** Nomi di aree che sono soprattutto parole comuni: valgono solo dopo "zona / quartiere / rione" */
+const COMMON = new Set(['italia', 'regola', 'salone', 'colonna', 'decima']);
+const PLACE_WORDS = ['a', 'ad', 'in', 'al', 'allo', 'alla', 'ai', 'agli', 'alle', 'nel', 'nello', 'nella', 'zona', 'quartiere', 'rione', 'verso', 'dalle parti di', 'vicino a'];
+
 /** Quartiere o rione nominato in una frase ("palestre a Monti"), il nome più lungo vince. */
 export async function findQuartiereIn(text: string): Promise<AreaProps | null> {
-  const { quartieri } = await loadAreas();
   const t = ` ${foldName(text)} `;
+  // Niente "a/in/zona…" nella frase: non può nominare un quartiere, e non si aspetta il download
+  if (!PLACE_WORDS.some((w) => t.includes(` ${w} `))) return null;
+  const { quartieri } = await loadAreas();
   let best: AreaProps | null = null;
   for (const f of quartieri.features) {
     const n = foldName(f.properties.nome);
     if (n.length < 4) continue;
-    if (t.includes(` ${n} `) && (!best || n.length > foldName(best.nome).length)) best = f.properties;
+    const named = (COMMON.has(n) ? ['zona', 'quartiere', 'rione'] : PLACE_WORDS).some((w) => t.includes(` ${w} ${n} `));
+    if (named && (!best || n.length > foldName(best.nome).length)) best = f.properties;
   }
   return best;
 }

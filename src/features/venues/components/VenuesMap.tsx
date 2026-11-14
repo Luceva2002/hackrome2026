@@ -47,6 +47,9 @@ interface Props {
   onUserMove?: () => void;
 }
 
+const ATTRIBUTION =
+  'Quartieri: <a href="https://geoportale.comune.roma.it" target="_blank" rel="noopener noreferrer">Roma Capitale</a> · Municipi: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> (ODbL) · via <a href="https://romaquartieri.it" target="_blank" rel="noopener noreferrer">romaquartieri.it</a>';
+
 const vis = (on: boolean) => ({ visibility: (on ? 'visible' : 'none') as 'visible' | 'none' });
 
 const LABEL_LAYOUT = (size: number) => ({
@@ -119,7 +122,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   // Il livello cambia → la camera vola sulla zona (le maschere cambiano insieme, nello stesso render)
   const zoneKey = JSON.stringify(zone);
   useEffect(() => {
-    if (!areas || (zone.level === 'area' && zone.quiet)) return;
+    if (!areas || ((zone.level === 'area' || zone.level === 'roma') && zone.quiet)) return;
     whenReady(() => {
       const m = mapRef.current;
       if (!m) return;
@@ -202,6 +205,9 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       setConfigProperty?: (s: string, k: string, v: unknown) => void;
       on: (ev: string, cb: (e: { id: string }) => void) => void;
     } & Parameters<typeof registerPins>[0];
+    // La mappa è un'immagine per gli screen reader (alternativa: i risultati nella ricerca).
+    // Solo il disegno: attribuzione e link restano raggiungibili.
+    mapRef.current?.getCanvas().setAttribute('aria-hidden', 'true');
     if (map) {
       registerPins(map);
       map.on('styleimagemissing', (e) => e.id.startsWith('pin-') && registerPins(map, e.id));
@@ -287,8 +293,6 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
         setHoverMun(null);
         e.target.getCanvas().style.cursor = '';
       }}
-      // La mappa è un'immagine per gli screen reader: l'elenco accanto è l'alternativa navigabile
-      aria-hidden
     >
       {areas && (
         <Source id="aree" type="geojson" data={areas.aree}>
@@ -448,7 +452,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       <AttributionControl
         compact
         position="bottom-right"
-        customAttribution="Quartieri: Roma Capitale (dati aperti) · Municipi: © OpenStreetMap (ODbL) · via romaquartieri.it"
+        customAttribution={ATTRIBUTION}
       />
 
       {userLocation && (

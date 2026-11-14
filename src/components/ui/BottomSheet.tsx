@@ -107,15 +107,23 @@ export function BottomSheet({
         onCloseRef.current();
       }
       if (e.key === 'Tab' && panelRef.current) {
-        const items = panelRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), select, textarea, summary, [tabindex]:not([tabindex="-1"])',
-        );
+        // Solo quelli raggiungibili: dentro un <details> chiuso si arriva solo al suo summary
+        const items = Array.from(
+          panelRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input:not([disabled]), select, textarea, summary, [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((el) => {
+          if (typeof el.checkVisibility === 'function') return el.checkVisibility();
+          // Browser vecchi: dentro un <details> chiuso (anche annidato) conta solo il suo summary
+          const from = el.tagName === 'SUMMARY' ? el.parentElement?.parentElement : el;
+          return !from?.closest('details:not([open])') && el.getClientRects().length > 0;
+        });
         if (!items.length) return;
         const first = items[0];
         const last = items[items.length - 1];
         const active = document.activeElement as HTMLElement | null;
         // Focus sul pannello stesso (all'apertura) o finito fuori: si rientra dal bordo giusto
-        const outside = !active || !Array.from(items).includes(active);
+        const outside = !active || !items.includes(active);
         if (e.shiftKey && (outside || active === first)) {
           e.preventDefault();
           last.focus();

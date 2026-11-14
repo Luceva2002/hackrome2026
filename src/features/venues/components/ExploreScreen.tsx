@@ -37,6 +37,8 @@ export function ExploreScreen() {
   const resultsRef = useRef(results);
   resultsRef.current = results;
   const areas = useAreas(results);
+  const areasRef = useRef(areas);
+  areasRef.current = areas;
   const [zone, setZone] = useState<Zone>({ level: 'roma' });
   const desktop = useIsDesktop();
   // Su desktop i pannelli stanno ai lati: la camera inquadra nello spazio libero
@@ -51,7 +53,15 @@ export function ExploreScreen() {
     if (!all) return;
     if (filterKey === '{}') setZone({ level: 'roma' });
     else if (typeof filters.municipio === 'number') setZone({ level: 'municipio', m: filters.municipio });
-    else if (results.length <= 40 && zoneRef.current.level === 'roma') mapRef.current?.fitTo(results);
+    else {
+      // Area scelta solo perché si era aperto un luogo: la nuova ricerca torna su Roma
+      const z = zoneRef.current;
+      const fromPlace = z.level === 'area' && z.quiet;
+      if (results.length <= 40 && (z.level === 'roma' || fromPlace)) {
+        if (fromPlace) setZone({ level: 'roma', quiet: true });
+        mapRef.current?.fitTo(results);
+      } else if (fromPlace) setZone({ level: 'roma' });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterKey, all]);
 
@@ -87,7 +97,9 @@ export function ExploreScreen() {
         if (cmd.type === 'fitResults') setTimeout(() => m.fitTo(resultsRef.current), 300);
         if (cmd.type === 'orbit') m.orbit(cmd.on);
         if (cmd.type === 'zone') {
-          if (cmd.area && cmd.municipio) setZone({ level: 'area', m: cmd.municipio, id: cmd.area });
+          // Un'area inventata (o di un altro Municipio) darebbe briciole vuote e nessuna camera
+          const areaOk = cmd.area != null && areasRef.current?.areaInfo.get(cmd.area)?.municipio === cmd.municipio;
+          if (cmd.area && cmd.municipio && areaOk) setZone({ level: 'area', m: cmd.municipio, id: cmd.area });
           else if (cmd.municipio) setZone({ level: 'municipio', m: cmd.municipio });
           else setZone({ level: 'roma' });
         }
@@ -180,7 +192,7 @@ export function ExploreScreen() {
         >
           <ol className="liquid-glass rounded-full h-chip pl-1.5 pr-3 flex items-center gap-1 text-[14px] font-semibold text-hi">
             <li>
-              <button type="button" onClick={() => setZone({ level: 'roma' })} className="h-8 px-2.5 rounded-full hover:bg-white/70">
+              <button type="button" onClick={() => setZone({ level: 'roma' })} className="relative h-8 px-2.5 rounded-full hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-gold-500 after:absolute after:inset-x-0 after:-inset-y-2 after:content-['']">
                 Roma
               </button>
             </li>
@@ -190,7 +202,7 @@ export function ExploreScreen() {
                 type="button"
                 onClick={() => setZone({ level: 'municipio', m: zone.m })}
                 aria-current={zone.level === 'municipio' ? 'location' : undefined}
-                className="h-8 px-2.5 rounded-full hover:bg-white/70 flex items-center gap-1.5 whitespace-nowrap"
+                className="relative h-8 px-2.5 rounded-full hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-gold-500 after:absolute after:inset-x-0 after:-inset-y-2 after:content-[''] flex items-center gap-1.5 whitespace-nowrap"
               >
                 <span className="w-2.5 h-2.5 rounded-full" style={{ background: municipioColor(zone.m) }} aria-hidden />
                 Municipio {areas.romano.get(zone.m)}
