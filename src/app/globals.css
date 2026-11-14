@@ -252,6 +252,16 @@
   }
 }
 
+/* Lista dei risultati sopra il dock (ExploreScreen): logo e crediti salgono sopra la lista */
+.has-results .mapboxgl-ctrl-bottom-left {
+  bottom: calc(var(--dock-space) + 128px) !important;
+}
+@media (max-width: 1023px) {
+  .has-results .mapboxgl-ctrl-bottom-right {
+    bottom: calc(var(--dock-space) + 128px) !important;
+  }
+}
+
 .mapboxgl-canvas {
   outline: none;
 }

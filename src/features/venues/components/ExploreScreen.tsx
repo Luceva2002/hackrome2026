@@ -11,6 +11,7 @@ import { useGeolocation } from '@/hooks/use-geolocation';
 import { describeFilters, filterVenues } from '../filters';
 import { useVenueFilters } from '../hooks/use-venue-filters';
 import { useVenues } from '../hooks/use-venues';
+import { ResultsCarousel } from './ResultsCarousel';
 import { VenueSheet } from './VenueSheet';
 import { VenuesMap, type VenuesMapHandle } from './VenuesMap';
 
@@ -48,15 +49,19 @@ export function ExploreScreen() {
   areasRef.current = areas;
   const [zone, setZone] = useState<Zone>({ level: 'roma' });
   const desktop = useIsDesktop();
-  // La camera inquadra nello spazio libero: su mobile tra logo/percorso in alto e dock in basso,
+  // Lista dei risultati sopra il dock: solo per una ricerca vera e con la scheda del luogo chiusa
+  const filterKey = JSON.stringify(filters);
+  const carousel = !!all && filterKey !== '{}' && results.length > 0 && results.length <= 60 && !selectedId;
+  // La camera inquadra nello spazio libero: su mobile tra logo/percorso in alto e dock (e lista) in basso,
   // su desktop tra la ricerca in alto e i bordi (i pannelli si aprono ai lati)
-  const padding = desktop ? { top: 110, bottom: 60, left: 80, right: 120 } : { top: 150, bottom: 120, left: 24, right: 24 };
+  const padding = desktop
+    ? { top: 110, bottom: carousel ? 190 : 60, left: 80, right: 120 }
+    : { top: 150, bottom: carousel ? 260 : 120, left: 24, right: 24 };
   const zoneRef = useRef(zone);
   zoneRef.current = zone;
 
   // Filtri cambiati (dalla ricerca o dalla voce): il Municipio nei filtri diventa il livello,
   // pochi risultati → la camera li inquadra, nessun filtro → Roma intera
-  const filterKey = JSON.stringify(filters);
   useEffect(() => {
     if (!all) return;
     const zona = filters.zona ?? [];
@@ -151,7 +156,7 @@ export function ExploreScreen() {
     : `${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'} sulla mappa${summary ? `: ${summary}` : ''}`;
 
   return (
-    <div className="h-full w-full relative overflow-hidden bg-(--bg)">
+    <div className={`h-full w-full relative overflow-hidden bg-(--bg) ${carousel ? 'has-results' : ''}`}>
       <h1 className="sr-only">Mappa dei luoghi dove fare sport</h1>
       <div className="absolute inset-0">
         <VenuesMap
@@ -244,8 +249,22 @@ export function ExploreScreen() {
         </nav>
       )}
 
-      {/* Controlli della camera, sopra il dock a destra */}
-      <div className="under-sheet absolute z-30 right-edge bottom-[var(--dock-space)] lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 flex flex-col gap-(--gap)">
+      {carousel && (
+        <div className="under-sheet absolute z-20 inset-x-0 bottom-[var(--dock-space)] lg:right-auto lg:w-[min(760px,calc(100%-160px))]">
+          <ResultsCarousel
+            venues={results}
+            from={filters.vicino}
+            onFocus={(v) => {
+              stopTour();
+              if (v.latitude != null && v.longitude != null) mapRef.current?.flyTo(v.longitude, v.latitude, 16, { offset: [0, -55] }); // a metà tra la barra in alto e la lista
+            }}
+            onOpen={select}
+          />
+        </div>
+      )}
+
+      {/* Controlli della camera, sopra il dock (e sopra la lista dei risultati) a destra */}
+      <div className={`under-sheet absolute z-30 right-edge ${carousel ? 'bottom-[calc(var(--dock-space)+148px)]' : 'bottom-[var(--dock-space)]'} lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 flex flex-col gap-(--gap)`}>
         <button
           type="button"
           onClick={() => (zone.level === 'roma' ? mapRef.current?.overview() : setZone({ level: 'roma' }))}

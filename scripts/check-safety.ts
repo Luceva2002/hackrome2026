@@ -1,6 +1,6 @@
 // Controlli di sicurezza su percorsi e comandi mappa (input dell'assistente). Lancia: npx tsx scripts/check-safety.ts
 import assert from 'node:assert';
-import { safeAppPath } from '../src/lib/safe-path';
+import { keepSearch, safeAppPath } from '../src/lib/safe-path';
 import { sanitizeMapCommand } from '../src/features/map/map-bridge';
 assert.equal(safeAppPath('/mappa?disciplina=basket'), '/mappa?disciplina=basket');
 for (const bad of ['//evil.com', '/\\evil.com', '/\t/evil.com', 'https://evil.com', 'javascript:alert(1)', '', null, 42])
@@ -24,3 +24,9 @@ console.log('ok intents');
 assert.deepEqual(sanitizeMapCommand({ type: 'zone', municipio: 3, area: 12 }), { type: 'zone', municipio: 3, area: 12 });
 assert.deepEqual(sanitizeMapCommand({ type: 'zone', municipio: 99, area: 12 }), { type: 'zone', municipio: undefined, area: undefined });
 console.log('ok zone');
+
+// Aprire un luogo dalla mappa tiene la ricerca (la lista dei risultati torna alla chiusura)
+assert.equal(keepSearch('/mappa?luogo=x1', '?zona=200&disciplina=basket'), '/mappa?zona=200&disciplina=basket&luogo=x1');
+assert.equal(keepSearch('/mappa?luogo=x2', '?zona=200&luogo=x1'), '/mappa?zona=200&luogo=x2');
+assert.equal(keepSearch('/mappa?zona=1', '?zona=200'), '/mappa?zona=1', 'una nuova ricerca sostituisce');
+console.log('ok keepSearch');

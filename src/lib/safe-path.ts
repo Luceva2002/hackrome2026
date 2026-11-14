@@ -14,3 +14,16 @@ export function safeAppPath(raw: unknown): string | null {
     return null;
   }
 }
+
+/**
+ * Aprire un luogo dalla mappa (`/mappa?luogo=…`) tiene la ricerca in corso: chiusa la scheda,
+ * si ritrova la lista dei risultati invece di tutta Roma.
+ */
+export function keepSearch(path: string, current = window.location.search) {
+  const next = new URL(path, 'http://x');
+  const luogo = next.searchParams.get('luogo');
+  if (!luogo || next.searchParams.size !== 1) return path;
+  const p = new URLSearchParams(current);
+  p.set('luogo', luogo);
+  return `/mappa?${p}`;
+}

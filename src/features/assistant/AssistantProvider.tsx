@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { safeAppPath } from '@/lib/safe-path';
+import { keepSearch, safeAppPath } from '@/lib/safe-path';
 import { preloadAreas } from '@/features/map/areas';
 import { mapBridge } from '@/features/map/map-bridge';
 import { filterVenues } from '@/features/venues/filters';
@@ -72,7 +72,7 @@ export function AssistantProvider({
           setChatOpen(false);
           // Sulla mappa si sostituisce: ogni frase non deve riempire la cronologia
           const stay = window.location.pathname === '/mappa' && path.startsWith('/mappa');
-          if (stay) routerRef.current.replace(path, { scroll: false });
+          if (stay) routerRef.current.replace(keepSearch(path), { scroll: false });
           else routerRef.current.push(path, { scroll: false });
         },
         map: mapBridge,

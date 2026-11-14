@@ -14,7 +14,7 @@ import { registerPins } from './map-pins';
 import { registerHatches } from '@/features/map/hatch';
 
 export interface VenuesMapHandle {
-  flyTo: (lng: number, lat: number, zoom?: number, opts?: { pitch?: number; bearing?: number }) => void;
+  flyTo: (lng: number, lat: number, zoom?: number, opts?: { pitch?: number; bearing?: number; offset?: [number, number] }) => void;
   fitTo: (venues: VenueSummary[]) => void;
   overview: () => void;
   /** Rotazione lenta della camera (es. mentre l'assistente ascolta) */
@@ -209,7 +209,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
         curve: 1.3,
         essential: true,
         // la scheda del luogo copre il basso (mobile) o il lato destro (desktop): il luogo resta libero
-        offset: desk ? [-200, 0] : [0, -Math.round(window.innerHeight * 0.18)],
+        offset: opts?.offset ?? (desk ? [-200, 0] : [0, -Math.round(window.innerHeight * 0.18)]),
       });
       framedZoom.current = zoom;
       });
