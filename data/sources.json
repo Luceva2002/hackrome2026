@@ -37,7 +37,7 @@
     "titolo": "Tabella concessioni impianti sportivi",
     "ente": "Roma Capitale",
     "url": "data/raw/concessioni.ods",
-    "licenza": "da verificare",
+    "licenza": "da verificare: file caricato a mano senza la pagina d'origine; se viene da un portale di Roma Capitale senza licenza esplicita vale l'art. 52 c. 2 CAD (dato aperto). Oggi non è usato dall'app",
     "fetcher": "upload",
     "parser": "xlsx",
     "mapping": null,

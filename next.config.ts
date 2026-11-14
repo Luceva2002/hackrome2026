@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/map', destination: '/mappa', permanent: true },
+      // La Home stava su /home: link salvati e app installate non devono finire su un 404
+      { source: '/home', destination: '/inizio', permanent: true },
       { source: '/leaderboard', destination: '/', permanent: true },
       { source: '/virtual-tour', destination: '/', permanent: true },
       { source: '/onboarding', destination: '/auth', permanent: true },

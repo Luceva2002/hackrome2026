@@ -223,9 +223,14 @@
 .mapboxgl-ctrl-bottom-right {
   bottom: calc(var(--dock-space) - 8px) !important;
 }
-html[data-sheets] .mapboxgl-ctrl-bottom-left,
-html[data-sheets] .mapboxgl-ctrl-bottom-right {
-  opacity: 0;
+/* Mobile, tendina aperta: il basso è coperto, logo e crediti salgono sotto la barra in alto.
+   Mapbox e la licenza ODbL di OpenStreetMap chiedono che restino sempre visibili. */
+@media (max-width: 1023px) {
+  html[data-sheets] .mapboxgl-ctrl-bottom-left,
+  html[data-sheets] .mapboxgl-ctrl-bottom-right {
+    bottom: auto !important;
+    top: calc(var(--safe-t) + var(--edge) + var(--control-h) + var(--gap));
+  }
 }
 .mapboxgl-ctrl-bottom-right {
   right: calc(var(--edge) + var(--control-h) + var(--gap)) !important;
