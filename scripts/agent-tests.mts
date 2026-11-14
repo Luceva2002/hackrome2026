@@ -239,6 +239,8 @@ const CASES: Case[] = [
       { role: 'user', message: 'in via del Porto Fluviale 5 c’è un campetto da basket libero che non trovo, aggiungilo: si chiama Playground Porto Fluviale' },
       { role: 'agent', tool_calls: [{ tool: 'cerca_impianti', params: { q: 'Playground Porto Fluviale' } }] },
       { role: 'agent', tool_results: [{ tool: 'cerca_impianti', result: { totale: 0, risultati: [], url: '/mappa?q=Playground+Porto+Fluviale' } }] },
+      { role: 'agent', tool_calls: [{ tool: 'naviga', params: { url: '/mappa?q=Playground+Porto+Fluviale' } }] },
+      { role: 'agent', tool_results: [{ tool: 'naviga', result: 'ok' }] },
     ],
     tool: 'segnala_luogo',
     params: { nome: re('(?i)porto fluviale'), indirizzo: re('(?i)porto fluviale'), sport: re('(?i)basket') },
