@@ -30,3 +30,7 @@ Foto da Wikidata/Commons cercate all'apertura, accettate solo se vicine (≤ 250
 Nome dell'app in un solo punto (`src/lib/brand.ts`). Tolti l'elenco dei luoghi e i filtri fissi sopra la mappa: si filtra solo dalla ricerca o a voce.
 Mappa 3D inclinata con volo d'ingresso: da lontano prismi esagonali di densità al posto dei pallini dei gruppi, avvicinandosi punti colorati e poi pin con l'icona del tipo; un luogo si apre con un volo in prospettiva. Tendine come pannelli laterali su desktop.
 Assistente con icona da agente e motore locale (voce del browser + comprensione di sport, luogo, Municipio, accessibilità, vicino a me): filtra la mappa, la fa volare e dice quanti luoghi ha trovato. Foto profilo personalizzabile (migration 030, ridimensionata e senza EXIF).
+
+## Mappa per Municipi e quartieri — ✓
+Da lontano i 15 Municipi in rilievo colorati e alti secondo il numero di luoghi, con nome e conteggio; avvicinandosi i 457 quartieri, rioni e zone di Roma Capitale con lo stesso schema; poi punti e pin. Un tocco su un'area ci vola dentro. I conteggi seguono i filtri (anche quelli dati a voce).
+Confini da romaquartieri.it (Roma Capitale + OpenStreetMap) con credito; l'assistente capisce anche i quartieri ("palestre a Monti").

@@ -43,3 +43,9 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - **Nome SportInComune.** Luca ha scritto "spotrincomune": letto come refuso. Si cambia in `src/lib/brand.ts`.
 - **Logo e icona da Higgsfield.** Generati in SVG, ma il container non scarica da cloudfront: l'app usa `public/brand/logo-mark.svg` e `public/brand/assistant.svg` se ci sono, altrimenti i segnaposto vettoriali.
 - **Foto profilo.** Bucket `avatars` (lettura pubblica, scrittura solo nella propria cartella), URL nei metadati dell'utente. L'immagine è ritagliata a 512 px e ricodificata nel browser, quindi senza EXIF né posizione GPS.
+
+## Municipi e quartieri sulla mappa (al posto dei prismi a esagoni)
+- **Richiesta di Luca**: divisione come romaquartieri.it, prima per Municipio poi per quartiere. Codice nostro (Mapbox, non il loro MapLibre); dal repo `urbe-hub/quartieri-roma-2026` prendiamo solo i confini, con le loro condizioni: quartieri/rioni/zone della delib. 150/2026 di Roma Capitale (dati aperti, fonte citata), municipi da OpenStreetMap (ODbL, attribuzione). Credito nell'attribuzione della mappa e in `data/sources.json`. Il nome e il logo di Urbe Hub non si usano.
+- **Conteggi**: Municipio dal campo del censimento (lo stesso dei filtri), quartiere per punto-nel-poligono. Sul campione, 169 luoghi su 1.563 hanno un Municipio nel censimento diverso da quello del poligono in cui cadono: è un segnale di qualità dei dati da rivedere (indirizzo o Municipio sbagliato).
+- **Attribuzione Mapbox/OSM di nuovo visibile** (era nascosta da CityAlert: la licenza la richiede), sopra il dock.
+- **Voce e quartieri**: "palestre a Monti" diventa "entro 1,5 km dal centro di Monti", detto esplicitamente, perché non esiste un filtro per quartiere.

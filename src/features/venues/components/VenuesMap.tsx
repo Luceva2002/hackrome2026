@@ -1,14 +1,14 @@
 'use client';
 
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
-import MapGL, { Layer, Marker, Source, type MapRef, type MapMouseEvent } from 'react-map-gl/mapbox';
+import MapGL, { AttributionControl, Layer, Marker, Source, type MapRef, type MapMouseEvent } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { UserLocationDot } from '@/features/map/components/UserLocationDot';
 import { DEFAULT_CENTER, MAPBOX_TOKEN, MAP_LIGHT_PRESET, MAP_STYLES } from '@/lib/mapbox/config';
 import { VENUE_KINDS } from '@/lib/sports/taxonomy';
 import type { VenueSummary } from '../types';
-import { densityGrid } from './density';
+import { useAreas } from '@/features/map/areas';
 import { registerPins } from './map-pins';
 
 export interface VenuesMapHandle {
@@ -29,7 +29,7 @@ const KIND_COLOR_EXPR = [
 ] as unknown as string;
 
 /** Vista d'insieme: Roma inclinata, si leggono i prismi della densità */
-const OVERVIEW = { center: [12.49, 41.885] as [number, number], zoom: 11.3, pitch: 52, bearing: -18 };
+const OVERVIEW = { center: [12.47, 41.88] as [number, number], zoom: 10.4, pitch: 48, bearing: -12 };
 
 interface Props {
   venues: VenueSummary[];
@@ -42,8 +42,9 @@ const PIN_EXPR = ['concat', 'pin-', ['get', 'kind']] as unknown as string;
 const PIN_SEL_EXPR = ['concat', 'pin-', ['get', 'kind'], '-sel'] as unknown as string;
 
 /**
- * Mappa 3D: da lontano prismi esagonali di densità, avvicinandosi punti colorati
- * per tipologia, da vicino pin con l'icona del tipo di luogo. Tutto in WebGL.
+ * Mappa 3D a livelli, come si legge la città: da lontano i 15 Municipi in rilievo
+ * colorati per numero di luoghi, avvicinandosi i quartieri, poi i punti colorati
+ * per tipologia e da vicino i pin con l'icona del tipo di luogo. Tutto in WebGL.
  */
 export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   { venues, selectedId, onSelect, userLocation },
@@ -73,7 +74,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     [venues],
   );
 
-  const density = useMemo(() => densityGrid(venues), [venues]);
+  const areas = useAreas(venues);
 
   useImperativeHandle(ref, () => ({
     flyTo(lng, lat, zoom = 16.5, opts) {
@@ -148,9 +149,14 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     (e: MapMouseEvent) => {
       const f = e.features?.[0];
       if (!f) return;
-      if (f.layer?.id === 'density') {
-        const { cx, cy } = f.properties as { cx: number; cy: number };
-        mapRef.current?.flyTo({ center: [cx, cy], zoom: 15, pitch: 58, duration: reducedMotion() ? 0 : 1600, essential: true });
+      if (f.layer?.id === 'municipi-3d' || f.layer?.id === 'quartieri-3d') {
+        // le proprietà annidate arrivano serializzate
+        const raw = f.properties?.bbox as string | number[];
+        const b = (typeof raw === 'string' ? JSON.parse(raw) : raw) as [number, number, number, number];
+        mapRef.current?.fitBounds(
+          [[b[0], b[1]], [b[2], b[3]]],
+          { padding: { top: 100, bottom: 120, left: 40, right: 40 }, pitch: f.layer.id === 'municipi-3d' ? 45 : 55, duration: reducedMotion() ? 0 : 1600 },
+        );
         return;
       }
       const id = f.properties?.id as string | undefined;
@@ -167,7 +173,8 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       mapStyle={MAP_STYLES.standard3d}
       mapboxAccessToken={MAPBOX_TOKEN}
       maxPitch={70}
-      interactiveLayerIds={['density', 'venue-dots', 'venue-pins']}
+      attributionControl={false}
+      interactiveLayerIds={['municipi-3d', 'quartieri-3d', 'venue-dots', 'venue-pins']}
       onLoad={onLoad}
       onClick={onClick}
       cursor="auto"
@@ -180,35 +187,110 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       // La mappa è un'immagine per gli screen reader: l'elenco accanto è l'alternativa navigabile
       aria-hidden
     >
-      <Source id="density" type="geojson" data={density}>
-        <Layer
-          id="density"
-          type="fill-extrusion"
-          maxzoom={14.6}
-          paint={{
-            'fill-extrusion-color': ['interpolate', ['linear'], ['get', 't'], 0, '#fde68a', 0.3, '#f5b301', 0.65, '#ea580c', 1, '#be123c'],
-            'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 10, ['*', ['get', 'count'], 110], 14, ['*', ['get', 'count'], 40]],
-            'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.88, 13.2, 0.75, 14.4, 0],
-            'fill-extrusion-vertical-gradient': true,
-            'fill-extrusion-emissive-strength': 0.55,
-          }}
-        />
-      </Source>
+      {areas && (
+        <Source id="municipi" type="geojson" data={areas.municipi.areas}>
+          <Layer
+            id="municipi-3d"
+            type="fill-extrusion"
+            maxzoom={12.4}
+            paint={{
+              'fill-extrusion-color': ['case', ['==', ['get', 'count'], 0], '#e7e5e4', ['interpolate', ['linear'], ['get', 't'], 0, '#fef3c7', 0.35, '#fcd34d', 0.7, '#f59e0b', 1, '#c2410c']],
+              'fill-extrusion-height': ['+', 120, ['*', ['get', 't'], 1600]],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0.9, 11.6, 0.85, 12.3, 0],
+              'fill-extrusion-vertical-gradient': true,
+              'fill-extrusion-emissive-strength': 0.7,
+            }}
+          />
+          <Layer
+            id="municipi-bordi"
+            type="line"
+            slot="top"
+            maxzoom={12.4}
+            paint={{ 'line-color': '#ffffff', 'line-width': 2, 'line-opacity': ['interpolate', ['linear'], ['zoom'], 11.6, 1, 12.3, 0], 'line-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
+      {areas && (
+        <Source id="municipi-etichette" type="geojson" data={areas.municipi.labels}>
+          <Layer
+            id="municipi-nomi"
+            type="symbol"
+            slot="top"
+            maxzoom={11.8}
+            layout={{
+              'text-field': ['format', ['get', 'nome'], { 'font-scale': 1 }, '\n', {}, ['get', 'conteggio'], { 'font-scale': 0.82 }],
+              'text-font': ['DIN Pro Bold', 'Arial Unicode MS Bold'],
+              'text-size': 13,
+              'text-max-width': 9,
+              'text-allow-overlap': false,
+              'symbol-sort-key': ['-', 0, ['get', 'count']],
+            }}
+            paint={{ 'text-color': '#0f172a', 'text-halo-color': 'rgba(255,255,255,0.95)', 'text-halo-width': 1.6, 'text-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
+      {areas && (
+        <Source id="quartieri" type="geojson" data={areas.quartieri.areas}>
+          <Layer
+            id="quartieri-3d"
+            type="fill-extrusion"
+            minzoom={11.4}
+            maxzoom={15.4}
+            paint={{
+              'fill-extrusion-color': ['case', ['==', ['get', 'count'], 0], '#e7e5e4', ['interpolate', ['linear'], ['get', 't'], 0, '#fef3c7', 0.35, '#fcd34d', 0.7, '#f59e0b', 1, '#c2410c']],
+              'fill-extrusion-height': ['+', 30, ['*', ['get', 't'], 420]],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 11.4, 0, 12.2, 0.82, 14, 0.6, 15.2, 0],
+              'fill-extrusion-vertical-gradient': true,
+              'fill-extrusion-emissive-strength': 0.7,
+            }}
+          />
+          <Layer
+            id="quartieri-bordi"
+            type="line"
+            slot="top"
+            minzoom={11.4}
+            maxzoom={15.4}
+            paint={{ 'line-color': '#ffffff', 'line-width': 1.2, 'line-opacity': ['interpolate', ['linear'], ['zoom'], 11.4, 0, 12.2, 0.9, 15.2, 0], 'line-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
+      {areas && (
+        <Source id="quartieri-etichette" type="geojson" data={areas.quartieri.labels}>
+          <Layer
+            id="quartieri-nomi"
+            type="symbol"
+            slot="top"
+            minzoom={12.2}
+            maxzoom={14.6}
+            filter={['>', ['get', 'count'], 0]}
+            layout={{
+              'text-field': ['format', ['get', 'nome'], { 'font-scale': 1 }, '\n', {}, ['get', 'conteggio'], { 'font-scale': 0.82 }],
+              'text-font': ['DIN Pro Bold', 'Arial Unicode MS Bold'],
+              'text-size': 11.5,
+              'text-max-width': 9,
+              'text-allow-overlap': false,
+              'symbol-sort-key': ['-', 0, ['get', 'count']],
+            }}
+            paint={{ 'text-color': '#0f172a', 'text-halo-color': 'rgba(255,255,255,0.95)', 'text-halo-width': 1.4, 'text-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
 
       <Source id="venues" type="geojson" data={geojson}>
         <Layer
           id="venue-dots"
           type="circle"
           slot="top"
-          minzoom={12.4}
+          minzoom={13.4}
           paint={{
             'circle-color': KIND_COLOR_EXPR,
-            'circle-radius': ['interpolate', ['linear'], ['zoom'], 12.4, 2.5, 14, 5, 15, 6.5],
+            'circle-radius': ['interpolate', ['linear'], ['zoom'], 13.4, 3, 14, 5, 15, 6.5],
             'circle-stroke-width': 1.5,
             'circle-stroke-color': '#ffffff',
-            'circle-opacity': ['interpolate', ['linear'], ['zoom'], 12.4, 0, 13.2, 1, 14.8, 1, 15.3, 0],
-            'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 12.4, 0, 13.2, 1, 14.8, 1, 15.3, 0],
+            'circle-opacity': ['interpolate', ['linear'], ['zoom'], 13.4, 0, 14, 1, 14.8, 1, 15.3, 0],
+            'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 13.4, 0, 14, 1, 14.8, 1, 15.3, 0],
             'circle-emissive-strength': 1,
           }}
         />
@@ -258,6 +340,12 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
           paint={{ 'icon-emissive-strength': 1 }}
         />
       </Source>
+
+      <AttributionControl
+        compact
+        position="bottom-right"
+        customAttribution="Quartieri: Roma Capitale (dati aperti) · Municipi: © OpenStreetMap (ODbL) · via romaquartieri.it"
+      />
 
       {userLocation && (
         <Marker longitude={userLocation.longitude} latitude={userLocation.latitude} anchor="center">

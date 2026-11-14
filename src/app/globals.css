@@ -218,9 +218,17 @@
 }
 
 /* ═══ Mapbox ═══ */
-.mapboxgl-ctrl-logo,
-.mapboxgl-ctrl-attrib {
-  display: none !important;
+/* Logo e attribuzione obbligatori (Mapbox, OpenStreetMap, confini): sopra il dock */
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  bottom: calc(var(--dock-space) - 8px) !important;
+}
+html[data-sheets] .mapboxgl-ctrl-bottom-left,
+html[data-sheets] .mapboxgl-ctrl-bottom-right {
+  opacity: 0;
+}
+.mapboxgl-ctrl-bottom-right {
+  right: calc(var(--edge) + var(--control-h) + var(--gap)) !important;
 }
 
 .mapboxgl-canvas {

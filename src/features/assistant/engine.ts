@@ -1,5 +1,6 @@
 import { filtersToSearchParams, type VenueFilters } from '@/features/venues/filters';
 import { mapBridge } from '@/features/map/map-bridge';
+import { findQuartiereIn } from '@/features/map/areas';
 import { parseLocalIntent } from './local-intents';
 
 /**
@@ -108,7 +109,15 @@ export const createLocalEngine: EngineFactory = (cb) => {
   const handle = async (text: string) => {
     cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
     cb.onStatus('thinking');
-    const intent = parseLocalIntent(text);
+    let intent = parseLocalIntent(text);
+    const quartiere = await findQuartiereIn(text).catch(() => null);
+    if (quartiere) {
+      intent ??= { filters: {}, wantsNearMe: false, understood: [] };
+      // Il filtro per quartiere non esiste: uso un raggio dal suo centro e lo dico
+      intent.filters = { ...intent.filters, municipio: undefined, vicino: { lat: quartiere.ly, lng: quartiere.lx, km: 1.5 } };
+      intent.wantsNearMe = false;
+      intent.understood = [...intent.understood.filter((u) => !u.startsWith('Municipio')), `entro 1,5 km dal centro di ${quartiere.nome}`];
+    }
     if (!intent) {
       cb.onStatus('idle');
       reply('Per ora capisco richieste come “campi da basket accessibili nel Municipio XV” o “piscine vicino a me”. Le domande più libere arriveranno con l’assistente completo.');
