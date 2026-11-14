@@ -49,3 +49,9 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - **Conteggi**: Municipio dal campo del censimento (lo stesso dei filtri), quartiere per punto-nel-poligono. Sul campione, 169 luoghi su 1.563 hanno un Municipio nel censimento diverso da quello del poligono in cui cadono: è un segnale di qualità dei dati da rivedere (indirizzo o Municipio sbagliato).
 - **Attribuzione Mapbox/OSM di nuovo visibile** (era nascosta da CityAlert: la licenza la richiede), sopra il dock.
 - **Voce e quartieri**: "palestre a Monti" diventa "entro 1,5 km dal centro di Monti", detto esplicitamente, perché non esiste un filtro per quartiere.
+
+## Gerarchia delle zone come Urbe Hub (14 nov, notte)
+- **Livelli, non soglie di zoom.** I problemi di sincronizzazione (maschere e rilievi sfalsati durante i voli) venivano dal mostrare Municipi e quartieri in base allo zoom, che durante un volo automatico passa per tutte le soglie. Come nella vista 3D di Urbe Hub ora c'è uno stato esplicito Roma → Municipio → area: decide cosa si vede e dove va la camera, nello stesso render.
+- **Porting, non import del modulo.** Il loro `vista-3d.js` (156 KB, MapLibre, etichette in HTML, intro a mosaico) è legato alla loro pagina; per le 14 abbiamo riportato su Mapbox la logica (gerarchia, H_TIPO, velo al 58%) con nota di copyright e licenza MIT in THIRD_PARTY.md. Se l'integrazione con romaquartieri.it va avanti, il contratto naturale è il loro `Vista3D.apri({ aree, municipi, palette, selezione, onSeleziona })`.
+- **Colori**: un colore per Municipio dalla palette del design (oro, blu, viola, ciano, verde, arancio, rosa e vicini di tono), non la rampa crema-arancio; dentro un Municipio le aree sono sfumature del suo colore, più piene dove ci sono più luoghi.
+- **Conteggio del Municipio** = somma delle sue aree (punto nel poligono), coerente con la mappa.

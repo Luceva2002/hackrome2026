@@ -7,7 +7,12 @@ import { getSupabaseBrowserClient } from '@/lib/supabase/client';
  * file leggero e, soprattutto, senza metadati EXIF (niente posizione GPS dello scatto).
  */
 async function toSquareJpeg(file: File, size = 512): Promise<Blob> {
-  const bitmap = await createImageBitmap(file);
+  let bitmap: ImageBitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch {
+    throw new Error('Formato non leggibile da questo browser: usa una foto JPG o PNG.');
+  }
   const side = Math.min(bitmap.width, bitmap.height);
   const canvas = document.createElement('canvas');
   canvas.width = size;
@@ -32,7 +37,17 @@ export async function uploadAvatar(file: File): Promise<string> {
   const blob = await toSquareJpeg(file);
   const path = `${uid}/avatar-${Date.now()}.jpg`;
   const up = await supabase.storage.from('avatars').upload(path, blob, { contentType: 'image/jpeg', upsert: false });
-  if (up.error) throw new Error('Caricamento non riuscito. Riprova.');
+  if (up.error) {
+    const msg = up.error.message ?? '';
+    console.error('[avatar] upload', up.error);
+    if (/bucket not found/i.test(msg)) {
+      throw new Error('Lo spazio per le foto non è ancora attivo: va eseguita supabase/migrations/030_avatars.sql su Supabase.');
+    }
+    if (/row-level security|policy|unauthorized|403/i.test(msg)) {
+      throw new Error('Permesso negato dal server per le foto: controlla le regole del bucket "avatars" (migration 030).');
+    }
+    throw new Error(`Caricamento non riuscito: ${msg || 'errore sconosciuto'}.`);
+  }
   const url = supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl;
 
   const upd = await supabase.auth.updateUser({ data: { avatar_url: url } });

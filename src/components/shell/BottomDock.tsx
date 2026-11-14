@@ -23,7 +23,7 @@ export function BottomDock() {
   return (
     <nav
       aria-label="Barra principale"
-      className="under-sheet fixed z-40 inset-x-0 bottom-0 px-edge pb-[calc(var(--safe-b)+var(--edge))] pointer-events-none"
+      className="under-sheet fixed z-40 inset-x-0 bottom-0 px-edge pb-[calc(var(--safe-b)+var(--edge))] pointer-events-none lg:bottom-auto lg:top-0 lg:pb-0 lg:pt-[calc(var(--safe-t)+var(--edge))] lg:px-[300px]"
     >
       <div className="mx-auto max-w-[560px] flex items-center gap-(--gap) pointer-events-auto">
         <Link

@@ -231,6 +231,20 @@ html[data-sheets] .mapboxgl-ctrl-bottom-right {
   right: calc(var(--edge) + var(--control-h) + var(--gap)) !important;
 }
 
+/* Desktop: il dock sale in alto al centro, sotto restano solo mappa e attribuzione */
+@media (min-width: 1024px) {
+  :root {
+    --dock-space: calc(var(--safe-b) + var(--edge));
+  }
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right {
+    bottom: 0 !important;
+  }
+  .mapboxgl-ctrl-bottom-right {
+    right: 0 !important;
+  }
+}
+
 .mapboxgl-canvas {
   outline: none;
 }

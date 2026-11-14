@@ -90,7 +90,7 @@ export function AssistantButton() {
           <span className="absolute inset-0 rounded-full border-2 border-gold-500 animate-radar" style={{ animationDelay: '0.8s' }} aria-hidden />
         </>
       )}
-      <AgentIcon state={listening ? 'listening' : busy ? 'thinking' : 'idle'} className={`w-10 h-10 ${busy ? 'animate-pulse' : ''}`} />
+      <AgentIcon state={listening ? 'listening' : busy ? 'thinking' : 'idle'} className="w-10 h-10" />
     </button>
   );
 }

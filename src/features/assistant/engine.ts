@@ -130,7 +130,8 @@ export const createLocalEngine: EngineFactory = (cb) => {
     }
     const qs = filtersToSearchParams(filters).toString();
     cb.act.navigate(`/mappa${qs ? `?${qs}` : ''}`);
-    cb.act.map.send({ type: 'fitResults' });
+    if (quartiere?.municipio) cb.act.map.send({ type: 'zone', municipio: quartiere.municipio, area: quartiere.id });
+    else if (typeof filters.municipio !== 'number') cb.act.map.send({ type: 'fitResults' });
     cb.onStatus('idle');
     const n = await cb.act.count(filters).catch(() => null);
     const lost = intent.wantsNearMe && !filters.vicino ? ' Non ho la tua posizione, quindi cerco in tutta Roma.' : '';

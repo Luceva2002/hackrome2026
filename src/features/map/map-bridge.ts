@@ -12,7 +12,9 @@ export type MapCommand =
   | { type: 'fitResults' }
   /** Giro: vola su ogni luogo, uno dopo l'altro (per presentare i risultati a voce) */
   | { type: 'tour'; ids: string[]; dwellMs?: number }
-  | { type: 'orbit'; on: boolean };
+  | { type: 'orbit'; on: boolean }
+  /** Livello di lettura: Roma intera, un Municipio (1–15) o un'area (id di public/geo/quartieri.json) */
+  | { type: 'zone'; municipio?: number; area?: number };
 
 type Listener = (cmd: MapCommand) => void;
 
