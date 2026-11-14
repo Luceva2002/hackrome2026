@@ -35,3 +35,11 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - **Regola di accettazione.** Elemento Wikidata con foto entro 250 m e almeno una parola significativa in comune con il nome del luogo (escluse parole generiche come "centro sportivo", "palestra", "via"). Il motivo dell'abbinamento è nel `title` del credito. Meglio nessuna foto che quella di un altro posto.
 - **Credito sempre visibile** (autore · licenza · Wikimedia Commons) con link alla pagina della foto.
 - **Exa** può aggiungere un fornitore alla stessa catena (filone di Fabi), non un secondo sistema.
+
+## Mappa e assistente (14 nov)
+- **Densità 3D al posto dei gruppi.** I pallini numerati coprivano la città. Da lontano mostriamo prismi esagonali (~450 m) alti quanto il numero di luoghi: si capisce dove c'è offerta e dove manca. Il numero esatto si vede avvicinandosi.
+- **Niente elenco.** Richiesta di Luca. L'alternativa accessibile alla mappa sono i risultati nella tendina di ricerca, navigabili da tastiera e lettore di schermo, con "Mostra altri".
+- **Motore locale dell'assistente.** Finché non c'è il motore ElevenLabs di Edo, l'assistente usa la voce del browser (Web Speech API, dove disponibile) e capisce solo richieste di ricerca semplici, che diventano filtri reali; tutto il resto lo dichiara. Il contratto `AssistantEngine` riceve ora `act` (navigate, map, locate, count) da usare anche nel motore vero.
+- **Nome SportInComune.** Luca ha scritto "spotrincomune": letto come refuso. Si cambia in `src/lib/brand.ts`.
+- **Logo e icona da Higgsfield.** Generati in SVG, ma il container non scarica da cloudfront: l'app usa `public/brand/logo-mark.svg` e `public/brand/assistant.svg` se ci sono, altrimenti i segnaposto vettoriali.
+- **Foto profilo.** Bucket `avatars` (lettura pubblica, scrittura solo nella propria cartella), URL nei metadati dell'utente. L'immagine è ritagliata a 512 px e ricodificata nel browser, quindi senza EXIF né posizione GPS.

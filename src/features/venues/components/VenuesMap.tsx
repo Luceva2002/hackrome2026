@@ -107,6 +107,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       orbitRaf.current = requestAnimationFrame(step);
     },
     fitTo(list) {
+      if (!mapRef.current?.isStyleLoaded()) return;
       const pts = list.filter((v) => v.latitude != null && v.longitude != null);
       if (!pts.length || !mapRef.current) return;
       if (pts.length === 1) {

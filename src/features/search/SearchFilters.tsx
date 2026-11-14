@@ -80,6 +80,7 @@ export function SearchField({ value, onChange }: { value: string; onChange: (v: 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Impianto, via o quartiere"
+        style={{ outline: 'none' }}
         className="flex-1 min-w-0 bg-transparent outline-none text-[16px] text-hi placeholder:text-low [&::-webkit-search-cancel-button]:hidden"
       />
       {value && (

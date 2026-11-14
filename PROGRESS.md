@@ -25,3 +25,8 @@ Punti di aggancio per Edo (`AssistantEngine`) e Fabi (`WebResults`, `recommendVe
 Regole di spazi e dimensioni come token (`docs/DESIGN.md`), liquid glass a tre strati, tendine a molla che galleggiano sopra il dock (che si fa da parte) con X, Esc e trascinamento per chiudere.
 Ricerca con barra in cima e filtri a chip (sport, tipo di luogo, Municipio, gestione); mappa con pin a goccia che mostrano l'icona del tipo di luogo, gruppi con alone, chip delle tipologie come legenda, pulsante "la mia posizione".
 Foto da Wikidata/Commons cercate all'apertura, accettate solo se vicine (≤ 250 m) e con nome compatibile, sempre con autore e licenza; scheda del luogo ridotta all'essenziale, il resto in "Tutti i dati e le fonti".
+
+## Mappa al centro · SportInComune — ✓
+Nome dell'app in un solo punto (`src/lib/brand.ts`). Tolti l'elenco dei luoghi e i filtri fissi sopra la mappa: si filtra solo dalla ricerca o a voce.
+Mappa 3D inclinata con volo d'ingresso: da lontano prismi esagonali di densità al posto dei pallini dei gruppi, avvicinandosi punti colorati e poi pin con l'icona del tipo; un luogo si apre con un volo in prospettiva. Tendine come pannelli laterali su desktop.
+Assistente con icona da agente e motore locale (voce del browser + comprensione di sport, luogo, Municipio, accessibilità, vicino a me): filtra la mappa, la fa volare e dice quanti luoghi ha trovato. Foto profilo personalizzabile (migration 030, ridimensionata e senza EXIF).

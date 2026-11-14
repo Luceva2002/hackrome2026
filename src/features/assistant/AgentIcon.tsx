@@ -1,9 +1,13 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 /**
  * Icona dell'assistente: un piccolo agente (sfera con occhi e onda sonora).
  * Segnaposto vettoriale: sostituibile con l'icona definitiva senza toccare il pulsante.
  * `state` anima occhi e onda: ascolto = onda che pulsa, pensiero = occhi che guardano in alto.
  */
-export function AgentIcon({ state = 'idle', className = '' }: { state?: 'idle' | 'listening' | 'thinking'; className?: string }) {
+function AgentVector({ state = 'idle', className = '' }: { state?: 'idle' | 'listening' | 'thinking'; className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
       <defs>
@@ -41,4 +45,25 @@ export function AgentIcon({ state = 'idle', className = '' }: { state?: 'idle' |
       <path d="M39.5 8l1 2.6 2.6 1-2.6 1-1 2.6-1-2.6-2.6-1 2.6-1z" fill="url(#agent-gold)" />
     </svg>
   );
+}
+
+let hasFile: Promise<boolean> | null = null;
+
+/**
+ * Se c'è l'icona definitiva in public/brand/assistant.svg (generata con Higgsfield) usa quella,
+ * altrimenti il disegno vettoriale qui sopra.
+ */
+export function AgentIcon(props: { state?: 'idle' | 'listening' | 'thinking'; className?: string }) {
+  const [file, setFile] = useState(false);
+  useEffect(() => {
+    hasFile ??= fetch('/brand/assistant.svg', { method: 'HEAD' }).then((r) => r.ok, () => false);
+    let alive = true;
+    hasFile.then((ok) => alive && setFile(ok));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  if (!file) return <AgentVector {...props} />;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/brand/assistant.svg" alt="" aria-hidden className={props.className} />;
 }

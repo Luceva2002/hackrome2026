@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 
 import { getCurrentLocation } from '@/lib/geo';
 import { mapBridge } from '@/features/map/map-bridge';
+import { filterVenues } from '@/features/venues/filters';
+import { fetchVenues } from '@/features/venues/hooks/use-venues';
 
 import {
   createPlaceholderEngine,
@@ -62,6 +64,7 @@ export function AssistantProvider({
       act: {
         navigate: (url) => routerRef.current.push(url, { scroll: false }),
         map: mapBridge,
+        count: async (f) => filterVenues(await fetchVenues(), f).length,
         locate: async () => {
           try {
             const l = await getCurrentLocation();

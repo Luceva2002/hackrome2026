@@ -57,8 +57,9 @@ export function parseLocalIntent(text: string): LocalIntent | null {
     understood.push(sport === 'calcio' ? 'calcio' : (DISCIPLINES.find((d) => d.id === sport)?.label.toLowerCase() ?? sport));
   }
   const kind = KIND_WORDS.find(([re]) => re.test(t))?.[1];
-  // "piscine" è sia sport sia luogo: tengo il luogo solo se non è già lo sport
-  if (kind && !(kind === 'piscina' && sport === 'nuoto')) {
+  // "campi da basket", "piscine": con uno sport, la parola del luogo è generica e
+  // restringerebbe troppo (es. escluderebbe i centri sportivi con il basket)
+  if (kind && !(sport && (kind === 'campo' || kind === 'piscina' || kind === 'centro_sportivo'))) {
     f.tipo = kind;
     understood.push(VENUE_KINDS.find((k) => k.id === kind)!.label.toLowerCase());
   }

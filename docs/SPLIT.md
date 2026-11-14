@@ -49,7 +49,8 @@ git checkout -b feat/ui          # Luca · feat/assistente (Edo) · feat/exa (Fa
 - Fatti sugli impianti (orari, contatti, sito) → solo `proposals` con fonte `exa_web`, approvate dall'admin.
 
 ## Contratti (non cambiarli senza avvisare)
-- **Assistente:** `AssistantEngine {startVoice, stopVoice, sendText, dispose}` + callback `onStatus`, `onMessage({id, role, text, at, sources?})`. Stati: `idle | connecting | listening | thinking | speaking | error`.
+- **Assistente:** `AssistantEngine {startVoice, stopVoice, sendText, dispose}` + callback `onStatus`, `onMessage({id, role, text, at, sources?})` e `act {navigate(url), map: mapBridge, locate(), count(filters)}`. Oggi gira `createLocalEngine` (voce del browser + `local-intents.ts`), da tenere come riserva.
+- **Mappa:** `mapBridge.send({type: 'flyTo'|'overview'|'fitResults'|'tour'|'orbit', …})` in `src/features/map/map-bridge.ts`; filtri e luogo selezionato sempre via URL `/mappa?…&luogo=<id>`. Stati: `idle | connecting | listening | thinking | speaking | error`.
 - **Shell:** `useShell() → {searchOpen, openSearch, closeSearch}` · `useAssistant() → {status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText}`.
 - **Foto:** `PhotoProvider = (venue, signal) => Promise<VenuePhoto | null>`, `VenuePhoto {url, credit, sourceUrl, alt, provider, match}`.
 - **Home:** `recommendVenues(all, {location?, disciplines?}, limit) → {venue, reason?, distanceKm?}[]`.

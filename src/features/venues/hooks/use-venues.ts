@@ -8,7 +8,7 @@ import type { VenueSummary } from '../types';
 let cache: VenueSummary[] | null = null;
 let inflight: Promise<VenueSummary[]> | null = null;
 
-function fetchVenues(): Promise<VenueSummary[]> {
+export function fetchVenues(): Promise<VenueSummary[]> {
   if (cache) return Promise.resolve(cache);
   inflight ??= fetch('/api/venues')
     .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))

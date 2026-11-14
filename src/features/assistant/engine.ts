@@ -1,4 +1,4 @@
-import { filtersToSearchParams } from '@/features/venues/filters';
+import { filtersToSearchParams, type VenueFilters } from '@/features/venues/filters';
 import { mapBridge } from '@/features/map/map-bridge';
 import { parseLocalIntent } from './local-intents';
 
@@ -31,6 +31,8 @@ export interface AssistantActions {
   map: typeof mapBridge;
   /** Posizione dell'utente, chiedendo il permesso se serve */
   locate: () => Promise<{ lat: number; lng: number } | null>;
+  /** Quanti luoghi corrispondono a questi filtri (dati reali, nessuna stima) */
+  count: (filters: VenueFilters) => Promise<number>;
 }
 
 export interface AssistantCallbacks {
@@ -121,8 +123,14 @@ export const createLocalEngine: EngineFactory = (cb) => {
     cb.act.navigate(`/mappa${qs ? `?${qs}` : ''}`);
     cb.act.map.send({ type: 'fitResults' });
     cb.onStatus('idle');
+    const n = await cb.act.count(filters).catch(() => null);
     const lost = intent.wantsNearMe && !filters.vicino ? ' Non ho la tua posizione, quindi cerco in tutta Roma.' : '';
-    reply(`Ti mostro sulla mappa: ${intent.understood.join(', ')}.${lost}`);
+    const what = intent.understood.join(', ');
+    reply(
+      n === 0
+        ? `Non trovo luoghi per: ${what}.${lost} Prova a togliere un filtro dalla ricerca.`
+        : `${n != null ? `Ho trovato ${n.toLocaleString('it-IT')} ${n === 1 ? 'luogo' : 'luoghi'}` : 'Ti mostro sulla mappa'}: ${what}.${lost}`,
+    );
   };
 
   return {
