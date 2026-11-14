@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { AudioLines, Loader2, Mic } from 'lucide-react';
 
 import { useAssistant } from './AssistantProvider';
@@ -37,6 +37,10 @@ export function AssistantButton() {
     }
   };
 
+  useEffect(() => () => {
+    if (timer.current) clearTimeout(timer.current);
+  }, []);
+
   const listening = status === 'listening';
   const busy = status === 'thinking' || status === 'connecting';
 
@@ -47,12 +51,17 @@ export function AssistantButton() {
       aria-pressed={listening}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
-        (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+        e.currentTarget.setPointerCapture?.(e.pointerId);
         begin();
       }}
       onPointerUp={() => end(true)}
       onPointerCancel={() => end(false)}
       onContextMenu={(e) => e.preventDefault()}
+      onBlur={() => {
+        // Se il focus esce con la barra premuta il keyup non arriva: chiudi il microfono
+        spaceDown.current = false;
+        end(false);
+      }}
       onClick={(e) => {
         // Il clic da tastiera (Invio) non passa dai pointer events
         if (e.detail === 0) openChat();

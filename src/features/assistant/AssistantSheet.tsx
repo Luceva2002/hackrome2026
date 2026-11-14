@@ -111,10 +111,10 @@ export function AssistantSheet() {
             {m.text}
             {m.sources?.length ? (
               <ul className="mt-1.5 text-[12px] text-mid">
-                {m.sources.map((s) => (
+                {m.sources.filter((s) => /^https?:\/\//i.test(s.url)).map((s) => (
                   <li key={s.url}>
                     Fonte:{' '}
-                    <a href={s.url} target="_blank" rel="noreferrer" className="underline">
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline">
                       {s.title}
                     </a>
                   </li>

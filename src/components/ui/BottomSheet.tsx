@@ -46,6 +46,11 @@ export function BottomSheet({
   const reduce = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
   const returnTo = useRef<HTMLElement | null>(null);
+  // In un ref: un onClose instabile del chiamante non deve rilanciare l'effetto e rubare il focus
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   // Mentre una tendina è aperta il dock si abbassa e sparisce (vedi .under-sheet)
   useEffect(() => {
@@ -62,6 +67,8 @@ export function BottomSheet({
   useEffect(() => {
     if (!open) return;
     returnTo.current = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const t = setTimeout(() => {
       // Campo segnato data-autofocus (ricerca, chat), altrimenti il dialog stesso:
       // così su mobile non compare un anello di focus sulla X.
@@ -71,7 +78,7 @@ export function BottomSheet({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopPropagation();
-        onClose();
+        onCloseRef.current();
       }
       if (e.key === 'Tab' && panelRef.current) {
         const items = panelRef.current.querySelectorAll<HTMLElement>(
@@ -92,10 +99,11 @@ export function BottomSheet({
     document.addEventListener('keydown', onKey);
     return () => {
       clearTimeout(t);
+      document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
       returnTo.current?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   return (
     <AnimatePresence>

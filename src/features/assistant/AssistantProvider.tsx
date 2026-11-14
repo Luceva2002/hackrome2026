@@ -62,25 +62,20 @@ export function AssistantProvider({
     if (t.trim()) void engine.current?.sendText(t.trim());
   }, []);
 
+  // Stabili: BottomSheet rilancia il suo effetto (e sposta il focus) se onClose cambia
+  const openChat = useCallback(() => setChatOpen(true), []);
+  const closeChat = useCallback(() => setChatOpen(false), []);
+
   const value = useMemo(
-    () => ({
-      status,
-      messages,
-      chatOpen,
-      openChat: () => setChatOpen(true),
-      closeChat: () => setChatOpen(false),
-      startVoice,
-      stopVoice,
-      sendText,
-    }),
-    [status, messages, chatOpen, startVoice, stopVoice, sendText],
+    () => ({ status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText }),
+    [status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText],
   );
 
   return (
     <AssistantContext.Provider value={value}>
       {children}
       {/* Stato annunciato agli screen reader */}
-      <p className="sr-only" role="status" aria-live="assertive">
+      <p className="sr-only" role="status" aria-live="polite">
         {STATUS_ANNOUNCE[status]}
       </p>
     </AssistantContext.Provider>

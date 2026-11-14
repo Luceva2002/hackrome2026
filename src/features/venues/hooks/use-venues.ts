@@ -30,5 +30,10 @@ export function useVenues() {
     if (!cache) load();
   }, [load]);
 
-  return { venues, error, reload: load };
+  const reload = useCallback(() => {
+    cache = null; // "Riprova" deve scaricare davvero, non restituire la copia in memoria
+    load();
+  }, [load]);
+
+  return { venues, error, reload };
 }

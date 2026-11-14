@@ -79,7 +79,7 @@ export function ProfileScreen() {
     <div className="h-full overflow-y-auto bg-(--bg) pb-12">
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between pt-safe pb-4">
-          <GlassIconButton href="/" ariaLabel="Torna alla mappa" className="rounded-2xl!">
+          <GlassIconButton href="/mappa" ariaLabel="Torna alla mappa" className="rounded-2xl!">
             <ArrowLeft className="w-5 h-5" aria-hidden />
           </GlassIconButton>
           <h1 className="text-[17px] font-bold text-hi" style={{ fontFamily: 'var(--font-display)' }}>
