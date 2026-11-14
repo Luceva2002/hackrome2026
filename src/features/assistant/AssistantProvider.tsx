@@ -9,6 +9,7 @@ import { mapBridge } from '@/features/map/map-bridge';
 import { filterVenues } from '@/features/venues/filters';
 import { fetchVenues } from '@/features/venues/hooks/use-venues';
 
+import { ConfirmCard } from './ConfirmCard';
 import {
   createPlaceholderEngine,
   type AssistantEngine,
@@ -111,6 +112,7 @@ export function AssistantProvider({
   return (
     <AssistantContext.Provider value={value}>
       {children}
+      <ConfirmCard />
       {/* Stato annunciato agli screen reader */}
       <p className="sr-only" role="status" aria-live="polite">
         {STATUS_ANNOUNCE[status]}

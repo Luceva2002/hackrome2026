@@ -2,6 +2,8 @@ import { Conversation, type Conversation as Session } from '@elevenlabs/client';
 
 import { areaAtPoint } from '@/features/map/areas';
 
+import { confirmStore } from './confirm-store';
+import { writeTools } from './write-tools';
 import { createLocalEngine, newMessageId, type AssistantCallbacks, type AssistantEngine, type EngineFactory } from './engine';
 
 /**
@@ -28,6 +30,8 @@ function clientTools(act: AssistantCallbacks['act']) {
       return 'ok';
     },
     // Con il quartiere l'agente può cercare "in zona" con `zona`, senza indovinare
+    // Scritture (iscrizione, creazione…): sempre dopo una conferma, vedi confirm-store.ts
+    ...writeTools(act.navigate),
     posizione: async () => {
       const at = await act.locate();
       if (!at) return 'Posizione non disponibile (permesso negato o GPS spento). Chiedi all’utente il quartiere o un indirizzo.';
@@ -41,6 +45,12 @@ function clientTools(act: AssistantCallbacks['act']) {
     },
   };
 }
+
+/** "sabato 14 novembre 2026, ore 10:05" (ora di Roma) */
+const romeNow = () =>
+  new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    .format(new Date())
+    .replace(/ alle ore | alle |, /, ', ore ');
 
 export const createElevenLabsEngine: EngineFactory = (cb) => {
   let session: Session | null = null;
@@ -68,6 +78,8 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     const s = await Conversation.startSession({
       signedUrl,
       textOnly: !wantVoice,
+      // Per "sabato prossimo alle dieci": il modello non sa che giorno è
+      dynamicVariables: { oggi: romeNow() },
       clientTools: clientTools(cb.act),
       onMessage: ({ message, role }) => {
         if (disposed) return;
@@ -92,6 +104,12 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     }
     voice = wantVoice;
     session = s;
+    // Conferma col pulsante: l'esito va in chat e l'agente ne viene informato (senza rispondere da solo)
+    confirmStore.setNotifier((text) => {
+      const result = confirmStore.get()?.result;
+      if (result) say(result);
+      session?.sendContextualUpdate(text);
+    });
     cb.onStatus(wantVoice ? 'listening' : 'idle');
     return s;
   }
@@ -148,6 +166,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     },
     dispose() {
       disposed = true;
+      confirmStore.setNotifier(null);
       void session?.endSession();
       session = null;
       localEngine?.dispose();

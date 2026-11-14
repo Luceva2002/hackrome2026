@@ -72,6 +72,71 @@ const CLIENT_TOOLS = [
     expects_response: true,
     response_timeout_secs: 20,
   },
+  // Scritture: la prima chiamata non fa nulla e mostra Conferma sullo schermo; si esegue solo
+  // richiamando con gli stessi dati e confermato true dopo il sì dell'utente (src/features/assistant/confirm-store.ts)
+  {
+    name: 'iscriviti_attivita',
+    description:
+      'Iscrive l’utente a un’attività (o lo mette in lista d’attesa se è piena). Prima chiamata senza confermato: prepara e chiede conferma. ' +
+      'Dopo un sì chiaro richiama con gli stessi parametri e confermato true.',
+    parameters: {
+      type: 'object',
+      properties: {
+        id: { type: 'string', description: 'Id dell’attività (da cerca_attivita, dettagli_attivita o dettagli_luogo)' },
+        confermato: { type: 'boolean', description: 'true solo dopo che l’utente ha detto sì a questa iscrizione' },
+      },
+      required: ['id'],
+    },
+    expects_response: true,
+    response_timeout_secs: 15,
+  },
+  {
+    name: 'annulla_iscrizione',
+    description: 'Annulla l’iscrizione dell’utente a un’attività. Stesso schema di conferma di iscriviti_attivita.',
+    parameters: {
+      type: 'object',
+      properties: {
+        id: { type: 'string', description: 'Id dell’attività' },
+        confermato: { type: 'boolean', description: 'true solo dopo che l’utente ha detto sì' },
+      },
+      required: ['id'],
+    },
+    expects_response: true,
+    response_timeout_secs: 15,
+  },
+  {
+    name: 'crea_attivita',
+    description:
+      'Crea una nuova attività sportiva organizzata dall’utente in un luogo. Raccogli prima a voce i dati che mancano. ' +
+      'Prima chiamata senza confermato: prepara e chiede conferma; dopo un sì richiama con gli stessi parametri e confermato true.',
+    parameters: {
+      type: 'object',
+      properties: {
+        titolo: { type: 'string', description: 'Titolo breve, es. "Partita di calcetto del sabato"' },
+        disciplina: { type: 'string', description: 'Id dello sport, es. calcio5, basket, yoga, corsa' },
+        luogo_id: { type: 'string', description: 'Id del luogo (da cerca_impianti o dettagli_luogo)' },
+        giorno: { type: 'string', description: 'Data in formato AAAA-MM-GG, calcolata da oggi' },
+        ora: { type: 'string', description: 'Ora di inizio HH:MM (24 ore)' },
+        durata_minuti: { type: 'number', description: 'Durata in minuti (se non la dice: 90)' },
+        posti: { type: 'number', description: 'Numero di partecipanti ammessi' },
+        livello: { type: 'string', enum: ['tutti', 'principiante', 'intermedio', 'avanzato'], description: 'Livello richiesto (se non lo dice: tutti)' },
+        descrizione: { type: 'string', description: 'Descrizione facoltativa' },
+        accessibile: { type: 'boolean', description: 'Adatta a persone con disabilità' },
+        costo: { type: 'string', description: 'Costo come lo dice l’utente, es. "Gratuita" o "5 euro"' },
+        confermato: { type: 'boolean', description: 'true solo dopo che l’utente ha detto sì a questo riepilogo' },
+      },
+      required: ['titolo', 'disciplina', 'luogo_id', 'giorno', 'ora', 'posti'],
+    },
+    expects_response: true,
+    response_timeout_secs: 15,
+  },
+  {
+    name: 'le_mie_attivita',
+    description: 'Attività future dell’utente: quelle che organizza e quelle a cui è iscritto (o in lista d’attesa).',
+    parameters: { type: 'object', properties: {} },
+    expects_response: true,
+    response_timeout_secs: 15,
+  },
 ];
 const toolIds: string[] = [];
 for (const t of CLIENT_TOOLS) {
@@ -89,6 +154,8 @@ const agent = {
   conversation_config: {
     agent: {
       language: 'it',
+      // {{oggi}} lo passa il browser all'avvio (elevenlabs-engine.ts); questo vale solo se manca
+      dynamic_variables: { dynamic_variable_placeholders: { oggi: 'data non disponibile: chiedi all’utente il giorno esatto' } },
       first_message: '', // parla prima l'utente (tieni premuto o chat): un saluto costa crediti e ritarda la risposta
       prompt: {
         prompt: readFileSync(new URL('../src/lib/agent/voice-prompt.md', import.meta.url), 'utf8'),
