@@ -1,0 +1,146 @@
+import { Conversation, type Conversation as Session } from '@elevenlabs/client';
+
+import { createLocalEngine, newMessageId, type AssistantCallbacks, type AssistantEngine, type EngineFactory } from './engine';
+
+/**
+ * Motore ElevenLabs: voce e chat passano dallo stesso agente.
+ * - Letture (cerca_impianti, …): l'agente chiama il nostro MCP su /api/mcp.
+ * - Schermo (naviga, mappa, posizione): client tool qui sotto, nel browser.
+ * Se l'agente non è configurato (503) o non risponde, si usa il motore locale.
+ */
+
+type Params = Record<string, unknown>;
+
+/** Client tool: nomi e parametri devono coincidere con la configurazione dell'agente */
+function clientTools(act: AssistantCallbacks['act']) {
+  return {
+    naviga: ({ url }: Params) => {
+      // safeAppPath dentro act.navigate scarta tutto ciò che non è una pagina dell'app
+      act.navigate(String(url ?? ''));
+      return 'ok';
+    },
+    // Niente coordinate dal modello (le inventava): per un luogo preciso si usa naviga con il suo url
+    mappa: ({ azione }: Params) => {
+      if (azione === 'panoramica') act.map.send({ type: 'overview' });
+      else act.map.send({ type: 'fitResults' });
+      return 'ok';
+    },
+    posizione: async () => {
+      const at = await act.locate();
+      return at ? JSON.stringify(at) : 'Posizione non disponibile: l’utente non ha dato il permesso.';
+    },
+  };
+}
+
+export const createElevenLabsEngine: EngineFactory = (cb) => {
+  let session: Session | null = null;
+  let voice = false;
+  let starting: Promise<Session | null> | null = null;
+  let localEngine: AssistantEngine | null = null;
+  /** Solo se l'agente non è configurato (503): un errore di rete non spegne ElevenLabs per sempre */
+  let notConfigured = false;
+  let disposed = false;
+  let lastTyped = '';
+
+  const say = (text: string) => cb.onMessage({ id: newMessageId(), role: 'assistant', text, at: Date.now() });
+  const local = () => (localEngine ??= createLocalEngine(cb));
+
+  async function open(wantVoice: boolean): Promise<Session | null> {
+    cb.onStatus('connecting');
+    const r = await fetch('/api/assistant/session', { cache: 'no-store' }).catch(() => null);
+    if (!r?.ok) {
+      // Non configurato o non raggiungibile: per questa richiesta risponde il motore locale
+      notConfigured = r?.status === 503;
+      cb.onStatus('idle');
+      return null;
+    }
+    const { signedUrl } = (await r.json()) as { signedUrl: string };
+    const s = await Conversation.startSession({
+      signedUrl,
+      textOnly: !wantVoice,
+      clientTools: clientTools(cb.act),
+      onMessage: ({ message, role }) => {
+        if (disposed) return;
+        if (role === 'user' && message === lastTyped) return; // già mostrato da sendText
+        cb.onMessage({ id: newMessageId(), role: role === 'user' ? 'user' : 'assistant', text: message, at: Date.now() });
+        // In chat ElevenLabs non segnala il cambio di turno: la risposta chiude il "sto pensando"
+        if (role !== 'user' && !voice) cb.onStatus('idle');
+      },
+      onModeChange: ({ mode }) => !disposed && cb.onStatus(mode === 'speaking' ? 'speaking' : voice ? 'listening' : 'idle'),
+      onError: (message) => {
+        console.error('[assistant]', message);
+        if (!disposed) cb.onStatus('error');
+      },
+      onDisconnect: () => {
+        session = null;
+        if (!disposed) cb.onStatus('idle');
+      },
+    });
+    if (disposed) {
+      void s.endSession();
+      return null;
+    }
+    voice = wantVoice;
+    session = s;
+    cb.onStatus(wantVoice ? 'listening' : 'idle');
+    return s;
+  }
+
+  /** Una sola conversazione alla volta; da chat a voce si riapre con il microfono */
+  async function ensure(wantVoice: boolean): Promise<Session | null> {
+    if (starting) await starting;
+    if (session && (voice || !wantVoice)) return session;
+    if (session) {
+      await session.endSession();
+      session = null;
+    }
+    starting = open(wantVoice).finally(() => (starting = null));
+    return starting;
+  }
+
+  return {
+    async startVoice() {
+      if (notConfigured) return local().startVoice();
+      try {
+        const s = await ensure(true);
+        if (!s) return local().startVoice();
+        s.setMicMuted(false);
+        cb.onStatus('listening');
+      } catch (e) {
+        console.error('[assistant] startVoice', e);
+        cb.onStatus('idle');
+        say((e as Error)?.name === 'NotAllowedError' ? 'Serve il permesso del microfono per parlare con me.' : 'Non riesco a collegarmi all’assistente. Riprova tra poco.');
+      }
+    },
+    async stopVoice() {
+      if (notConfigured || (localEngine && !session)) return local().stopVoice();
+      // Fine del turno di parola: l'agente risponde, il microfono resta chiuso fino al prossimo tocco
+      if (session && voice) {
+        session.setMicMuted(true);
+        cb.onStatus('thinking');
+      }
+    },
+    async sendText(text) {
+      if (notConfigured) return local().sendText(text);
+      lastTyped = text;
+      try {
+        const s = session ?? (await ensure(false));
+        // Il motore locale mostra da sé il messaggio dell'utente
+        if (!s) return local().sendText(text);
+        cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
+        cb.onStatus('thinking');
+        s.sendUserMessage(text);
+      } catch (e) {
+        console.error('[assistant] sendText', e);
+        cb.onStatus('idle');
+        say('Non riesco a collegarmi all’assistente. Riprova tra poco.');
+      }
+    },
+    dispose() {
+      disposed = true;
+      void session?.endSession();
+      session = null;
+      localEngine?.dispose();
+    },
+  };
+};

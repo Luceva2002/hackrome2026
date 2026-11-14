@@ -37,7 +37,7 @@
     "titolo": "Tabella concessioni impianti sportivi",
     "ente": "Roma Capitale",
     "url": "data/raw/concessioni.ods",
-    "licenza": "da verificare",
+    "licenza": "da verificare: file caricato a mano senza la pagina d'origine; se viene da un portale di Roma Capitale senza licenza esplicita vale l'art. 52 c. 2 CAD (dato aperto). Oggi non è usato dall'app",
     "fetcher": "upload",
     "parser": "xlsx",
     "mapping": null,
@@ -67,5 +67,29 @@
     "mapping": null,
     "priorita": 5,
     "note": "Solo se manca la posizione da OSM. Bbox di Roma, cache in data/processed/geocode-cache.json."
+  },
+  {
+    "id": "quartieri-roma-capitale",
+    "titolo": "Quartieri, rioni e zone (deliberazione 150/2026)",
+    "ente": "Roma Capitale, geoportale GeoRoma",
+    "url": "public/geo/quartieri.json",
+    "licenza": "Dati aperti (art. 52 c. 2 CAD), fonte Roma Capitale",
+    "fetcher": "upload",
+    "parser": "geojson",
+    "mapping": null,
+    "priorita": 6,
+    "note": "Confini dei 457 quartieri/rioni/zone, versione semplificata dal progetto romaquartieri.it (github.com/urbe-hub/quartieri-roma-2026, codice MIT). Coordinate arrotondate a 5 decimali."
+  },
+  {
+    "id": "municipi-osm",
+    "titolo": "Confini dei 15 Municipi",
+    "ente": "OpenStreetMap contributors",
+    "url": "public/geo/municipi.json",
+    "licenza": "ODbL 1.0",
+    "fetcher": "upload",
+    "parser": "geojson",
+    "mapping": null,
+    "priorita": 6,
+    "note": "Relazioni admin_level=9, dal progetto romaquartieri.it (github.com/urbe-hub/quartieri-roma-2026). Dato derivato: stessa licenza e attribuzione."
   }
 ]

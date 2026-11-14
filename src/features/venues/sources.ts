@@ -1,3 +1,4 @@
+import { APP_NAME } from '@/lib/brand';
 import sources from '../../../data/sources.json';
 
 export interface SourceInfo {
@@ -11,7 +12,7 @@ export interface SourceInfo {
 const EXTRA: Record<string, { titolo: string; ente: string }> = {
   gestore: { titolo: 'Gestore verificato', ente: 'Dato inserito dal gestore dell’impianto' },
   community: { titolo: 'Community', ente: 'Segnalato da un cittadino' },
-  derivato: { titolo: 'Elaborazione RomaInCampo', ente: 'Dedotto dalle fonti pubbliche' },
+  derivato: { titolo: `Elaborazione ${APP_NAME}`, ente: 'Dedotto dalle fonti pubbliche' },
 };
 
 export function sourceLabel(id: string): { titolo: string; ente: string; licenza?: string } {

@@ -1,7 +1,8 @@
 'use client';
 
+import { APP_NAME } from '@/lib/brand';
+
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Check, KeyRound, Loader2, Lock, Mail, User, Volleyball } from 'lucide-react';
@@ -10,6 +11,7 @@ import { BrandLogo } from '@/components/brand/BrandLogo';
 import { PillButton } from '@/components/ui/PillButton';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 import { useT } from '@/lib/i18n';
+import { safeAppPath } from '@/lib/safe-path';
 
 type Phase = 'splash' | 'login' | 'role' | 'register';
 type SignupRole = 'citizen' | 'manager';
@@ -32,9 +34,7 @@ const ROLE_OPTIONS: { id: SignupRole; title: string; desc: string; points: strin
 ];
 
 /** Solo percorsi interni: niente open redirect */
-function safeNext(next: string | null) {
-  return next && next.startsWith('/') && !next.startsWith('//') ? next : null;
-}
+const safeNext = (next: string | null) => safeAppPath(next);
 
 const SPLASH_MS = 2200;
 
@@ -202,7 +202,7 @@ export function AuthScreen() {
                   Chi sei?
                 </h1>
                 <p className="text-mid text-[15px] mt-1.5 max-w-[340px]">
-                  Scegli come userai RomaInCampo. Potrai sempre cambiare in seguito.
+                  Scegli come userai {APP_NAME}. Potrai sempre cambiare in seguito.
                 </p>
               </div>
 
@@ -432,12 +432,6 @@ export function AuthScreen() {
               >
                 {isRegister ? t('auth.hasAccount') : t('auth.noAccount')}
               </button>
-              <Link
-                href="/"
-                className="h-11 flex items-center justify-center text-[14px] font-semibold text-mid hover:text-hi underline"
-              >
-                Continua senza account: esplora la mappa
-              </Link>
             </div>
           </motion.div>
         )}

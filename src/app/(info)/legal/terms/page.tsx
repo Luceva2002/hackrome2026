@@ -1,9 +1,10 @@
+import { APP_NAME } from '@/lib/brand';
 import type { Metadata } from 'next';
 
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Termini e condizioni — RomaInCampo',
+  title: `Termini e condizioni — ${APP_NAME}`,
 };
 
 export default function TermsPage() {
@@ -11,7 +12,7 @@ export default function TermsPage() {
     <InfoPageShell titleKey="profile.account.menu.terms" subtitle="Ultimo aggiornamento: novembre 2026">
       <InfoSection title="1. Il servizio">
         <p>
-          RomaInCampo è la mappa dei luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti. I dati
+          {APP_NAME} è la mappa dei luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti. I dati
           dei luoghi provengono da fonti pubbliche, dai gestori verificati e dalle segnalazioni della community: ogni
           campo indica da dove viene.
         </p>
@@ -30,7 +31,7 @@ export default function TermsPage() {
 
       <InfoSection title="3. Attività">
         <p>
-          Chi crea un’attività ne è responsabile e si impegna a pubblicare informazioni veritiere. RomaInCampo non
+          Chi crea un’attività ne è responsabile e si impegna a pubblicare informazioni veritiere. {APP_NAME} non
           organizza le attività e non risponde del loro svolgimento.
         </p>
       </InfoSection>

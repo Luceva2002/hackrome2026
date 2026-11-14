@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, CalendarDays, ChevronRight, KeyRound, Loader2, Settings, ShieldCheck } from 'lucide-react';
 
 import { GlassIconButton } from '@/components/ui/GlassIconButton';
-import { RingAvatar } from '@/components/ui/RingAvatar';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 import { ROLE_LABELS, type UserProfile } from '@/features/profile/types';
+import { AvatarEditor } from './AvatarEditor';
 
 function NavRow({ href, icon: Icon, title, desc }: { href: string; icon: typeof CalendarDays; title: string; desc: string }) {
   return (
@@ -79,7 +79,7 @@ export function ProfileScreen() {
     <div className="h-full overflow-y-auto bg-(--bg) pb-12">
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between pt-safe pb-4">
-          <GlassIconButton href="/" ariaLabel="Torna alla mappa" className="rounded-2xl!">
+          <GlassIconButton href="/mappa" ariaLabel="Torna alla mappa" className="rounded-2xl!">
             <ArrowLeft className="w-5 h-5" aria-hidden />
           </GlassIconButton>
           <h1 className="text-[17px] font-bold text-hi" style={{ fontFamily: 'var(--font-display)' }}>
@@ -91,12 +91,13 @@ export function ProfileScreen() {
         </div>
 
         <section className="card rounded-[28px] p-5 flex items-center gap-4">
-          <RingAvatar initial={username.charAt(0).toUpperCase()} size="md" />
+          <AvatarEditor initial={username.charAt(0).toUpperCase()} />
           <div className="min-w-0">
             <p className="text-[22px] font-bold text-hi leading-tight truncate" style={{ fontFamily: 'var(--font-display)' }}>
               {username}
             </p>
             <p className="text-sm text-mid mt-0.5">{ROLE_LABELS[profile.role]}</p>
+            <p className="text-[13px] text-low mt-0.5 truncate">{profile.email}</p>
           </div>
         </section>
 

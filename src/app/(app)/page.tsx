@@ -1,11 +1,6 @@
-import { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 
-import { ExploreScreen } from '@/features/venues/components/ExploreScreen';
-
-export default function HomePage() {
-  return (
-    <Suspense>
-      <ExploreScreen />
-    </Suspense>
-  );
+/** L'app si apre sulla mappa: è il centro dell'esperienza. La Home è in /inizio. */
+export default function RootPage() {
+  redirect('/mappa');
 }

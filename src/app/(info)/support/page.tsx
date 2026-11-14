@@ -1,10 +1,11 @@
+import { APP_NAME } from '@/lib/brand';
 import type { Metadata } from 'next';
 import { Mail, MessageCircleQuestion, Siren } from 'lucide-react';
 
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Assistenza — RomaInCampo',
+  title: `Assistenza — ${APP_NAME}`,
 };
 
 export default function SupportPage() {
@@ -14,7 +15,7 @@ export default function SupportPage() {
       subtitle="Siamo qui per aiutarti. Rispondiamo di solito entro 48 ore."
     >
       <a
-        href="mailto:supporto@romaincampo.example?subject=Richiesta%20assistenza%20RomaInCampo"
+        href={`mailto:supporto@example.org?subject=${encodeURIComponent(`Richiesta assistenza ${APP_NAME}`)}`}
         className="glass-heavy rounded-3xl px-6 py-5 flex items-center gap-4 hover:bg-white/90 active:scale-[0.99] transition-all"
       >
         <span className="w-12 h-12 rounded-2xl bg-linear-to-b from-gold-400 to-gold-600 flex items-center justify-center shrink-0 shadow-[0_6px_18px_rgba(245,179,1,0.35)]">
@@ -28,7 +29,7 @@ export default function SupportPage() {
             Scrivici una email
           </span>
           <span className="block text-sm text-mid mt-0.5">
-            supporto@romaincampo.example
+            supporto@example.org
           </span>
         </span>
       </a>
@@ -36,7 +37,7 @@ export default function SupportPage() {
       <div className="glass rounded-3xl px-6 py-5 flex items-start gap-4 border-l-4 border-l-danger">
         <Siren className="w-6 h-6 text-danger shrink-0 mt-0.5" />
         <p className="text-sm leading-relaxed text-mid">
-          <strong className="text-hi">Emergenze:</strong> RomaInCampo non sostituisce
+          <strong className="text-hi">Emergenze:</strong> {APP_NAME} non sostituisce
           i servizi di soccorso. In caso di pericolo immediato chiama il{' '}
           <strong className="text-hi">112</strong>.
         </p>

@@ -1,7 +1,7 @@
 /**
  * POST /api/exa/venues/[id] — solo admin.
  *
- * Cerca sul web orari, telefono e sito dell'impianto e, se trova valori nuovi
+ * Verifica sul web stato, nome, orari, contatti e costo dell'impianto e, se trova valori nuovi
  * con una fonte, crea una proposta `pending` (fonte 'exa_web'). Non tocca mai
  * la scheda: la applica l'admin con `apply_proposal`.
  *
@@ -30,14 +30,19 @@ export async function POST(_req: Request, { params }: { params: Promise<{ id: st
 
   let facts;
   try {
-    facts = await findVenueFacts({ name: venue.name, address: venue.address });
+    facts = await findVenueFacts({ name: venue.name, address: venue.address }, { deep: true });
   } catch (e) {
     console.error('[exa] ricerca impianto', id, e);
     return NextResponse.json({ error: 'exa_failed' }, { status: 502 });
   }
 
+  // cost* arrivano da 031_cost.sql: letti in modo tollerante finché VenueRecord non li ha.
+  const v = venue as typeof venue & { cost?: string | null; cost_price?: string | null; cost_note?: string | null };
   const proposal = toUpdateProposal(
-    { opening_hours: venue.opening_hours, phone: venue.phone, website: venue.website },
+    {
+      name: v.name, status: v.status, opening_hours: v.opening_hours, phone: v.phone, website: v.website,
+      cost: v.cost, cost_price: v.cost_price, cost_note: v.cost_note,
+    },
     facts,
   );
   if (!Object.keys(proposal.payload).length) return NextResponse.json({ proposal: null, facts });

@@ -1,173 +1,272 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { List, Map as MapIcon } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ChevronRight, Compass, LocateFixed } from 'lucide-react';
 
-import { AppNav } from '@/components/layout/AppNav';
+import { useAssistant } from '@/features/assistant/AssistantProvider';
+import { municipioColor, useAreas, type Zone } from '@/features/map/areas';
+import { mapBridge } from '@/features/map/map-bridge';
 import { useGeolocation } from '@/hooks/use-geolocation';
-import { getVenueKind, VENUE_KINDS } from '@/lib/sports/taxonomy';
 import { describeFilters, filterVenues } from '../filters';
 import { useVenueFilters } from '../hooks/use-venue-filters';
-import type { VenueSummary } from '../types';
-import { LIST_PAGE, VenueList } from './VenueList';
-import { VenueFiltersBar } from './VenueFiltersBar';
+import { useVenues } from '../hooks/use-venues';
 import { VenueSheet } from './VenueSheet';
 import { VenuesMap, type VenuesMapHandle } from './VenuesMap';
 
+/**
+ * La mappa è il centro dell'app: niente elenco né filtri fissi sopra.
+ * Si filtra dalla ricerca (dock) o a voce; l'assistente muove la camera.
+ * Alternativa accessibile alla mappa: i risultati nella tendina di ricerca.
+ */
 export function ExploreScreen() {
   const mapRef = useRef<VenuesMapHandle>(null);
   const geo = useGeolocation();
-  const { filters, setFilters, patch, selectedId, setSelectedId } = useVenueFilters();
-
-  const [all, setAll] = useState<VenueSummary[] | null>(null);
-  const [loadError, setLoadError] = useState(false);
-  const [mobileList, setMobileList] = useState(false);
-  const [limit, setLimit] = useState(LIST_PAGE);
-
-  const load = useCallback(async () => {
-    setLoadError(false);
-    try {
-      const res = await fetch('/api/venues');
-      if (!res.ok) throw new Error(String(res.status));
-      setAll((await res.json()).venues);
-    } catch {
-      setLoadError(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    load();
-  }, [load]);
+  const { filters, selectedId, setSelectedId } = useVenueFilters();
+  const { status } = useAssistant();
+  const { venues: all, error, reload } = useVenues();
 
   const results = useMemo(() => (all ? filterVenues(all, filters) : []), [all, filters]);
-  const located = useMemo(() => results.filter((v) => v.latitude != null).length, [results]);
+  // Il luogo aperto resta sulla mappa anche se i filtri lo escluderebbero (link condiviso, Home)
+  const shown = useMemo(() => {
+    if (!all || !selectedId || results.some((v) => v.id === selectedId)) return results;
+    const sel = all.find((v) => v.id === selectedId);
+    return sel ? [...results, sel] : results;
+  }, [all, results, selectedId]);
   const summary = describeFilters(filters);
+  const resultsRef = useRef(results);
+  resultsRef.current = results;
+  const areas = useAreas(results);
+  const areasRef = useRef(areas);
+  areasRef.current = areas;
+  const [zone, setZone] = useState<Zone>({ level: 'roma' });
+  const desktop = useIsDesktop();
+  // La camera inquadra nello spazio libero: su mobile tra logo/percorso in alto e dock in basso,
+  // su desktop tra la ricerca in alto e i bordi (i pannelli si aprono ai lati)
+  const padding = desktop ? { top: 110, bottom: 60, left: 80, right: 120 } : { top: 150, bottom: 120, left: 24, right: 24 };
+  const zoneRef = useRef(zone);
+  zoneRef.current = zone;
 
-  // Filtri cambiati → la mappa inquadra i risultati (anche quando li cambia la voce)
+  // Filtri cambiati (dalla ricerca o dalla voce): il Municipio nei filtri diventa il livello,
+  // pochi risultati → la camera li inquadra, nessun filtro → Roma intera
   const filterKey = JSON.stringify(filters);
   useEffect(() => {
-    setLimit(LIST_PAGE);
-    if (!all || filterKey === '{}') return;
-    mapRef.current?.fitTo(results);
+    if (!all) return;
+    if (filterKey === '{}') setZone({ level: 'roma' });
+    else if (typeof filters.municipio === 'number') setZone({ level: 'municipio', m: filters.municipio });
+    else {
+      // Area scelta solo perché si era aperto un luogo: la nuova ricerca torna su Roma
+      const z = zoneRef.current;
+      const fromPlace = z.level === 'area' && z.quiet;
+      if (results.length <= 60 && (z.level === 'roma' || fromPlace)) {
+        if (fromPlace) setZone({ level: 'roma', quiet: true });
+        mapRef.current?.fitTo(results);
+      } else if (fromPlace) setZone({ level: 'roma' });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterKey, all]);
 
-  const select = useCallback(
-    (id: string) => {
-      setSelectedId(id);
-      setMobileList(false);
-      const v = all?.find((x) => x.id === id);
-      if (v?.latitude != null && v.longitude != null) mapRef.current?.flyTo(v.longitude, v.latitude);
-    },
-    [all, setSelectedId],
+  // Giro dell'assistente: i timer si cancellano a ogni nuovo comando, se l'utente
+  // tocca la mappa o un luogo, e quando si lascia la pagina
+  const tourTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const stopTour = useCallback(() => {
+    tourTimers.current.forEach(clearTimeout);
+    tourTimers.current = [];
+  }, []);
+  useEffect(() => stopTour, [stopTour]);
+
+  // Luogo selezionato (card della Home, ricerca, assistente) → si entra nella sua area e si vola in 3D
+  useEffect(() => {
+    if (!all || !selectedId) return;
+    const v = all.find((x) => x.id === selectedId);
+    if (v?.latitude == null || v.longitude == null) return;
+    const a = areas?.areaOf(v);
+    if (a?.municipio) setZone({ level: 'area', m: a.municipio, id: a.id, quiet: true });
+    mapRef.current?.flyTo(v.longitude, v.latitude);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [all, selectedId, !!areas]);
+
+  // Comandi di camera dall'assistente
+  useEffect(
+    () =>
+      mapBridge.attach((cmd) => {
+        const m = mapRef.current;
+        if (!m) return;
+        stopTour();
+        if (cmd.type === 'flyTo') m.flyTo(cmd.lng, cmd.lat, cmd.zoom, { pitch: cmd.pitch, bearing: cmd.bearing });
+        if (cmd.type === 'overview') m.overview();
+        if (cmd.type === 'fitResults') setTimeout(() => m.fitTo(resultsRef.current), 300);
+        if (cmd.type === 'orbit') m.orbit(cmd.on);
+        if (cmd.type === 'zone') {
+          // Un'area inventata (o di un altro Municipio) darebbe briciole vuote e nessuna camera
+          const areaOk = cmd.area != null && areasRef.current?.areaInfo.get(cmd.area)?.municipio === cmd.municipio;
+          if (cmd.area && cmd.municipio && areaOk) setZone({ level: 'area', m: cmd.municipio, id: cmd.area });
+          else if (cmd.municipio) setZone({ level: 'municipio', m: cmd.municipio });
+          else setZone({ level: 'roma' });
+        }
+        if (cmd.type === 'tour') {
+          tourTimers.current = cmd.ids.map((id, i) =>
+            setTimeout(() => {
+              const v = all?.find((x) => x.id === id);
+              if (v?.latitude != null && v.longitude != null) mapRef.current?.flyTo(v.longitude, v.latitude, 16.5);
+            }, i * (cmd.dwellMs ?? 3500)),
+          );
+        }
+      }),
+    [all, stopTour],
   );
 
-  const nearMe = useCallback(async () => {
-    const loc = geo.location ?? (await geo.requestAccess());
-    if (loc) patch({ vicino: { lat: loc.latitude, lng: loc.longitude, km: 2 }, municipio: undefined });
-  }, [geo, patch]);
+  // Mentre l'assistente ascolta, la città gira piano: si vede che è "viva"
+  const listening = status === 'listening';
+  // (allo smontaggio l'orbita la ferma VenuesMap)
+  useEffect(() => {
+    mapRef.current?.orbit(listening);
+  }, [listening]);
 
-  const countText = !all
+  const select = useCallback(
+    (id: string) => {
+      stopTour();
+      setSelectedId(id);
+    },
+    [setSelectedId, stopTour],
+  );
+
+  const countText = error
+    ? 'Non riesco a caricare i luoghi.'
+    : !all
     ? 'Caricamento dei luoghi…'
-    : `${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'}${summary ? ` · ${summary}` : ''}`;
+    : `${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'} sulla mappa${summary ? `: ${summary}` : ''}`;
 
   return (
     <div className="h-full w-full relative overflow-hidden bg-(--bg)">
+      <h1 className="sr-only">Mappa dei luoghi dove fare sport</h1>
       <div className="absolute inset-0">
         <VenuesMap
           ref={mapRef}
-          venues={results}
+          venues={shown}
           selectedId={selectedId}
           onSelect={select}
+          onUserMove={stopTour}
           userLocation={geo.location}
+          areas={areas}
+          zone={zone}
+          onZone={setZone}
+          padding={padding}
         />
       </div>
 
+      {/* Velo in alto per leggere logo e profilo sopra la mappa */}
       <div
-        className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
-        style={{ background: 'linear-gradient(to bottom, rgba(244,245,247,0.92), rgba(244,245,247,0))' }}
+        className="absolute top-0 inset-x-0 h-28 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(to bottom, rgba(244,245,247,0.6), rgba(244,245,247,0))' }}
         aria-hidden
       />
 
-      <div className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 pt-safe pointer-events-none">
-        <div className="pointer-events-auto">
-          <AppNav />
-        </div>
-        <div className="pointer-events-auto mt-3 sm:max-w-[560px]">
-          <h1 className="sr-only">Esplora i luoghi dove fare sport a Roma</h1>
-          <VenueFiltersBar filters={filters} onChange={setFilters} onNearMe={nearMe} locating={geo.loading} />
-        </div>
-      </div>
+      {/* L'assistente sta ascoltando o pensando: bordo dorato che respira */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 z-10 pointer-events-none"
+        initial={false}
+        animate={{ opacity: status === 'listening' || status === 'thinking' || status === 'speaking' ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        style={{ boxShadow: 'inset 0 0 80px 10px rgba(245,179,1,0.45)' }}
+      />
 
-      {/* Annuncio per screen reader: numero di risultati */}
       <p className="sr-only" role="status" aria-live="polite">
         {countText}
       </p>
 
-      {/* Elenco: pannello su desktop, foglio a tutto schermo su mobile */}
-      <section
-        aria-label="Elenco dei luoghi"
-        className={`${mobileList ? 'flex' : 'hidden'} lg:flex flex-col absolute z-20 left-0 right-0 bottom-0 top-[13.5rem] lg:top-[15.5rem] lg:left-6 lg:right-auto lg:bottom-6 lg:w-[400px] glass-heavy rounded-t-[28px] lg:rounded-[28px] overflow-hidden`}
-      >
-        <div className="px-4 pt-4 pb-2 flex items-center justify-between gap-2">
-          <p className="text-[14px] font-bold text-hi" aria-hidden>
-            {countText}
-          </p>
-          {all && located < results.length && (
-            <span className="text-[12px] text-mid shrink-0">{(results.length - located).toLocaleString('it-IT')} senza posizione</span>
-          )}
+      {error && (
+        <div className="absolute z-30 inset-x-edge top-24 mx-auto max-w-[420px] liquid-glass rounded-2xl p-4 flex items-center gap-3">
+          <p className="flex-1 text-[14px] text-hi">Non riesco a caricare i luoghi. Controlla la connessione.</p>
+          <button type="button" onClick={reload} className="h-11 px-5 rounded-xl bg-ink text-white font-bold shrink-0">
+            Riprova
+          </button>
         </div>
-        <div className="overflow-y-auto px-3 pb-24 lg:pb-4">
-          {loadError ? (
-            <div className="text-center py-10">
-              <p className="text-[14px] text-mid mb-3">Non riesco a caricare i luoghi.</p>
-              <button type="button" onClick={load} className="h-11 px-5 rounded-xl bg-ink text-white font-bold">
-                Riprova
+      )}
+
+      {/* Dove sono: Roma › Municipio › area (si torna su con un tocco) */}
+      {areas && zone.level !== 'roma' && (
+        <nav
+          aria-label="Livello della mappa"
+          className="under-sheet absolute z-20 left-edge top-[calc(var(--safe-t)+var(--edge)+var(--control-h)+var(--gap))] max-w-[calc(100%-2*var(--edge))]"
+        >
+          <ol className="liquid-glass rounded-full h-chip pl-1.5 pr-3 flex items-center gap-1 text-[14px] font-semibold text-hi">
+            <li>
+              <button type="button" onClick={() => setZone({ level: 'roma' })} className="relative h-8 px-2.5 rounded-full hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-gold-500 after:absolute after:inset-x-0 after:-inset-y-2 after:content-['']">
+                Roma
               </button>
-            </div>
-          ) : !all ? (
-            <ul className="flex flex-col gap-2" aria-hidden>
-              {Array.from({ length: 6 }).map((_, i) => (
-                <li key={i} className="h-[76px] rounded-2xl bg-white/70 animate-pulse" />
-              ))}
-            </ul>
-          ) : (
-            <VenueList
-              venues={results}
-              selectedId={selectedId}
-              onSelect={select}
-              limit={limit}
-              onMore={() => setLimit((l) => l + LIST_PAGE)}
-            />
+            </li>
+            <li className="flex items-center gap-1 min-w-0">
+              <ChevronRight className="w-3.5 h-3.5 text-low shrink-0" aria-hidden />
+              <button
+                type="button"
+                onClick={() => setZone({ level: 'municipio', m: zone.m })}
+                aria-current={zone.level === 'municipio' ? 'location' : undefined}
+                className="relative h-8 px-2.5 rounded-full hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-gold-500 after:absolute after:inset-x-0 after:-inset-y-2 after:content-[''] flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: municipioColor(zone.m) }} aria-hidden />
+                Municipio {areas.romano.get(zone.m)}
+              </button>
+            </li>
+            {zone.level === 'area' && (
+              <li className="flex items-center gap-1 min-w-0">
+                <ChevronRight className="w-3.5 h-3.5 text-low shrink-0" aria-hidden />
+                <span aria-current="location" className="px-1.5 truncate">
+                  {areas.areaInfo.get(zone.id)?.nome}
+                </span>
+              </li>
+            )}
+          </ol>
+          {zone.level === 'area' && (
+            <p className="mt-(--gap) liquid-glass rounded-full h-8 px-3 inline-flex items-center text-[13px] font-semibold text-mid">
+              {(() => {
+                // Conta quello che la mappa mostra davvero qui: i risultati più il luogo aperto
+                const n = shown.filter((v) => areas.areaOf(v)?.id === zone.id).length;
+                if (n === 0) return summary ? 'Nessun luogo con questi filtri in quest\'area' : 'Nessun luogo in quest\'area';
+                return `${n.toLocaleString('it-IT')} ${n === 1 ? 'luogo' : 'luoghi'} in quest'area`;
+              })()}
+            </p>
           )}
-        </div>
-      </section>
+        </nav>
+      )}
 
-      {/* Legenda (desktop) */}
-      <div className="hidden lg:flex absolute z-10 right-6 bottom-6 glass rounded-2xl px-3 py-2 gap-3 flex-wrap max-w-[520px]" aria-hidden>
-        {VENUE_KINDS.map((k) => (
-          <span key={k.id} className="flex items-center gap-1.5 text-[12px] font-semibold text-mid">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: getVenueKind(k.id).color }} />
-            {k.label}
-          </span>
-        ))}
-      </div>
-
-      {/* Barra mobile: mappa / elenco */}
-      <div className="lg:hidden absolute z-30 bottom-0 left-0 right-0 px-4 pb-safe pointer-events-none flex justify-center">
+      {/* Controlli della camera, sopra il dock a destra */}
+      <div className="under-sheet absolute z-30 right-edge bottom-[var(--dock-space)] lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 flex flex-col gap-(--gap)">
         <button
           type="button"
-          onClick={() => setMobileList((v) => !v)}
-          aria-expanded={mobileList}
-          className="pointer-events-auto h-14 px-6 rounded-full bg-ink text-white font-bold text-[15px] flex items-center gap-2 shadow-(--shadow-float)"
-          style={{ fontFamily: 'var(--font-display)' }}
+          onClick={() => (zone.level === 'roma' ? mapRef.current?.overview() : setZone({ level: 'roma' }))}
+          aria-label="Vista d'insieme in 3D"
+          className="w-control h-control rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform"
         >
-          {mobileList ? <MapIcon className="w-5 h-5" aria-hidden /> : <List className="w-5 h-5" aria-hidden />}
-          {mobileList ? 'Mostra la mappa' : `Elenco · ${all ? results.length.toLocaleString('it-IT') : '…'}`}
+          <Compass className="w-5 h-5" aria-hidden />
+        </button>
+        <button
+          type="button"
+          onClick={async () => {
+            const loc = geo.location ?? (await geo.requestAccess());
+            if (loc) mapRef.current?.flyTo(loc.longitude, loc.latitude, 15.5);
+          }}
+          aria-label="Centra la mappa sulla mia posizione"
+          className="w-control h-control rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform"
+        >
+          <LocateFixed className={`w-5 h-5 ${geo.loading ? 'animate-pulse' : ''}`} aria-hidden />
         </button>
       </div>
 
-      <VenueSheet id={selectedId} onClose={() => setSelectedId(null)} />
+      <VenueSheet id={selectedId} onClose={() => setSelectedId(null)} userLocation={geo.location} />
     </div>
   );
+}
+
+function useIsDesktop() {
+  const [d, setD] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const on = () => setD(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return d;
 }

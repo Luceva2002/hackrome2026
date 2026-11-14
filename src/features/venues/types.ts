@@ -71,6 +71,7 @@ export type VenueSummary = Pick<
   | 'kind'
   | 'nature'
   | 'disciplines'
+  | 'structures'
   | 'status'
   | 'accessibility'
   | 'community'
@@ -88,6 +89,7 @@ export function toSummary(v: VenueRecord): VenueSummary {
     kind: v.kind,
     nature: v.nature,
     disciplines: v.disciplines,
+    structures: v.structures,
     status: v.status,
     accessibility: v.accessibility,
     community: v.community,

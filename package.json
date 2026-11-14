@@ -1,5 +1,5 @@
 {
-  "name": "romaincampo",
+  "name": "sportincomune",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,9 +12,13 @@
     "pipeline:geocode": "tsx scripts/pipeline/geocode.ts",
     "pipeline": "tsx scripts/pipeline/censimento.ts && tsx scripts/pipeline/geocode.ts",
     "db:seed": "tsx scripts/seed.ts",
-    "exa:venue": "tsx scripts/exa/venue-facts.ts"
+    "exa:venue": "tsx scripts/exa/venue-facts.ts",
+    "exa:audit": "tsx scripts/exa/audit.ts",
+    "exa:free-places": "tsx scripts/exa/free-places.ts"
   },
   "dependencies": {
+    "@elevenlabs/client": "^1.32.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/postcss": "^4.2.2",

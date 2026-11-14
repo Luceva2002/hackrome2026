@@ -16,7 +16,7 @@ import { toSummary } from '../types';
  */
 
 const SUMMARY_COLUMNS =
-  'id, name, address, municipio, latitude, longitude, kind, nature, disciplines, status, accessibility, community, verified_manager_id';
+  'id, name, address, municipio, latitude, longitude, kind, nature, disciplines, structures, status, accessibility, community, verified_manager_id';
 
 let fileCache: { at: number; venues: VenueRecord[] } | null = null;
 
@@ -49,6 +49,7 @@ function rowToSummary(r: Row): VenueSummary {
     kind: r.kind as VenueSummary['kind'],
     nature: r.nature as VenueSummary['nature'],
     disciplines: (r.disciplines as string[]) ?? [],
+    structures: (r.structures as string) ?? null,
     status: r.status as VenueSummary['status'],
     accessibility: r.accessibility as VenueSummary['accessibility'],
     community: Boolean(r.community),
@@ -95,7 +96,6 @@ export async function getVenue(id: string): Promise<VenueRecord | null> {
         const r = data as Row;
         return {
           ...rowToSummary(r),
-          structures: (r.structures as string) ?? null,
           levels: (r.levels as string[]) ?? [],
           opening_hours: (r.opening_hours as string) ?? null,
           phone: (r.phone as string) ?? null,
