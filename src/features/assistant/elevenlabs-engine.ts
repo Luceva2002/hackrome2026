@@ -76,7 +76,16 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     return y;
   };
 
-  const say = (text: string) => cb.onMessage({ id: newMessageId(), role: 'assistant', text, at: Date.now() });
+  // Ultimi scambi: se la sessione si chiude per inattività, la nuova riparte da qui
+  const recent: string[] = [];
+  const remember = (who: 'Utente' | 'Assistente', text: string) => {
+    recent.push(`${who}: ${text.slice(0, 600)}`);
+    if (recent.length > 8) recent.shift();
+  };
+  const say = (text: string) => {
+    remember('Assistente', text);
+    cb.onMessage({ id: newMessageId(), role: 'assistant', text, at: Date.now() });
+  };
   const local = () => (localEngine ??= createLocalEngine(cb));
 
   async function open(wantVoice: boolean): Promise<Session | null> {
@@ -100,6 +109,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
         if (role === 'user' && message === lastTyped) return; // già mostrato da sendText
         if (role === 'user') heardUser(message);
         else lastAgent = message;
+        remember(role === 'user' ? 'Utente' : 'Assistente', message);
         cb.onMessage({ id: newMessageId(), role: role === 'user' ? 'user' : 'assistant', text: message, at: Date.now() });
         // In chat ElevenLabs non segnala il cambio di turno: la risposta chiude il "sto pensando"
         if (role !== 'user' && !voice) cb.onStatus('idle');
@@ -120,6 +130,11 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     }
     voice = wantVoice;
     session = s;
+    if (recent.length)
+      s.sendContextualUpdate(
+        `La conversazione precedente si è chiusa per inattività: riprendila senza salutare. Pagina aperta ora: ${location.pathname}${location.search}. ` +
+          `Ultimi messaggi:\n${recent.join('\n')}\nSe l'utente si riferisce a risultati di prima ("il primo", "quello"), rifai la ricerca per avere gli id.`,
+      );
     // Conferma col pulsante: l'esito va in chat e l'agente ne viene informato (senza rispondere da solo)
     confirmStore.setNotifier((text) => {
       const result = confirmStore.get()?.result;
@@ -172,6 +187,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
         const s = session ?? (await ensure(false));
         // Il motore locale mostra da sé il messaggio dell'utente
         if (!s) return local().sendText(text);
+        remember('Utente', text);
         cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
         cb.onStatus('thinking');
         s.sendUserMessage(text);
