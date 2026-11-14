@@ -42,6 +42,12 @@ const GARBATELLA = {
   url: '/mappa?zona=200',
 };
 
+const MINIBASKET = {
+  totale: 1,
+  risultati: [{ id: 'cddba25e-f24a-4f4d-baa0-90444d7be67d', titolo: 'Minibasket per bambini 8–11 anni', quando: 'Sabato 21 novembre, 10:00–11:00', luogo: 'Circolo Magistrati Corte dei Conti', posti_liberi: 16, url: '/attivita/cddba25e-f24a-4f4d-baa0-90444d7be67d' }],
+  url: '/attivita?disciplina=basket',
+};
+
 // Priorità 1: il flusso base "impianti in zona" e le ricerche che fallivano nelle conversazioni vere
 const CASES: Case[] = [
   { name: 'zona: torre vecchia', prio: 1, say: 'mi fai vedere gli impianti di torre vecchia', tool: 'cerca_impianti', params: { zona: re('(?i)torr[ae] ?vecc?h?ia') } },
@@ -97,6 +103,50 @@ const CASES: Case[] = [
     ],
     tool: 'naviga',
     params: { url: exact('/mappa?luogo=cmrc-bbb') },
+  },
+  // Scritture: lo strumento si chiama subito (mostra il pulsante), il sì arriva dopo con confermato true
+  {
+    name: 'iscrizione: chiama subito dopo la ricerca',
+    prio: 1,
+    say: 'iscrivimi al minibasket per bambini di sabato 21',
+    history: [
+      { role: 'user', message: 'iscrivimi al minibasket per bambini di sabato 21' },
+      { role: 'agent', tool_calls: [{ tool: 'cerca_attivita', params: { giorno: '2026-11-21', q: 'minibasket' } }] },
+      { role: 'agent', tool_results: [{ tool: 'cerca_attivita', result: MINIBASKET }] },
+      { role: 'agent', tool_calls: [{ tool: 'naviga', params: { url: '/attivita/cddba25e-f24a-4f4d-baa0-90444d7be67d' } }] },
+      { role: 'agent', tool_results: [{ tool: 'naviga', result: 'ok' }] },
+    ],
+    tool: 'iscriviti_attivita',
+    params: { id: exact('cddba25e-f24a-4f4d-baa0-90444d7be67d') },
+  },
+  {
+    name: 'iscrizione: sì → confermato',
+    prio: 1,
+    say: 'sì',
+    history: [
+      { role: 'user', message: 'iscrivimi al minibasket' },
+      { role: 'agent', tool_calls: [{ tool: 'iscriviti_attivita', params: { id: 'cddba25e-f24a-4f4d-baa0-90444d7be67d' } }] },
+      {
+        role: 'agent',
+        tool_results: [
+          {
+            tool: 'iscriviti_attivita',
+            result:
+              'IN ATTESA DI CONFERMA, non è ancora stato fatto nulla. Di\' all\'utente: "Ti iscrivo a «Minibasket per bambini 8–11 anni», Sabato 21 novembre, 10:00–11:00. Confermi?" Se dice sì, richiama questo strumento con gli stessi parametri e confermato true.',
+          },
+        ],
+      },
+      { role: 'agent', message: 'Ti iscrivo a Minibasket per bambini, sabato 21 novembre dalle dieci alle undici. Confermi?' },
+    ],
+    tool: 'iscriviti_attivita',
+    params: { id: exact('cddba25e-f24a-4f4d-baa0-90444d7be67d'), confermato: exact('true') },
+  },
+  {
+    name: 'attività: giorno preciso',
+    prio: 1,
+    say: 'che attività ci sono sabato 21?',
+    tool: 'cerca_attivita',
+    params: { giorno: exact('2026-11-21') },
   },
   // Priorità 2: filtri combinati e lingua
   { name: 'filtri: piscine municipio 12', prio: 2, say: 'piscine nel municipio dodici', tool: 'cerca_impianti', params: { tipo: exact('piscina'), municipio: re('^(12|XII)$') } },
@@ -154,6 +204,7 @@ for (const c of picked) {
     name: `sic: ${c.name}`,
     chat_history: hist,
     check_any_tool_matches: true,
+    dynamic_variables: { oggi: 'sabato 14 novembre 2026, ore 10:00' },
     tool_call_parameters: {
       referenced_tool: ref(c.tool),
       parameters: Object.entries(c.params ?? {}).map(([path, e]) => ({ path, eval: e })),

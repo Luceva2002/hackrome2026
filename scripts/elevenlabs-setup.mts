@@ -77,7 +77,8 @@ const CLIENT_TOOLS = [
   {
     name: 'iscriviti_attivita',
     description:
-      'Iscrive l’utente a un’attività (o lo mette in lista d’attesa se è piena). Prima chiamata senza confermato: prepara e chiede conferma. ' +
+      'Iscrive l’utente a un’attività (o lo mette in lista d’attesa se è piena). Chiamalo appena l’utente chiede di iscriversi, PRIMA di chiedere conferma: ' +
+      'la prima chiamata, senza confermato, non iscrive ancora e mostra il pulsante Conferma. ' +
       'Dopo un sì chiaro richiama con gli stessi parametri e confermato true.',
     parameters: {
       type: 'object',
