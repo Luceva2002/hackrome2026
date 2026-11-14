@@ -3,7 +3,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { getCurrentLocation } from '@/lib/geo';
 import { safeAppPath } from '@/lib/safe-path';
 import { preloadAreas } from '@/features/map/areas';
 import { mapBridge } from '@/features/map/map-bridge';
@@ -80,8 +79,11 @@ export function AssistantProvider({
         count: async (f) => filterVenues(await fetchVenues(), f).length,
         locate: async () => {
           try {
-            const l = await getCurrentLocation();
-            return { lat: l.latitude, lng: l.longitude };
+            // Il client tool scade a 20 s: niente GPS preciso, basta una posizione recente o approssimata
+            const l = await new Promise<GeolocationPosition>((ok, ko) =>
+              navigator.geolocation.getCurrentPosition(ok, ko, { enableHighAccuracy: false, maximumAge: 300_000, timeout: 8000 }),
+            );
+            return { lat: l.coords.latitude, lng: l.coords.longitude };
           } catch {
             return null;
           }

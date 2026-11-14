@@ -4,6 +4,7 @@
 import { z } from 'zod';
 
 import { DISCIPLINES, getDiscipline, municipioLabel, parseMunicipio, VENUE_KINDS, NATURE_LABELS } from '@/lib/sports/taxonomy';
+import { compact, fold, fuzzyIncludes } from '@/lib/fuzzy';
 import type { VenueSummary } from './types';
 
 export const venueFiltersSchema = z.object({
@@ -17,6 +18,7 @@ export const venueFiltersSchema = z.object({
     .object({ lat: z.number(), lng: z.number(), km: z.number().min(0.2).max(30).default(2) })
     .optional()
     .describe('Raggio dalla posizione'),
+  zona: z.array(z.number().int().positive()).max(12).optional().describe('Id dei quartieri (public/geo/quartieri.json)'),
 });
 
 export type VenueFilters = z.infer<typeof venueFiltersSchema>;
@@ -37,18 +39,54 @@ export function distanceKm(a: { lat: number; lng: number }, b: { lat: number; ln
   return 2 * R * Math.asin(Math.sqrt(s));
 }
 
-const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+/** Parole che non distinguono un luogo da un altro: "impianti sportivi sulla Cassia" → "cassia" */
+const GENERIC = new Set(
+  ('impianto impianti sportivo sportiva sportivi sportive sport struttura strutture luogo luoghi posto posti zona quartiere ' +
+    'via viale piazza largo di del dello della dei degli delle a al allo alla ai agli alle in nel nello nella nei sul sulla sui ' +
+    'su da dal dalla e il lo la i gli le un una uno per con vicino').split(' '),
+);
 
-export function filterVenues(venues: VenueSummary[], f: VenueFilters): VenueSummary[] {
+/**
+ * Testo libero su nome e indirizzo, senza badare a spazi e accenti ("torre vecchia" = "Torrevecchia").
+ * Con `fuzzy` ammette qualche errore di battitura o di trascrizione ("torra vecia").
+ */
+export function textMatches(v: Pick<VenueSummary, 'name' | 'address'>, q: string, fuzzy = false) {
+  const hay = compact(`${v.name} ${v.address ?? ''}`);
+  if (hay.includes(compact(q))) return true;
+  const words = fold(q)
+    .split(' ')
+    .filter((w) => w.length > 1 && !GENERIC.has(w));
+  if (!words.length) return true; // solo parole generiche: non restringe
+  if (words.every((w) => hay.includes(w))) return true;
+  // Errori ammessi solo su una parola: su più parole trova troppe cose a caso ("cassia" → "casa")
+  return fuzzy && words.length === 1 && fuzzyIncludes(words[0], hay);
+}
+
+/**
+ * `areaOf` dà l'id del quartiere di un luogo: serve solo per il filtro `zona`
+ * (le geometrie le ha chi chiama: la mappa o il server). Senza, `zona` si ignora.
+ * Se il testo non trova nulla si riprova ammettendo errori di battitura.
+ */
+export function filterVenues(venues: VenueSummary[], f: VenueFilters, areaOf?: (v: VenueSummary) => number | null): VenueSummary[] {
+  const strict = filterVenuesOnce(venues, f, areaOf, false);
+  return strict.length || !f.q ? strict : filterVenuesOnce(venues, f, areaOf, true);
+}
+
+function filterVenuesOnce(venues: VenueSummary[], f: VenueFilters, areaOf: ((v: VenueSummary) => number | null) | undefined, fuzzy: boolean) {
   const mun = f.municipio != null ? parseMunicipio(f.municipio) : null;
-  const q = f.q ? fold(f.q) : null;
+  const q = f.q?.trim() || null;
+  const zona = f.zona?.length && areaOf ? new Set(f.zona) : null;
   return venues.filter((v) => {
     if (f.disciplina && !disciplineMatches(v.disciplines, f.disciplina)) return false;
     if (f.tipo && v.kind !== f.tipo) return false;
     if (mun && v.municipio !== mun) return false;
     if (f.accessibile && v.accessibility !== 'si') return false;
     if (f.natura && v.nature !== f.natura) return false;
-    if (q && !fold(`${v.name} ${v.address ?? ''}`).includes(q)) return false;
+    if (q && !textMatches(v, q, fuzzy)) return false;
+    if (zona) {
+      const a = areaOf!(v);
+      if (a == null || !zona.has(a)) return false;
+    }
     if (f.vicino) {
       if (v.latitude == null || v.longitude == null) return false;
       if (distanceKm({ lat: v.latitude, lng: v.longitude }, f.vicino) > f.vicino.km) return false;
@@ -71,6 +109,7 @@ export function filtersToSearchParams(f: VenueFilters): URLSearchParams {
   if (f.accessibile) p.set('accessibile', '1');
   if (f.natura) p.set('natura', f.natura);
   if (f.vicino) p.set('vicino', `${f.vicino.lat.toFixed(5)},${f.vicino.lng.toFixed(5)},${f.vicino.km}`);
+  if (f.zona?.length) p.set('zona', f.zona.join(','));
   return p;
 }
 
@@ -89,6 +128,8 @@ export function searchParamsToFilters(p: URLSearchParams): VenueFilters {
   if (n && n in NATURE_LABELS) f.natura = n;
   const near = p.get('vicino')?.split(',').map(Number);
   if (near && near.length === 3 && near.every(Number.isFinite)) f.vicino = { lat: near[0], lng: near[1], km: near[2] };
+  const zona = p.get('zona')?.split(',').map(Number).filter((n) => Number.isInteger(n) && n > 0).slice(0, 12);
+  if (zona?.length) f.zona = zona;
   return f;
 }
 
@@ -101,6 +142,7 @@ export function describeFilters(f: VenueFilters): string {
   if (f.accessibile) parts.push('accessibili');
   if (f.natura) parts.push(NATURE_LABELS[f.natura as keyof typeof NATURE_LABELS].toLowerCase());
   if (f.vicino) parts.push(`entro ${f.vicino.km} km`);
+  if (f.zona?.length) parts.push(f.zona.length === 1 ? 'nel quartiere scelto' : 'nei quartieri scelti');
   if (f.q) parts.push(`“${f.q}”`);
   return parts.join(', ');
 }

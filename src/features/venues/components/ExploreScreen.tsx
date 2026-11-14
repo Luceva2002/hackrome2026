@@ -26,7 +26,15 @@ export function ExploreScreen() {
   const { status } = useAssistant();
   const { venues: all, error, reload } = useVenues();
 
-  const results = useMemo(() => (all ? filterVenues(all, filters) : []), [all, filters]);
+  // Il filtro per quartiere (`zona`) richiede i confini: si applica dopo, con le aree caricate
+  const base = useMemo(() => (all ? filterVenues(all, filters) : []), [all, filters]);
+  const areas = useAreas(base);
+  const zonaKey = filters.zona?.join(',');
+  const results = useMemo(() => {
+    if (!zonaKey || !areas) return base;
+    const ids = new Set(zonaKey.split(',').map(Number));
+    return base.filter((v) => ids.has(areas.areaOf(v)?.id ?? -1));
+  }, [base, areas, zonaKey]);
   // Il luogo aperto resta sulla mappa anche se i filtri lo escluderebbero (link condiviso, Home)
   const shown = useMemo(() => {
     if (!all || !selectedId || results.some((v) => v.id === selectedId)) return results;
@@ -36,7 +44,6 @@ export function ExploreScreen() {
   const summary = describeFilters(filters);
   const resultsRef = useRef(results);
   resultsRef.current = results;
-  const areas = useAreas(results);
   const areasRef = useRef(areas);
   areasRef.current = areas;
   const [zone, setZone] = useState<Zone>({ level: 'roma' });
@@ -52,8 +59,14 @@ export function ExploreScreen() {
   const filterKey = JSON.stringify(filters);
   useEffect(() => {
     if (!all) return;
+    const zona = filters.zona ?? [];
     if (filterKey === '{}') setZone({ level: 'roma' });
-    else if (typeof filters.municipio === 'number') setZone({ level: 'municipio', m: filters.municipio });
+    else if (zona.length) {
+      // Un quartiere: si entra nel suo livello (la mappa lo inquadra); più quartieri: si inquadrano i risultati
+      const info = areas?.areaInfo.get(zona[0]);
+      if (zona.length === 1 && info) setZone({ level: 'area', m: info.municipio, id: zona[0] });
+      else if (areas) mapRef.current?.fitTo(resultsRef.current);
+    } else if (typeof filters.municipio === 'number') setZone({ level: 'municipio', m: filters.municipio });
     else {
       // Area scelta solo perché si era aperto un luogo: la nuova ricerca torna su Roma
       const z = zoneRef.current;
@@ -64,7 +77,7 @@ export function ExploreScreen() {
       } else if (fromPlace) setZone({ level: 'roma' });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterKey, all]);
+  }, [filterKey, all, !!areas]);
 
   // Giro dell'assistente: i timer si cancellano a ogni nuovo comando, se l'utente
   // tocca la mappa o un luogo, e quando si lascia la pagina

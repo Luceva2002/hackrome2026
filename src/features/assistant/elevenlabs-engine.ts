@@ -1,5 +1,7 @@
 import { Conversation, type Conversation as Session } from '@elevenlabs/client';
 
+import { areaAtPoint } from '@/features/map/areas';
+
 import { createLocalEngine, newMessageId, type AssistantCallbacks, type AssistantEngine, type EngineFactory } from './engine';
 
 /**
@@ -25,9 +27,17 @@ function clientTools(act: AssistantCallbacks['act']) {
       else act.map.send({ type: 'fitResults' });
       return 'ok';
     },
+    // Con il quartiere l'agente può cercare "in zona" con `zona`, senza indovinare
     posizione: async () => {
       const at = await act.locate();
-      return at ? JSON.stringify(at) : 'Posizione non disponibile: l’utente non ha dato il permesso.';
+      if (!at) return 'Posizione non disponibile (permesso negato o GPS spento). Chiedi all’utente il quartiere o un indirizzo.';
+      const area = await areaAtPoint(at.lng, at.lat).catch(() => null);
+      return JSON.stringify({
+        ...at,
+        quartiere: area?.nome ?? null,
+        municipio: area?.municipio ?? null,
+        ...(area ? {} : { nota: 'Fuori dai quartieri di Roma: usa `vicino` con lat e lng.' }),
+      });
     },
   };
 }

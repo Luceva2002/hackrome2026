@@ -95,12 +95,18 @@ const agent = {
         llm: LLM,
         tool_ids: toolIds,
         mcp_server_ids: [mcp!.id],
-        built_in_tools: { language_detection: { name: 'language_detection', params: { system_tool_type: 'language_detection' } } },
+        built_in_tools: {
+          language_detection: { name: 'language_detection', params: { system_tool_type: 'language_detection' } },
+          // Rumori, "eh", "...": resta zitto invece di "dimmi pure" (ogni frase costa crediti)
+          skip_turn: { name: 'skip_turn', params: { system_tool_type: 'skip_turn' } },
+        },
       },
     },
     language_presets: { en: { overrides: { agent: { language: 'en' } } } },
-    // Crediti: richiamo dopo 30 s di silenzio (7 s di default disturba in chat), chiusura dopo 60 s senza risposte
-    turn: { turn_timeout: 30 },
+    // Espressiva aggiunge tag come "[slow]" anche nel testo della chat
+    tts: { expressive_mode: false },
+    // Crediti: richiamo dopo 30 s di silenzio (7 s di default disturba in chat); a voce si chiude dopo 45 s di silenzio
+    turn: { turn_timeout: 30, silence_end_call_timeout: 45 },
     conversation: { max_duration_seconds: 600, max_duration_seconds_after_last_agent_message: 60 },
   },
   platform_settings: {

@@ -34,4 +34,29 @@ if (a.risultati[0]) {
   assert.equal(da.url, `/attivita/${a.risultati[0].id}`);
 }
 assert.equal((await call('dettagli_attivita', { id: '00000000-0000-0000-0000-000000000000' })).errore, 'Attività non trovata');
+// Quartieri e testo detti a voce (conversazioni vere del 14/11)
+const zona = async (raw: unknown) => ((await call('cerca_impianti', raw)).quartieri ?? []).map((x: string) => x.split(' (')[0]);
+for (const said of ['Torrevecchia', 'Torre vecchia', 'torra vecia', 'zona torrevecchia']) {
+  assert.deepEqual((await zona({ zona: said })).sort(), ['Torrevecchia Alta', 'Torrevecchia Bassa'], said);
+}
+assert.deepEqual(await zona({ q: 'Torre Vecchia' }), ['Torrevecchia Bassa', 'Torrevecchia Alta'], 'q che è un quartiere diventa zona');
+assert.deepEqual(await zona({ zona: 'garbatela' }), ['Garbatella']);
+assert.deepEqual(await zona({ zona: 'Monti' }), ['Monti'], 'nome esatto: solo il rione');
+assert.deepEqual(await zona({ zona: 'Prati' }), ['Prati']);
+assert.equal((await zona({ q: 'aniene' })).length, 0, 'Aniene è anche un circolo: resta testo');
+const g = await call('cerca_impianti', { zona: 'Garbatella' });
+assert.ok(g.totale > 3 && g.url === '/mappa?zona=200', g.url);
+const unknown = await call('cerca_impianti', { zona: 'xyzzyq' });
+assert.equal(unknown.totale, 0);
+assert.ok(unknown.note.length);
+const cassia = await call('cerca_impianti', { q: 'circolo sportivo sulla cassia' });
+assert.equal(cassia.totale, 0, 'niente risultati a caso su più parole');
+assert.match(cassia.note.join(' '), /indirizzo/);
+const addr = await call('cerca_impianti', { indirizzo: 'piazza Francesco Zambeccari 3' });
+assert.ok(addr.totale > 0 && addr.url.startsWith('/mappa?vicino=41.87'), addr.url);
+assert.ok(addr.risultati.every((r: any) => r.distanza_km <= 1));
+const typo = await call('cerca_impianti', { q: 'aquanienne' });
+assert.ok(typo.risultati.some((r: any) => /aquaniene/i.test(r.nome)) && typo.note, 'errore di battitura su un nome');
+const caff = await call('dettagli_luogo', { id: 'demo-community-caffarella' });
+assert.ok(caff.costo && caff.quartiere && caff.attivita_in_programma.length >= 1, 'scheda con costo, quartiere e attività');
 console.log('OK');

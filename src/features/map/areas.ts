@@ -14,8 +14,8 @@ import { useEffect, useMemo, useState } from 'react';
 
 import type { VenueSummary } from '@/features/venues/types';
 
-type Ring = [number, number][];
-type Geometry = { type: 'Polygon'; coordinates: Ring[] } | { type: 'MultiPolygon'; coordinates: Ring[][] };
+import { inGeometry, polygons, type Geometry, type Ring } from './geometry';
+
 export type BBox = [number, number, number, number];
 
 export interface AreaProps {
@@ -81,20 +81,6 @@ function loadAreas() {
 
 /** Scarica i confini in anticipo (1 MB): la prima frase all'assistente non deve aspettarli. */
 export const preloadAreas = () => void loadAreas().catch(() => {});
-
-const polygons = (g: Geometry): Ring[][] => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates);
-
-function inRing(x: number, y: number, ring: Ring) {
-  let inside = false;
-  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-    const [xi, yi] = ring[i];
-    const [xj, yj] = ring[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
-  }
-  return inside;
-}
-const inGeometry = (x: number, y: number, polys: Ring[][]) =>
-  polys.some(([outer, ...holes]) => inRing(x, y, outer) && !holes.some((h) => inRing(x, y, h)));
 
 interface Indexed {
   f: AreaFeature;
@@ -246,4 +232,10 @@ export async function findQuartiereIn(text: string): Promise<AreaProps | null> {
     if (named && (!best || n.length > foldName(best.nome).length)) best = f.properties;
   }
   return best;
+}
+
+/** Quartiere (e Municipio) in cui cade un punto: per dire all'assistente "sei a Monti". */
+export async function areaAtPoint(lng: number, lat: number): Promise<AreaProps | null> {
+  const { quartieri } = await loadAreas();
+  return quartieri.features.find((f) => inGeometry(lng, lat, polygons(f.geometry)))?.properties ?? null;
 }
