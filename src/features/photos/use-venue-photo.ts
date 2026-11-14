@@ -93,10 +93,14 @@ export function useVenuePhoto(v: PhotoQuery | null) {
     setState(memory.has(v.id) ? 'done' : 'loading');
     findVenuePhoto(v, ctrl.signal)
       .then((p) => {
+        if (ctrl.signal.aborted) return;
         setPhoto(p);
         setState('done');
       })
-      .catch(() => setState('done'));
+      .catch(() => {
+        // Annullata perché è cambiato luogo: lo stato ora appartiene alla nuova ricerca
+        if (!ctrl.signal.aborted) setState('done');
+      });
     return () => ctrl.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [v?.id]);

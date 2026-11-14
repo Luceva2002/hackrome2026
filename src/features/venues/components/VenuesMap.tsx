@@ -213,6 +213,20 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
           }}
         />
         <Layer
+          id="community-ring"
+          type="circle"
+          slot="top"
+          minzoom={12.4}
+          filter={['==', ['get', 'community'], 1]}
+          paint={{
+            'circle-radius': ['interpolate', ['linear'], ['zoom'], 12.4, 4.5, 14, 7.5, 15, 9],
+            'circle-color': 'rgba(0,0,0,0)',
+            'circle-stroke-width': 3,
+            'circle-stroke-color': '#f5b301',
+            'circle-emissive-strength': 1,
+          }}
+        />
+        <Layer
           id="venue-pins"
           type="symbol"
           slot="top"

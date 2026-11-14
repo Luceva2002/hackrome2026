@@ -187,7 +187,7 @@ export function VenueSheet({
             {venue.status !== 'attivo' && venue.status !== 'da_verificare' && <Fact tone="warn">{STATUS_LABELS[venue.status]}</Fact>}
             {venue.accessibility === 'si' && (
               <Fact tone="info">
-                <Accessibility className="w-3.5 h-3.5" aria-hidden /> Accessibile
+                <Accessibility className="w-3.5 h-3.5" aria-hidden /> Accessibilità dichiarata
               </Fact>
             )}
             {venue.manager_verified && (
@@ -197,7 +197,7 @@ export function VenueSheet({
             )}
             {venue.community && (
               <Fact>
-                <Users className="w-3.5 h-3.5" aria-hidden /> Della community
+                <Users className="w-3.5 h-3.5" aria-hidden /> Segnalato dalla community
               </Fact>
             )}
             {venue.nature !== 'da_verificare' && <Fact>{NATURE_LABELS[venue.nature]}</Fact>}
@@ -313,9 +313,9 @@ export function VenueSheet({
               <Field label="Contatti" field="phone" venue={venue}>
                 {venue.phone || venue.website ? (
                   <span className="flex flex-col">
-                    {venue.phone && <a className="underline" href={`tel:${venue.phone}`}>{venue.phone}</a>}
-                    {venue.website && (
-                      <a className="underline break-all" href={venue.website} target="_blank" rel="noreferrer">
+                    {venue.phone && <a className="underline" href={`tel:${venue.phone.replace(/[^\d+]/g, '')}`}>{venue.phone}</a>}
+                    {venue.website && /^https?:\/\//i.test(venue.website) && (
+                      <a className="underline break-all" href={venue.website} target="_blank" rel="noopener noreferrer">
                         {venue.website}
                       </a>
                     )}

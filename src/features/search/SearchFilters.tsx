@@ -17,7 +17,8 @@ const TOP_SPORTS: { id: string; label: string; emoji: string }[] = [
   ),
 ];
 const TOP_IDS = new Set(TOP_SPORTS.map((s) => s.id));
-const OTHER_SPORTS = DISCIPLINES.filter((d) => !TOP_IDS.has(d.id) && d.group !== 'calcio' && d.group !== 'arti_marziali');
+// Le varianti (calcio a 5, judo…) si scelgono qui: i chip coprono solo il gruppo
+const OTHER_SPORTS = DISCIPLINES.filter((d) => !TOP_IDS.has(d.id));
 
 const NATURE_OPTIONS = (Object.keys(NATURE_LABELS) as (keyof typeof NATURE_LABELS)[]).filter((k) => k !== 'da_verificare');
 
