@@ -29,3 +29,9 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - **"Consigliati per te" senza profilo.** Non abbiamo ancora preferenze utente: per ora consigliamo le schede più complete (gestore verificato, accessibilità dichiarata, attive) e lo diciamo nella card. Fabi può sostituire l'euristica mantenendo la firma.
 - **Assistente segnaposto onesto.** Finché il motore ElevenLabs non c'è, il pulsante e la chat funzionano ma rispondono che l'assistente non è collegato, invece di simulare risposte.
 - **Fabiola/Fabi.** Nella richiesta compaiono "Fabiola ed Edo (assistente)" e "Fabi (Exa)": abbiamo letto tre persone, Luca UI, Edo assistente, Fabi Exa. Da correggere in `docs/SPLIT.md` se diverso.
+
+## Foto dei luoghi
+- **Fonte: Wikidata + Wikimedia Commons, dal browser.** Le API Wikimedia accettano CORS, quindi la foto si cerca quando si apre la scheda o la card, senza un import da rilanciare. Il container di sviluppo non raggiunge Wikimedia: verificato solo il codice e il segnaposto, la ricerca vera va provata sul telefono.
+- **Regola di accettazione.** Elemento Wikidata con foto entro 250 m e almeno una parola significativa in comune con il nome del luogo (escluse parole generiche come "centro sportivo", "palestra", "via"). Il motivo dell'abbinamento è nel `title` del credito. Meglio nessuna foto che quella di un altro posto.
+- **Credito sempre visibile** (autore · licenza · Wikimedia Commons) con link alla pagina della foto.
+- **Exa** può aggiungere un fornitore alla stessa catena (filone di Fabi), non un secondo sistema.

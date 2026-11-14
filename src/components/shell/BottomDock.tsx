@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { AnimatePresence, motion } from 'motion/react';
 import { House, Map as MapIcon, Search } from 'lucide-react';
 
 import { AssistantButton } from '@/features/assistant/AssistantButton';
@@ -22,29 +23,40 @@ export function BottomDock() {
   return (
     <nav
       aria-label="Barra principale"
-      className="fixed z-40 left-0 right-0 bottom-0 px-3 sm:px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-none"
+      className="under-sheet fixed z-40 inset-x-0 bottom-0 px-edge pb-[calc(var(--safe-b)+var(--edge))] pointer-events-none"
     >
-      <div className="mx-auto max-w-[640px] flex items-center gap-2.5 pointer-events-auto">
+      <div className="mx-auto max-w-[560px] flex items-center gap-(--gap) pointer-events-auto">
         <Link
           href={onMap ? '/' : '/mappa'}
           aria-label={onMap ? 'Torna alla home' : 'Apri la mappa'}
-          className="w-16 h-16 shrink-0 rounded-full liquid-glass flex items-center justify-center text-hi active:scale-95 transition-transform"
+          className="relative w-dock h-dock shrink-0 rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform duration-200"
         >
-          {onMap ? <House className="w-7 h-7" aria-hidden /> : <MapIcon className="w-7 h-7" aria-hidden />}
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.span
+              key={onMap ? 'home' : 'map'}
+              initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, scale: 0.5, rotate: 30 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              className="flex"
+            >
+              {onMap ? <House className="w-6 h-6" aria-hidden /> : <MapIcon className="w-6 h-6" aria-hidden />}
+            </motion.span>
+          </AnimatePresence>
         </Link>
 
         <button
           type="button"
           onClick={openSearch}
           aria-haspopup="dialog"
-          className="flex-1 min-w-0 h-16 rounded-full liquid-glass flex items-center gap-3 px-5 text-left active:scale-[0.99] transition-transform"
+          className="flex-1 min-w-0 h-dock rounded-full liquid-glass flex items-center gap-3 pl-5 pr-4 text-left active:scale-[0.98] transition-transform duration-200"
         >
           <Search className="w-5 h-5 text-hi shrink-0" aria-hidden />
           <span className="min-w-0 flex flex-col">
-            <span className="text-[16px] font-bold text-hi truncate" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="text-[16px] leading-tight font-bold text-hi truncate" style={{ fontFamily: 'var(--font-display)' }}>
               {summary ? 'Modifica ricerca' : 'Cerca un luogo'}
             </span>
-            <span className="text-[13px] text-mid truncate">{summary || 'Disciplina · Municipio · Accessibilità'}</span>
+            <span className="text-[13px] leading-tight text-mid truncate">{summary || 'Sport, zona, accessibilità'}</span>
           </span>
         </button>
 

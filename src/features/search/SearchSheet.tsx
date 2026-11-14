@@ -2,15 +2,15 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { MapPinned } from 'lucide-react';
+import { MapPinned, RotateCcw } from 'lucide-react';
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { useShell } from '@/components/shell/ShellProvider';
 import { useGeolocation } from '@/hooks/use-geolocation';
 import { describeFilters, filterVenues, filtersToSearchParams, searchParamsToFilters, type VenueFilters } from '@/features/venues/filters';
 import { useVenues } from '@/features/venues/hooks/use-venues';
-import { VenueFiltersBar } from '@/features/venues/components/VenueFiltersBar';
 import { VenueRow } from '@/features/venues/components/VenueList';
+import { SearchField, SearchFilters } from './SearchFilters';
 import { WebResults } from './web/WebResults';
 
 /** Tendina dal basso: barra di ricerca in cima, filtri sotto, risultati in diretta. */
@@ -43,38 +43,62 @@ export function SearchSheet() {
     if (loc) setDraft((d) => ({ ...d, municipio: undefined, vicino: { lat: loc.latitude, lng: loc.longitude, km: 2 } }));
   };
 
+  const active = Object.values(draft).some((v) => v != null && v !== '');
+
   return (
     <BottomSheet
       open={searchOpen}
       onClose={closeSearch}
       title="Cerca un luogo"
-      hideTitle
+      size="tall"
+      toolbar={<SearchField value={draft.q ?? ''} onChange={(q) => setDraft((d) => ({ ...d, q: q || undefined }))} />}
       footer={
-        <button
-          type="button"
-          onClick={() => go()}
-          className="w-full h-14 rounded-2xl bg-gold-500 hover:bg-gold-400 text-(--on-gold) font-bold text-[16px] flex items-center justify-center gap-2 shadow-(--shadow-gold)"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          <MapPinned className="w-5 h-5" aria-hidden />
-          {venues ? `Mostra ${results.length.toLocaleString('it-IT')} luoghi sulla mappa` : 'Caricamento…'}
-        </button>
+        <div className="flex items-center gap-2">
+          {active && (
+            <button
+              type="button"
+              onClick={() => setDraft({})}
+              className="h-14 px-4 rounded-full glass-well text-hi font-bold text-[15px] flex items-center gap-1.5 shrink-0"
+            >
+              <RotateCcw className="w-4 h-4" aria-hidden />
+              Azzera
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => go()}
+            className="flex-1 min-w-0 h-14 rounded-full bg-gold-500 hover:bg-gold-400 active:scale-[0.98] transition-transform text-(--on-gold) font-bold text-[16px] flex items-center justify-center gap-2 shadow-(--shadow-gold)"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            <MapPinned className="w-5 h-5 shrink-0" aria-hidden />
+            <span className="truncate">
+              {venues ? `Mostra ${results.length.toLocaleString('it-IT')} ${results.length === 1 ? 'luogo' : 'luoghi'}` : 'Caricamento…'}
+            </span>
+          </button>
+        </div>
       }
     >
-      <VenueFiltersBar filters={draft} onChange={setDraft} onNearMe={nearMe} locating={geo.loading} layout="sheet" />
+      <SearchFilters filters={draft} onChange={setDraft} onNearMe={nearMe} locating={geo.loading} />
 
       <p className="sr-only" role="status" aria-live="polite">
         {venues ? `${results.length} luoghi${summary ? `, ${summary}` : ''}` : ''}
       </p>
 
-      <h3 className="eyebrow mt-5 mb-2">{summary ? `Risultati · ${summary}` : 'Tutti i luoghi'}</h3>
-      <ul className="flex flex-col gap-2" aria-label="Risultati della ricerca">
-        {results.slice(0, 20).map((v) => (
-          <VenueRow key={v.id} venue={v} selected={false} onSelect={(id) => go({ luogo: id })} />
-        ))}
-      </ul>
-      {results.length > 20 && (
-        <p className="text-[13px] text-mid mt-3 text-center">Altri {results.length - 20} sulla mappa.</p>
+      {active && (
+        <section className="mt-7" aria-labelledby="search-preview">
+          <h3 id="search-preview" className="eyebrow mb-2.5">
+            Anteprima · {results.length.toLocaleString('it-IT')} {results.length === 1 ? 'luogo' : 'luoghi'}
+          </h3>
+          {results.length === 0 ? (
+            <p className="text-[14px] text-mid py-4">Nessun luogo con questi filtri. Prova a toglierne uno.</p>
+          ) : (
+            <ul className="flex flex-col gap-2" aria-label="Risultati della ricerca">
+              {results.slice(0, 6).map((v) => (
+                <VenueRow key={v.id} venue={v} selected={false} onSelect={(id) => go({ luogo: id })} />
+              ))}
+            </ul>
+          )}
+        </section>
       )}
 
       <WebResults query={draft.q ?? ''} />

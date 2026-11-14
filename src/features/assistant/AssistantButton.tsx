@@ -71,7 +71,7 @@ export function AssistantButton() {
           end(true);
         }
       }}
-      className={`relative w-16 h-16 shrink-0 rounded-full flex items-center justify-center select-none touch-none transition-transform active:scale-95 ${
+      className={`relative w-dock h-dock shrink-0 rounded-full flex items-center justify-center select-none touch-none transition-transform duration-200 active:scale-90 ${
         listening ? 'bg-gold-500 text-(--on-gold) shadow-(--shadow-gold)' : 'liquid-glass text-hi'
       }`}
     >
@@ -84,9 +84,9 @@ export function AssistantButton() {
       {busy ? (
         <Loader2 className="w-6 h-6 animate-spin" aria-hidden />
       ) : listening ? (
-        <AudioLines className="w-7 h-7" aria-hidden />
+        <AudioLines className="w-6 h-6" aria-hidden />
       ) : (
-        <Mic className="w-7 h-7" aria-hidden />
+        <Mic className="w-6 h-6" aria-hidden />
       )}
     </button>
   );

@@ -5,18 +5,13 @@ import { Accessibility, BadgeCheck } from 'lucide-react';
 
 import { getDiscipline, getVenueKind, municipioLabel } from '@/lib/sports/taxonomy';
 import type { VenueSummary } from '@/features/venues/types';
-
-export interface VenuePhoto {
-  url: string;
-  /** Obbligatoria: da dove viene la foto (es. "Wikimedia Commons, CC BY-SA"). */
-  credit: string;
-  alt: string;
-}
+import type { VenuePhoto } from '@/features/photos/types';
+import { useVenuePhoto } from '@/features/photos/use-venue-photo';
 
 /**
  * Card stile "annuncio": immagine in alto, nome, zona, descrizione breve.
- * Non abbiamo foto verificate: senza `photo` mostriamo un segnaposto dichiarato,
- * mai un'immagine di repertorio che sembri il luogo vero.
+ * La foto arriva solo da fonti con licenza e credito (vedi features/photos);
+ * se non c'è mostriamo un segnaposto dichiarato, mai un'immagine di repertorio.
  */
 export function VenueCard({
   venue,
@@ -29,6 +24,8 @@ export function VenueCard({
   distanceKm?: number;
   photo?: VenuePhoto;
 }) {
+  const found = useVenuePhoto(photo ? null : venue);
+  const shown = photo ?? found.photo;
   const kind = getVenueKind(venue.kind);
   const disciplines = venue.disciplines.slice(0, 3).map((d) => getDiscipline(d).label);
   const description = venue.structures ?? (disciplines.length ? disciplines.join(' · ') : 'Dettagli da verificare');
@@ -39,15 +36,17 @@ export function VenueCard({
         href={`/mappa?luogo=${encodeURIComponent(venue.id)}`}
         className="group block rounded-[26px] focus-visible:outline-offset-4"
       >
-        <div className="relative aspect-[4/3] rounded-[22px] overflow-hidden">
-          {photo ? (
+        <div className="relative aspect-[4/3] rounded-card overflow-hidden shadow-(--shadow-card)">
+          {shown ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={photo.url} alt={photo.alt} className="w-full h-full object-cover" loading="lazy" />
-              <span className="absolute bottom-2 right-2 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-black/60 text-white">
-                {photo.credit}
+              <img src={shown.url} alt={shown.alt} className="w-full h-full object-cover animate-[fadein_.4s_ease-out]" loading="lazy" />
+              <span className="absolute bottom-2 right-2 max-w-[85%] truncate text-[11px] font-semibold px-2 py-0.5 rounded-full bg-black/60 text-white">
+                Foto: {shown.credit}
               </span>
             </>
+          ) : found.loading ? (
+            <div className="w-full h-full animate-pulse" style={{ background: `${kind.color}1a` }} aria-label="Cerco una foto" />
           ) : (
             <div
               className="w-full h-full flex flex-col items-center justify-center gap-1"

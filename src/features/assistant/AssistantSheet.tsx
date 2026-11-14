@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import { Mic, MicOff, SendHorizontal } from 'lucide-react';
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -32,6 +33,7 @@ export function AssistantSheet() {
       open={chatOpen}
       onClose={closeChat}
       title="Assistente"
+      size="medium"
       footer={
         <form
           onSubmit={(e) => {
@@ -46,7 +48,7 @@ export function AssistantSheet() {
             aria-pressed={listening}
             aria-label={listening ? 'Smetti di parlare' : 'Parla con l’assistente'}
             className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border ${
-              listening ? 'bg-gold-500 border-gold-500 text-(--on-gold)' : 'bg-white border-(--stroke-dark) text-hi'
+              listening ? 'bg-gold-500 border-gold-500 text-(--on-gold) animate-pulse' : 'glass-well text-hi'
             }`}
           >
             {listening ? <MicOff className="w-5 h-5" aria-hidden /> : <Mic className="w-5 h-5" aria-hidden />}
@@ -61,7 +63,7 @@ export function AssistantSheet() {
             onChange={(e) => setText(e.target.value)}
             placeholder="Chiedi qualcosa…"
             autoComplete="off"
-            className="flex-1 min-w-0 h-12 px-4 rounded-full bg-white border border-(--stroke-dark) text-[16px] text-hi outline-none focus:border-gold-500"
+            className="flex-1 min-w-0 h-12 px-4 rounded-full glass-well text-[16px] text-hi outline-none focus:border-gold-500 focus:bg-white transition-colors"
           />
           <button
             type="submit"
@@ -86,7 +88,7 @@ export function AssistantSheet() {
                   <button
                     type="button"
                     onClick={() => submit(s)}
-                    className="w-full text-left px-4 py-3 rounded-2xl bg-white/80 border border-(--stroke-dark) text-[15px] font-semibold text-hi hover:bg-white"
+                    className="w-full text-left px-4 py-3 rounded-card glass-well text-[15px] font-semibold text-hi hover:bg-white active:scale-[0.98] transition-transform"
                   >
                     “{s}”
                   </button>
@@ -96,8 +98,11 @@ export function AssistantSheet() {
           </div>
         )}
         {messages.map((m) => (
-          <div
+          <motion.div
             key={m.id}
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 32 }}
             className={`max-w-[85%] px-4 py-2.5 rounded-[20px] text-[15px] leading-snug ${
               m.role === 'user' ? 'self-end bg-ink text-white rounded-br-md' : 'self-start bg-white text-hi border border-(--stroke) rounded-bl-md'
             }`}
@@ -116,7 +121,7 @@ export function AssistantSheet() {
                 ))}
               </ul>
             ) : null}
-          </div>
+          </motion.div>
         ))}
         <div ref={endRef} />
       </div>

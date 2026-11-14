@@ -28,6 +28,7 @@ git checkout -b feat/ui          # Luca · feat/assistente (Edo) · feat/exa (Fa
 
 ## Luca · UI e schermate (`feat/ui`)
 **Possiede:** `src/components/{shell,ui,layout,brand}/**`, `src/features/{home,venues/components,profile,auth}/**`, `src/app/(app)/**` (tranne quanto sotto), `src/app/globals.css`.
+- Regole di spazi, vetro e tendine in `docs/DESIGN.md`: rispettarle anche nelle nuove schermate.
 - Rifinire il liquid glass (dock, tendine, top bar), animazioni con `prefers-reduced-motion`, contrasto AA.
 - Profilo in alto a destra: dati personali + pannello essenziale (ruolo, le mie attività, gestore, admin se admin, esci).
 - Schermate attività (API pronte): `/attivita` bacheca con filtri **nell'URL** (`paramsToActivityFilters`), `/attivita/[id]` con Iscriviti/Annulla, `/attivita/nuova?luogo=<id>` dentro `RequireAuth`, `/attivita?tab=mie`.
@@ -41,15 +42,16 @@ git checkout -b feat/ui          # Luca · feat/assistente (Edo) · feat/exa (Fa
 - Prompt in `src/lib/agent/voice-prompt.md` (+ `src/lib/exa/voice-prompt-web-search.md`). La chat scritta usa lo stesso motore.
 
 ## Fabi · Ricerca delle informazioni via Exa (`feat/exa`)
-**Possiede:** `src/lib/exa/**`, `src/app/api/exa/**`, `scripts/exa/**`, `src/features/search/web/**`, `src/features/home/recommend.ts`, `supabase/migrations/*_exa_*.sql`.
+**Possiede:** `src/lib/exa/**`, `src/app/api/exa/**`, `scripts/exa/**`, `src/features/search/web/**`, `src/features/home/recommend.ts`, `src/features/photos/**`, `supabase/migrations/*_exa_*.sql`.
 - `WebResults` (`src/features/search/web/WebResults.tsx`): sotto i luoghi nella tendina di ricerca, chiama `POST /api/exa/search {query, objective}` e mostra titolo + sito. Sempre la fonte, mai scritture sulle schede.
 - `recommendVenues(all, ctx)` in `src/features/home/recommend.ts`: oggi euristica sui dati completi. Può usare preferenze utente e fatti Exa, **stessa firma**, `reason` sempre vero.
-- Foto dei luoghi: solo con licenza e credito (es. Wikimedia Commons) → `VenueCard` accetta `photo={url, credit, alt}`. Senza foto verificata resta il segnaposto.
+- Foto dei luoghi: c'è già il fornitore Wikidata/Commons (`src/features/photos/wikidata.ts`), cercato dal browser all'apertura. Un fornitore Exa (foto dal sito ufficiale, con URL della pagina come fonte) si aggiunge a `PHOTO_PROVIDERS` in `src/features/photos/use-venue-photo.ts` con la firma `PhotoProvider`. Senza foto verificata resta il segnaposto.
 - Fatti sugli impianti (orari, contatti, sito) → solo `proposals` con fonte `exa_web`, approvate dall'admin.
 
 ## Contratti (non cambiarli senza avvisare)
 - **Assistente:** `AssistantEngine {startVoice, stopVoice, sendText, dispose}` + callback `onStatus`, `onMessage({id, role, text, at, sources?})`. Stati: `idle | connecting | listening | thinking | speaking | error`.
 - **Shell:** `useShell() → {searchOpen, openSearch, closeSearch}` · `useAssistant() → {status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText}`.
+- **Foto:** `PhotoProvider = (venue, signal) => Promise<VenuePhoto | null>`, `VenuePhoto {url, credit, sourceUrl, alt, provider, match}`.
 - **Home:** `recommendVenues(all, {location?, disciplines?}, limit) → {venue, reason?, distanceKm?}[]`.
 - **Ricerca web:** `<WebResults query={string} />` · `POST /api/exa/search {query, objective} → {results: [{title, url, site, highlights}]}`, 503 senza chiave, 429 oltre 10/min.
 - **URL** — Mappa: `/mappa?q&disciplina&tipo&municipio&accessibile=1&natura&vicino=lat,lng,km&luogo=<id>` · Attività: `/attivita?quando=oggi|domani|weekend|settimana&fascia=mattina|pomeriggio|sera&disciplina&livello&municipio&posti_liberi=1&accessibile=1&luogo&tab=mie`, `/attivita/[id]`, `/attivita/nuova?luogo=<id>`.

@@ -1,11 +1,12 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { List, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
+import { motion } from 'motion/react';
+import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
 
 import { useShell } from '@/components/shell/ShellProvider';
 import { useGeolocation } from '@/hooks/use-geolocation';
-import { getVenueKind, VENUE_KINDS } from '@/lib/sports/taxonomy';
+import { VENUE_KINDS } from '@/lib/sports/taxonomy';
 import { describeFilters, filterVenues } from '../filters';
 import { useVenueFilters } from '../hooks/use-venue-filters';
 import { useVenues } from '../hooks/use-venues';
@@ -63,34 +64,49 @@ export function ExploreScreen() {
       </div>
 
       <div
-        className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
-        style={{ background: 'linear-gradient(to bottom, rgba(244,245,247,0.92), rgba(244,245,247,0))' }}
+        className="absolute top-0 inset-x-0 h-48 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(to bottom, rgba(244,245,247,0.75), rgba(244,245,247,0))' }}
         aria-hidden
       />
 
       <h1 className="sr-only">Mappa dei luoghi dove fare sport a Roma</h1>
 
-      {/* Filtri attivi: si modificano dalla barra di ricerca in basso */}
-      {summary && (
-        <div className="absolute z-20 left-0 right-0 top-[calc(env(safe-area-inset-top)+4.75rem)] px-4 sm:px-6 flex gap-2 pointer-events-none">
-          <button
-            type="button"
-            onClick={openSearch}
-            className="pointer-events-auto liquid-glass rounded-full h-11 pl-3.5 pr-4 min-w-0 flex items-center gap-2 text-[14px] font-bold text-hi"
-          >
-            <SlidersHorizontal className="w-4 h-4 shrink-0" aria-hidden />
-            <span className="truncate">{summary}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setFilters({})}
-            aria-label="Azzera i filtri"
-            className="pointer-events-auto liquid-glass rounded-full w-11 h-11 shrink-0 flex items-center justify-center text-hi"
-          >
-            <X className="w-4 h-4" aria-hidden />
-          </button>
+      {/* Riga sotto la top bar: filtri attivi + tipologie a un tocco (fanno anche da legenda dei pin) */}
+      <div className="absolute z-20 inset-x-0 top-[calc(var(--safe-t)+var(--edge)+var(--control-h)+var(--gap))] pointer-events-none">
+        <div className="flex gap-(--gap) overflow-x-auto no-scrollbar px-edge pb-2 [&>*]:pointer-events-auto" role="group" aria-label="Filtri rapidi">
+          {summary && (
+            <span className="flex shrink-0 liquid-glass rounded-full h-chip">
+              <button type="button" onClick={openSearch} className="pl-3.5 pr-2 flex items-center gap-2 text-[14px] font-bold text-hi max-w-[60vw]">
+                <SlidersHorizontal className="w-4 h-4 shrink-0" aria-hidden />
+                <span className="truncate">{summary}</span>
+              </button>
+              <button type="button" onClick={() => setFilters({})} aria-label="Azzera i filtri" className="w-10 flex items-center justify-center text-hi border-l border-black/5">
+                <X className="w-4 h-4" aria-hidden />
+              </button>
+            </span>
+          )}
+          {VENUE_KINDS.map((k) => {
+            const on = filters.tipo === k.id;
+            return (
+              <motion.button
+                key={k.id}
+                type="button"
+                whileTap={{ scale: 0.94 }}
+                aria-pressed={on}
+                onClick={() => setFilters({ ...filters, tipo: on ? undefined : k.id })}
+                className={`shrink-0 h-chip pl-1.5 pr-3.5 rounded-full flex items-center gap-2 text-[14px] font-semibold transition-colors ${
+                  on ? 'bg-ink text-white shadow-(--shadow-float)' : 'liquid-glass text-hi'
+                }`}
+              >
+                <span className="w-7 h-7 rounded-full flex items-center justify-center text-[14px]" style={{ background: k.color }} aria-hidden>
+                  {k.emoji}
+                </span>
+                {k.label}
+              </motion.button>
+            );
+          })}
         </div>
-      )}
+      </div>
 
       {/* Annuncio per screen reader: numero di risultati */}
       <p className="sr-only" role="status" aria-live="polite">
@@ -100,7 +116,7 @@ export function ExploreScreen() {
       {/* Elenco: pannello su desktop, foglio a tutto schermo su mobile */}
       <section
         aria-label="Elenco dei luoghi"
-        className={`${mobileList ? 'flex' : 'hidden'} lg:flex flex-col absolute z-20 left-0 right-0 bottom-0 top-[calc(env(safe-area-inset-top)+8.5rem)] lg:top-24 lg:left-6 lg:right-auto lg:bottom-28 lg:w-[400px] glass-heavy rounded-t-[28px] lg:rounded-[28px] overflow-hidden`}
+        className={`${mobileList ? 'flex' : 'hidden'} lg:flex flex-col absolute z-20 left-edge right-edge top-[calc(var(--safe-t)+8.5rem)] bottom-[calc(var(--dock-space)+var(--control-h)+var(--gap))] lg:top-32 lg:right-auto lg:bottom-[var(--dock-space)] lg:w-[400px] liquid-glass-thick rounded-sheet overflow-hidden`}
       >
         <div className="px-4 pt-4 pb-2 flex items-center justify-between gap-2">
           <p className="text-[14px] font-bold text-hi" aria-hidden>
@@ -110,7 +126,7 @@ export function ExploreScreen() {
             <span className="text-[12px] text-mid shrink-0">{(results.length - located).toLocaleString('it-IT')} senza posizione</span>
           )}
         </div>
-        <div className="overflow-y-auto px-3 pb-dock lg:pb-4">
+        <div className="overflow-y-auto px-3 pb-4">
           {loadError ? (
             <div className="text-center py-10">
               <p className="text-[14px] text-mid mb-3">Non riesco a caricare i luoghi.</p>
@@ -136,23 +152,24 @@ export function ExploreScreen() {
         </div>
       </section>
 
-      {/* Legenda (desktop) */}
-      <div className="hidden lg:flex absolute z-10 right-6 bottom-28 glass rounded-2xl px-3 py-2 gap-3 flex-wrap max-w-[520px]" aria-hidden>
-        {VENUE_KINDS.map((k) => (
-          <span key={k.id} className="flex items-center gap-1.5 text-[12px] font-semibold text-mid">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: getVenueKind(k.id).color }} />
-            {k.label}
-          </span>
-        ))}
-      </div>
-
       {/* Barra mobile: mappa / elenco */}
-      <div className="lg:hidden absolute z-30 left-0 right-0 bottom-[calc(env(safe-area-inset-bottom)+6rem)] px-4 pointer-events-none flex justify-center">
+      <div className="under-sheet absolute z-30 inset-x-0 bottom-[var(--dock-space)] px-edge pointer-events-none flex items-center justify-center">
+        <button
+          type="button"
+          onClick={async () => {
+            const loc = geo.location ?? (await geo.requestAccess());
+            if (loc) mapRef.current?.flyTo(loc.longitude, loc.latitude, 15);
+          }}
+          aria-label="Centra la mappa sulla mia posizione"
+          className="pointer-events-auto absolute right-edge w-control h-control rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform"
+        >
+          <LocateFixed className={`w-5 h-5 ${geo.loading ? 'animate-pulse' : ''}`} aria-hidden />
+        </button>
         <button
           type="button"
           onClick={() => setMobileList((v) => !v)}
           aria-expanded={mobileList}
-          className="pointer-events-auto h-12 px-5 rounded-full bg-ink text-white font-bold text-[15px] flex items-center gap-2 shadow-(--shadow-float)"
+          className="lg:hidden pointer-events-auto h-control px-5 rounded-full bg-ink/90 backdrop-blur-md text-white font-bold text-[15px] flex items-center gap-2 shadow-(--shadow-float) active:scale-95 transition-transform"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           {mobileList ? <MapIcon className="w-5 h-5" aria-hidden /> : <List className="w-5 h-5" aria-hidden />}
@@ -160,7 +177,7 @@ export function ExploreScreen() {
         </button>
       </div>
 
-      <VenueSheet id={selectedId} onClose={() => setSelectedId(null)} />
+      <VenueSheet id={selectedId} onClose={() => setSelectedId(null)} userLocation={geo.location} />
     </div>
   );
 }

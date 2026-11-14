@@ -20,3 +20,8 @@ Geocoding verificato: scartati i falsi positivi (via diversa o altro comune); 1.
 Dock in basso a tre elementi (Home↔Mappa, barra di ricerca che apre la tendina con filtri e risultati, assistente: tieni premuto per parlare, tocca per la chat) e profilo in alto a destra.
 Nuova Home con "Consigliati per te" e "Vicino a te" in card stile annuncio, segnaposto dichiarato al posto delle foto; la mappa si sposta su `/mappa` con i filtri attivi in alto.
 Punti di aggancio per Edo (`AssistantEngine`) e Fabi (`WebResults`, `recommendVenues`, foto con credito); divisione in tre in `docs/SPLIT.md`.
+
+## Design mobile · ricerca, mappa, tendine, foto — ✓
+Regole di spazi e dimensioni come token (`docs/DESIGN.md`), liquid glass a tre strati, tendine a molla che galleggiano sopra il dock (che si fa da parte) con X, Esc e trascinamento per chiudere.
+Ricerca con barra in cima e filtri a chip (sport, tipo di luogo, Municipio, gestione); mappa con pin a goccia che mostrano l'icona del tipo di luogo, gruppi con alone, chip delle tipologie come legenda, pulsante "la mia posizione".
+Foto da Wikidata/Commons cercate all'apertura, accettate solo se vicine (≤ 250 m) e con nome compatibile, sempre con autore e licenza; scheda del luogo ridotta all'essenziale, il resto in "Tutti i dati e le fonti".

@@ -244,36 +244,131 @@
   }
 }
 
-/* ═══ Liquid glass (dock, tendine, pulsanti flottanti) ═══
-   Vetro chiaro con riflesso interno. Il fondo resta ≥ 78% opaco così il
-   testo scuro mantiene il contrasto AA anche sopra la mappa. */
+/* ═══ Regole di layout mobile ═══════════════════════════════
+   Griglia a 4 px. Tutto ciò che si tocca è ≥ 44 px (WCAG 2.5.5).
+   --edge   margine dai bordi dello schermo per elementi flottanti
+   --pad    padding interno di tendine e card
+   --gap    spazio tra elementi fratelli
+   --dock-h altezza dei controlli del dock (pulsanti e barra)
+   Raggi: pill (controlli), 20 (card), 32 (tendine). */
+:root {
+  --edge: 12px;
+  --pad: 16px;
+  --gap: 8px;
+  --gap-lg: 24px;
+  --dock-h: 64px;
+  --control-h: 48px;
+  --chip-h: 40px;
+  --r-card: 20px;
+  --r-sheet: 32px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+  --dock-space: calc(var(--safe-b) + var(--edge) + var(--dock-h) + 16px);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --spacing-edge: var(--edge);
+  --spacing-pad: var(--pad);
+  --spacing-dock: var(--dock-h);
+  --spacing-control: var(--control-h);
+  --spacing-chip: var(--chip-h);
+  --radius-card: var(--r-card);
+  --radius-sheet: var(--r-sheet);
+}
+
+/* ═══ Liquid glass ═══════════════════════════════════════════
+   Tre strati come il vetro vero:
+   1. sfocatura + saturazione dello sfondo (backdrop-filter)
+   2. tinta chiara con riflesso speculare in alto a sinistra
+   3. bordo luminoso: luce in alto, ombra interna in basso
+   Il fondo resta ≥ 72% opaco: testo scuro AA anche sopra la mappa. */
 @utility liquid-glass {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.34) 100%),
-    rgba(248, 249, 251, 0.78);
-  backdrop-filter: blur(28px) saturate(1.9);
-  -webkit-backdrop-filter: blur(28px) saturate(1.9);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(250, 251, 253, 0.72);
+  background-image:
+    radial-gradient(120% 80% at 15% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0.2) 100%);
+  backdrop-filter: blur(24px) saturate(1.8) brightness(1.04);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1.04);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(15, 23, 42, 0.06),
-    0 10px 30px rgba(15, 23, 42, 0.16),
-    0 2px 6px rgba(15, 23, 42, 0.08);
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.95),
+    inset 1px 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(15, 23, 42, 0.07),
+    inset 0 -12px 24px -16px rgba(15, 23, 42, 0.12),
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 8px 24px rgba(15, 23, 42, 0.12),
+    0 24px 48px -12px rgba(15, 23, 42, 0.14);
+}
+
+/* Variante più densa per pannelli grandi con molto testo (tendine) */
+@utility liquid-glass-thick {
+  background-color: rgba(248, 249, 252, 0.93);
+  background-image:
+    radial-gradient(90% 50% at 10% 0%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 30%);
+  backdrop-filter: blur(40px) saturate(1.9);
+  -webkit-backdrop-filter: blur(40px) saturate(1.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 1px 0.5px rgba(255, 255, 255, 1),
+    inset 0 -1px 1px rgba(15, 23, 42, 0.06),
+    0 2px 6px rgba(15, 23, 42, 0.06),
+    0 30px 60px -10px rgba(15, 23, 42, 0.28);
+}
+
+/* Superficie interna "incisa" nel vetro (campi, chip spenti) */
+@utility glass-well {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .liquid-glass {
+  .liquid-glass,
+  .liquid-glass-thick {
     background: #f8f9fb;
   }
 }
 
 @media (prefers-contrast: more) {
-  .liquid-glass {
+  .liquid-glass,
+  .liquid-glass-thick {
     background: #ffffff;
     border-color: var(--ink);
   }
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .liquid-glass,
+  .liquid-glass-thick {
+    background: #f8f9fb;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 @utility pb-dock {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 7rem);
+  padding-bottom: var(--dock-space);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Elementi flottanti che si fanno da parte quando sale una tendina */
+.under-sheet {
+  transition:
+    opacity 0.25s var(--ease-out),
+    transform 0.35s var(--ease-out);
+}
+html[data-sheets] .under-sheet {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  pointer-events: none;
 }
