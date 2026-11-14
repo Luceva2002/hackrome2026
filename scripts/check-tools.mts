@@ -59,4 +59,15 @@ const typo = await call('cerca_impianti', { q: 'aquanienne' });
 assert.ok(typo.risultati.some((r: any) => /aquaniene/i.test(r.nome)) && typo.note, 'errore di battitura su un nome');
 const caff = await call('dettagli_luogo', { id: 'demo-community-caffarella' });
 assert.ok(caff.costo && caff.quartiere && caff.attivita_in_programma.length >= 1, 'scheda con costo, quartiere e attività');
+// Attività per giorno preciso e per parola (le date del seed cambiano: si parte da un'attività vera)
+if (a.risultati[0]) {
+  const first = a.risultati[0];
+  const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date(first.inizio));
+  const byDay = await call('cerca_attivita', { giorno: day });
+  assert.ok(byDay.risultati.some((r: any) => r.id === first.id), 'giorno preciso');
+  assert.ok(byDay.risultati.every((r: any) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date(r.inizio)) === day));
+  const word = first.titolo.split(' ')[0];
+  assert.ok((await call('cerca_attivita', { q: word })).risultati.some((r: any) => r.id === first.id), `parola "${word}"`);
+}
+assert.throws(() => t.cerca_attivita.input.parse({ giorno: 'sabato' }));
 console.log('OK');

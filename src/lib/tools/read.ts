@@ -10,7 +10,7 @@ import { describeFilters, distanceKm, filterVenues, filtersToSearchParams, textM
 import { getVenue, listVenues } from '@/features/venues/server/repository';
 import type { VenueSummary } from '@/features/venues/types';
 import { costText } from '@/lib/cost';
-import { formatSlot } from '@/lib/rome-time';
+import { formatSlot, romeWallToDate } from '@/lib/rome-time';
 import {
   ACCESSIBILITY_LABELS,
   DISCIPLINES,
@@ -185,14 +185,36 @@ export const cercaAttivita = defineTool({
   name: 'cerca_attivita',
   description:
     'Cerca attività sportive organizzate dai cittadini (eventi a cui iscriversi), solo future e pubblicate. ' +
+    'Per un giorno preciso ("sabato 21", "il 3 dicembre") usa `giorno`; per un titolo o una parola ("minibasket", "tramonto") usa `q`. ' +
     'Restituisce il totale, le prime in ordine di data e `url`. Subito dopo chiama SEMPRE `naviga` con quell’url: l’utente deve vedere sullo schermo ciò che gli dici.',
-  input: activityFiltersSchema.extend({ disciplina }),
-  run: async (f, { sb }) => {
-    const found = filterActivities(await listUpcoming(sb), f);
+  input: activityFiltersSchema.extend({
+    disciplina,
+    giorno: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/)
+      .optional()
+      .describe('Un giorno preciso, AAAA-MM-GG (calcolalo dalla data di oggi). Al posto di `quando`.'),
+    q: z.string().trim().max(60).optional().describe('Parola del titolo, dello sport o del luogo, es. "minibasket", "Caffarella"'),
+  }),
+  run: async ({ giorno, q, ...f }, { sb }) => {
+    let found = filterActivities(await listUpcoming(sb), giorno ? { ...f, quando: undefined } : f);
+    if (giorno) {
+      const [y, m, d] = giorno.split('-').map(Number);
+      const from = romeWallToDate(y, m, d);
+      const to = romeWallToDate(y, m, d + 1);
+      found = found.filter((a) => new Date(a.starts_at) >= from && new Date(a.starts_at) < to);
+    }
+    if (q) {
+      const match = (a: ActivityPublic, fuzzy: boolean) =>
+        textMatches({ name: `${a.title} ${getDiscipline(a.discipline).label}`, address: a.venue_name ?? a.place_label }, q, fuzzy);
+      const exact = found.filter((a) => match(a, false));
+      found = exact.length ? exact : found.filter((a) => match(a, true));
+    }
     return {
       totale: found.length,
       risultati: found.slice(0, MAX_ITEMS).map(activityBrief),
-      url: withUrl('/attivita', activityFiltersToParams(f)),
+      // La pagina Attività filtra per periodo, non per giorno o testo: mostra la lista più vicina
+      url: withUrl('/attivita', activityFiltersToParams(giorno ? { ...f, quando: undefined } : f)),
     };
   },
 });
