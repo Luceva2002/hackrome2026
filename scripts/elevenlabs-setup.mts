@@ -132,6 +132,22 @@ const CLIENT_TOOLS = [
     response_timeout_secs: 15,
   },
   {
+    name: 'annulla_attivita',
+    description:
+      'Annulla un’attività che l’utente organizza (non vale per quelle a cui è solo iscritto: lì si usa annulla_iscrizione). ' +
+      'Chiamalo subito, senza confermato: mostra il pulsante; dopo un sì richiama con gli stessi parametri e confermato true.',
+    parameters: {
+      type: 'object',
+      properties: {
+        id: { type: 'string', description: 'Id dell’attività (da le_mie_attivita)' },
+        confermato: { type: 'boolean', description: 'true solo dopo che l’utente ha detto sì' },
+      },
+      required: ['id'],
+    },
+    expects_response: true,
+    response_timeout_secs: 15,
+  },
+  {
     name: 'le_mie_attivita',
     description: 'Attività future dell’utente: quelle che organizza e quelle a cui è iscritto (o in lista d’attesa).',
     parameters: { type: 'object', properties: {} },

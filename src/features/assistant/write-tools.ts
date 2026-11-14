@@ -118,6 +118,24 @@ export function writeTools(navigate: (url: string) => void) {
       }
     },
 
+    annulla_attivita: async ({ id, confermato }: Params) => {
+      if (typeof id !== 'string' || !UUID.test(id)) return 'Errore: id attività non valido. Usa l’id da le_mie_attivita.';
+      try {
+        const a = await getActivity(id);
+        if (!a.is_owner) return `Solo chi organizza «${a.title}» può annullarla: l’utente può al massimo annullare la sua iscrizione.`;
+        if (a.status === 'cancelled') return `«${a.title}» è già annullata.`;
+        const people = a.confirmed_count + a.waitlist_count;
+        const summary = `Annullo la tua attività «${a.title}», ${formatSlot(a.starts_at, a.ends_at)}${people ? `: ${people} ${people === 1 ? 'persona iscritta lo vedrà' : 'persone iscritte lo vedranno'}` : ''}`;
+        return confirmStore.request(`cancel:${id}`, summary, 'Annulla attività', yes(confermato), async () => {
+          await api(`/api/activities/${id}`, { method: 'PATCH', body: JSON.stringify({ status: 'cancelled' }) });
+          navigate(`/attivita/${id}`);
+          return `Attività «${a.title}» annullata.`;
+        });
+      } catch (e) {
+        return `Errore: ${(e as Error).message}`;
+      }
+    },
+
     le_mie_attivita: async () => {
       try {
         const { organizzo, partecipo } = await api<{ organizzo: ActivityWithMe[]; partecipo: ActivityWithMe[] }>('/api/activities/mine');

@@ -154,6 +154,84 @@ const CASES: Case[] = [
   { name: 'inglese: trastevere', prio: 2, say: 'are there basketball courts in Trastevere?', tool: 'cerca_impianti', params: { zona: re('(?i)trastevere'), disciplina: exact('basket') } },
   { name: 'attività: prossimi giorni', prio: 2, say: 'ci sono corsi di yoga nei prossimi giorni?', tool: 'cerca_attivita', params: { quando: exact('settimana'), disciplina: exact('yoga') } },
   { name: 'nome impianto in q', prio: 2, say: 'dov’è il circolo canottieri aniene?', tool: 'cerca_impianti', params: { q: re('(?i)aniene') } },
+  // Priorità 3: pagine dell'app, altri filtri, gestione delle proprie attività
+  { name: 'pagina: bacheca attività', prio: 3, say: 'portami alla pagina delle attività', tool: 'naviga', params: { url: re('^/attivita') } },
+  { name: 'pagina: home', prio: 3, say: 'torna alla pagina iniziale', tool: 'naviga', params: { url: exact('/inizio') } },
+  { name: 'le mie attività', prio: 3, say: 'a cosa sono iscritto?', tool: 'le_mie_attivita' },
+  {
+    name: 'bacheca filtrata a voce',
+    prio: 3,
+    say: 'portami alla pagina attività e cercami yoga questo weekend con posti liberi',
+    tool: 'cerca_attivita',
+    params: { quando: exact('weekend'), disciplina: exact('yoga'), posti_liberi: exact('true') },
+  },
+  {
+    name: 'iscrivimi alla prima',
+    prio: 3,
+    say: 'iscrivimi alla prima',
+    history: [
+      { role: 'user', message: 'yoga questo weekend' },
+      { role: 'agent', tool_calls: [{ tool: 'cerca_attivita', params: { quando: 'weekend', disciplina: 'yoga' } }] },
+      {
+        role: 'agent',
+        tool_results: [
+          {
+            tool: 'cerca_attivita',
+            result: {
+              totale: 2,
+              risultati: [
+                { id: '11111111-1111-4111-8111-111111111111', titolo: 'Yoga al tramonto', quando: 'Domani, 17:30–18:30', posti_liberi: 8, url: '/attivita/11111111-1111-4111-8111-111111111111' },
+                { id: '22222222-2222-4222-8222-222222222222', titolo: 'Yoga dolce', quando: 'Sabato 21 novembre, 09:30', posti_liberi: 5, url: '/attivita/22222222-2222-4222-8222-222222222222' },
+              ],
+              url: '/attivita?quando=weekend&disciplina=yoga',
+            },
+          },
+        ],
+      },
+      { role: 'agent', message: 'Ho trovato due attività di yoga: Yoga al tramonto domani alle diciassette e trenta, e Yoga dolce sabato 21 alle nove e mezza.' },
+    ],
+    tool: 'iscriviti_attivita',
+    params: { id: exact('11111111-1111-4111-8111-111111111111') },
+  },
+  { name: 'filtri: palestre pubbliche', prio: 3, say: 'palestre pubbliche nel municipio due', tool: 'cerca_impianti', params: { natura: exact('pubblico'), tipo: exact('palestra'), municipio: re('^(2|II)$') } },
+  { name: 'filtri: palestre delle scuole', prio: 3, say: 'palestre delle scuole a Centocelle', tool: 'cerca_impianti', params: { tipo: exact('palestra_scolastica'), zona: re('(?i)centocelle') } },
+  { name: 'mappa: tutta Roma', prio: 3, say: 'fammi vedere tutta Roma dall’alto', tool: 'mappa', params: { azione: exact('panoramica') } },
+  {
+    name: 'annulla la mia attività',
+    prio: 3,
+    say: 'annulla la mia partita di sabato',
+    history: [
+      { role: 'user', message: 'annulla la mia partita di sabato' },
+      { role: 'agent', tool_calls: [{ tool: 'le_mie_attivita', params: {} }] },
+      {
+        role: 'agent',
+        tool_results: [
+          {
+            tool: 'le_mie_attivita',
+            result: {
+              organizzo: [{ id: '33333333-3333-4333-8333-333333333333', titolo: 'Calcetto del sabato', quando: 'Sabato 21 novembre, 18:00–19:30', stato: 'organizzata da te', url: '/attivita/33333333-3333-4333-8333-333333333333' }],
+              partecipo: [],
+            },
+          },
+        ],
+      },
+    ],
+    tool: 'annulla_attivita',
+    params: { id: exact('33333333-3333-4333-8333-333333333333') },
+  },
+  {
+    name: 'raggio: entro 5 km da me',
+    prio: 3,
+    say: 'campi da tennis entro 5 km da me',
+    history: [
+      { role: 'user', message: 'campi da tennis entro 5 km da me' },
+      { role: 'agent', tool_calls: [{ tool: 'posizione', params: {} }] },
+      { role: 'agent', tool_results: [{ tool: 'posizione', result: { lat: 41.87, lng: 12.5, quartiere: 'Garbatella', municipio: 8 } }] },
+    ],
+    tool: 'cerca_impianti',
+    params: { disciplina: exact('tennis'), 'vicino.km': exact('5') },
+  },
+  { name: 'inglese: le mie attività', prio: 3, say: 'what activities am I signed up for?', tool: 'le_mie_attivita' },
 ];
 
 // ─── Id degli strumenti ────────────────────────────────────────────────────
