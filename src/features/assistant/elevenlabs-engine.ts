@@ -3,6 +3,7 @@ import { Conversation, type Conversation as Session } from '@elevenlabs/client';
 import { areaAtPoint } from '@/features/map/areas';
 
 import { confirmStore } from './confirm-store';
+import { screenContext } from './screen-context';
 import { isYes, writeTools } from './write-tools';
 import { createLocalEngine, newMessageId, type AssistantCallbacks, type AssistantEngine, type EngineFactory } from './engine';
 
@@ -88,6 +89,19 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
   };
   const local = () => (localEngine ??= createLocalEngine(cb));
 
+  // Prima di ogni richiesta l'agente sa cosa c'è sullo schermo (pagina, filtri, luogo aperto con i suoi dati)
+  let lastContext = '';
+  const syncScreen = async (s: Session) => {
+    try {
+      const ctx = await screenContext();
+      if (ctx === lastContext) return;
+      lastContext = ctx;
+      s.sendContextualUpdate(ctx);
+    } catch {
+      // il contesto è un aiuto: se manca, l'agente chiede
+    }
+  };
+
   async function open(wantVoice: boolean): Promise<Session | null> {
     cb.onStatus('connecting');
     const r = await fetch('/api/assistant/session', { cache: 'no-store' }).catch(() => null);
@@ -130,6 +144,8 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     }
     voice = wantVoice;
     session = s;
+    lastContext = '';
+    await syncScreen(s);
     if (recent.length)
       s.sendContextualUpdate(
         `La conversazione precedente si è chiusa per inattività: riprendila senza salutare. Pagina aperta ora: ${location.pathname}${location.search}. ` +
@@ -163,6 +179,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
       try {
         const s = await ensure(true);
         if (!s) return local().startVoice();
+        await syncScreen(s);
         s.setMicMuted(false);
         cb.onStatus('listening');
       } catch (e) {
@@ -190,6 +207,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
         remember('Utente', text);
         cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
         cb.onStatus('thinking');
+        await syncScreen(s);
         s.sendUserMessage(text);
       } catch (e) {
         console.error('[assistant] sendText', e);
