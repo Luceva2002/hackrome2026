@@ -185,7 +185,7 @@ export const cercaAttivita = defineTool({
   name: 'cerca_attivita',
   description:
     'Cerca attività sportive organizzate dai cittadini (eventi a cui iscriversi), solo future e pubblicate. ' +
-    'Per un giorno preciso ("sabato 21", "il 3 dicembre") usa `giorno`; per un titolo o una parola ("minibasket", "tramonto") usa `q`. ' +
+    'Per "vicino a me" o "nella mia zona" passa `vicino` con lat e lng di `posizione`. Per un giorno preciso ("sabato 21", "il 3 dicembre") usa `giorno`; per un titolo o una parola ("minibasket", "tramonto") usa `q`. ' +
     'Restituisce il totale, le prime in ordine di data e `url`. Subito dopo chiama SEMPRE `naviga` con quell’url: l’utente deve vedere sullo schermo ciò che gli dici.',
   input: activityFiltersSchema.extend({
     disciplina,
@@ -195,8 +195,12 @@ export const cercaAttivita = defineTool({
       .optional()
       .describe('Un giorno preciso, AAAA-MM-GG (calcolalo dalla data di oggi). Al posto di `quando`.'),
     q: z.string().trim().max(60).optional().describe('Parola del titolo, dello sport o del luogo, es. "minibasket", "Caffarella"'),
+    vicino: z
+      .object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180), km: z.number().positive().max(50).optional() })
+      .optional()
+      .describe('Per "vicino a me", "nella mia zona": lat e lng dati da `posizione`. Ordina dalla più vicina e aggiunge `distanza_km`. `km` solo se l’utente dà un raggio.'),
   }),
-  run: async ({ giorno, q, ...f }, { sb }) => {
+  run: async ({ giorno, q, vicino, ...f }, { sb }) => {
     let found = filterActivities(await listUpcoming(sb), giorno ? { ...f, quando: undefined } : f);
     if (giorno) {
       const [y, m, d] = giorno.split('-').map(Number);
@@ -210,9 +214,26 @@ export const cercaAttivita = defineTool({
       const exact = found.filter((a) => match(a, false));
       found = exact.length ? exact : found.filter((a) => match(a, true));
     }
+    const notes: string[] = [];
+    const dist = (a: ActivityPublic) =>
+      vicino && a.latitude != null && a.longitude != null ? distanceKm(vicino, { lat: a.latitude, lng: a.longitude }) : null;
+    if (vicino) {
+      if (vicino.km) {
+        const within = found.filter((a) => (dist(a) ?? Infinity) <= vicino.km!);
+        if (within.length) found = within;
+        else if (found.length) notes.push(`Nessuna attività entro ${vicino.km} km: queste sono le più vicine, dillo all’utente.`);
+      }
+      // La più vicina per prima; a pari distanza (stesso luogo) la prima in ordine di data
+      found = [...found].sort((a, b) => (dist(a) ?? Infinity) - (dist(b) ?? Infinity) || a.starts_at.localeCompare(b.starts_at));
+      notes.push('Ordinate dalla più vicina: di’ la distanza e il giorno delle prime due o tre.');
+    }
     return {
       totale: found.length,
-      risultati: found.slice(0, MAX_ITEMS).map(activityBrief),
+      note: notes.length ? notes : undefined,
+      risultati: found.slice(0, MAX_ITEMS).map((a) => {
+        const d = dist(a);
+        return d == null ? activityBrief(a) : { ...activityBrief(a), distanza_km: Math.round(d * 10) / 10 };
+      }),
       // La pagina Attività filtra per periodo, non per giorno o testo: mostra la lista più vicina
       url: withUrl('/attivita', activityFiltersToParams(giorno ? { ...f, quando: undefined } : f)),
     };
