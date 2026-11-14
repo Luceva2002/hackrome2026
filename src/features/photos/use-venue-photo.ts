@@ -3,17 +3,16 @@
 import { useEffect, useState } from 'react';
 
 import type { PhotoProvider, PhotoQuery, VenuePhoto } from './types';
-import { wikimediaProvider } from './wikidata';
 
 /**
- * Catena dei fornitori di foto, in ordine di fiducia.
- * PUNTO DI AGGANCIO: Fabi può aggiungere qui un fornitore Exa (foto trovate sul
- * sito ufficiale del luogo, con URL della pagina come fonte) e in futuro le
- * foto caricate dal gestore verificato andranno in testa.
+ * Catena dei fornitori di foto, in ordine di fiducia. Oggi è vuota: non si cercano foto
+ * su Wikipedia/Wikimedia (scelta di Luca) e i luoghi mostrano l'illustrazione segnaposto
+ * (VenuePlaceholder). PUNTO DI AGGANCIO: un fornitore Exa (foto dal sito ufficiale, con
+ * URL della pagina come fonte) o le foto caricate dal gestore verificato si aggiungono qui.
  */
-export const PHOTO_PROVIDERS: PhotoProvider[] = [wikimediaProvider];
+export const PHOTO_PROVIDERS: PhotoProvider[] = [];
 
-const CACHE_KEY = 'romaincampo:photos:v1';
+const CACHE_KEY = 'sportincomune:photos:v2';
 const memory = new Map<string, VenuePhoto | null>();
 
 function readCache(): Record<string, VenuePhoto | null> {
@@ -90,7 +89,7 @@ export function useVenuePhoto(v: PhotoQuery | null) {
     if (!v) return;
     const ctrl = new AbortController();
     setPhoto(memory.get(v.id) ?? null);
-    setState(memory.has(v.id) ? 'done' : 'loading');
+    setState(memory.has(v.id) || PHOTO_PROVIDERS.length === 0 ? 'done' : 'loading');
     findVenuePhoto(v, ctrl.signal)
       .then((p) => {
         if (ctrl.signal.aborted) return;

@@ -45,7 +45,7 @@ git checkout -b feat/ui          # Luca · feat/assistente (Edo) · feat/exa (Fa
 **Possiede:** `src/lib/exa/**`, `src/app/api/exa/**`, `scripts/exa/**`, `src/features/search/web/**`, `src/features/home/recommend.ts`, `src/features/photos/**`, `supabase/migrations/*_exa_*.sql`.
 - `WebResults` (`src/features/search/web/WebResults.tsx`): sotto i luoghi nella tendina di ricerca, chiama `POST /api/exa/search {query, objective}` e mostra titolo + sito. Sempre la fonte, mai scritture sulle schede.
 - `recommendVenues(all, ctx)` in `src/features/home/recommend.ts`: oggi euristica sui dati completi. Può usare preferenze utente e fatti Exa, **stessa firma**, `reason` sempre vero.
-- Foto dei luoghi: c'è già il fornitore Wikidata/Commons (`src/features/photos/wikidata.ts`), cercato dal browser all'apertura. Un fornitore Exa (foto dal sito ufficiale, con URL della pagina come fonte) si aggiunge a `PHOTO_PROVIDERS` in `src/features/photos/use-venue-photo.ts` con la firma `PhotoProvider`. Senza foto verificata resta il segnaposto.
+- Foto dei luoghi: nessuna ricerca su Wikipedia/Wikimedia (tolta su richiesta); senza foto si vede l'illustrazione segnaposto `VenuePlaceholder`. Un fornitore Exa (foto dal sito ufficiale, con URL della pagina come fonte) si aggiunge a `PHOTO_PROVIDERS` in `src/features/photos/use-venue-photo.ts` con la firma `PhotoProvider`. Senza foto verificata resta il segnaposto.
 - Fatti sugli impianti (orari, contatti, sito) → solo `proposals` con fonte `exa_web`, approvate dall'admin.
 
 ## Contratti (non cambiarli senza avvisare)

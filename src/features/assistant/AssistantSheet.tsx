@@ -6,6 +6,7 @@ import { Mic, MicOff, SendHorizontal } from 'lucide-react';
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { useAssistant } from './AssistantProvider';
+import { VoiceStatusPill } from './VoiceStatus';
 
 const SUGGESTIONS = [
   'Campi da basket accessibili nel Municipio XV',
@@ -35,6 +36,8 @@ export function AssistantSheet() {
       title="Assistente"
       size="medium"
       footer={
+        <>
+        <VoiceStatusPill inline />
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -74,6 +77,7 @@ export function AssistantSheet() {
             <SendHorizontal className="w-5 h-5" aria-hidden />
           </button>
         </form>
+        </>
       }
     >
       <div role="log" aria-live="polite" aria-label="Conversazione" className="flex flex-col gap-2.5 py-2">

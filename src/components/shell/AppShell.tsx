@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { AssistantProvider } from '@/features/assistant/AssistantProvider';
 import { createElevenLabsEngine } from '@/features/assistant/elevenlabs-engine';
 import { AssistantSheet } from '@/features/assistant/AssistantSheet';
+import { VoiceStatus } from '@/features/assistant/VoiceStatus';
 import { SearchSheet } from '@/features/search/SearchSheet';
 import { BottomDock } from './BottomDock';
 import { ShellProvider } from './ShellProvider';
@@ -24,6 +25,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <BottomDock />
           <SearchSheet />
         </Suspense>
+        <VoiceStatus />
         <AssistantSheet />
       </AssistantProvider>
     </ShellProvider>

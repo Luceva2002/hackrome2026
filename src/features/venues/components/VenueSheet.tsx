@@ -6,6 +6,7 @@ import { Accessibility, BadgeCheck, CalendarPlus, ChevronDown, ChevronRight, Inf
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { useVenuePhoto } from '@/features/photos/use-venue-photo';
+import { VenuePlaceholder } from '@/features/photos/VenuePlaceholder';
 
 import {
   ACCESSIBILITY_LABELS,
@@ -92,16 +93,10 @@ function Hero({ venue }: { venue: VenueRecord }) {
             Foto: {photo.credit}
           </a>
         </>
+      ) : loading ? (
+        <div className="w-full h-full animate-pulse" style={{ background: `${kind.color}26` }} aria-label="Cerco una foto" />
       ) : (
-        <div
-          className={`w-full h-full flex flex-col items-center justify-center gap-1 ${loading ? 'animate-pulse' : ''}`}
-          style={{ background: `linear-gradient(135deg, ${kind.color}38, ${kind.color}0f)` }}
-        >
-          <span className="text-[48px]" aria-hidden>
-            {kind.emoji}
-          </span>
-          <span className="text-[12px] font-semibold text-mid">{loading ? 'Cerco una foto con licenza…' : 'Nessuna foto disponibile'}</span>
-        </div>
+        <VenuePlaceholder kind={venue.kind} seed={venue.id} size="lg" />
       )}
     </div>
   );

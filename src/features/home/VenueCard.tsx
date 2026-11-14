@@ -7,11 +7,12 @@ import { getDiscipline, getVenueKind, municipioLabel } from '@/lib/sports/taxono
 import type { VenueSummary } from '@/features/venues/types';
 import type { VenuePhoto } from '@/features/photos/types';
 import { useVenuePhoto } from '@/features/photos/use-venue-photo';
+import { VenuePlaceholder } from '@/features/photos/VenuePlaceholder';
 
 /**
  * Card stile "annuncio": immagine in alto, nome, zona, descrizione breve.
  * La foto arriva solo da fonti con licenza e credito (vedi features/photos);
- * se non c'è mostriamo un segnaposto dichiarato, mai un'immagine di repertorio.
+ * se non c'è mostriamo un'illustrazione segnaposto dichiarata, mai una foto di repertorio.
  */
 export function VenueCard({
   venue,
@@ -48,15 +49,7 @@ export function VenueCard({
           ) : found.loading ? (
             <div className="w-full h-full animate-pulse" style={{ background: `${kind.color}1a` }} aria-label="Cerco una foto" />
           ) : (
-            <div
-              className="w-full h-full flex flex-col items-center justify-center gap-1"
-              style={{ background: `linear-gradient(135deg, ${kind.color}33, ${kind.color}0d)` }}
-            >
-              <span className="text-[44px]" aria-hidden>
-                {kind.emoji}
-              </span>
-              <span className="text-[12px] font-semibold text-mid">Nessuna foto disponibile</span>
-            </div>
+            <VenuePlaceholder kind={venue.kind} seed={venue.id} />
           )}
           {reason && (
             <span className="absolute top-2.5 left-2.5 liquid-glass rounded-full px-2.5 py-1 text-[12px] font-bold text-hi">
