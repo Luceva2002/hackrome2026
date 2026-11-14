@@ -7,7 +7,7 @@ Scelte prese durante l'hackathon quando c'era un dubbio. Vale sempre la più sem
 - **Segnalazioni di CityAlert rimosse** (wizard, foto, voti, commenti, XP/monete/livelli). Le tabelle vecchie non vengono cancellate dallo schema: c'è `supabase/cleanup-cityalert.sql`, da eseguire a mano solo su un database dedicato. Le segnalazioni di *spazi informali* della community restano nel piano (fase 7) come punti con badge.
 - **Step "Chi sei?" prima della registrazione**: l'utente sceglie Cittadino o Gestore di impianto. La scelta arriva al trigger `handle_new_user` in `raw_user_meta_data.signup_role`; `admin` non è mai auto-assegnabile. Il ruolo `manager` è solo il tipo di account: per modificare una scheda serve un claim approvato dall'admin su quell'impianto.
 - **Chiunque abbia un account può creare un'attività** (SPEC: anche un volontario al parco). Se l'Owner è il gestore verificato del luogo, la bacheca lo indica.
-- **Mappa, schede e bacheca pubbliche**: il login si chiede solo all'azione (`/auth?next=…` riporta indietro).
+- **Tutta l'app richiede il login**: senza account non si vede nulla, né pagine né API (`RequireAuth` nel layout di `(app)`, `requireAuth` nei GET). Pubbliche solo `/auth` e le pagine info (privacy, termini, supporto). Dopo il login `/auth?next=…` riporta alla pagina chiesta.
 
 ## Dati
 - **Il censimento non ha coordinate**: le posizioni arrivano dal geocoding Mapbox (bbox di Roma, cache in `data/processed/geocode-cache.json`). Finché un indirizzo non è geocodificato la scheda compare nell'elenco con "Posizione da verificare" e non sulla mappa. OSM (priorità più alta per la posizione) non è ancora importato perché il file `data/raw/osm-roma.geojson` non c'è.

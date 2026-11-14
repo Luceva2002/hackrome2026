@@ -5,14 +5,15 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { useAuth } from '@/features/auth/hooks/use-auth';
 
-/** Protegge le sole pagine personali; rimanda al login e poi torna qui. */
+/** Protegge tutta l'app (layout di (app)); rimanda al login e poi torna qui. */
 export function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (!loading && !user) router.replace(`/auth?next=${encodeURIComponent(pathname ?? '/')}`);
+    // Con la query: i filtri nell'URL (link condivisi, voce) sopravvivono al login
+    if (!loading && !user) router.replace(`/auth?next=${encodeURIComponent(window.location.pathname + window.location.search)}`);
   }, [user, loading, router, pathname]);
 
   if (loading || !user) {

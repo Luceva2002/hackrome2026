@@ -4,22 +4,19 @@ import { z } from 'zod';
 import { requireAuth } from '@/features/auth/server/require-auth';
 import { PUBLIC_COLUMNS, withMyStatus } from '@/features/activities/server/repository';
 import type { ActivityPublic } from '@/features/activities/types';
-import { getSupabaseRouteClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const sb = await getSupabaseRouteClient();
-  if (!sb) return NextResponse.json({ error: 'database_not_configured' }, { status: 503 });
+  const auth = await requireAuth();
+  if ('error' in auth) return auth.error;
+  const { supabase: sb, user } = auth;
   if (!z.string().uuid().safeParse(id).success) return NextResponse.json({ error: 'not_found' }, { status: 404 });
   const { data, error } = await sb.from('activities_public').select(PUBLIC_COLUMNS).eq('id', id).maybeSingle();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   if (!data) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-  const {
-    data: { user },
-  } = await sb.auth.getUser();
-  const [activity] = await withMyStatus(sb, user?.id ?? null, [data as ActivityPublic]);
+  const [activity] = await withMyStatus(sb, user.id, [data as ActivityPublic]);
   return NextResponse.json({ activity });
 }
 

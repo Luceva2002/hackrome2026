@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Check, KeyRound, Loader2, Lock, Mail, User, Volleyball } from 'lucide-react';
@@ -432,12 +431,6 @@ export function AuthScreen() {
               >
                 {isRegister ? t('auth.hasAccount') : t('auth.noAccount')}
               </button>
-              <Link
-                href="/"
-                className="h-11 flex items-center justify-center text-[14px] font-semibold text-mid hover:text-hi underline"
-              >
-                Continua senza account: esplora la mappa
-              </Link>
             </div>
           </motion.div>
         )}

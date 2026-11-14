@@ -10,7 +10,7 @@ cp .env.example .env.local          # Supabase + Mapbox
 npm run dev                         # http://localhost:3000
 ```
 
-Senza database la mappa funziona comunque: legge l'ultimo export della pipeline (`data/processed/venues.json`).
+Serve Supabase configurato: tutta l'app richiede il login. Se la tabella dei luoghi è vuota, l'API legge l'ultimo export della pipeline (`data/processed/venues.json`).
 
 ## Database
 

@@ -4,22 +4,19 @@ import { requireAuth } from '@/features/auth/server/require-auth';
 import { createActivitySchema, filterActivities, paramsToActivityFilters } from '@/features/activities/filters';
 import { listUpcoming, withMyStatus } from '@/features/activities/server/repository';
 import { getVenue } from '@/features/venues/server/repository';
-import { getSupabaseRouteClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
-/** GET /api/activities?quando=weekend&disciplina=yoga&posti_liberi=1 — pubblico */
+/** GET /api/activities?quando=weekend&disciplina=yoga&posti_liberi=1 — solo con login */
 export async function GET(request: Request) {
-  const sb = await getSupabaseRouteClient();
-  if (!sb) return NextResponse.json({ error: 'database_not_configured' }, { status: 503 });
+  const auth = await requireAuth();
+  if ('error' in auth) return auth.error;
+  const { supabase: sb, user } = auth;
   try {
     const { searchParams } = new URL(request.url);
     const filters = paramsToActivityFilters(searchParams);
     const list = filterActivities(await listUpcoming(sb), filters);
-    const {
-      data: { user },
-    } = await sb.auth.getUser();
-    return NextResponse.json({ activities: await withMyStatus(sb, user?.id ?? null, list) });
+    return NextResponse.json({ activities: await withMyStatus(sb, user.id, list) });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 500 });
   }
