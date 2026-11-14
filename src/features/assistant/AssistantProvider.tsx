@@ -69,6 +69,8 @@ export function AssistantProvider({
           // Il motore vocale è un modello: niente URL esterni, solo pagine dell'app
           const path = safeAppPath(url);
           if (!path) return;
+          // Si mostra la schermata: la risposta resta nella chat, che si riapre dal pulsante
+          setChatOpen(false);
           // Sulla mappa si sostituisce: ogni frase non deve riempire la cronologia
           const stay = window.location.pathname === '/mappa' && path.startsWith('/mappa');
           if (stay) routerRef.current.replace(path, { scroll: false });

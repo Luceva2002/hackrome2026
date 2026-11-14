@@ -40,3 +40,8 @@ L'app si apre sulla mappa (`/` → `/mappa`, Home in `/inizio`); colori, retino,
 Corretto il difetto di fondo: le icone dei pin non venivano mai registrate (ref della mappa ancora vuoto al load), quindi i pin non comparivano. Inquadrature calcolate sul viewport (Roma, Municipio, quartiere, luogo) senza rotazioni.
 Su desktop l'assistente è in basso a destra. Verificato con render reale dei livelli su viewport iPhone e desktop, senza il fondo Mapbox (bloccato dal cloud).
 Dopo la prova di Luca: tolto il vecchio redirect `/home` → `/` (la Home ora è `/inizio`, così un redirect permanente rimasto nella cache del browser non la nasconde); il tocco cerca prima un luogo attorno al dito, poi l'area; etichetta del quartiere contata su ciò che la mappa mostra; id unico per i due pulsanti dell'assistente; quartiere di ogni luogo calcolato una volta e aree non più ricostruite a ogni filtro.
+
+## Assistente vocale · MCP + ElevenLabs — ✓ letture e navigazione
+Registry degli strumenti (`src/lib/tools`) esposto da un server MCP su `/api/mcp` (sola lettura, segreto `MCP_SECRET`): cerca_impianti, dettagli_luogo, cerca_attivita, dettagli_attivita, con l'`url` della vista da aprire.
+Motore ElevenLabs per voce e chat (agente privato: URL firmato da `/api/assistant/session` solo con login), client tool naviga/mappa/posizione, ritorno al motore locale se l'agente non è configurato. Agente creato e aggiornato da `scripts/elevenlabs-setup.mts`; prompt in `src/lib/agent/voice-prompt.md`.
+Seed: 5 spazi della community di esempio e 2 attività su di essi. Da fare: scritture con conferma (iscriviti, crea attività), segnala_luogo, cerca_sul_web.

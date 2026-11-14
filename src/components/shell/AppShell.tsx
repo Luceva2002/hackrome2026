@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { AssistantProvider } from '@/features/assistant/AssistantProvider';
+import { createElevenLabsEngine } from '@/features/assistant/elevenlabs-engine';
 import { AssistantSheet } from '@/features/assistant/AssistantSheet';
 import { SearchSheet } from '@/features/search/SearchSheet';
 import { BottomDock } from './BottomDock';
@@ -16,7 +17,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const ownHeader = pathname.startsWith('/profilo');
   return (
     <ShellProvider>
-      <AssistantProvider>
+      <AssistantProvider engineFactory={createElevenLabsEngine}>
         {!ownHeader && <TopBar />}
         {children}
         <Suspense>

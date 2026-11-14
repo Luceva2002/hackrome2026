@@ -167,12 +167,57 @@ function nextWeekday(target: number) {
   return (target - today + 7) % 7 || 7;
 }
 
+// Spazi segnalati dalla community (dati di esempio): luoghi veri, Municipio verificato su public/geo/municipi.json
+const COMMUNITY = [
+  { id: 'demo-community-caffarella', name: 'Parco della Caffarella – prato per yoga e allenamento libero', address: 'Via della Caffarella, Roma', municipio: 8, latitude: 41.8636, longitude: 12.514, disciplines: ['yoga', 'corsa', 'calisthenics'], hours: 'Sempre aperto, consigliato di giorno', note: 'Prato ampio vicino al Ninfeo di Egeria, ci si allena spesso la domenica mattina.' },
+  { id: 'demo-community-acquedotti', name: 'Parco degli Acquedotti – anello di corsa', address: 'Via Lemonia, Roma', municipio: 7, latitude: 41.853, longitude: 12.5597, disciplines: ['corsa', 'ciclismo'], hours: 'Sempre aperto', note: 'Sterrato lungo gli acquedotti, circa 3 km ad anello.' },
+  { id: 'demo-community-galoppatoio', name: 'Villa Borghese – spazio vicino al Galoppatoio', address: 'Viale del Galoppatoio, Roma', municipio: 2, latitude: 41.914, longitude: 12.487, disciplines: ['corsa', 'calisthenics'], hours: 'Dall’alba al tramonto', note: 'Spazio all’aperto usato per allenamento a corpo libero.' },
+  { id: 'demo-community-tevere', name: 'Pista ciclabile del Tevere – tratto Ponte Milvio', address: 'Lungotevere Maresciallo Cadorna, Roma', municipio: 2, latitude: 41.931, longitude: 12.4655, disciplines: ['ciclismo', 'corsa'], hours: 'Sempre aperta, chiusa in caso di piena', note: 'Ciclabile lungo il fiume. Tracciato indicativo.', path: [[12.467, 41.9355], [12.4655, 41.931], [12.464, 41.927], [12.4655, 41.922]] },
+  { id: 'demo-community-pamphili', name: 'Villa Doria Pamphilj – percorso running', address: 'Via di San Pancrazio, Roma', municipio: 12, latitude: 41.886, longitude: 12.447, disciplines: ['corsa', 'atletica'], hours: 'Dall’alba al tramonto', note: 'Viali ampi e ombreggiati, molto frequentati da chi corre.' },
+] as const;
+
+async function seedCommunity(reporterId: string) {
+  const rows = COMMUNITY.map((c) => ({
+    id: c.id,
+    name: c.name,
+    address: c.address,
+    municipio: c.municipio,
+    latitude: c.latitude,
+    longitude: c.longitude,
+    path_geojson: 'path' in c ? { type: 'LineString', coordinates: c.path } : null,
+    kind: 'spazio_informale',
+    nature: 'informale',
+    disciplines: [...c.disciplines],
+    levels: [],
+    status: 'attivo',
+    accessibility: 'da_verificare',
+    opening_hours: c.hours,
+    description: `${c.note}\n\nSegnalazione di esempio creata per la demo.`,
+    community: true,
+    reported_by: reporterId,
+    moderation_status: 'published',
+    needs_review: false,
+    review_notes: [],
+  }));
+  await must(db.from('venues').upsert(rows), 'community venues');
+  const fields = ['name', 'address', 'position', 'kind', 'nature', 'disciplines', 'status', 'opening_hours', 'description'];
+  await must(
+    db.from('field_sources').upsert(
+      rows.flatMap((r) => fields.map((field) => ({ venue_id: r.id, field, source_id: 'community', confidence: 0.7, note: 'Dato di esempio (demo)' }))),
+    ),
+    'community field_sources',
+  );
+  console.log(`✓ ${rows.length} spazi segnalati dalla community (esempio)`);
+  return rows.map((r) => ({ ...r, accessibility: 'da_verificare' as const }));
+}
+
 async function seedDemo(venues: VenueRecord[]) {
   const citizenId = await ensureUser(DEMO.citizen, 'citizen');
   const managerId = await ensureUser(DEMO.manager, 'manager');
   const adminId = await ensureUser(DEMO.admin, 'citizen');
   await must(db.from('profiles').update({ role: 'admin', display_name: DEMO.admin.name }).eq('id', adminId), 'admin');
   console.log('✓ account demo (cittadino, gestore, admin)');
+  const [caffarella, acquedotti] = await seedCommunity(citizenId);
 
   const located = venues.filter((v) => v.latitude != null && v.status === 'da_verificare' && !v.needs_review);
   if (!located.length) {
@@ -209,7 +254,7 @@ async function seedDemo(venues: VenueRecord[]) {
   const sat = nextWeekday(6);
   const sun = nextWeekday(0);
   const plan: {
-    venue: VenueRecord;
+    venue: Pick<VenueRecord, 'id' | 'name' | 'latitude' | 'longitude' | 'municipio' | 'accessibility'>;
     title: string;
     discipline: string;
     level: string;
@@ -230,6 +275,8 @@ async function seedDemo(venues: VenueRecord[]) {
     { venue: pick(has('tennis')), title: 'Doppio di tennis', discipline: 'tennis', level: 'avanzato', start: at(sun, 10), minutes: 90, capacity: 4, owner: citizenId, description: 'Cerchiamo due giocatori di buon livello per un doppio.' },
     { venue: pick(has('nuoto')), title: 'Nuoto libero accompagnato', discipline: 'nuoto', level: 'tutti', start: at(sat, 15), minutes: 60, capacity: 8, owner: citizenId, description: 'Allenamento in gruppo, ognuno al suo ritmo.' },
     { venue: pick((v) => v.accessibility === 'si', managed), title: 'Sport per tutti: attività motoria inclusiva', discipline: 'ginnastica', level: 'tutti', start: at(2, 11), minutes: 60, capacity: 12, owner: citizenId, description: 'Attività aperta a persone con e senza disabilità.' },
+    { venue: caffarella, title: 'Yoga al parco la domenica mattina', discipline: 'yoga', level: 'tutti', start: at(sun, 9), minutes: 75, capacity: 20, owner: citizenId, description: 'Sul prato vicino al Ninfeo. Porta tappetino e acqua; se piove si rimanda.' },
+    { venue: acquedotti, title: 'Corsa di gruppo agli Acquedotti', discipline: 'corsa', level: 'principiante', start: at(sat, 8, 30), minutes: 60, capacity: 15, owner: citizenId, description: 'Un giro dell’anello a ritmo tranquillo, nessuno resta indietro.' },
   ];
 
   await db.from('activities').delete().eq('is_demo', true);
