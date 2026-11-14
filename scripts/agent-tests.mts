@@ -163,7 +163,7 @@ const CASES: Case[] = [
     prio: 3,
     say: 'portami alla pagina attività e cercami yoga questo weekend con posti liberi',
     tool: 'cerca_attivita',
-    params: { quando: exact('weekend'), disciplina: exact('yoga'), posti_liberi: exact('true') },
+    params: { quando: exact('weekend'), disciplina: exact('yoga'), posti_liberi: re('(?i)^true$') },
   },
   {
     name: 'iscrivimi alla prima',
@@ -229,7 +229,7 @@ const CASES: Case[] = [
       { role: 'agent', tool_results: [{ tool: 'posizione', result: { lat: 41.87, lng: 12.5, quartiere: 'Garbatella', municipio: 8 } }] },
     ],
     tool: 'cerca_impianti',
-    params: { disciplina: exact('tennis'), 'vicino.km': exact('5') },
+    params: { disciplina: exact('tennis'), vicino: { type: 'llm', description: 'Oggetto con lat e lng della posizione e km uguale a 5' } },
   },
   { name: 'inglese: le mie attività', prio: 3, say: 'what activities am I signed up for?', tool: 'le_mie_attivita' },
 ];
