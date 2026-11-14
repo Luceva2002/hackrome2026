@@ -44,7 +44,7 @@ function StateIcon({ status }: { status: Exclude<AssistantStatus, 'idle'> }) {
 
 /** La pillola di stato. `inline` dentro la chat, altrimenti sospesa sopra il dock. */
 export function VoiceStatusPill({ inline = false }: { inline?: boolean }) {
-  const { status, stopVoice } = useAssistant();
+  const { status, stopVoice, cancel } = useAssistant();
   const s = status === 'idle' ? null : VOICE_STATES[status];
   return (
     <div role="status" aria-live="polite" className={inline ? 'flex justify-center min-h-0' : ''}>
@@ -69,7 +69,7 @@ export function VoiceStatusPill({ inline = false }: { inline?: boolean }) {
             ) : (
               <button
                 type="button"
-                onClick={stopVoice}
+                onClick={status === 'listening' ? stopVoice : cancel}
                 className="h-10 px-3.5 rounded-full bg-black/20 text-[13px] font-bold whitespace-nowrap active:scale-95 transition-transform"
               >
                 {status === 'listening' ? 'Ho finito' : 'Ferma'}

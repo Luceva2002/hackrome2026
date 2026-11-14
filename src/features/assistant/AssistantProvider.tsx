@@ -26,6 +26,8 @@ interface AssistantContextValue {
   closeChat: () => void;
   startVoice: () => void;
   stopVoice: () => void;
+  /** Ferma ricerca o risposta in corso */
+  cancel: () => void;
   sendText: (text: string) => void;
 }
 
@@ -96,6 +98,16 @@ export function AssistantProvider({
 
   const startVoice = useCallback(() => void engine.current?.startVoice(), []);
   const stopVoice = useCallback(() => void engine.current?.stopVoice(), []);
+  const cancel = useCallback(() => {
+    engine.current?.cancel?.();
+    setStatus('idle');
+  }, []);
+  // Un errore non resta acceso: dopo qualche secondo si torna pronti
+  useEffect(() => {
+    if (status !== 'error') return;
+    const t = setTimeout(() => setStatus('idle'), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
   const sendText = useCallback((t: string) => {
     if (t.trim()) void engine.current?.sendText(t.trim());
   }, []);
@@ -105,8 +117,8 @@ export function AssistantProvider({
   const closeChat = useCallback(() => setChatOpen(false), []);
 
   const value = useMemo(
-    () => ({ status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText }),
-    [status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, sendText],
+    () => ({ status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, cancel, sendText }),
+    [status, messages, chatOpen, openChat, closeChat, startVoice, stopVoice, cancel, sendText],
   );
 
   return (

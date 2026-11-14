@@ -91,12 +91,17 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
 
   // Prima di ogni richiesta l'agente sa cosa c'è sullo schermo (pagina, filtri, luogo aperto con i suoi dati)
   let lastContext = '';
-  const syncScreen = async (s: Session) => {
-    try {
+  // Non blocca mai microfono e messaggi: se i dati del luogo tardano, si va avanti senza
+  const syncScreen = async (s: Session, maxMs = 0) => {
+    const send = async () => {
       const ctx = await screenContext();
-      if (ctx === lastContext) return;
+      if (ctx === lastContext || s !== session) return;
       lastContext = ctx;
       s.sendContextualUpdate(ctx);
+    };
+    try {
+      const done = send().catch(() => {});
+      if (maxMs > 0) await Promise.race([done, new Promise((r) => setTimeout(r, maxMs))]);
     } catch {
       // il contesto è un aiuto: se manca, l'agente chiede
     }
@@ -145,7 +150,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     voice = wantVoice;
     session = s;
     lastContext = '';
-    await syncScreen(s);
+    void syncScreen(s);
     if (recent.length)
       s.sendContextualUpdate(
         `La conversazione precedente si è chiusa per inattività: riprendila senza salutare. Pagina aperta ora: ${location.pathname}${location.search}. ` +
@@ -179,8 +184,8 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
       try {
         const s = await ensure(true);
         if (!s) return local().startVoice();
-        await syncScreen(s);
         s.setMicMuted(false);
+        void syncScreen(s);
         cb.onStatus('listening');
       } catch (e) {
         console.error('[assistant] startVoice', e);
@@ -207,13 +212,21 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
         remember('Utente', text);
         cb.onMessage({ id: newMessageId(), role: 'user', text, at: Date.now() });
         cb.onStatus('thinking');
-        await syncScreen(s);
+        await syncScreen(s, 700);
         s.sendUserMessage(text);
       } catch (e) {
         console.error('[assistant] sendText', e);
         cb.onStatus('idle');
         say('Non riesco a collegarmi all’assistente. Riprova tra poco.');
       }
+    },
+    cancel() {
+      // "Ferma": chiude la conversazione in corso, la prossima richiesta ne apre una nuova
+      const s = session;
+      session = null;
+      void s?.endSession().catch(() => {});
+      localEngine?.cancel?.();
+      cb.onStatus('idle');
     },
     dispose() {
       disposed = true;

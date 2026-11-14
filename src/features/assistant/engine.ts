@@ -49,6 +49,8 @@ export interface AssistantEngine {
   stopVoice(): Promise<void>;
   /** Messaggio scritto dalla tendina chat */
   sendText(text: string): Promise<void>;
+  /** Pulsante Ferma: interrompe ricerca o risposta */
+  cancel?(): void;
   dispose(): void;
 }
 
