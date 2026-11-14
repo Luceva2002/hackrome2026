@@ -93,6 +93,8 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
   let lastContext = '';
   // Non blocca mai microfono e messaggi: se i dati del luogo tardano, si va avanti senza
   const syncScreen = async (s: Session, maxMs = 0) => {
+    // Spento di default: dopo l'attivazione l'agente non rispondeva più. Si riaccende con NEXT_PUBLIC_ASSISTANT_SCREEN=1
+    if (process.env.NEXT_PUBLIC_ASSISTANT_SCREEN !== '1') return;
     const send = async () => {
       const ctx = await screenContext();
       if (ctx === lastContext || s !== session) return;
