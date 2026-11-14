@@ -239,7 +239,7 @@ export function VenueSheet({
               href={`/attivita/nuova?luogo=${encodeURIComponent(venue.id)}`}
               className="h-control rounded-full bg-gold-500 hover:bg-gold-400 active:scale-[0.98] transition-transform text-(--on-gold) font-bold text-[14px] flex items-center justify-center gap-2 shadow-(--shadow-gold)"
             >
-              <CalendarPlus className="w-4 h-4" aria-hidden /> Crea attività
+              <CalendarPlus className="w-4 h-4" aria-hidden /> Proponi attività
             </Link>
             <Link
               href={`/gestore?luogo=${encodeURIComponent(venue.id)}`}
