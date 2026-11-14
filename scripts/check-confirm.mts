@@ -1,6 +1,7 @@
 // Conferma delle scritture dell'assistente: node --import tsx scripts/check-confirm.mts
 import assert from 'node:assert/strict';
 import { confirmStore } from '@/features/assistant/confirm-store';
+import { isYes } from '@/features/assistant/write-tools';
 
 let runs = 0;
 const run = async () => (runs++, 'fatto');
@@ -48,4 +49,14 @@ await confirmStore.request('join:c', 'C', 'Iscrivimi', false, async () => {
 r = await confirmStore.request('join:c', 'C', 'Iscrivimi', true, run);
 assert.equal(r, 'Errore: L’attività è già iniziata.');
 assert.equal(confirmStore.get()?.state, 'error');
+// Sì detto subito dopo una domanda dell'agente: si esegue senza chiedere di nuovo
+runs = 0;
+r = await confirmStore.request('report:x', 'Segnalo X', 'Segnala', true, run, true);
+assert.equal(r, 'fatto');
+assert.equal(runs, 1);
+r = await confirmStore.request('report:y', 'Segnalo Y', 'Segnala', true, run, false);
+assert.match(r, /IN ATTESA/, 'senza sì vocale resta la domanda');
+
+for (const y of ['sì', 'Sì, confermo', 'si', 'ok vai', 'va bene', 'yes please', 'certo!']) assert.ok(isYes(y), y);
+for (const n of ['no', 'sì ma aspetta', 'no grazie', 'cambia l’ora', 'forse', 'sabato', 'si chiama Mario', 'si chiama Mario no', 'sì alle sei', 'ok ma domenica']) assert.ok(!isYes(n), n);
 console.log('OK');

@@ -3,7 +3,7 @@ import { Conversation, type Conversation as Session } from '@elevenlabs/client';
 import { areaAtPoint } from '@/features/map/areas';
 
 import { confirmStore } from './confirm-store';
-import { writeTools } from './write-tools';
+import { isYes, writeTools } from './write-tools';
 import { createLocalEngine, newMessageId, type AssistantCallbacks, type AssistantEngine, type EngineFactory } from './engine';
 
 /**
@@ -16,7 +16,7 @@ import { createLocalEngine, newMessageId, type AssistantCallbacks, type Assistan
 type Params = Record<string, unknown>;
 
 /** Client tool: nomi e parametri devono coincidere con la configurazione dell'agente */
-function clientTools(act: AssistantCallbacks['act']) {
+function clientTools(act: AssistantCallbacks['act'], saidYes: () => boolean) {
   return {
     naviga: ({ url }: Params) => {
       // safeAppPath dentro act.navigate scarta tutto ciò che non è una pagina dell'app
@@ -31,7 +31,7 @@ function clientTools(act: AssistantCallbacks['act']) {
     },
     // Con il quartiere l'agente può cercare "in zona" con `zona`, senza indovinare
     // Scritture (iscrizione, creazione…): sempre dopo una conferma, vedi confirm-store.ts
-    ...writeTools(act.navigate),
+    ...writeTools(act.navigate, act.locate, saidYes),
     posizione: async () => {
       const at = await act.locate();
       if (!at) return 'Posizione non disponibile (permesso negato o GPS spento). Chiedi all’utente il quartiere o un indirizzo.';
@@ -61,6 +61,20 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
   let notConfigured = false;
   let disposed = false;
   let lastTyped = '';
+  // Per non chiedere conferma due volte: l'ultima frase dell'agente era una domanda e l'utente ha detto sì
+  let lastAgent = '';
+  let lastUser = '';
+  let askedBeforeUser = false;
+  const heardUser = (text: string) => {
+    lastUser = text;
+    askedBeforeUser = /\?\s*$/.test(lastAgent.trim());
+  };
+  // Vale una volta sola: un sì non autorizza anche l'azione dopo
+  const saidYes = () => {
+    const y = askedBeforeUser && isYes(lastUser);
+    askedBeforeUser = false;
+    return y;
+  };
 
   const say = (text: string) => cb.onMessage({ id: newMessageId(), role: 'assistant', text, at: Date.now() });
   const local = () => (localEngine ??= createLocalEngine(cb));
@@ -80,10 +94,12 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
       textOnly: !wantVoice,
       // Per "sabato prossimo alle dieci": il modello non sa che giorno è
       dynamicVariables: { oggi: romeNow() },
-      clientTools: clientTools(cb.act),
+      clientTools: clientTools(cb.act, saidYes),
       onMessage: ({ message, role }) => {
         if (disposed) return;
         if (role === 'user' && message === lastTyped) return; // già mostrato da sendText
+        if (role === 'user') heardUser(message);
+        else lastAgent = message;
         cb.onMessage({ id: newMessageId(), role: role === 'user' ? 'user' : 'assistant', text: message, at: Date.now() });
         // In chat ElevenLabs non segnala il cambio di turno: la risposta chiude il "sto pensando"
         if (role !== 'user' && !voice) cb.onStatus('idle');
@@ -151,6 +167,7 @@ export const createElevenLabsEngine: EngineFactory = (cb) => {
     async sendText(text) {
       if (notConfigured) return local().sendText(text);
       lastTyped = text;
+      heardUser(text);
       try {
         const s = session ?? (await ensure(false));
         // Il motore locale mostra da sé il messaggio dell'utente

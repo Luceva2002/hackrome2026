@@ -99,7 +99,7 @@ export async function geocode(indirizzo: string): Promise<{ lat: number; lng: nu
     limit: '1',
     access_token: MAPBOX_TOKEN,
   }).toString();
-  const r = await fetch(u, { signal: AbortSignal.timeout(5000), cache: 'no-store' });
+  const r = await fetch(u, { signal: AbortSignal.timeout(8000), cache: 'no-store' });
   if (!r.ok) throw new Error(`Mapbox ${r.status}`);
   const f = ((await r.json()) as { features?: { geometry: { coordinates: [number, number] }; properties: { full_address?: string; name?: string } }[] })
     .features?.[0];

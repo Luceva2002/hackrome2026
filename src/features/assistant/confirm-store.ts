@@ -2,9 +2,12 @@
  * Conferma delle azioni che cambiano dati (iscrizione, creazione…), a voce o col pulsante.
  *
  * Il modello chiede l'azione → qui resta "in attesa" e lo schermo mostra Conferma / Annulla.
- * Si esegue solo se: l'utente preme Conferma, oppure il modello richiama lo stesso strumento
- * con gli stessi dati e `confermato: true` DOPO la richiesta. Un `confermato: true` senza
- * richiesta prima non esegue nulla: il modello non può saltare la domanda.
+ * Si esegue solo se: l'utente preme Conferma; oppure il modello richiama lo stesso strumento
+ * con gli stessi dati e `confermato: true` DOPO la richiesta; oppure `confermato: true` arriva
+ * subito dopo un sì esplicito dell'utente a una domanda dell'agente (il modello spesso chiede
+ * "Confermi?" prima di chiamare lo strumento: non si chiede due volte).
+ * shortcut: in quel caso si controlla che ci sia stata una domanda e un sì, non che la domanda
+ * riassumesse proprio questi dati; il pulsante resta la garanzia forte.
  */
 export type ConfirmState = 'pending' | 'running' | 'done' | 'error' | 'cancelled';
 
@@ -60,10 +63,20 @@ export const confirmStore = {
    * Chiamato dal client tool. Prima volta (o dati cambiati): mette in attesa e chiede di confermare.
    * Con `confirmed` e gli stessi dati della richiesta in attesa: esegue.
    */
-  async request(key: string, summary: string, action: string, confirmed: boolean, run: () => Promise<string>): Promise<string> {
+  async request(
+    key: string,
+    summary: string,
+    action: string,
+    confirmed: boolean,
+    run: () => Promise<string>,
+    /** L'utente ha appena risposto sì a una domanda dell'agente (vedi saidYes): niente seconda domanda */
+    voiceYes = false,
+  ): Promise<string> {
     if (confirmed && current?.key === key && current.state === 'pending') return execute(current);
     if (confirmed && current?.key === key && current.state === 'done') return `Già fatto: ${current.result}`;
-    set({ id: ++seq, key, summary, action, state: 'pending', run });
+    const p: PendingAction = { id: ++seq, key, summary, action, state: 'pending', run };
+    if (confirmed && voiceYes) return execute(p);
+    set(p);
     return (
       `IN ATTESA DI CONFERMA, non è ancora stato fatto nulla. Di' all'utente: "${summary}. Confermi?" ` +
       'Sullo schermo c’è anche il pulsante Conferma. Se dice sì, richiama questo strumento con gli stessi parametri e confermato true. ' +

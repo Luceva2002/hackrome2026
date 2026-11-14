@@ -6,7 +6,9 @@ import { createActivitySchema } from '@/features/activities/filters';
 import type { ActivityWithMe } from '@/features/activities/types';
 import { LEVEL_LABELS } from '@/features/activities/types';
 import { formatSlot, romeWallToDate } from '@/lib/rome-time';
-import { getDiscipline } from '@/lib/sports/taxonomy';
+import { addVenue } from '@/features/venues/hooks/use-venues';
+import type { VenueSummary } from '@/features/venues/types';
+import { DISCIPLINES, getDiscipline, getVenueKind, NATURE_LABELS, VENUE_KINDS } from '@/lib/sports/taxonomy';
 
 import { confirmStore } from './confirm-store';
 
@@ -39,7 +41,28 @@ const FIELD: Record<string, string> = {
   description: 'la descrizione (massimo 600 caratteri)',
 };
 
-export function writeTools(navigate: (url: string) => void) {
+/** Parole di un sì e riempitivi ammessi: "sì confermo", "ok vai pure", "yes please" */
+const YES_WORDS = new Set(['si', 'certo', 'confermo', 'conferma', 'ok', 'okay', 'va', 'bene', 'vai', 'procedi', 'esatto', 'perfetto', 'yes', 'yeah', 'yep', 'sure', 'confirm', 'go', 'ahead']);
+const FILLERS = new Set(['pure', 'grazie', 'dai', 'allora', 'please', 'thanks', 'e', 'certamente']);
+
+/** Risposta dell'utente a una domanda: solo un sì ("si chiama Mario" non lo è) */
+export const isYes = (said: string) => {
+  const w = said.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z ]+/g, ' ').trim().split(/\s+/);
+  return w.length > 0 && w.length <= 5 && YES_WORDS.has(w[0]) && w.every((x) => YES_WORDS.has(x) || FILLERS.has(x));
+};
+
+export function writeTools(
+  navigate: (url: string) => void,
+  locate: () => Promise<{ lat: number; lng: number } | null>,
+  /** L'utente ha appena detto sì a una domanda dell'agente */
+  saidYes: () => boolean = () => false,
+) {
+  // Il sì appena detto vale anche se il modello non ha messo `confermato` (l'ha chiesto lui prima)
+  const request = (key: string, summary: string, action: string, confirmed: boolean, run: () => Promise<string>) => {
+    const voice = saidYes();
+    return confirmStore.request(key, summary, action, confirmed || voice, run, voice);
+  };
+
   return {
     iscriviti_attivita: async ({ id, confermato }: Params) => {
       if (typeof id !== 'string' || !UUID.test(id)) return 'Errore: id attività non valido. Usa l’id restituito da cerca_attivita.';
@@ -51,7 +74,7 @@ export function writeTools(navigate: (url: string) => void) {
         if (a.status === 'cancelled') return `«${a.title}» è stata annullata: non ci si può iscrivere.`;
         const full = a.spots_left <= 0 ? '. I posti sono finiti: andrai in lista d’attesa' : '';
         const summary = `Ti iscrivo a «${a.title}», ${formatSlot(a.starts_at, a.ends_at)}${where(a) ? `, ${where(a)}` : ''}${full}`;
-        return confirmStore.request(`join:${id}`, summary, 'Iscrivimi', yes(confermato), async () => {
+        return request(`join:${id}`, summary, 'Iscrivimi', yes(confermato), async () => {
           const { status } = await api<{ status: 'confirmed' | 'waitlist' }>(`/api/activities/${id}/join`, { method: 'POST' });
           navigate(`/attivita/${id}`);
           return status === 'confirmed'
@@ -69,7 +92,7 @@ export function writeTools(navigate: (url: string) => void) {
         const a = await getActivity(id);
         if (!a.my_status) return `L’utente non è iscritto a «${a.title}».`;
         const summary = `Annullo la tua iscrizione a «${a.title}», ${formatSlot(a.starts_at, a.ends_at)}`;
-        return confirmStore.request(`leave:${id}`, summary, 'Annulla iscrizione', yes(confermato), async () => {
+        return request(`leave:${id}`, summary, 'Annulla iscrizione', yes(confermato), async () => {
           await api(`/api/activities/${id}/join`, { method: 'DELETE' });
           navigate(`/attivita/${id}`);
           return `Iscrizione a «${a.title}» annullata.`;
@@ -108,7 +131,7 @@ export function writeTools(navigate: (url: string) => void) {
         const summary =
           `Creo l’attività «${d.title}»: ${getDiscipline(d.discipline).label.toLowerCase()}, ${formatSlot(d.starts_at, d.ends_at)}, ` +
           `a ${venue.name}, ${d.capacity} posti, ${LEVEL_LABELS[d.level].toLowerCase()}${d.price_note ? `, costo: ${d.price_note}` : ''}`;
-        return confirmStore.request(`create:${JSON.stringify(d)}`, summary, 'Crea attività', yes(p.confermato), async () => {
+        return request(`create:${JSON.stringify(d)}`, summary, 'Crea attività', yes(p.confermato), async () => {
           const { id } = await api<{ id: string }>('/api/activities', { method: 'POST', body: JSON.stringify(d) });
           navigate(`/attivita/${id}`);
           return `Attività «${d.title}» creata, ${formatSlot(d.starts_at, d.ends_at)}. Chi la cerca ora la trova e può iscriversi.`;
@@ -126,7 +149,7 @@ export function writeTools(navigate: (url: string) => void) {
         if (a.status === 'cancelled') return `«${a.title}» è già annullata.`;
         const people = a.confirmed_count + a.waitlist_count;
         const summary = `Annullo la tua attività «${a.title}», ${formatSlot(a.starts_at, a.ends_at)}${people ? `: ${people} ${people === 1 ? 'persona iscritta lo vedrà' : 'persone iscritte lo vedranno'}` : ''}`;
-        return confirmStore.request(`cancel:${id}`, summary, 'Annulla attività', yes(confermato), async () => {
+        return request(`cancel:${id}`, summary, 'Annulla attività', yes(confermato), async () => {
           await api(`/api/activities/${id}`, { method: 'PATCH', body: JSON.stringify({ status: 'cancelled' }) });
           navigate(`/attivita/${id}`);
           return `Attività «${a.title}» annullata.`;
@@ -134,6 +157,44 @@ export function writeTools(navigate: (url: string) => void) {
       } catch (e) {
         return `Errore: ${(e as Error).message}`;
       }
+    },
+
+    segnala_luogo: async (p: Params) => {
+      const name = String(p.nome ?? '').trim();
+      const address = String(p.indirizzo ?? '').trim();
+      if (name.length < 3) return 'Errore: serve il nome del luogo (almeno 3 lettere). Chiedilo all’utente.';
+      const at = yes(p.qui) ? await locate() : null;
+      if (yes(p.qui) && !at) return 'Errore: posizione non disponibile. Chiedi l’indirizzo del luogo.';
+      if (!at && address.length < 3) return 'Errore: serve l’indirizzo del luogo, oppure qui true se l’utente è lì adesso.';
+      const kind = VENUE_KINDS.some((k) => k.id === p.tipo) ? String(p.tipo) : 'spazio_informale';
+      const nature = String(p.natura ?? '') in NATURE_LABELS ? String(p.natura) : 'informale';
+      const ids = new Set(DISCIPLINES.map((d) => d.id));
+      const disciplines = String(p.sport ?? '')
+        .split(/[,;]\s*|\s+e\s+/)
+        .map((x) => x.trim().toLowerCase())
+        .filter((x) => ids.has(x))
+        .slice(0, 12);
+      const body = {
+        name,
+        address: address || undefined,
+        ...(at ? { latitude: at.lat, longitude: at.lng } : {}),
+        kind,
+        nature,
+        disciplines,
+        accessibility: p.accessibile === true || p.accessibile === 'true' ? 'si' : 'da_verificare',
+        opening_hours: p.orari ? String(p.orari).slice(0, 200) : undefined,
+        description: p.descrizione ? String(p.descrizione).slice(0, 1000) : undefined,
+      };
+      const summary =
+        `Segnalo «${name}»${at ? ' nel punto in cui ti trovi' : `, ${address}`}: ${getVenueKind(kind).label.toLowerCase()}` +
+        `${disciplines.length ? `, ${disciplines.map((d) => getDiscipline(d).label.toLowerCase()).join(', ')}` : ''}` +
+        `${body.opening_hours ? `, orari: ${body.opening_hours}` : ''}. Comparirà subito sulla mappa come segnalato dalla community`;
+      return request(`report:${JSON.stringify(body)}`, summary, 'Segnala luogo', yes(p.confermato), async () => {
+        const { venue } = await api<{ venue: VenueSummary }>('/api/venues', { method: 'POST', body: JSON.stringify(body) });
+        addVenue(venue);
+        navigate(`/mappa?luogo=${encodeURIComponent(venue.id)}`);
+        return `«${venue.name}» è sulla mappa${venue.address ? `, ${venue.address}` : ''}. Grazie della segnalazione.`;
+      });
     },
 
     le_mie_attivita: async () => {

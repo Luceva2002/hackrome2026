@@ -148,6 +148,30 @@ const CLIENT_TOOLS = [
     response_timeout_secs: 15,
   },
   {
+    name: 'segnala_luogo',
+    description:
+      'Aggiunge alla mappa un luogo dove fare sport che non c’è (campetto, parco, percorso, palestra), segnalato dall’utente. ' +
+      'Controlla prima con cerca_impianti che non esista già. Chiamalo subito, senza confermato: mostra il pulsante; dopo un sì richiama con gli stessi parametri e confermato true.',
+    parameters: {
+      type: 'object',
+      properties: {
+        nome: { type: 'string', description: 'Nome del luogo, es. "Campetto di via Ostiense"' },
+        indirizzo: { type: 'string', description: 'Indirizzo o punto noto di Roma (non serve se qui è true)' },
+        qui: { type: 'boolean', description: 'true se l’utente è nel luogo adesso: si usa la sua posizione' },
+        tipo: { type: 'string', enum: ['spazio_informale', 'campo', 'palestra', 'piscina', 'centro_sportivo', 'palestra_scolastica', 'altro'], description: 'Tipo di luogo (parco, campetto libero → spazio_informale)' },
+        sport: { type: 'string', description: 'Id degli sport separati da virgola, es. "basket, calcio5"' },
+        natura: { type: 'string', enum: ['informale', 'pubblico', 'privato', 'concessione', 'scuola', 'da_verificare'], description: 'Pubblico/libero, privato…' },
+        orari: { type: 'string', description: 'Orari come li dice l’utente, es. "sempre aperto"' },
+        accessibile: { type: 'boolean', description: 'true solo se l’utente dice che è accessibile' },
+        descrizione: { type: 'string', description: 'Note utili dette dall’utente' },
+        confermato: { type: 'boolean', description: 'true solo dopo che l’utente ha detto sì a questo riepilogo' },
+      },
+      required: ['nome'],
+    },
+    expects_response: true,
+    response_timeout_secs: 20,
+  },
+  {
     name: 'le_mie_attivita',
     description: 'Attività future dell’utente: quelle che organizza e quelle a cui è iscritto (o in lista d’attesa).',
     parameters: { type: 'object', properties: {} },
