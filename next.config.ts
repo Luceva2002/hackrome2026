@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/map', destination: '/mappa', permanent: true },
-      { source: '/home', destination: '/', permanent: true },
       { source: '/leaderboard', destination: '/', permanent: true },
       { source: '/virtual-tour', destination: '/', permanent: true },
       { source: '/onboarding', destination: '/auth', permanent: true },

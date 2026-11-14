@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { AgentIcon } from './AgentIcon';
 
 import { useAssistant } from './AssistantProvider';
@@ -41,6 +41,8 @@ export function AssistantButton() {
     if (timer.current) clearTimeout(timer.current);
   }, []);
 
+  // due pulsanti in pagina (dock mobile, angolo desktop): ognuno la sua descrizione
+  const hintId = useId();
   const listening = status === 'listening';
   const busy = status === 'thinking' || status === 'connecting';
 
@@ -48,7 +50,7 @@ export function AssistantButton() {
     <button
       type="button"
       aria-label={listening ? 'Assistente vocale: ti sto ascoltando' : 'Assistente vocale'}
-      aria-describedby="assistant-button-hint"
+      aria-describedby={hintId}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
         e.currentTarget.setPointerCapture?.(e.pointerId);
@@ -91,7 +93,7 @@ export function AssistantButton() {
         </>
       )}
       <AgentIcon state={listening ? 'listening' : busy ? 'thinking' : 'idle'} className="w-10 h-10" />
-      <span id="assistant-button-hint" className="sr-only">
+      <span id={hintId} className="sr-only">
         Tocca per aprire la chat, tieni premuto per parlare. Nella chat c’è anche il pulsante del microfono.
       </span>
     </button>

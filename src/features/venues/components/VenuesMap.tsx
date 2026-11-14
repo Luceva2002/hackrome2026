@@ -46,6 +46,9 @@ const FEW = 60;
 const OPAC = { area: 0.42, zf: 0.5, areaVicino: 0.26, zfVicino: 0.32 };
 const VELO = { colore: '#1C2024', opacita: 0.38 };
 const AMARANTO = '#8E001C';
+/** Raggio del tocco attorno al dito e altezza indicativa di un pin, in px */
+const TOUCH_RADIUS = 18;
+const PIN_HEIGHT = 44;
 
 interface Props {
   venues: VenueSummary[];
@@ -112,14 +115,14 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   /** zoom dove l'ultima inquadratura automatica si è fermata: allontanarsi molto risale di livello */
   const framedZoom = useRef<number | null>(null);
 
-  const areaAt = areas?.areaAt;
+  const areaOf = areas?.areaOf;
   const geojson = useMemo(
     () => ({
       type: 'FeatureCollection' as const,
       features: venues
         .filter((v) => v.latitude != null && v.longitude != null)
         .map((v) => {
-          const a = areaAt?.(v.longitude!, v.latitude!);
+          const a = areaOf?.(v);
           return {
             type: 'Feature' as const,
             id: v.id,
@@ -136,7 +139,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
           };
         }),
     }),
-    [venues, areaAt],
+    [venues, areaOf],
   );
 
   const geojsonRef = useRef(geojson);
@@ -295,10 +298,28 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   const onClick = useCallback(
     (e: MapMouseEvent) => {
       const feats = e.features ?? [];
-      // prima i luoghi, poi le aree
-      const venue = feats.find((f) => f.layer?.id?.startsWith('venue-'));
-      if (venue?.properties?.id) {
-        onSelect(venue.properties.id as string);
+      // Due tocchi distinti. Prima i luoghi: si cerca attorno al dito (un punto è più piccolo
+      // di un polpastrello) e vince il più vicino. Solo dove non c'è un luogo il tocco è dell'area.
+      const r = TOUCH_RADIUS;
+      const layers = ['venue-dots', 'venue-pins'].filter((id) => e.target.getLayer(id));
+      const hits = layers.length
+        ? e.target.queryRenderedFeatures([[e.point.x - r, e.point.y - r], [e.point.x + r, e.point.y + r + PIN_HEIGHT]], { layers })
+        : [];
+      let best: string | null = null;
+      let bestD = Infinity;
+      for (const f of hits) {
+        if (f.geometry.type !== 'Point' || !f.properties?.id) continue;
+        const p = e.target.project(f.geometry.coordinates as [number, number]);
+        // il pin sta sopra il suo punto: si misura dal centro del disegno, non dalla punta
+        const cy = f.layer?.id === 'venue-pins' ? p.y - PIN_HEIGHT / 2 : p.y;
+        const d = Math.hypot(p.x - e.point.x, cy - e.point.y);
+        if (d < bestD) {
+          bestD = d;
+          best = f.properties.id as string;
+        }
+      }
+      if (best && bestD <= r + PIN_HEIGHT / 2) {
+        onSelect(best);
         return;
       }
       const area = feats.find((f) => f.layer?.id?.startsWith('aree-'));

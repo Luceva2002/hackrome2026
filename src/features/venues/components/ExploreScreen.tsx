@@ -80,7 +80,7 @@ export function ExploreScreen() {
     if (!all || !selectedId) return;
     const v = all.find((x) => x.id === selectedId);
     if (v?.latitude == null || v.longitude == null) return;
-    const a = areas?.areaAt(v.longitude, v.latitude);
+    const a = areas?.areaOf(v);
     if (a?.municipio) setZone({ level: 'area', m: a.municipio, id: a.id, quiet: true });
     mapRef.current?.flyTo(v.longitude, v.latitude);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,8 +221,10 @@ export function ExploreScreen() {
           {zone.level === 'area' && (
             <p className="mt-(--gap) liquid-glass rounded-full h-8 px-3 inline-flex items-center text-[13px] font-semibold text-mid">
               {(() => {
-                const n = areas.areaInfo.get(zone.id)?.count ?? 0;
-                return n === 0 ? 'Nessun luogo qui: tocca un\'area vicina' : `${n.toLocaleString('it-IT')} ${n === 1 ? 'luogo' : 'luoghi'} in quest'area`;
+                // Conta quello che la mappa mostra davvero qui: i risultati più il luogo aperto
+                const n = shown.filter((v) => areas.areaOf(v)?.id === zone.id).length;
+                if (n === 0) return summary ? 'Nessun luogo con questi filtri in quest\'area' : 'Nessun luogo in quest\'area';
+                return `${n.toLocaleString('it-IT')} ${n === 1 ? 'luogo' : 'luoghi'} in quest'area`;
               })()}
             </p>
           )}

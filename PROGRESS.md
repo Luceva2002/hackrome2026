@@ -36,6 +36,7 @@ Da lontano i 15 Municipi in rilievo colorati e alti secondo il numero di luoghi,
 Confini da romaquartieri.it (Roma Capitale + OpenStreetMap) con credito; l'assistente capisce anche i quartieri ("palestre a Monti").
 
 ## Mappa: luoghi visibili, zoom mobile, colori Urbe Hub — ✓
-L'app si apre sulla mappa (`/` → `/mappa`, Home in `/home`); colori, retino, contorni e velo della mappa di romaquartieri.it; dentro un Municipio i luoghi sono punti toccabili, dentro un quartiere pin col tipo di luogo, a qualunque zoom.
+L'app si apre sulla mappa (`/` → `/mappa`, Home in `/inizio`); colori, retino, contorni e velo della mappa di romaquartieri.it; dentro un Municipio i luoghi sono punti toccabili, dentro un quartiere pin col tipo di luogo, a qualunque zoom.
 Corretto il difetto di fondo: le icone dei pin non venivano mai registrate (ref della mappa ancora vuoto al load), quindi i pin non comparivano. Inquadrature calcolate sul viewport (Roma, Municipio, quartiere, luogo) senza rotazioni.
 Su desktop l'assistente è in basso a destra. Verificato con render reale dei livelli su viewport iPhone e desktop, senza il fondo Mapbox (bloccato dal cloud).
+Dopo la prova di Luca: tolto il vecchio redirect `/home` → `/` (la Home ora è `/inizio`, così un redirect permanente rimasto nella cache del browser non la nasconde); il tocco cerca prima un luogo attorno al dito, poi l'area; etichetta del quartiere contata su ciò che la mappa mostra; id unico per i due pulsanti dell'assistente; quartiere di ogni luogo calcolato una volta e aree non più ricostruite a ogni filtro.

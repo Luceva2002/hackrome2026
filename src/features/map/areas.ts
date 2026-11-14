@@ -131,42 +131,19 @@ export function useAreas(venues: VenueSummary[]) {
     };
   }, []);
 
-  return useMemo(() => {
+  // Parte fissa: geometrie, colori e riquadri non dipendono dai filtri. Resta lo stesso oggetto,
+  // così la mappa non ricarica il file dei quartieri (1 MB) a ogni ricerca.
+  const fixed = useMemo(() => {
     if (!raw) return null;
-    const qCounts = new Map<number, number>();
-    const mCounts = new Map<number, number>();
-    for (const v of venues) {
-      if (v.latitude == null || v.longitude == null) continue;
-      const x = v.longitude;
-      const y = v.latitude;
-      const hit = raw.q.find(({ box, polys }) => x >= box[0] && x <= box[2] && y >= box[1] && y <= box[3] && inGeometry(x, y, polys));
-      if (!hit) continue;
-      qCounts.set(hit.f.id, (qCounts.get(hit.f.id) ?? 0) + 1);
-      // Conteggio del Municipio = somma delle sue aree: coerente con quello che si vede
-      const m = hit.f.properties.municipio!;
-      mCounts.set(m, (mCounts.get(m) ?? 0) + 1);
-    }
-
-    // massimo per municipio, per le sfumature e le altezze dentro il municipio
-    const maxInMun = new Map<number, number>();
-    for (const { f } of raw.q) {
-      const m = f.properties.municipio!;
-      maxInMun.set(m, Math.max(maxInMun.get(m) ?? 1, qCounts.get(f.id) ?? 0));
-    }
-
     const aree = {
       type: 'FeatureCollection' as const,
       features: raw.q.map(({ f }) => {
         const m = f.properties.municipio!;
-        const count = qCounts.get(f.id) ?? 0;
-        const tm = count / (maxInMun.get(m) ?? 1);
         const base = municipioColor(m);
         return {
           ...f,
           properties: {
             ...f.properties,
-            count,
-            tm,
             colore: base,
             linea: scurisci(base),
             // zone funzionali (parchi, aree industriali…): retino a righe come nella mappa di Urbe Hub
@@ -177,6 +154,42 @@ export function useAreas(venues: VenueSummary[]) {
         };
       }),
     };
+    const municipioBox = new Map<number, BBox>(raw.m.map(({ f, box }) => [f.id, box]));
+    const romaBox: BBox = [180, 90, -180, -90];
+    for (const { box } of raw.m) {
+      romaBox[0] = Math.min(romaBox[0], box[0]);
+      romaBox[1] = Math.min(romaBox[1], box[1]);
+      romaBox[2] = Math.max(romaBox[2], box[2]);
+      romaBox[3] = Math.max(romaBox[3], box[3]);
+    }
+    const municipi = { type: 'FeatureCollection' as const, features: raw.m.map(({ f }) => f) };
+    const romano = new Map(raw.m.map(({ f }) => [f.id, f.properties.romano!]));
+    const areaAt = (x: number, y: number) =>
+      raw.q.find(({ box, polys }) => x >= box[0] && x <= box[2] && y >= box[1] && y <= box[3] && inGeometry(x, y, polys))?.f.properties ?? null;
+    // Il quartiere di ogni luogo si calcola una volta sola (punto nel poligono), poi si rilegge
+    const memo = new Map<string, { x: number; y: number; a: AreaProps | null }>();
+    const areaOf = (v: Pick<VenueSummary, 'id' | 'latitude' | 'longitude'>) => {
+      if (v.latitude == null || v.longitude == null) return null;
+      const c = memo.get(v.id);
+      if (c && c.x === v.longitude && c.y === v.latitude) return c.a;
+      const a = areaAt(v.longitude, v.latitude);
+      memo.set(v.id, { x: v.longitude, y: v.latitude, a });
+      return a;
+    };
+    return { aree, municipi, municipioBox, romaBox, romano, areaAt, areaOf };
+  }, [raw]);
+
+  return useMemo(() => {
+    if (!raw || !fixed) return null;
+    const qCounts = new Map<number, number>();
+    const mCounts = new Map<number, number>();
+    for (const v of venues) {
+      const a = fixed.areaOf(v);
+      if (!a) continue;
+      qCounts.set(a.id, (qCounts.get(a.id) ?? 0) + 1);
+      // Conteggio del Municipio = somma delle sue aree: coerente con quello che si vede
+      mCounts.set(a.municipio!, (mCounts.get(a.municipio!) ?? 0) + 1);
+    }
 
     const areeEtichette = {
       type: 'FeatureCollection' as const,
@@ -198,23 +211,10 @@ export function useAreas(venues: VenueSummary[]) {
       })),
     };
 
-    const municipioBox = new Map<number, BBox>(raw.m.map(({ f, box }) => [f.id, box]));
-    const romaBox: BBox = [180, 90, -180, -90];
-    for (const { box } of raw.m) {
-      romaBox[0] = Math.min(romaBox[0], box[0]);
-      romaBox[1] = Math.min(romaBox[1], box[1]);
-      romaBox[2] = Math.max(romaBox[2], box[2]);
-      romaBox[3] = Math.max(romaBox[3], box[3]);
-    }
-    const municipi = { type: 'FeatureCollection' as const, features: raw.m.map(({ f }) => f) };
     const areaInfo = new Map(raw.q.map(({ f, box }) => [f.id, { nome: f.properties.nome, tipo: f.properties.tipo, municipio: f.properties.municipio!, box, count: qCounts.get(f.id) ?? 0 }]));
-    const romano = new Map(raw.m.map(({ f }) => [f.id, f.properties.romano!]));
 
-    const areaAt = (x: number, y: number) =>
-      raw.q.find(({ box, polys }) => x >= box[0] && x <= box[2] && y >= box[1] && y <= box[3] && inGeometry(x, y, polys))?.f.properties ?? null;
-
-    return { aree, municipi, areeEtichette, municipiEtichette, municipioBox, romaBox, areaInfo, romano, mCounts, areaAt };
-  }, [raw, venues]);
+    return { ...fixed, areeEtichette, municipiEtichette, areaInfo, mCounts };
+  }, [raw, fixed, venues]);
 }
 
 export type Areas = NonNullable<ReturnType<typeof useAreas>>;
