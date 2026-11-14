@@ -100,6 +100,10 @@ export async function getVenue(id: string): Promise<VenueRecord | null> {
           opening_hours: (r.opening_hours as string) ?? null,
           phone: (r.phone as string) ?? null,
           website: (r.website as string) ?? null,
+          // colonne della migration 031: se non è ancora stata eseguita restano "da verificare"
+          cost: (['gratuito', 'a_pagamento'].includes(r.cost as string) ? r.cost : 'da_verificare') as VenueRecord['cost'],
+          cost_price: (r.cost_price as string) ?? null,
+          cost_note: (r.cost_note as string) ?? null,
           description: (r.description as string) ?? null,
           needs_review: Boolean(r.needs_review),
           review_notes: (r.review_notes as string[]) ?? [],
@@ -110,5 +114,7 @@ export async function getVenue(id: string): Promise<VenueRecord | null> {
       // fallback sotto
     }
   }
-  return (await readProcessed()).find((v) => v.id === id) ?? null;
+  const v = (await readProcessed()).find((x) => x.id === id);
+  // l'export della pipeline non ha il costo: nessuna fonte, quindi da verificare
+  return v ? { ...v, cost: v.cost ?? 'da_verificare', cost_price: v.cost_price ?? null, cost_note: v.cost_note ?? null } : null;
 }

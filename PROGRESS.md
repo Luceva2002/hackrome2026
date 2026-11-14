@@ -45,3 +45,8 @@ Dopo la prova di Luca: tolto il vecchio redirect `/home` → `/` (la Home ora è
 Registry degli strumenti (`src/lib/tools`) esposto da un server MCP su `/api/mcp` (sola lettura, segreto `MCP_SECRET`): cerca_impianti, dettagli_luogo, cerca_attivita, dettagli_attivita, con l'`url` della vista da aprire.
 Motore ElevenLabs per voce e chat (agente privato: URL firmato da `/api/assistant/session` solo con login), client tool naviga/mappa/posizione, ritorno al motore locale se l'agente non è configurato. Agente creato e aggiornato da `scripts/elevenlabs-setup.mts`; prompt in `src/lib/agent/voice-prompt.md`.
 Seed: 5 spazi della community di esempio e 2 attività su di essi. Da fare: scritture con conferma (iscriviti, crea attività), segnala_luogo, cerca_sul_web.
+
+## Costo e pagine del profilo — ✓
+Costo strutturato sui luoghi (migrazione 031: gratuito, a pagamento, da verificare, con prezzo, nota e fonte) mostrato nella scheda; le attività dicono se sono gratuite o il prezzo, anche nell'anteprima del luogo.
+Pagine che mancavano e a cui il profilo già puntava: `/attivita` (bacheca con filtri nell'URL e "Le mie"), `/attivita/[id]` (iscrizione, lista d'attesa, annullamento), `/attivita/nuova`, `/gestore` (rivendicazione e modifica dei dati operativi), `/admin` (rivendicazioni, proposte, fonti).
+Non provate con il database vero dal cloud: solo build, tipi e resa delle pagine senza dati.

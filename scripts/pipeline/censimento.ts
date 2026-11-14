@@ -219,6 +219,10 @@ function main() {
 
     const venue: VenueRecord = {
       id,
+      // nessuna fonte pubblica dichiara il costo: resta da verificare
+      cost: 'da_verificare',
+      cost_price: null,
+      cost_note: null,
       name,
       address,
       municipio,

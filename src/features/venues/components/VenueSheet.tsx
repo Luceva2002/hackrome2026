@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Accessibility, BadgeCheck, CalendarPlus, ChevronDown, Info, KeyRound, Loader2, MapPin, Navigation, Users } from 'lucide-react';
+import { Accessibility, BadgeCheck, CalendarPlus, ChevronDown, ChevronRight, Info, KeyRound, Loader2, MapPin, Navigation, Ticket, Users } from 'lucide-react';
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { useVenuePhoto } from '@/features/photos/use-venue-photo';
@@ -15,6 +15,9 @@ import {
   getVenueKind,
   municipioLabel,
 } from '@/lib/sports/taxonomy';
+import { activityCost, costText } from '@/lib/cost';
+import { formatSlot } from '@/lib/rome-time';
+import type { ActivityWithMe } from '@/features/activities/types';
 import { sourceLabel } from '../sources';
 import { distanceKm } from '../filters';
 import type { FieldSource, VenueField, VenueRecord } from '../types';
@@ -147,6 +150,21 @@ export function VenueSheet({
     };
   }, [id]);
 
+  // Attività in programma in questo luogo, con il costo dichiarato da chi le organizza
+  const [acts, setActs] = useState<ActivityWithMe[] | null>(null);
+  useEffect(() => {
+    setActs(null);
+    if (!id) return;
+    let cancelled = false;
+    fetch(`/api/activities?luogo=${encodeURIComponent(id)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => !cancelled && setActs(d.activities ?? []))
+      .catch(() => !cancelled && setActs([]));
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
   const kind = venue ? getVenueKind(venue.kind) : null;
   const dist =
     venue && userLocation && venue.latitude != null && venue.longitude != null
@@ -183,6 +201,10 @@ export function VenueSheet({
 
           {/* A colpo d'occhio: solo ciò che decide se ci vado */}
           <ul className="flex flex-wrap gap-(--gap) mt-3" aria-label="In breve">
+            <Fact tone={venue.cost === 'gratuito' ? 'good' : 'neutral'}>
+              <Ticket className="w-3.5 h-3.5" aria-hidden />
+              {venue.cost === 'da_verificare' ? <span className="text-mid">Costo da verificare</span> : costText({ cost: venue.cost, price: venue.cost_price, note: venue.cost_note })}
+            </Fact>
             {venue.status === 'attivo' && <Fact tone="good">● Attivo</Fact>}
             {venue.status !== 'attivo' && venue.status !== 'da_verificare' && <Fact tone="warn">{STATUS_LABELS[venue.status]}</Fact>}
             {venue.accessibility === 'si' && (
@@ -232,6 +254,42 @@ export function VenueSheet({
                 </a>
               )}
             </div>
+          )}
+
+          {venue.cost !== 'da_verificare' && venue.cost_note && <p className="mt-2 text-[13px] text-mid">{venue.cost_note}</p>}
+
+          {acts && acts.length > 0 && (
+            <section className="mt-4" aria-label="Attività in programma qui">
+              <h3 className="eyebrow mb-2">Attività in programma qui</h3>
+              <ul className="space-y-(--gap)">
+                {acts.slice(0, 3).map((a) => {
+                  const c = activityCost(a.price_note);
+                  return (
+                    <li key={a.id}>
+                      <Link href={`/attivita/${a.id}`} className="flex items-center gap-3 p-3 rounded-card glass-well hover:bg-white transition-colors">
+                        <span className="flex-1 min-w-0">
+                          <span className="block text-[14px] font-bold text-hi truncate">{a.title}</span>
+                          <span className="block text-[13px] text-mid truncate">{formatSlot(a.starts_at, a.ends_at)}</span>
+                        </span>
+                        <span
+                          className={`shrink-0 h-7 px-2.5 rounded-full text-[12px] font-bold flex items-center ${
+                            c.cost === 'gratuito' ? 'bg-emerald-50 text-emerald-800 border border-emerald-100' : 'bg-white border border-(--stroke-dark) text-hi'
+                          }`}
+                        >
+                          {c.cost === 'a_pagamento' ? c.price : costText(c, true)}
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-low shrink-0" aria-hidden />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              {acts.length > 3 && (
+                <Link href={`/attivita?luogo=${encodeURIComponent(venue.id)}`} className="inline-block mt-2 text-[13px] font-bold text-hi underline">
+                  Tutte le {acts.length} attività qui
+                </Link>
+              )}
+            </section>
           )}
 
           <div className="grid grid-cols-2 gap-(--gap) mt-4">
@@ -306,6 +364,16 @@ export function VenueSheet({
               </Field>
               <Field label="Natura dello spazio" field="nature" venue={venue}>
                 {venue.nature === 'da_verificare' ? <ToVerify /> : NATURE_LABELS[venue.nature]}
+              </Field>
+              <Field label="Costo" field="cost" venue={venue}>
+                {venue.cost === 'da_verificare' ? (
+                  <ToVerify />
+                ) : (
+                  <>
+                    {costText({ cost: venue.cost, price: venue.cost_price, note: venue.cost_note })}
+                    {venue.cost_note && <span className="block text-[13px] text-mid mt-0.5">{venue.cost_note}</span>}
+                  </>
+                )}
               </Field>
               <Field label="Orari" field="opening_hours" venue={venue}>
                 {venue.opening_hours ?? <ToVerify />}

@@ -4,6 +4,7 @@ import type {
   VenueKind,
   VenueNature,
 } from '@/lib/sports/taxonomy';
+import type { Cost } from '@/lib/cost';
 
 /** Da dove viene un campo della scheda: è la nostra credibilità. */
 export interface FieldSource {
@@ -31,6 +32,7 @@ export type VenueField =
   | 'opening_hours'
   | 'phone'
   | 'website'
+  | 'cost'
   | 'description';
 
 /** Scheda completa (dettaglio). */
@@ -51,6 +53,10 @@ export interface VenueRecord {
   opening_hours: string | null;
   phone: string | null;
   website: string | null;
+  /** Costo: solo con fonte (gestore, fonte pubblica, proposta approvata); altrimenti 'da_verificare' */
+  cost: Cost;
+  cost_price: string | null;
+  cost_note: string | null;
   description: string | null;
   community: boolean;
   manager_verified: boolean;

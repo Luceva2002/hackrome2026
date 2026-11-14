@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo } from "react";
 import { LocateFixed } from "lucide-react";
 
@@ -105,6 +106,20 @@ export function HomeScreen() {
               : "Carico i luoghi…"}
           </p>
         </div>
+
+        <Link
+          href="/attivita"
+          className="mx-4 mt-5 card rounded-[24px] p-4 flex items-center gap-3 hover:bg-(--surface-muted) transition-colors"
+        >
+          <span className="w-11 h-11 rounded-2xl bg-(--gold-tint) flex items-center justify-center text-[22px] shrink-0" aria-hidden>
+            📅
+          </span>
+          <span className="flex-1 min-w-0">
+            <span className="block text-[15px] font-bold text-hi">Attività in programma</span>
+            <span className="block text-[13px] text-mid">Partite, corsi e allenamenti aperti, gratuiti o con prezzo</span>
+          </span>
+          <span className="text-low text-[20px]" aria-hidden>›</span>
+        </Link>
 
         {error ? (
           <div className="mx-4 mt-8 text-center">

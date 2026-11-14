@@ -14,7 +14,7 @@ import { TopBar } from './TopBar';
 /** Struttura comune: top bar, dock in basso, tendine di ricerca e assistente. */
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '/';
-  const ownHeader = pathname.startsWith('/profilo');
+  const ownHeader = ['/profilo', '/attivita', '/gestore', '/admin'].some((p) => pathname.startsWith(p));
   return (
     <ShellProvider>
       <AssistantProvider engineFactory={createElevenLabsEngine}>
