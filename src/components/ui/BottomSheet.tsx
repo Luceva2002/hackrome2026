@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion, useDragControls, useReducedMotion } from 'motion/react';
 import { X } from 'lucide-react';
 
@@ -19,7 +19,21 @@ interface Props {
   header?: React.ReactNode;
   /** Al posto del titolo visibile, accanto alla X (es. la barra di ricerca) */
   toolbar?: React.ReactNode;
+  /** Su desktop la tendina diventa un pannello laterale: a sinistra o a destra */
+  side?: 'left' | 'right';
   footer?: React.ReactNode;
+}
+
+function useDesktop() {
+  const [d, setD] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const on = () => setD(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return d;
 }
 
 const HEIGHT = { tall: 'h-[min(80dvh,760px)]', medium: 'h-[min(66dvh,640px)]', auto: 'max-h-[85dvh]' } as const;
@@ -40,10 +54,13 @@ export function BottomSheet({
   backdrop = 'dim',
   header,
   toolbar,
+  side = 'left',
 }: Props) {
   const titleId = useId();
   const drag = useDragControls();
   const reduce = useReducedMotion();
+  const desktop = useDesktop();
+  const off = desktop ? { x: side === 'left' ? '-110%' : '110%', y: 0 } : { y: '108%', x: 0 };
   const panelRef = useRef<HTMLDivElement>(null);
   const returnTo = useRef<HTMLElement | null>(null);
   // In un ref: un onClose instabile del chiamante non deve rilanciare l'effetto e rubare il focus
@@ -128,7 +145,7 @@ export function BottomSheet({
             tabIndex={-1}
             aria-modal="true"
             aria-labelledby={titleId}
-            drag={reduce ? false : 'y'}
+            drag={reduce || desktop ? false : 'y'}
             dragControls={drag}
             dragListener={false}
             dragConstraints={{ top: 0, bottom: 0 }}
@@ -136,12 +153,14 @@ export function BottomSheet({
             onDragEnd={(_, info) => {
               if (info.offset.y > 110 || info.velocity.y > 600) onClose();
             }}
-            initial={reduce ? { opacity: 0 } : { y: '108%', scale: 0.94, opacity: 0.6 }}
-            animate={reduce ? { opacity: 1 } : { y: 0, scale: 1, opacity: 1 }}
-            exit={reduce ? { opacity: 0 } : { y: '108%', scale: 0.96, opacity: 0.4 }}
+            initial={reduce ? { opacity: 0 } : { ...off, scale: 0.94, opacity: 0.6 }}
+            animate={reduce ? { opacity: 1 } : { x: 0, y: 0, scale: 1, opacity: 1 }}
+            exit={reduce ? { opacity: 0 } : { ...off, scale: 0.96, opacity: 0.4 }}
             transition={{ type: 'spring', stiffness: 360, damping: 34, mass: 0.9 }}
-            style={{ transformOrigin: '50% 100%', outline: 'none' }}
-            className={`absolute inset-x-edge bottom-[calc(var(--safe-b)+var(--edge))] mx-auto max-w-[560px] liquid-glass-thick rounded-sheet flex flex-col overflow-hidden outline-none ${HEIGHT[size]}`}
+            style={{ transformOrigin: desktop ? `${side === 'left' ? '0%' : '100%'} 50%` : '50% 100%', outline: 'none' }}
+            className={`absolute inset-x-edge bottom-[calc(var(--safe-b)+var(--edge))] mx-auto max-w-[560px] liquid-glass-thick rounded-sheet flex flex-col overflow-hidden outline-none ${HEIGHT[size]} lg:mx-0 lg:w-[420px] lg:h-auto lg:max-h-none lg:top-[calc(var(--safe-t)+var(--edge)+var(--control-h)+var(--gap))] lg:bottom-(--dock-space) ${
+              side === 'left' ? 'lg:right-auto' : 'lg:left-auto'
+            }`}
           >
             {header}
             <div

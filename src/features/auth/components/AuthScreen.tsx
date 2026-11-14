@@ -1,5 +1,7 @@
 'use client';
 
+import { APP_NAME } from '@/lib/brand';
+
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
@@ -201,7 +203,7 @@ export function AuthScreen() {
                   Chi sei?
                 </h1>
                 <p className="text-mid text-[15px] mt-1.5 max-w-[340px]">
-                  Scegli come userai RomaInCampo. Potrai sempre cambiare in seguito.
+                  Scegli come userai {APP_NAME}. Potrai sempre cambiare in seguito.
                 </p>
               </div>
 

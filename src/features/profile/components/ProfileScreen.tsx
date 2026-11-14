@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, CalendarDays, ChevronRight, KeyRound, Loader2, Settings, ShieldCheck } from 'lucide-react';
 
 import { GlassIconButton } from '@/components/ui/GlassIconButton';
-import { RingAvatar } from '@/components/ui/RingAvatar';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 import { ROLE_LABELS, type UserProfile } from '@/features/profile/types';
+import { AvatarEditor } from './AvatarEditor';
 
 function NavRow({ href, icon: Icon, title, desc }: { href: string; icon: typeof CalendarDays; title: string; desc: string }) {
   return (
@@ -91,12 +91,13 @@ export function ProfileScreen() {
         </div>
 
         <section className="card rounded-[28px] p-5 flex items-center gap-4">
-          <RingAvatar initial={username.charAt(0).toUpperCase()} size="md" />
+          <AvatarEditor initial={username.charAt(0).toUpperCase()} />
           <div className="min-w-0">
             <p className="text-[22px] font-bold text-hi leading-tight truncate" style={{ fontFamily: 'var(--font-display)' }}>
               {username}
             </p>
             <p className="text-sm text-mid mt-0.5">{ROLE_LABELS[profile.role]}</p>
+            <p className="text-[13px] text-low mt-0.5 truncate">{profile.email}</p>
           </div>
         </section>
 

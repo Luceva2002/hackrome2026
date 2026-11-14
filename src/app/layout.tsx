@@ -1,3 +1,4 @@
+import { APP_NAME, APP_TAGLINE } from '@/lib/brand';
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
@@ -20,13 +21,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'RomaInCampo — Dove fare sport a Roma',
+  title: `${APP_NAME} — ${APP_TAGLINE}`,
   description:
     'La mappa di tutti i luoghi dove fare sport a Roma, con la fonte di ogni dato, e la bacheca delle attività aperte a tutti.',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'RomaInCampo',
+    title: APP_NAME,
   },
 };
 

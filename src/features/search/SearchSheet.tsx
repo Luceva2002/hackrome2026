@@ -22,6 +22,7 @@ export function SearchSheet() {
   const geo = useGeolocation();
   const { venues } = useVenues();
   const [draft, setDraft] = useState<VenueFilters>({});
+  const [shown, setShown] = useState(6);
 
   // All'apertura riparte dai filtri già applicati alla mappa
   useEffect(() => {
@@ -29,6 +30,7 @@ export function SearchSheet() {
   }, [searchOpen, pathname, params]);
 
   const results = useMemo(() => (venues ? filterVenues(venues, draft) : []), [venues, draft]);
+  useEffect(() => setShown(6), [draft]);
   const summary = describeFilters(draft);
 
   const go = (extra?: Record<string, string>) => {
@@ -93,10 +95,19 @@ export function SearchSheet() {
             <p className="text-[14px] text-mid py-4">Nessun luogo con questi filtri. Prova a toglierne uno.</p>
           ) : (
             <ul className="flex flex-col gap-2" aria-label="Risultati della ricerca">
-              {results.slice(0, 6).map((v) => (
+              {results.slice(0, shown).map((v) => (
                 <VenueRow key={v.id} venue={v} selected={false} onSelect={(id) => go({ luogo: id })} />
               ))}
             </ul>
+          )}
+          {results.length > shown && (
+            <button
+              type="button"
+              onClick={() => setShown((n) => n + 20)}
+              className="mt-3 w-full h-control rounded-full glass-well text-hi font-bold text-[14px]"
+            >
+              Mostra altri {Math.min(20, results.length - shown)} di {(results.length - shown).toLocaleString('it-IT')}
+            </button>
           )}
         </section>
       )}

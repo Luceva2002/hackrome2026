@@ -1,9 +1,10 @@
+import { APP_NAME } from '@/lib/brand';
 import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'RomaInCampo',
-    short_name: 'RomaInCampo',
+    name: APP_NAME,
+    short_name: APP_NAME,
     description:
       'La mappa di tutti i luoghi dove fare sport a Roma e la bacheca delle attività aperte a tutti.',
     start_url: '/',

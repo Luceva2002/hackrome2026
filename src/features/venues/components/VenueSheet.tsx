@@ -166,6 +166,7 @@ export function VenueSheet({
       title={venue?.name ?? (state === 'error' ? 'Scheda non disponibile' : 'Caricamento della scheda…')}
       size="auto"
       backdrop="clear"
+      side="right"
       header={venue ? <Hero venue={venue} /> : undefined}
     >
       {!venue ? (

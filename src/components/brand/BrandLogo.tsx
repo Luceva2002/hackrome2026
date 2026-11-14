@@ -1,13 +1,15 @@
+import { APP_NAME, APP_NAME_PARTS } from '@/lib/brand';
+
 interface BrandLogoProps {
   className?: string;
   /** Mostra solo il simbolo, senza scritta */
   markOnly?: boolean;
 }
 
-export const BRAND_NAME = 'RomaInCampo';
+export const BRAND_NAME = APP_NAME;
 
 /**
- * Logo RomaInCampo — pin oro con un pallone stilizzato + wordmark.
+ * Logo dell'app — pin oro con un pallone stilizzato + wordmark.
  * Scala con il font-size del contenitore (usa className tipo `text-[42px]`).
  */
 export function BrandLogo({ className = '', markOnly = false }: BrandLogoProps) {
@@ -45,8 +47,8 @@ export function BrandLogo({ className = '', markOnly = false }: BrandLogoProps) 
 
       {!markOnly && (
         <span className="font-bold tracking-tight inline-flex items-baseline" aria-hidden>
-          <span className="text-hi">Roma</span>
-          <span className="text-gold-gradient">InCampo</span>
+          <span className="text-hi">{APP_NAME_PARTS[0]}</span>
+          <span className="text-gold-gradient">{APP_NAME_PARTS[1]}</span>
         </span>
       )}
     </span>

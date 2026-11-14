@@ -1,6 +1,10 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import { getCurrentLocation } from '@/lib/geo';
+import { mapBridge } from '@/features/map/map-bridge';
 
 import {
   createPlaceholderEngine,
@@ -47,11 +51,26 @@ export function AssistantProvider({
   const [messages, setMessages] = useState<AssistantMessage[]>([]);
   const [chatOpen, setChatOpen] = useState(false);
   const engine = useRef<AssistantEngine | null>(null);
+  const router = useRouter();
+  const routerRef = useRef(router);
+  routerRef.current = router;
 
   useEffect(() => {
     engine.current = engineFactory({
       onStatus: setStatus,
       onMessage: (m) => setMessages((prev) => [...prev, m]),
+      act: {
+        navigate: (url) => routerRef.current.push(url, { scroll: false }),
+        map: mapBridge,
+        locate: async () => {
+          try {
+            const l = await getCurrentLocation();
+            return { lat: l.latitude, lng: l.longitude };
+          } catch {
+            return null;
+          }
+        },
+      },
     });
     return () => engine.current?.dispose();
   }, [engineFactory]);

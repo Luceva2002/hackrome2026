@@ -1,9 +1,10 @@
+import { APP_NAME } from '@/lib/brand';
 import type { Metadata } from 'next';
 
 import { InfoPageShell, InfoSection } from '@/components/layout/InfoPageShell';
 
 export const metadata: Metadata = {
-  title: 'Privacy — RomaInCampo',
+  title: `Privacy — ${APP_NAME}`,
 };
 
 export default function PrivacyPage() {

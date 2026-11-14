@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { AudioLines, Loader2, Mic } from 'lucide-react';
+import { AgentIcon } from './AgentIcon';
 
 import { useAssistant } from './AssistantProvider';
 
@@ -90,13 +90,7 @@ export function AssistantButton() {
           <span className="absolute inset-0 rounded-full border-2 border-gold-500 animate-radar" style={{ animationDelay: '0.8s' }} aria-hidden />
         </>
       )}
-      {busy ? (
-        <Loader2 className="w-6 h-6 animate-spin" aria-hidden />
-      ) : listening ? (
-        <AudioLines className="w-6 h-6" aria-hidden />
-      ) : (
-        <Mic className="w-6 h-6" aria-hidden />
-      )}
+      <AgentIcon state={listening ? 'listening' : busy ? 'thinking' : 'idle'} className={`w-10 h-10 ${busy ? 'animate-pulse' : ''}`} />
     </button>
   );
 }
