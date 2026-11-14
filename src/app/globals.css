@@ -240,8 +240,10 @@ html[data-sheets] .mapboxgl-ctrl-bottom-right {
   .mapboxgl-ctrl-bottom-right {
     bottom: 0 !important;
   }
+  /* l'assistente sta in basso a destra: l'attribuzione gli resta accanto */
   .mapboxgl-ctrl-bottom-right {
-    right: 0 !important;
+    right: calc(var(--edge) + var(--dock-h) + var(--gap)) !important;
+    bottom: var(--edge) !important;
   }
 }
 

@@ -16,12 +16,12 @@ git checkout -b feat/ui          # Luca · feat/assistente (Edo) · feat/exa (Fa
 ```
 ┌ TopBar: logo ················· profilo (→ /profilo) ┐
 │                                                     │
-│   /        Home: "Consigliati per te", "Vicino a te"│
+│   /home    Home: "Consigliati per te", "Vicino a te"│
 │   /mappa   Mappa con filtri attivi ed elenco         │
 │                                                     │
 └ BottomDock: (Home↔Mappa)  [ Cerca un luogo ]  (🎙) ┘
 ```
-- **Sinistra** `BottomDock` → link `/` ↔ `/mappa`.
+- **Sinistra** `BottomDock` → link `/home` ↔ `/mappa` (`/` apre la mappa). Su desktop l'assistente sta in basso a destra.
 - **Centro** apre `SearchSheet` (tendina dal basso): barra di ricerca in cima, filtri sotto, risultati dal vivo, "Mostra N luoghi sulla mappa", slot `WebResults`.
 - **Destra** `AssistantButton`: tenuto premuto (350 ms, o Spazio) parla, tocco (o Invio) apre `AssistantSheet` con la chat.
 - Niente foto finte: senza foto con fonte la `VenueCard` mostra un segnaposto dichiarato ("Nessuna foto disponibile").

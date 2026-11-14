@@ -46,37 +46,24 @@ export type Zone =
   | { level: 'area'; m: number; id: number; quiet?: boolean };
 
 /**
- * Un colore per Municipio, dai colori primari, secondari e d'accento del design
- * (oro, inchiostro-blu, i colori delle tipologie e i loro vicini di tono).
+ * Un colore per Municipio: la palette della mappa di romaquartieri.it
+ * (MAPPA_PALETTE di Urbe Hub, MIT), nell'ordine dei Municipi I…XV.
  */
 export const MUNICIPIO_COLORS = [
-  '#f5b301', // I    oro (primario)
-  '#2563eb', // II   blu
-  '#7c3aed', // III  viola
-  '#0891b2', // IV   ciano
-  '#16a34a', // V    verde
-  '#ea580c', // VI   arancio
-  '#db2777', // VII  rosa
-  '#4f46e5', // VIII indaco
-  '#059669', // IX   smeraldo
-  '#0284c7', // X    azzurro
-  '#e11d48', // XI   rosso
-  '#ca8a04', // XII  ambra
-  '#9333ea', // XIII porpora
-  '#65a30d', // XIV  lime
-  '#475467', // XV   ardesia
+  '#D7885E', '#C99248', '#B29E44', '#93A955', '#6EB173',
+  '#45B594', '#24B4B4', '#34AECE', '#5CA6DF', '#819BE5',
+  '#A191DE', '#BB88CC', '#CE81B2', '#DA7F93', '#7E9AA6',
 ];
+/** Il contorno di un'area è il suo colore scurito (scurisci di Urbe Hub, f = 0.62). */
+export function scurisci(hex: string, f = 0.62) {
+  const n = parseInt(hex.slice(1), 16);
+  const c = (s: number) => Math.round(((n >> s) & 255) * f);
+  return `#${((1 << 24) | (c(16) << 16) | (c(8) << 8) | c(0)).toString(16).slice(1)}`;
+}
 export const municipioColor = (m: number) => MUNICIPIO_COLORS[(m - 1) % MUNICIPIO_COLORS.length];
 
 /** Altezza delle tessere a livello Roma per tipo d'area (H_TIPO di Urbe Hub, in metri). */
 export const H_TIPO: Record<string, number> = { rione: 900, quartiere: 600, 'zona funzionale': 320 };
-
-function mix(hex: string, withHex: string, amount: number) {
-  const a = parseInt(hex.slice(1), 16);
-  const b = parseInt(withHex.slice(1), 16);
-  const ch = (s: number) => Math.round(((a >> s) & 255) * (1 - amount) + ((b >> s) & 255) * amount);
-  return `#${((1 << 24) | (ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).slice(1)}`;
-}
 
 let loading: Promise<{ municipi: AreaCollection; quartieri: AreaCollection }> | null = null;
 const getJson = (url: string) =>
@@ -181,8 +168,10 @@ export function useAreas(venues: VenueSummary[]) {
             count,
             tm,
             colore: base,
-            // sfumatura del colore del municipio: più luoghi, tinta più piena
-            sfumatura: count === 0 ? mix(base, '#ffffff', 0.78) : mix(base, '#ffffff', 0.62 * (1 - tm)),
+            linea: scurisci(base),
+            // zone funzionali (parchi, aree industriali…): retino a righe come nella mappa di Urbe Hub
+            zf: f.properties.tipo === 'zona funzionale',
+            retino: `retino-${(m - 1) % MUNICIPIO_COLORS.length}`,
             hRoma: H_TIPO[f.properties.tipo ?? 'quartiere'] ?? 320,
           },
         };
@@ -210,13 +199,21 @@ export function useAreas(venues: VenueSummary[]) {
     };
 
     const municipioBox = new Map<number, BBox>(raw.m.map(({ f, box }) => [f.id, box]));
+    const romaBox: BBox = [180, 90, -180, -90];
+    for (const { box } of raw.m) {
+      romaBox[0] = Math.min(romaBox[0], box[0]);
+      romaBox[1] = Math.min(romaBox[1], box[1]);
+      romaBox[2] = Math.max(romaBox[2], box[2]);
+      romaBox[3] = Math.max(romaBox[3], box[3]);
+    }
+    const municipi = { type: 'FeatureCollection' as const, features: raw.m.map(({ f }) => f) };
     const areaInfo = new Map(raw.q.map(({ f, box }) => [f.id, { nome: f.properties.nome, tipo: f.properties.tipo, municipio: f.properties.municipio!, box, count: qCounts.get(f.id) ?? 0 }]));
     const romano = new Map(raw.m.map(({ f }) => [f.id, f.properties.romano!]));
 
     const areaAt = (x: number, y: number) =>
       raw.q.find(({ box, polys }) => x >= box[0] && x <= box[2] && y >= box[1] && y <= box[3] && inGeometry(x, y, polys))?.f.properties ?? null;
 
-    return { aree, areeEtichette, municipiEtichette, municipioBox, areaInfo, romano, mCounts, areaAt };
+    return { aree, municipi, areeEtichette, municipiEtichette, municipioBox, romaBox, areaInfo, romano, mCounts, areaAt };
   }, [raw, venues]);
 }
 

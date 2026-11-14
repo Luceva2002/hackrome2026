@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
     // id fisso: l'app installata resta la stessa anche se cambia start_url
     id: '/',
     scope: '/',
-    start_url: '/',
+    start_url: '/mappa',
     display: 'standalone',
     // Come --bg in globals.css e themeColor in layout.tsx: barra di stato e splash uguali all'app
     background_color: '#f4f5f7',

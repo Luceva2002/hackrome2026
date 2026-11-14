@@ -3,6 +3,7 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import MapGL, { AttributionControl, Layer, Marker, Source, type MapRef, type MapMouseEvent, type ViewStateChangeEvent } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import type { FilterSpecification } from 'mapbox-gl';
 
 import { UserLocationDot } from '@/features/map/components/UserLocationDot';
 import { DEFAULT_CENTER, MAPBOX_TOKEN, MAP_LIGHT_PRESET, MAP_STYLES } from '@/lib/mapbox/config';
@@ -10,6 +11,7 @@ import { VENUE_KINDS } from '@/lib/sports/taxonomy';
 import type { VenueSummary } from '../types';
 import { type Areas, type BBox, type Zone } from '@/features/map/areas';
 import { registerPins } from './map-pins';
+import { registerHatches } from '@/features/map/hatch';
 
 export interface VenuesMapHandle {
   flyTo: (lng: number, lat: number, zoom?: number, opts?: { pitch?: number; bearing?: number }) => void;
@@ -18,6 +20,8 @@ export interface VenuesMapHandle {
   /** Rotazione lenta della camera (es. mentre l'assistente ascolta) */
   orbit: (on: boolean) => void;
 }
+
+type CameraMap = Pick<MapRef, 'cameraForBounds' | 'easeTo'>;
 
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -28,8 +32,20 @@ const KIND_COLOR_EXPR = [
   '#475467',
 ] as unknown as string;
 
-/** Vista d'insieme: Roma inclinata, si leggono i prismi della densità */
-const OVERVIEW = { center: [12.47, 41.88] as [number, number], zoom: 10.4, pitch: 48, bearing: -12 };
+/**
+ * Pose della camera, come la vista 3D di Urbe Hub: Roma inclinata e ruotata di 17°,
+ * Municipio e quartiere col nord in alto e meno inclinati (la mappa si legge, i pin si toccano).
+ */
+const ROMA_BEARING = -17;
+const isDesktop = () => typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches;
+const pose = () =>
+  isDesktop() ? { roma: 52, municipio: 42, area: 40, venue: 50 } : { roma: 48, municipio: 38, area: 36, venue: 45 };
+/** Sopra questo numero di risultati Roma resta a tessere; sotto, i luoghi si vedono già da Roma */
+const FEW = 60;
+/** Stile della mappa di Urbe Hub: opacità dei riempimenti, velo, confini dei Municipi */
+const OPAC = { area: 0.42, zf: 0.5, areaVicino: 0.26, zfVicino: 0.32 };
+const VELO = { colore: '#1C2024', opacita: 0.38 };
+const AMARANTO = '#8E001C';
 
 interface Props {
   venues: VenueSummary[];
@@ -48,7 +64,7 @@ interface Props {
 }
 
 const ATTRIBUTION =
-  'Quartieri: <a href="https://geoportale.comune.roma.it" target="_blank" rel="noopener noreferrer">Roma Capitale</a> · Municipi: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> (ODbL) · via <a href="https://romaquartieri.it" target="_blank" rel="noopener noreferrer">romaquartieri.it</a>';
+  'Quartieri: <a href="https://geoportale.comune.roma.it" target="_blank" rel="noopener noreferrer">Roma Capitale</a> · Municipi: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> (ODbL) · Mappa e colori: <a href="https://romaquartieri.it" target="_blank" rel="noopener noreferrer">Urbe Hub, romaquartieri.it</a> (MIT)';
 
 const vis = (on: boolean) => ({ visibility: (on ? 'visible' : 'none') as 'visible' | 'none' });
 
@@ -65,12 +81,13 @@ const PIN_EXPR = ['concat', 'pin-', ['get', 'kind']] as unknown as string;
 const PIN_SEL_EXPR = ['concat', 'pin-', ['get', 'kind'], '-sel'] as unknown as string;
 
 /**
- * Mappa 3D a livelli, come la vista 3D di romaquartieri.it (Urbe Hub, MIT):
- *  - Roma: tutte le aree in rilievo, colore del loro Municipio, altezza per tipo;
- *  - Municipio: le sue aree in sfumature del suo colore, alte quanto i luoghi, il resto velato;
- *  - area: l'area a terra con il contorno, i pin dei luoghi sopra, il resto velato.
- * Cosa si vede dipende dal livello scelto (non dallo zoom): così camera e maschere
- * restano sincronizzate anche durante i voli.
+ * Mappa a livelli, come la mappa dei quartieri di romaquartieri.it (Urbe Hub, MIT):
+ *  - Roma: le aree in rilievo, colore del loro Municipio, altezza per tipo;
+ *  - Municipio: tutto a terra, le sue aree colorate (retino per le zone funzionali),
+ *    il resto velato; i luoghi sono punti toccabili, da vicino diventano pin;
+ *  - quartiere: l'area chiara con il contorno, i pin dei suoi luoghi, il resto velato.
+ * Cosa si vede dipende dal livello scelto, non dallo zoom: i luoghi del quartiere
+ * si vedono sempre, qualunque zoom raggiunga l'inquadratura.
  */
 export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   { venues, selectedId, onSelect, userLocation, areas, zone, onZone, padding, onUserMove },
@@ -78,95 +95,125 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
 ) {
   const mapRef = useRef<MapRef>(null);
   const orbitRaf = useRef<number | null>(null);
-  // Prima del load i movimenti di camera andrebbero persi: si tiene l'ultimo e lo si applica al load
-  const ready = useRef(false);
+  const loaded = useRef(false);
+  // Prima del load i voli su un luogo o sui risultati andrebbero persi: si tiene l'ultimo e lo si applica al load
   const pendingCam = useRef<(() => void) | null>(null);
-  // weak: la vista d'insieme non scavalca una camera più specifica già in attesa (luogo, filtri)
-  const whenReady = (fn: () => void, weak = false) => {
-    if (ready.current) fn();
-    else if (!weak || !pendingCam.current) pendingCam.current = fn;
+  const whenReady = (fn: () => void) => {
+    if (loaded.current) fn();
+    else pendingCam.current = fn;
   };
-
   const stopOrbit = () => {
     if (orbitRaf.current != null) cancelAnimationFrame(orbitRaf.current);
     orbitRaf.current = null;
   };
   useEffect(() => stopOrbit, []);
+  /** L'istanza arriva con l'evento load: al primo load il ref di react-map-gl può essere ancora vuoto */
+  const inst = useRef<CameraMap | null>(null);
+  /** zoom dove l'ultima inquadratura automatica si è fermata: allontanarsi molto risale di livello */
+  const framedZoom = useRef<number | null>(null);
 
+  const areaAt = areas?.areaAt;
   const geojson = useMemo(
     () => ({
       type: 'FeatureCollection' as const,
       features: venues
         .filter((v) => v.latitude != null && v.longitude != null)
-        .map((v) => ({
-          type: 'Feature' as const,
-          id: v.id,
-          geometry: { type: 'Point' as const, coordinates: [v.longitude!, v.latitude!] },
-          properties: {
+        .map((v) => {
+          const a = areaAt?.(v.longitude!, v.latitude!);
+          return {
+            type: 'Feature' as const,
             id: v.id,
-            kind: v.kind,
-            community: v.community ? 1 : 0,
-            lat_rank: Math.round((90 - v.latitude!) * 10000),
-            inactive: v.status === 'inagibile' || v.status === 'progettazione' || v.status === 'realizzazione' ? 1 : 0,
-          },
-        })),
+            geometry: { type: 'Point' as const, coordinates: [v.longitude!, v.latitude!] },
+            properties: {
+              id: v.id,
+              kind: v.kind,
+              area: a?.id ?? -1,
+              mun: a?.municipio ?? -1,
+              community: v.community ? 1 : 0,
+              lat_rank: Math.round((90 - v.latitude!) * 10000),
+              inactive: v.status === 'inagibile' || v.status === 'progettazione' || v.status === 'realizzazione' ? 1 : 0,
+            },
+          };
+        }),
     }),
-    [venues],
+    [venues, areaAt],
   );
 
+  const geojsonRef = useRef(geojson);
+  geojsonRef.current = geojson;
+
   const [hoverMun, setHoverMun] = useState<number | null>(null);
-  const pad = padding ?? { top: 110, bottom: 130, left: 40, right: 40 };
+  const pad = padding ?? { top: 140, bottom: 120, left: 24, right: 24 };
   const padRef = useRef(pad);
   padRef.current = pad;
+  const zoneRef = useRef(zone);
+  zoneRef.current = zone;
+  const areasRef = useRef(areas);
+  areasRef.current = areas;
 
-  // Il livello cambia → la camera vola sulla zona (le maschere cambiano insieme, nello stesso render)
+  /** Inquadra il livello corrente nello spazio libero tra barra in alto e dock */
+  const frame = useCallback((animate = true) => {
+    const m = mapRef.current ?? inst.current;
+    const ar = areasRef.current;
+    const z = zoneRef.current;
+    if (!m || !ar || !loaded.current || ((z.level === 'area' || z.level === 'roma') && z.quiet)) return;
+    const p = pose();
+    const duration = !animate || reducedMotion() ? 0 : 1500;
+    const fit = (b: BBox, pitch: number, bearing: number, maxZoom: number, roma = false) => {
+      try {
+        // Roma intera: solo logo sopra e dock sotto, ai lati si può rifilare la costa (come Urbe Hub su mobile)
+        const pd = roma ? { ...padRef.current, top: Math.min(padRef.current.top, 90), left: 0, right: 0 } : padRef.current;
+        const cam = m.cameraForBounds([[b[0], b[1]], [b[2], b[3]]], { padding: pd, pitch, bearing, maxZoom });
+        if (!cam) return;
+        if (roma && !isDesktop() && cam.zoom != null) cam.zoom += 0.4;
+        m.easeTo({ ...cam, pitch, bearing, duration, essential: true });
+        framedZoom.current = cam.zoom ?? null;
+      } catch {
+        // mappa senza dimensioni (per esempio senza token): il livello resta giusto
+      }
+    };
+    if (z.level === 'roma') fit(ar.romaBox, p.roma, ROMA_BEARING, 11.5, true);
+    if (z.level === 'municipio') {
+      const b = ar.municipioBox.get(z.m);
+      if (b) fit(b, p.municipio, 0, 14);
+    }
+    if (z.level === 'area') {
+      const a = ar.areaInfo.get(z.id);
+      if (a) fit(a.box, p.area, 0, 16.2);
+    }
+  }, []);
+
+  // Il livello cambia → la camera inquadra la zona (le maschere cambiano nello stesso render)
   const zoneKey = JSON.stringify(zone);
+  const hasAreas = !!areas;
   useEffect(() => {
-    if (!areas || ((zone.level === 'area' || zone.level === 'roma') && zone.quiet)) return;
-    whenReady(() => {
-      const m = mapRef.current;
-      if (!m) return;
-      const dur = reducedMotion() ? 0 : 1700;
-      const fit = (b: BBox, pitch: number, maxZoom: number) => {
-        try {
-          m.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: padRef.current, pitch, bearing: 0, maxZoom, duration: dur, essential: true });
-        } catch {
-          // mappa non ancora dimensionata: il livello resta giusto, la camera si sistema al prossimo cambio
-        }
-      };
-      if (zone.level === 'roma') m.flyTo({ ...OVERVIEW, duration: dur, essential: true });
-      if (zone.level === 'municipio') {
-        const b = areas.municipioBox.get(zone.m);
-        if (b) fit(b, 45, 13.5);
-      }
-      if (zone.level === 'area' && !zone.quiet) {
-        const a = areas.areaInfo.get(zone.id);
-        if (a) fit(a.box, 55, 16);
-      }
-    }, zone.level === 'roma');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zoneKey, !!areas]);
+    frame();
+  }, [zoneKey, hasAreas, frame]);
 
   useImperativeHandle(ref, () => ({
-    flyTo(lng, lat, zoom = 16.5, opts) {
+    flyTo(lng, lat, zoom = 16.2, opts) {
       whenReady(() => {
-        const m = mapRef.current;
-        if (!m) return;
-        m.flyTo({
-          center: [lng, lat],
-          zoom,
-          pitch: opts?.pitch ?? 60,
-          bearing: opts?.bearing ?? m.getBearing() + 25,
-          duration: reducedMotion() ? 0 : 2200,
-          curve: 1.5,
-          essential: true,
-          // la scheda copre la metà bassa: il luogo resta visibile sopra
-          offset: [0, -120],
-        });
+      const m = mapRef.current;
+      if (!m) return;
+      const desk = isDesktop();
+      m.flyTo({
+        center: [lng, lat],
+        zoom,
+        pitch: opts?.pitch ?? pose().venue,
+        // niente rotazioni che disorientano: il nord resta dov'è
+        bearing: opts?.bearing ?? (zoneRef.current.level === 'roma' ? 0 : m.getBearing()),
+        duration: reducedMotion() ? 0 : 1600,
+        curve: 1.3,
+        essential: true,
+        // la scheda del luogo copre il basso (mobile) o il lato destro (desktop): il luogo resta libero
+        offset: desk ? [-200, 0] : [0, -Math.round(window.innerHeight * 0.18)],
+      });
+      framedZoom.current = zoom;
       });
     },
     overview() {
-      whenReady(() => mapRef.current?.flyTo({ ...OVERVIEW, duration: reducedMotion() ? 0 : 2000, essential: true }), true);
+      if (zoneRef.current.level === 'roma') frame();
+      else onZone({ level: 'roma' });
     },
     orbit(on) {
       stopOrbit();
@@ -186,31 +233,41 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
   }));
 
   const fitNow = (list: VenueSummary[]) => {
-    const pts = list.filter((v) => v.latitude != null && v.longitude != null);
-    if (!pts.length || !mapRef.current) return;
-    if (pts.length === 1) {
-      mapRef.current.flyTo({ center: [pts[0].longitude!, pts[0].latitude!], zoom: 16, pitch: 60, duration: 1800 });
-      return;
+    {
+      const m = mapRef.current;
+      if (!m) return;
+      const pts = list.filter((v) => v.latitude != null && v.longitude != null);
+      if (!pts.length) return;
+      if (pts.length === 1) {
+        m.flyTo({ center: [pts[0].longitude!, pts[0].latitude!], zoom: 16, pitch: pose().venue, bearing: 0, duration: 1500 });
+        return;
+      }
+      let minX = 180, minY = 90, maxX = -180, maxY = -90;
+      for (const p of pts) {
+        minX = Math.min(minX, p.longitude!); maxX = Math.max(maxX, p.longitude!);
+        minY = Math.min(minY, p.latitude!); maxY = Math.max(maxY, p.latitude!);
+      }
+      try {
+        m.fitBounds([[minX, minY], [maxX, maxY]], { padding: padRef.current, pitch: pose().municipio, bearing: 0, duration: 1400, maxZoom: 15.5 });
+      } catch {
+        // mappa senza dimensioni
+      }
     }
-    let minX = 180, minY = 90, maxX = -180, maxY = -90;
-    for (const p of pts) {
-      minX = Math.min(minX, p.longitude!); maxX = Math.max(maxX, p.longitude!);
-      minY = Math.min(minY, p.latitude!); maxY = Math.max(maxY, p.latitude!);
-    }
-    mapRef.current.fitBounds([[minX, minY], [maxX, maxY]], { padding: { top: 120, bottom: 140, left: 60, right: 60 }, pitch: 50, duration: 1600, maxZoom: 15.5 });
   };
 
-  const onLoad = useCallback(() => {
-    const map = mapRef.current?.getMap() as unknown as {
+  const onLoad = useCallback((e: { target: unknown }) => {
+    inst.current = e.target as CameraMap;
+    const map = e.target as unknown as {
       setConfigProperty?: (s: string, k: string, v: unknown) => void;
       on: (ev: string, cb: (e: { id: string }) => void) => void;
     } & Parameters<typeof registerPins>[0];
-    // La mappa è un'immagine per gli screen reader (alternativa: i risultati nella ricerca).
-    // Solo il disegno: attribuzione e link restano raggiungibili.
-    mapRef.current?.getCanvas().setAttribute('aria-hidden', 'true');
     if (map) {
       registerPins(map);
-      map.on('styleimagemissing', (e) => e.id.startsWith('pin-') && registerPins(map, e.id));
+      registerHatches(map);
+      map.on('styleimagemissing', (e) => {
+        if (e.id.startsWith('pin-')) registerPins(map, e.id);
+        if (e.id.startsWith('retino-')) registerHatches(map);
+      });
     }
     try {
       map?.setConfigProperty?.('basemap', 'lightPreset', MAP_LIGHT_PRESET);
@@ -220,14 +277,39 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     } catch {
       // stile senza config
     }
-    ready.current = true;
-    // Un link con filtri, zona o luogo ha già chiesto la sua camera: vince sull'ingresso
+    loaded.current = true;
+    // le icone sono arrivate dopo il primo disegno dei simboli: si ridispongono i luoghi e le aree
+    for (const id of ['venues', 'aree'] as const) {
+      const src = (e.target as { getSource?: (id: string) => { setData?: (d: unknown) => void } | undefined }).getSource?.(id);
+      const data = id === 'venues' ? geojsonRef.current : areasRef.current?.aree;
+      if (src?.setData && data) src.setData(data);
+    }
+    (e.target as { getCanvas?: () => HTMLCanvasElement }).getCanvas?.().setAttribute('aria-hidden', 'true');
+    // Un link con un luogo o dei filtri ha già chiesto la sua camera: vince sull'ingresso su Roma
     const cam = pendingCam.current;
     pendingCam.current = null;
-    if (cam) cam();
-    // Ingresso: dall'alto si scende inclinati su Roma
-    else if (!reducedMotion()) mapRef.current?.flyTo({ ...OVERVIEW, duration: 2800, essential: true });
-  }, []);
+    if (cam) setTimeout(cam, 0);
+    else frame();
+  }, [frame]);
+
+  const onClick = useCallback(
+    (e: MapMouseEvent) => {
+      const feats = e.features ?? [];
+      // prima i luoghi, poi le aree
+      const venue = feats.find((f) => f.layer?.id?.startsWith('venue-'));
+      if (venue?.properties?.id) {
+        onSelect(venue.properties.id as string);
+        return;
+      }
+      const area = feats.find((f) => f.layer?.id?.startsWith('aree-'));
+      if (!area) return;
+      const m = Number(area.properties?.municipio);
+      const id = Number(area.properties?.id);
+      if (zone.level === 'roma' || m !== zone.m) onZone({ level: 'municipio', m });
+      else if (zone.level !== 'area' || zone.id !== id) onZone({ level: 'area', m, id });
+    },
+    [onSelect, onZone, zone],
+  );
 
   // Solo i gesti dell'utente (originalEvent), non i voli lanciati dal codice
   const userMoved = useCallback(
@@ -239,23 +321,15 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     [onUserMove],
   );
 
-  const onClick = useCallback(
-    (e: MapMouseEvent) => {
-      const feats = e.features ?? [];
-      // prima i luoghi, poi le aree
-      const venue = feats.find((f) => f.layer?.id === 'venue-pins' || f.layer?.id === 'venue-dots');
-      if (venue?.properties?.id) {
-        onSelect(venue.properties.id as string);
-        return;
-      }
-      const area = feats.find((f) => f.layer?.id?.startsWith('aree-'));
-      if (!area) return;
-      const m = Number(area.properties?.municipio);
-      const id = Number(area.properties?.id);
-      if (zone.level === 'roma' || m !== zone.m) onZone({ level: 'municipio', m });
-      else onZone({ level: 'area', m, id });
+  // Allontanarsi molto con le dita risale di un livello (quartiere → Municipio → Roma)
+  const onMoveEnd = useCallback(
+    (e: { originalEvent?: unknown; viewState: { zoom: number } }) => {
+      const z = zoneRef.current;
+      const f = framedZoom.current;
+      if (!e.originalEvent || f == null || z.level === 'roma') return;
+      if (e.viewState.zoom < f - 1.6) onZone(z.level === 'area' ? { level: 'municipio', m: z.m } : { level: 'roma' });
     },
-    [onSelect, onZone, zone],
+    [onZone],
   );
 
   const onMove = useCallback(
@@ -268,22 +342,43 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
     [zone.level],
   );
 
-  const inMun = zone.level === 'roma' ? null : zone.m;
+  const inMun = zone.level === 'roma' ? -1 : zone.m;
   const selArea = zone.level === 'area' ? zone.id : -1;
+  const few = venues.length <= FEW;
+  const atRoma = zone.level === 'roma';
+  const near = zone.level === 'area';
+  // Roma con pochi risultati: tutto a terra, così i pin si vedono e si toccano
+  const flat = !atRoma || few;
+  /** Aree colorate: a Roma (piatta) tutte, dentro un Municipio solo le sue */
+  const areaFilter = (zf: boolean) =>
+    (atRoma
+      ? ['==', ['get', 'zf'], zf]
+      : ['all', ['==', ['get', 'zf'], zf], ['==', ['get', 'municipio'], inMun], ['!=', ['get', 'id'], selArea]]) as unknown as FilterSpecification;
+  const veloFilter = (near ? ['!=', ['get', 'id'], selArea] : ['!=', ['get', 'municipio'], inMun]) as unknown as FilterSpecification;
+
+  // Luoghi: punti nel Municipio scelto (e attorno al quartiere), pin nel quartiere scelto
+  const dotsFilter = (near
+    ? ['all', ['==', ['get', 'mun'], inMun], ['!=', ['get', 'area'], selArea]]
+    : ['==', ['get', 'mun'], inMun]) as unknown as FilterSpecification;
+  const pinsFilter = (atRoma ? ['boolean', true] : near ? ['==', ['get', 'area'], selArea] : ['==', ['get', 'mun'], inMun]) as unknown as FilterSpecification;
+  const showPins = (atRoma && few) || !atRoma;
 
   return (
     <MapGL
       ref={mapRef}
-      initialViewState={{ longitude: DEFAULT_CENTER.longitude, latitude: DEFAULT_CENTER.latitude, zoom: 10, pitch: 0, bearing: 0 }}
+      initialViewState={{ longitude: DEFAULT_CENTER.longitude, latitude: DEFAULT_CENTER.latitude, zoom: 9.6, pitch: 0, bearing: 0 }}
       style={{ width: '100%', height: '100%' }}
       mapStyle={MAP_STYLES.standard3d}
       mapboxAccessToken={MAPBOX_TOKEN}
-      maxPitch={70}
+      minZoom={8}
+      maxZoom={19}
+      maxPitch={65}
       attributionControl={false}
-      interactiveLayerIds={['aree-roma', 'aree-mun', 'aree-velo', 'venue-dots', 'venue-pins']}
+      interactiveLayerIds={['aree-roma', 'aree-fill', 'aree-retino', 'aree-velo', 'venue-dots', 'venue-pins']}
       onLoad={onLoad}
-      onMoveStart={userMoved}
       onClick={onClick}
+      onMoveStart={userMoved}
+      onMoveEnd={onMoveEnd}
       cursor="auto"
       onMouseMove={(e) => {
         onMove(e);
@@ -295,82 +390,107 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
       }}
     >
       {areas && (
+        <Source id="municipi" type="geojson" data={areas.municipi}>
+          {/* Confini dei Municipi: amaranto, 1,4 px, 55% (come la 2D di Urbe Hub) */}
+          <Layer
+            id="mun-linea"
+            type="line"
+            slot="middle"
+            layout={vis(flat)}
+            paint={{ 'line-color': AMARANTO, 'line-width': 1.4, 'line-opacity': 0.55, 'line-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
+      {areas && (
         <Source id="aree" type="geojson" data={areas.aree}>
-          {/* Roma: tutte le aree, colore del Municipio, altezza per tipo */}
+          {/* Roma: tutte le aree in rilievo, colore del Municipio, altezza per tipo */}
           <Layer
             id="aree-roma"
             type="fill-extrusion"
-            layout={vis(zone.level === 'roma')}
+            layout={vis(!flat)}
             paint={{
               'fill-extrusion-color': ['get', 'colore'],
               'fill-extrusion-height': ['get', 'hRoma'],
               'fill-extrusion-base': 0,
-              'fill-extrusion-opacity': 0.88,
+              'fill-extrusion-opacity': 0.92,
               'fill-extrusion-vertical-gradient': true,
-              'fill-extrusion-emissive-strength': 0.75,
+              'fill-extrusion-emissive-strength': 0.7,
             }}
           />
-          {/* Roma, al passaggio del mouse: il Municipio si solleva e si schiarisce */}
+          {/* Roma, al passaggio del mouse: il Municipio si solleva */}
           <Layer
             id="aree-roma-evidenza"
             type="fill-extrusion"
-            layout={vis(zone.level === 'roma' && hoverMun != null)}
+            layout={vis(!flat && hoverMun != null)}
             filter={['==', ['get', 'municipio'], hoverMun ?? -1]}
             paint={{
               'fill-extrusion-color': '#ffffff',
               'fill-extrusion-height': ['+', ['get', 'hRoma'], 140],
               'fill-extrusion-base': ['get', 'hRoma'],
-              'fill-extrusion-opacity': 0.55,
+              'fill-extrusion-opacity': 0.5,
               'fill-extrusion-emissive-strength': 1,
             }}
           />
-          {/* Municipio / area: le sue aree in sfumature, alte quanto i luoghi */}
+          {/* A terra: riempimento del colore del Municipio, retino per le zone funzionali */}
           <Layer
-            id="aree-mun"
-            type="fill-extrusion"
-            layout={vis(inMun != null)}
-            filter={['all', ['==', ['get', 'municipio'], inMun ?? -1], ['!=', ['get', 'id'], selArea]]}
-            paint={{
-              'fill-extrusion-color': ['get', 'sfumatura'],
-              'fill-extrusion-height':
-                zone.level === 'area' ? 25 : (['+', 40, ['*', ['get', 'tm'], 650]] as unknown as number),
-              'fill-extrusion-base': 0,
-              'fill-extrusion-opacity': zone.level === 'area' ? 0.55 : 0.9,
-              'fill-extrusion-vertical-gradient': true,
-              'fill-extrusion-emissive-strength': 0.75,
-            }}
-          />
-          {/* Area scelta: a terra, tinta leggera e contorno, i pin restano liberi */}
-          <Layer
-            id="area-scelta"
+            id="aree-fill"
             type="fill"
             slot="middle"
-            layout={vis(zone.level === 'area')}
-            filter={['==', ['get', 'id'], selArea]}
-            paint={{ 'fill-color': ['get', 'sfumatura'], 'fill-opacity': 0.28, 'fill-emissive-strength': 1 }}
+            layout={vis(flat)}
+            filter={areaFilter(false)}
+            paint={{ 'fill-color': ['get', 'colore'], 'fill-opacity': near ? OPAC.areaVicino : OPAC.area, 'fill-emissive-strength': 1 }}
           />
           <Layer
-            id="area-scelta-bordo"
-            type="line"
-            slot="top"
-            layout={vis(zone.level === 'area')}
-            filter={['==', ['get', 'id'], selArea]}
-            paint={{ 'line-color': ['get', 'colore'], 'line-width': 3.5, 'line-emissive-strength': 1 }}
+            id="aree-retino"
+            type="fill"
+            slot="middle"
+            layout={vis(flat)}
+            filter={areaFilter(true)}
+            paint={{ 'fill-pattern': ['get', 'retino'], 'fill-opacity': near ? OPAC.zfVicino : OPAC.zf }}
           />
-          {/* Velo bianco su tutto ciò che è fuori dal livello (la "maschera" di Urbe Hub) */}
+          <Layer
+            id="aree-linea"
+            type="line"
+            slot="middle"
+            layout={vis(flat)}
+            filter={(atRoma ? ['boolean', true] : ['==', ['get', 'municipio'], inMun]) as unknown as FilterSpecification}
+            paint={{ 'line-color': ['get', 'linea'], 'line-width': 1, 'line-opacity': 0.8, 'line-emissive-strength': 1 }}
+          />
+          {/* Fuori dal livello: velo scuro leggero (il VELO di Urbe Hub) */}
           <Layer
             id="aree-velo"
             type="fill"
             slot="middle"
-            layout={vis(inMun != null)}
-            filter={['!=', ['get', 'municipio'], inMun ?? -1]}
-            paint={{ 'fill-color': '#ffffff', 'fill-opacity': 0.58, 'fill-emissive-strength': 1 }}
+            layout={vis(!atRoma)}
+            filter={veloFilter}
+            paint={{ 'fill-color': VELO.colore, 'fill-opacity': VELO.opacita, 'fill-emissive-strength': 1 }}
+          />
+          {/* Quartiere scelto: la strada si legge, contorno pieno */}
+          <Layer
+            id="area-scelta-bordo"
+            type="line"
+            slot="middle"
+            layout={{ ...vis(near), 'line-join': 'round' }}
+            filter={['==', ['get', 'id'], selArea]}
+            paint={{ 'line-color': ['get', 'linea'], 'line-width': 3.5, 'line-emissive-strength': 1 }}
+          />
+        </Source>
+      )}
+      {areas && (
+        <Source id="municipi-focus" type="geojson" data={areas.municipi}>
+          <Layer
+            id="mun-focus"
+            type="line"
+            slot="middle"
+            layout={{ ...vis(zone.level === 'municipio'), 'line-join': 'round' }}
+            filter={['==', ['get', 'id'], inMun]}
+            paint={{ 'line-color': AMARANTO, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 2.5, 14, 4], 'line-emissive-strength': 1 }}
           />
         </Source>
       )}
       {areas && (
         <Source id="municipi-etichette" type="geojson" data={areas.municipiEtichette}>
-          <Layer id="municipi-nomi" type="symbol" slot="top" layout={{ ...LABEL_LAYOUT(13), ...vis(zone.level === 'roma') }} paint={LABEL_PAINT} />
+          <Layer id="municipi-nomi" type="symbol" slot="top" layout={{ ...LABEL_LAYOUT(13), ...vis(atRoma && !few) }} paint={LABEL_PAINT} />
         </Source>
       )}
       {areas && (
@@ -379,26 +499,29 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
             id="aree-nomi"
             type="symbol"
             slot="top"
+            maxzoom={14.5}
             layout={{ ...LABEL_LAYOUT(12), ...vis(zone.level === 'municipio') }}
-            filter={['==', ['get', 'municipio'], inMun ?? -1]}
+            filter={['==', ['get', 'municipio'], inMun]}
             paint={LABEL_PAINT}
           />
         </Source>
       )}
 
       <Source id="venues" type="geojson" data={geojson}>
+        {/* Punti: tutti i luoghi del Municipio, toccabili a qualunque zoom */}
         <Layer
           id="venue-dots"
           type="circle"
           slot="top"
-          minzoom={13.4}
+          layout={vis(!atRoma)}
+          filter={dotsFilter}
           paint={{
             'circle-color': KIND_COLOR_EXPR,
-            'circle-radius': ['interpolate', ['linear'], ['zoom'], 13.4, 3, 14, 5, 15, 6.5],
+            'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 3.5, 13, 5, 16, 7],
             'circle-stroke-width': 1.5,
             'circle-stroke-color': '#ffffff',
-            'circle-opacity': ['interpolate', ['linear'], ['zoom'], 13.4, 0, 14, 1, 14.8, 1, 15.3, 0],
-            'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 13.4, 0, 14, 1, 14.8, 1, 15.3, 0],
+            'circle-opacity': ['case', ['==', ['get', 'inactive'], 1], 0.5, 1],
+            'circle-pitch-alignment': 'map',
             'circle-emissive-strength': 1,
           }}
         />
@@ -406,31 +529,36 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
           id="community-ring"
           type="circle"
           slot="top"
-          minzoom={12.4}
-          filter={['==', ['get', 'community'], 1]}
+          layout={vis(showPins)}
+          filter={['all', ['==', ['get', 'community'], 1], pinsFilter] as unknown as FilterSpecification}
           paint={{
-            'circle-radius': ['interpolate', ['linear'], ['zoom'], 12.4, 4.5, 14, 7.5, 15, 9],
+            'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 5, 14, 8, 16, 10],
             'circle-color': 'rgba(0,0,0,0)',
             'circle-stroke-width': 3,
             'circle-stroke-color': '#f5b301',
             'circle-emissive-strength': 1,
           }}
         />
+        {/* Pin col tipo di luogo: nel quartiere scelto sempre, nel Municipio da vicino */}
         <Layer
           id="venue-pins"
           type="symbol"
           slot="top"
-          minzoom={14.6}
+          minzoom={zone.level === 'municipio' ? 14.5 : 0}
           layout={{
+            ...vis(showPins),
             'icon-image': PIN_EXPR,
             'icon-anchor': 'bottom',
-            'icon-size': ['interpolate', ['linear'], ['zoom'], 14.6, 0.75, 17, 1],
+            'icon-size': ['interpolate', ['linear'], ['zoom'], 11, 0.7, 14, 0.85, 17, 1],
             'icon-allow-overlap': true,
             'icon-ignore-placement': true,
             'symbol-sort-key': ['get', 'lat_rank'],
+            'symbol-z-order': 'source',
           }}
+          filter={pinsFilter}
           paint={{
-            'icon-opacity': ['interpolate', ['linear'], ['zoom'], 14.6, 0, 15.1, ['case', ['==', ['get', 'inactive'], 1], 0.5, 1]],
+            'icon-opacity': ['case', ['==', ['get', 'inactive'], 1], 0.55, 1],
+            'icon-occlusion-opacity': 1,
             'icon-emissive-strength': 1,
           }}
         />
@@ -445,7 +573,7 @@ export const VenuesMap = forwardRef<VenuesMapHandle, Props>(function VenuesMap(
             'icon-allow-overlap': true,
             'icon-ignore-placement': true,
           }}
-          paint={{ 'icon-emissive-strength': 1 }}
+          paint={{ 'icon-emissive-strength': 1, 'icon-occlusion-opacity': 1 }}
         />
       </Source>
 

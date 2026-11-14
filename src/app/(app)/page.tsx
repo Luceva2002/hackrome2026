@@ -1,5 +1,6 @@
-import { HomeScreen } from '@/features/home/HomeScreen';
+import { redirect } from 'next/navigation';
 
-export default function HomePage() {
-  return <HomeScreen />;
+/** L'app si apre sulla mappa: è il centro dell'esperienza. La Home è in /home. */
+export default function RootPage() {
+  redirect('/mappa');
 }

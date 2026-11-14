@@ -12,6 +12,7 @@ import { useShell } from './ShellProvider';
 /**
  * Dock in basso, tre elementi:
  * sinistra Home ↔ Mappa · centro barra di ricerca · destra assistente.
+ * Su desktop il dock sale in alto al centro e l'assistente resta in basso a destra.
  */
 export function BottomDock() {
   const pathname = usePathname() ?? '/';
@@ -27,7 +28,7 @@ export function BottomDock() {
     >
       <div className="mx-auto max-w-[560px] flex items-center gap-(--gap) pointer-events-auto">
         <Link
-          href={onMap ? '/' : '/mappa'}
+          href={onMap ? '/home' : '/mappa'}
           aria-label={onMap ? 'Torna alla home' : 'Apri la mappa'}
           className="relative w-dock h-dock shrink-0 rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform duration-200"
         >
@@ -60,6 +61,11 @@ export function BottomDock() {
           </span>
         </button>
 
+        <div className="lg:hidden">
+          <AssistantButton />
+        </div>
+      </div>
+      <div className="hidden lg:block fixed z-40 right-edge bottom-[calc(var(--safe-b)+var(--edge))] pointer-events-auto">
         <AssistantButton />
       </div>
     </nav>

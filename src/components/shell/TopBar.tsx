@@ -16,7 +16,7 @@ export function TopBar() {
   return (
     <header className="fixed z-40 inset-x-0 top-0 px-edge pt-[calc(var(--safe-t)+var(--edge))] pointer-events-none">
       <div className="mx-auto max-w-[560px] lg:max-w-none flex items-center justify-between [&>*]:pointer-events-auto">
-        <Link href="/" className="liquid-glass rounded-full h-control pl-3.5 pr-4 flex items-center" aria-label={`${APP_NAME}, home`}>
+        <Link href="/mappa" className="liquid-glass rounded-full h-control pl-3.5 pr-4 flex items-center" aria-label={`${APP_NAME}, mappa`}>
           <BrandLogo className="text-[19px]" />
         </Link>
         <Link

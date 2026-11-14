@@ -41,8 +41,9 @@ export function ExploreScreen() {
   areasRef.current = areas;
   const [zone, setZone] = useState<Zone>({ level: 'roma' });
   const desktop = useIsDesktop();
-  // Su desktop i pannelli stanno ai lati: la camera inquadra nello spazio libero
-  const padding = desktop ? { top: 120, bottom: 60, left: 80, right: 80 } : { top: 110, bottom: 150, left: 30, right: 30 };
+  // La camera inquadra nello spazio libero: su mobile tra logo/percorso in alto e dock in basso,
+  // su desktop tra la ricerca in alto e i bordi (i pannelli si aprono ai lati)
+  const padding = desktop ? { top: 110, bottom: 60, left: 80, right: 120 } : { top: 150, bottom: 120, left: 24, right: 24 };
   const zoneRef = useRef(zone);
   zoneRef.current = zone;
 
@@ -57,7 +58,7 @@ export function ExploreScreen() {
       // Area scelta solo perché si era aperto un luogo: la nuova ricerca torna su Roma
       const z = zoneRef.current;
       const fromPlace = z.level === 'area' && z.quiet;
-      if (results.length <= 40 && (z.level === 'roma' || fromPlace)) {
+      if (results.length <= 60 && (z.level === 'roma' || fromPlace)) {
         if (fromPlace) setZone({ level: 'roma', quiet: true });
         mapRef.current?.fitTo(results);
       } else if (fromPlace) setZone({ level: 'roma' });
@@ -217,6 +218,14 @@ export function ExploreScreen() {
               </li>
             )}
           </ol>
+          {zone.level === 'area' && (
+            <p className="mt-(--gap) liquid-glass rounded-full h-8 px-3 inline-flex items-center text-[13px] font-semibold text-mid">
+              {(() => {
+                const n = areas.areaInfo.get(zone.id)?.count ?? 0;
+                return n === 0 ? 'Nessun luogo qui: tocca un\'area vicina' : `${n.toLocaleString('it-IT')} ${n === 1 ? 'luogo' : 'luoghi'} in quest'area`;
+              })()}
+            </p>
+          )}
         </nav>
       )}
 
@@ -224,7 +233,7 @@ export function ExploreScreen() {
       <div className="under-sheet absolute z-30 right-edge bottom-[var(--dock-space)] lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 flex flex-col gap-(--gap)">
         <button
           type="button"
-          onClick={() => setZone({ level: 'roma' })}
+          onClick={() => (zone.level === 'roma' ? mapRef.current?.overview() : setZone({ level: 'roma' }))}
           aria-label="Vista d'insieme in 3D"
           className="w-control h-control rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform"
         >
