@@ -16,12 +16,14 @@ Serve Supabase configurato: tutta l'app richiede il login. Se la tabella dei luo
 
 1. Supabase → SQL Editor → esegui `supabase/schema.sql` (idempotente).
 2. Aggiungi `SUPABASE_SERVICE_ROLE_KEY` in `.env.local` ed esegui `npm run db:seed`: fonti, luoghi, account demo (credenziali in `.env.example`) e 10 attività di esempio.
-3. Facoltativo, solo su un database dedicato: `supabase/cleanup-cityalert.sql` elimina le tabelle di CityAlert.
+3. Modalità ospite: esegui `supabase/migrations/033_guest.sql` e attiva Authentication → Sign In / Providers → **Allow anonymous sign-ins** (consigliato anche il CAPTCHA, perché ogni ospite crea un utente anonimo). Senza questa opzione "Visualizza come ospite" funziona lo stesso, solo con un cookie.
+4. Facoltativo, solo su un database dedicato: `supabase/cleanup-cityalert.sql` elimina le tabelle di CityAlert.
 
 Test di permessi e lista d'attesa su un Postgres locale:
 
 ```bash
 psql -f supabase/tests/supabase-shim.sql && psql -f supabase/schema.sql && psql -f supabase/tests/rls.test.sql
+psql -f supabase/migrations/031_cost.sql -f supabase/migrations/032_report_venue.sql -f supabase/migrations/033_guest.sql -f supabase/tests/guest.test.sql
 ```
 
 ## Pipeline dati

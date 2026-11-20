@@ -10,7 +10,9 @@ import { useAuth } from '@/features/auth/hooks/use-auth';
 
 /** Logo a sinistra, profilo in alto a destra. */
 export function TopBar() {
-  const { user } = useAuth();
+  const { user: session } = useAuth();
+  // L'ospite anonimo non ha un profilo: il pulsante porta al login
+  const user = session && !session.is_anonymous ? session : null;
   const avatar = user?.user_metadata?.avatar_url as string | undefined;
   const initial = (user?.user_metadata?.display_name as string | undefined)?.charAt(0) ?? user?.email?.charAt(0);
   return (

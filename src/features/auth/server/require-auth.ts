@@ -26,6 +26,12 @@ export async function requireAuth() {
       error: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
     };
   }
+  // Ospite (login anonimo): solo letture pubbliche, vedi requireAuthOrGuest
+  if (user.is_anonymous) {
+    return {
+      error: NextResponse.json({ error: 'account_required', message: 'Serve un account: accedi o registrati.' }, { status: 403 }),
+    };
+  }
 
   return { user, supabase };
 }
@@ -37,5 +43,8 @@ export async function requireAuth() {
 export async function requireAuthOrGuest() {
   const jar = await cookies();
   if (jar.get(GUEST_COOKIE)?.value === '1') return { guest: true as const };
+  const supabase = await getSupabaseRouteClient();
+  const { data } = (await supabase?.auth.getUser()) ?? { data: { user: null } };
+  if (data.user?.is_anonymous) return { guest: true as const };
   return requireAuth();
 }

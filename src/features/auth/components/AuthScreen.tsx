@@ -57,7 +57,9 @@ export function AuthScreen() {
   const params = useSearchParams();
   const next = safeNext(params?.get('next') ?? null);
   const t = useT();
-  const { user, loading: authLoading, signIn, signUp } = useAuth();
+  const { user, loading: authLoading, signIn, signUp, signInAsGuest } = useAuth();
+  // L'ospite anonimo che apre il login vuole accedere davvero: niente rimbalzo all'app
+  const realUser = user && !user.is_anonymous ? user : null;
 
   // Se arrivo qui da un'azione (iscriviti, crea…) salto lo splash
   const [phase, setPhase] = useState<Phase>(next ? 'login' : params?.get('mode') === 'register' ? 'role' : 'splash');
@@ -74,10 +76,10 @@ export function AuthScreen() {
   const isRegister = phase === 'register';
 
   useEffect(() => {
-    if (!authLoading && user) {
+    if (!authLoading && realUser) {
       router.replace(next ?? '/');
     }
-  }, [user, authLoading, router, next]);
+  }, [realUser, authLoading, router, next]);
 
   useEffect(() => {
     if (phase !== 'splash') return;
@@ -86,11 +88,14 @@ export function AuthScreen() {
   }, [phase]);
 
   /** Ospite: mappa e filtri senza account (niente assistente vocale) */
-  const continueAsGuest = useCallback(() => {
+  const [guestLoading, setGuestLoading] = useState(false);
+  const continueAsGuest = useCallback(async () => {
+    setGuestLoading(true);
     enterGuest();
+    if (!user?.is_anonymous) await signInAsGuest();
     const target = next && isGuestPath(new URL(next, window.location.origin).pathname) ? next : '/mappa';
     router.replace(target);
-  }, [next, router]);
+  }, [next, router, user, signInAsGuest]);
 
   const skipSplash = useCallback(() => {
     if (phase === 'splash') setPhase('login');
@@ -446,9 +451,10 @@ export function AuthScreen() {
                   <button
                     type="button"
                     onClick={continueAsGuest}
-                    className="h-11 px-5 rounded-full border border-(--stroke-dark) bg-(--surface-muted) hover:bg-white text-[15px] font-semibold text-hi inline-flex items-center gap-2 transition-colors"
+                    disabled={guestLoading}
+                    className="disabled:opacity-60 h-11 px-5 rounded-full border border-(--stroke-dark) bg-(--surface-muted) hover:bg-white text-[15px] font-semibold text-hi inline-flex items-center gap-2 transition-colors"
                   >
-                    <Eye className="w-[18px] h-[18px]" aria-hidden />
+                    {guestLoading ? <Loader2 className="w-[18px] h-[18px] animate-spin" aria-hidden /> : <Eye className="w-[18px] h-[18px]" aria-hidden />}
                     Visualizza come ospite
                   </button>
                   <p className="text-[12px] text-mid max-w-[300px]">

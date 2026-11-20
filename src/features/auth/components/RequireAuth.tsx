@@ -18,20 +18,23 @@ export function RequireAuth({ children }: { children: React.ReactNode }) {
   const [guestCookie, setGuestCookie] = useState<boolean | null>(null);
   useEffect(() => setGuestCookie(hasGuestCookie()), [pathname]);
 
+  // L'ospite può avere una sessione anonima di Supabase: non è un account vero
+  const account = user && !user.is_anonymous ? user : null;
+
   // Con un account la modalità ospite non serve più
   useEffect(() => {
-    if (user) leaveGuest();
-  }, [user]);
+    if (account) leaveGuest();
+  }, [account]);
 
-  const guest = !user && !!guestCookie && isGuestPath(pathname);
+  const guest = !account && (!!user?.is_anonymous || !!guestCookie) && isGuestPath(pathname);
   const ready = !loading && guestCookie !== null;
 
   useEffect(() => {
     // Con la query: i filtri nell'URL (link condivisi, voce) sopravvivono al login
-    if (ready && !user && !guest) router.replace(`/auth?next=${encodeURIComponent(window.location.pathname + window.location.search)}`);
-  }, [user, ready, guest, router, pathname]);
+    if (ready && !account && !guest) router.replace(`/auth?next=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+  }, [account, ready, guest, router, pathname]);
 
-  if (!ready || (!user && !guest)) {
+  if (!ready || (!account && !guest)) {
     return (
       <div className="h-full flex items-center justify-center bg-(--bg)" role="status" aria-live="polite">
         <span className="sr-only">Caricamento…</span>
