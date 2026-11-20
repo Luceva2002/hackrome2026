@@ -67,6 +67,17 @@ export function useAuth() {
     [supabase],
   );
 
+  /**
+   * Ospite: login anonimo di Supabase (se attivo nel progetto), così la RLS lo riconosce.
+   * Se non è attivo resta solo il cookie dell'ospite: si vede comunque mappa e filtri.
+   */
+  const signInAsGuest = useCallback(async () => {
+    if (!supabase) return false;
+    const { error } = await supabase.auth.signInAnonymously();
+    if (error) console.warn('[auth] login anonimo non disponibile:', error.message);
+    return !error;
+  }, [supabase]);
+
   const signOut = useCallback(async () => {
     if (!supabase) return;
     await supabase.auth.signOut();
@@ -93,5 +104,5 @@ export function useAuth() {
     [supabase],
   );
 
-  return { ...state, signUp, signIn, signInWithGoogle, signOut, updatePassword };
+  return { ...state, signUp, signIn, signInAsGuest, signInWithGoogle, signOut, updatePassword };
 }
