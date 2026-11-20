@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { requireAuth } from '@/features/auth/server/require-auth';
+import { requireAuth, requireAuthOrGuest } from '@/features/auth/server/require-auth';
 import { filterVenues, searchParamsToFilters } from '@/features/venues/filters';
 import { listVenues } from '@/features/venues/server/repository';
 import type { VenueSummary } from '@/features/venues/types';
@@ -10,9 +10,9 @@ import { NATURE_LABELS, VENUE_KINDS } from '@/lib/sports/taxonomy';
 
 export const dynamic = 'force-dynamic';
 
-/** GET /api/venues?disciplina=basket&municipio=15&accessibile=1 — solo con login */
+/** GET /api/venues?disciplina=basket&municipio=15&accessibile=1 — con login o come ospite */
 export async function GET(request: Request) {
-  const auth = await requireAuth();
+  const auth = await requireAuthOrGuest();
   if ('error' in auth) return auth.error;
   const { searchParams } = new URL(request.url);
   const { venues, origin } = await listVenues();

@@ -1,7 +1,11 @@
 'use client';
 
-import { useEffect, useId, useRef } from 'react';
-import { Mic, MicOff } from 'lucide-react';
+import { useEffect, useId, useRef, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Lock, Mic, MicOff } from 'lucide-react';
+
+import { useIsGuest } from '@/features/auth/guest';
 
 import { AgentIcon } from './AgentIcon';
 import { VoiceBars } from './VoiceStatus';
@@ -16,6 +20,10 @@ const HOLD_MS = 350;
  * - Tenuto premuto (dito, mouse o barra spaziatrice): parli, al rilascio smette.
  */
 export function AssistantButton() {
+  return useIsGuest() ? <GuestAssistantButton /> : <VoiceAssistantButton />;
+}
+
+function VoiceAssistantButton() {
   const { status, openChat, startVoice, stopVoice } = useAssistant();
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holding = useRef(false);
@@ -118,5 +126,51 @@ export function AssistantButton() {
         Tocca per aprire la chat, tieni premuto per parlare. Nella chat c’è anche il pulsante del microfono.
       </span>
     </button>
+  );
+}
+
+/** Ospite: l'assistente vocale è spento; un tocco spiega perché e porta al login */
+function GuestAssistantButton() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname() ?? '/mappa';
+  const tipId = useId();
+  useEffect(() => {
+    if (!open) return;
+    const t = setTimeout(() => setOpen(false), 6000);
+    return () => clearTimeout(t);
+  }, [open]);
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-controls={tipId}
+        aria-label="Assistente vocale non disponibile come ospite"
+        className="relative w-dock h-dock shrink-0 rounded-full liquid-glass text-hi flex items-center justify-center active:scale-90 transition-transform duration-200"
+      >
+        <AgentIcon state="idle" className="w-10 h-10 opacity-40 grayscale" />
+        <span className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-ink text-white flex items-center justify-center" aria-hidden>
+          <Lock className="w-3.5 h-3.5" />
+        </span>
+      </button>
+      {open && (
+        <div
+          id={tipId}
+          role="status"
+          className="absolute bottom-[calc(100%+10px)] right-0 w-[240px] liquid-glass rounded-2xl p-3.5 text-[14px] text-hi shadow-(--shadow-float) lg:bottom-[calc(100%+10px)]"
+        >
+          <p className="font-semibold">L’assistente vocale è per chi ha un account.</p>
+          <p className="text-mid text-[13px] mt-1">Come ospite puoi usare mappa e filtri.</p>
+          <Link
+            href={`/auth?next=${encodeURIComponent(pathname)}`}
+            className="mt-2.5 inline-flex h-9 px-4 rounded-full bg-gold-500 text-(--on-gold) font-bold items-center"
+          >
+            Accedi o registrati
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }

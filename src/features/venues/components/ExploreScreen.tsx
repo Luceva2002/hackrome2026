@@ -277,7 +277,13 @@ export function ExploreScreen() {
           type="button"
           onClick={async () => {
             const loc = geo.location ?? (await geo.requestAccess());
-            if (loc) mapRef.current?.flyTo(loc.longitude, loc.latitude, 15.5);
+            if (!loc) return;
+            stopTour();
+            // Si salta subito all'ultimo livello (il quartiere dove sono): via i rilievi di Roma e i colori
+            // dei Municipi, restano i pin attorno a me. Quiet: la camera va sulla posizione, non sul quartiere.
+            const a = areas?.areaAt(loc.longitude, loc.latitude);
+            if (a?.municipio) setZone({ level: 'area', m: a.municipio, id: a.id, quiet: true });
+            mapRef.current?.flyTo(loc.longitude, loc.latitude, 15.5);
           }}
           aria-label="Centra la mappa sulla mia posizione"
           className="w-control h-control rounded-full liquid-glass flex items-center justify-center text-hi active:scale-90 transition-transform"

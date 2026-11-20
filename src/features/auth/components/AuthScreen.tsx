@@ -5,11 +5,12 @@ import { APP_NAME } from '@/lib/brand';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, Check, KeyRound, Loader2, Lock, Mail, User, Volleyball } from 'lucide-react';
+import { ArrowLeft, Check, Eye, KeyRound, Loader2, Lock, Mail, User, Volleyball } from 'lucide-react';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
 import { PillButton } from '@/components/ui/PillButton';
 import { useAuth } from '@/features/auth/hooks/use-auth';
+import { enterGuest, isGuestPath } from '@/features/auth/guest';
 import { useT } from '@/lib/i18n';
 import { safeAppPath } from '@/lib/safe-path';
 
@@ -83,6 +84,13 @@ export function AuthScreen() {
     const timer = setTimeout(() => setPhase('login'), SPLASH_MS);
     return () => clearTimeout(timer);
   }, [phase]);
+
+  /** Ospite: mappa e filtri senza account (niente assistente vocale) */
+  const continueAsGuest = useCallback(() => {
+    enterGuest();
+    const target = next && isGuestPath(new URL(next, window.location.origin).pathname) ? next : '/mappa';
+    router.replace(target);
+  }, [next, router]);
 
   const skipSplash = useCallback(() => {
     if (phase === 'splash') setPhase('login');
@@ -432,6 +440,22 @@ export function AuthScreen() {
               >
                 {isRegister ? t('auth.hasAccount') : t('auth.noAccount')}
               </button>
+
+              {!isRegister && (
+                <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
+                  <button
+                    type="button"
+                    onClick={continueAsGuest}
+                    className="h-11 px-5 rounded-full border border-(--stroke-dark) bg-(--surface-muted) hover:bg-white text-[15px] font-semibold text-hi inline-flex items-center gap-2 transition-colors"
+                  >
+                    <Eye className="w-[18px] h-[18px]" aria-hidden />
+                    Visualizza come ospite
+                  </button>
+                  <p className="text-[12px] text-mid max-w-[300px]">
+                    Vedi dove fare sport nella tua zona con mappa e filtri. L’assistente vocale è disponibile solo con un account.
+                  </p>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
